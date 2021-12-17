@@ -16,26 +16,34 @@ const eventSlice = createSlice({
 	initialState,
 	reducers: {},
 	
-	extraReducers: {
-		[fetchEventList.pending]: (state:EventState) => {
-			state.eventStatus = "loading";
-			state.eventError = null;
-		},
-		[fetchEventList.fulfilled]: (
-			state, action
-		) => {
-			state.eventStatus= "resolved";
-			state.events = action.payload;
-			state.isEventsLoaded = true;
-		},
-		[fetchEventList.rejected]: (
-			state, action
-		) => {
-			state.eventStatus = "rejected";
-			state.eventError = action.payload;
-			state.isEventsLoaded = false;
-		},
-        
+	extraReducers: builder => {
+		builder.addCase(
+			fetchEventList.pending,
+			(state:EventState) => {
+				state.eventStatus = "loading";
+				state.eventError = null;
+			}
+		);
+		builder.addCase(
+			fetchEventList.fulfilled,
+			(
+				state:EventState, action
+			) => {
+				state.eventStatus= "resolved";
+				state.events = action.payload;
+				state.isEventsLoaded = true;
+			}
+		);
+		builder.addCase(
+			fetchEventList.rejected,
+			(
+				state, action
+			) => {
+				state.eventStatus = "rejected";
+				state.eventError = action.payload;
+				state.isEventsLoaded = false;
+			}
+		);
 	}
 });
 

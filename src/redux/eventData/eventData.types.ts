@@ -1,5 +1,7 @@
+import { EventAdapterType } from "utils/adapter";
+
 export interface EventState {
-	events: [],
+	events: EventAdapterType[] | [],
 	eventError: unknown,
 	//currentEvent: ,
 	isEventsLoaded: boolean,

@@ -1,5 +1,5 @@
 
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, MiddlewareArray } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
 	persistStore,
@@ -31,8 +31,12 @@ const persistedReducer = persistReducer(
 	rootReducer 
 );
 
-type GetDefaultMiddleware<S=unknown> =
-	(options: GetDefaultMiddlewareOptions) => Middleware<Record<string, unknown>, S>[];
+/*type GetDefaultMiddleware<S=unknown> =
+	(options: GetDefaultMiddlewareOptions) => Middleware<Record<string, unknown>, S>[];*/
+
+type GetDefaultMiddleware =
+	(options: GetDefaultMiddlewareOptions) => Middleware<Record<string, unknown>>[];
+
 const getPersistMiddleware =
 	( getDefaultMiddleware: GetDefaultMiddleware) => (
 		getDefaultMiddleware( {
