@@ -1,0 +1,1 @@
+export { MainTable } from "./MainTable";

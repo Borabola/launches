@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 
-const Loader: FC = () => {
+export const Loader: FC = () => {
 	const classes = useStyles();
 
 	return (
@@ -42,5 +42,3 @@ const Loader: FC = () => {
 		</Box>
 	);
 };
-
-export default Loader;
