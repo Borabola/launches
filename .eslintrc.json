@@ -6,7 +6,8 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:react/recommended"
+		"plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"  
 	],
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -16,9 +17,13 @@
 		"sourceType": "module"
 	},
 	"plugins": [
-		"react"
+		"react",
+        "formatjs",
+        "@typescript-eslint"
 	],
 	"rules": {
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off",
 		"no-return-assign": "error",
 		"no-return-await": "error",
 		"no-script-url": "error",

@@ -10,7 +10,6 @@ const breakpoints = {
 	}
 };
 
-
 const theme = createTheme({
 	breakpoints,
 	palette: {
@@ -85,6 +84,7 @@ theme.typography.h1 = {
 		lineHeight: "52px",
 	},
 };
+
 theme.typography.h2 = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSize: 54,
@@ -100,6 +100,7 @@ theme.typography.h2 = {
 		lineHeight: "42px",
 	},
 };
+
 theme.typography.h3 = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSize: 26,
@@ -115,6 +116,7 @@ theme.typography.h3 = {
 		lineHeight: "22px",
 	},
 };
+
 theme.typography.h4 = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSize: 22,
@@ -122,6 +124,7 @@ theme.typography.h4 = {
 	lineHeight: "28px",
 	letterSpacing: "0.0038em",
 };
+
 theme.typography.h5 = {
 	fontFamily: "Roboto, sans-serif",
 	fontSize: 17,
@@ -129,6 +132,7 @@ theme.typography.h5 = {
 	lineHeight: "28px",
 	color: "#F1EBFF",
 };
+
 theme.typography.body1 = {
 	fontFamily: "Roboto, sans-serif",
 	fontSize: 17,
@@ -136,7 +140,8 @@ theme.typography.body1 = {
 	lineHeight: "28px",
 	color: "#F1EBFF",
 };
-theme.typography.caption =  {
+
+theme.typography.caption = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSize: 18,
 	fontWeight: 500,
@@ -146,6 +151,3 @@ theme.typography.caption =  {
 };
 
 export default theme;
-  
-
-  
