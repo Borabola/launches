@@ -132,5 +132,7 @@ declare module "react-table" {
 		getToggleHiddenProps: (userProps?: any) => any;
 		depth: number; // not documented
 		placeholderOf?: ColumnInstance | undefined;
-	}		
+	}
+	
+	export type Row<D extends object = {}> = UseTableRowProps<D>
 }

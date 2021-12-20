@@ -11,17 +11,19 @@ import {
 	Hooks, useSortBy, useTable
 } from "react-table";
 import { Button } from "@mui/material";
-
 import { Props } from "./MainTable.types";
 
+type rowProps = {
+	row: {
+		values: {
+			quantity: number
+		}
+	}	
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
 		width: "100%",
-		//display: "block",
-		//overflow: "auto",
-		//maxHeight: "70vh",
-		//"&.MuiTableBody-root": {
 		display: "block",
 
 		"& .MuiTableCell-body": {
@@ -42,10 +44,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	tableRow: {
 		width: "100%",
-		/*"&.MuiTableRow-root": {
-			display: "flex",
-			justifyContent: "space-between"
-		}*/
 	},
 	tableRowEven: {
 		width: "100%",
@@ -80,7 +78,7 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 			{
 				id: "Edit",
 				Header: "Edit",
-				Cell: ({ row }) => (
+				Cell: ({ row }:rowProps) => (
 					<Button
 						onClick={()=> alert("Products quantity: " +
 							row.values?.quantity)}
