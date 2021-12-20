@@ -40,7 +40,7 @@ export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-export const AuthProvider = ({ children }: Props) => {
+export const AuthProvider: React.FC = ({ children }: Props) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState<string | null>(null);
 	const [ isLoading, setIsLoading ] = useState(false);

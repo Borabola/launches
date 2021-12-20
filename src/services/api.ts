@@ -1,6 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { Axios } from "axios";
-import { AxiosInstance } from "axios";
+import axios from "axios";
 
 //import Axios from "axios/lib/core";
 //let Axios = require("./core/Axios");

@@ -10,9 +10,9 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(isSameOrAfter);
 
 
-export const isDevelopment = () => process.env.NODE_ENV === "development";
+export const isDevelopment = ():boolean => process.env.NODE_ENV === "development";
 
-export const getTimeFormate = (endtime:string) => {
+export const getTimeFormate = (endtime:string):string | 0 => {
 	if (Date.parse(endtime) !== Date.now()) {
 		const t = Date.parse(endtime) - Date.now();
 		const seconds = Math.floor((t / 1000) % SECONDS);
@@ -34,7 +34,7 @@ export const getTimeFormate = (endtime:string) => {
 };
 
 // encrypt user info
-export const encryptUserInfo = (authData:JSON) => {
+export const encryptUserInfo = (authData:JSON):void => {
 	const authDataForLocalStorage = AES.encrypt(
 		JSON.stringify(authData),
 		KEY
@@ -46,7 +46,7 @@ export const encryptUserInfo = (authData:JSON) => {
 };
 
 // decrypt user info
-export const deryptUserInfo = () => {
+export const deryptUserInfo = ():string | null => {
 	const authData = localStorage.getItem("auth")?.toString();
 	if (authData) {
 		const decryptedAuthData = AES.decrypt(
@@ -70,7 +70,7 @@ export const deryptUserInfo = () => {
 		return dayjs().isSameOrAfter(dayjs.unix(expiresAt?.exp));
 };*/
 
-export const checkIfFileIsCorrectType = (file:File) => {
+export const checkIfFileIsCorrectType = (file:File):boolean => {
 	let valid = true;
 	if (!SUPPORTED_FORMATS.includes(file.type)) {
 		valid = false;
@@ -78,7 +78,7 @@ export const checkIfFileIsCorrectType = (file:File) => {
 	return valid;
 };
 
-export const checkIfFileIsTooBig = (file:File) => {
+export const checkIfFileIsTooBig = (file:File):boolean => {
 	let valid = true;
 	const size = file.size;
 	if (size > MAX_FILE_SIZE) {

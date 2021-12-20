@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "theme";
-import Loader from "components/common/Loader/Loader";
+import { Loader } from "components/common/Loader/Loader";
 import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 

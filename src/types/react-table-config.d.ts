@@ -117,4 +117,20 @@ declare module "react-table" {
 		UseGroupByRowProps<D>,
 		UseRowSelectRowProps<D>,
 		UseRowStateRowProps<D> {}
+
+	export interface UseTableColumnProps<D extends object> {
+		id: IdType<D>;
+		columns?: Array<ColumnInstance<D>> | undefined;
+		isVisible: boolean;
+		render: (type: "Header" | "Footer" | string, props?: object) => ReactNode;
+		totalLeft: number;
+		totalWidth: number;
+		getHeaderProps: (propGetter?: HeaderPropGetter<D>) => TableHeaderProps;
+		getFooterProps: (propGetter?: FooterPropGetter<D>) => TableFooterProps;
+		toggleHidden: (value?: boolean) => void;
+		parent?: ColumnInstance<D> | undefined; // not documented
+		getToggleHiddenProps: (userProps?: any) => any;
+		depth: number; // not documented
+		placeholderOf?: ColumnInstance | undefined;
+	}		
 }

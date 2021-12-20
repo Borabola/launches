@@ -1,5 +1,5 @@
 
-import { configureStore, MiddlewareArray } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
 	persistStore,

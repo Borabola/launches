@@ -118,23 +118,26 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 	key={key}
 	{...restHeaderGroupProps}
                             >
-                                {headerGroup.headers.map((column) => (
-                                    <TableCell
-	className={classes.tableCell}
-	key={Math.random()*9999}
-	{...column.getHeaderProps(column.getSortByToggleProps())}
-                                    >
-                                        {column.render("Header")}
-                                        {/* Add a sort direction indicator */}
-                                        <span>
-                                            {column.isSorted
-                                                ? column.isSortedDesc
-                                                    ? " 🔽"
-                                                    : " 🔼"
-                                                : ""}
-                                        </span>
-                                    </TableCell>
-                                ))}
+                                {headerGroup.headers.map((column) => {
+									const {key, ...restColumn} = column.getHeaderProps();
+									return (
+										<TableCell
+											className={classes.tableCell}
+											key={key}
+											//{...restColumn(column.getSortByToggleProps())}
+											{...restColumn}
+										>
+											{column.render("Header")}
+											{/* Add a sort direction indicator */}
+											<span>
+												{column.isSorted
+													? column.isSortedDesc
+														? " 🔽"
+														: " 🔼"
+													: ""}
+											</span>
+										</TableCell>
+                                );})}
                             </TableRow>
                             );
                     } )}
