@@ -111,48 +111,53 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 				{...getTableProps()}
 			>
 				<TableHead className={classes.tableHead}>
-					{headerGroups.map((headerGroup) => (
-						<TableRow
-							key={Math.random()*9999}
-							{...headerGroup.getHeaderGroupProps()}
-						>
-							{headerGroup.headers.map((column) => (
-								<TableCell
-									className={classes.tableCell}
-									key={Math.random()*9999}
-									{...column.getHeaderProps(column.getSortByToggleProps())}
-								>
-									{column.render("Header")}
-									{/* Add a sort direction indicator */}
-									<span>
-										{column.isSorted
-											? column.isSortedDesc
-												? " 🔽"
-												: " 🔼"
-											: ""}
-									</span>
-								</TableCell>
-							))}
-						</TableRow>
-					))}
+					{headerGroups.map((headerGroup) => {
+                        const {key, ...restHeaderGroupProps} = headerGroup.getHeaderGroupProps();
+                        return (
+                            <TableRow
+	key={key}
+	{...restHeaderGroupProps}
+                            >
+                                {headerGroup.headers.map((column) => (
+                                    <TableCell
+	className={classes.tableCell}
+	key={Math.random()*9999}
+	{...column.getHeaderProps(column.getSortByToggleProps())}
+                                    >
+                                        {column.render("Header")}
+                                        {/* Add a sort direction indicator */}
+                                        <span>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? " 🔽"
+                                                    : " 🔼"
+                                                : ""}
+                                        </span>
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                            );
+                    } )}
 				</TableHead>
 				<TableBody className={classes.tableBody}>
 					{rows.map((
 						row, idx
 					) => {
 						prepareRow(row);
+                        const { key, ...restRowProps } = row.getRowProps();
 						return (
 							<TableRow
 								className={isEven(idx) ? classes.tableRowEven : classes.tableRow}
-								key={Math.random()*9999}
-								{...row.getRowProps()}
+								key={key}
+								{...restRowProps}
 							>
 								{row.cells.map((cell) => {
+                                    const { key, ...restCellProps } = cell.getCellProps();
 									return (
 										<TableCell
 											className={classes.tableCell}
-											key={Math.random()*9999}
-											{...cell.getCellProps()}
+											key={key}
+											{...restCellProps}
 										>
 											{cell.render("Cell")}
 										</TableCell>
