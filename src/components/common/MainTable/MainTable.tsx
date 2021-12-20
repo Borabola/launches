@@ -171,4 +171,3 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 		</TableContainer>
 	);
 };
-
