@@ -13,7 +13,7 @@ dayjs.extend(isSameOrAfter);
 export const isDevelopment = ():boolean => process.env.NODE_ENV === "development";
 
 export const getTimeFormate = (endtime:string):string | 0 => {
-	if (Date.parse(endtime) !== Date.now()) {
+	if ((Date.parse(endtime)) !== Date.now()) {
 		const t = Date.parse(endtime) - Date.now();
 		const seconds = Math.floor((t / 1000) % SECONDS);
 		const minutes = Math.floor((t / 1000 / MINUTE) % MINUTE);

@@ -11,7 +11,6 @@ export const launchAdapter = (incomingLaunch: LaunchResult) => {
 		rocketId: incomingLaunch.rocket.configuration.id,
 	};
 	return adaptedLaunch;
-
 };
 
 export type LaunchAdapterType = ReturnType<typeof launchAdapter>;

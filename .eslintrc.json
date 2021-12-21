@@ -146,7 +146,7 @@
 						]
 					}
 				],
-				"indent": [
+				/*"indent": [
 					"error",
 					"tab",
 					{
@@ -174,7 +174,7 @@
 							"JSXAttribute"
 						]
 					}
-				],
+				],*/
 				"function-call-argument-newline": [
 					"error",
 					"always"

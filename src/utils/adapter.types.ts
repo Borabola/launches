@@ -17,7 +17,7 @@ export interface Launch {
 	slug: string;
 	name: string;
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	mission: string;
@@ -290,7 +290,7 @@ export interface LaunchResult {
 	name: string;
 	img_url?: null | string | string[];
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	inhold: boolean;
@@ -380,7 +380,7 @@ export interface CurrentLaunch {
 	name: string;
 	img_url?: null | string | string[];
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	inhold: boolean;
@@ -394,7 +394,7 @@ export interface CurrentLaunch {
 	mission: Mission;
 	pad: Pad;
 	infoURLs: null | string | string[];
-	vidURLs: null | string | string[];
+	vidURLs: null | string | string[] | undefined;
 	image_url?: null | string | string[];
 	infographic_url?: null | string | string[];
 }
