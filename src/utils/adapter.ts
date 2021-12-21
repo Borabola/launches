@@ -49,3 +49,5 @@ export const currentLaunchAdapter = (incomingCurrentLaunch: CurrentLaunch) => {
 	};
 	return adaptedLaunch;
 };
+
+export type CurrentLaunchAdapterType = ReturnType<typeof currentLaunchAdapter>;

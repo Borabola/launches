@@ -5,11 +5,16 @@ import {eventAdapter} from "utils/adapter";
 import {showToast, showServerDetail} from "utils/toastHelper";
 import type { EventResult } from "utils/adapter.types";
 import type { ErrorReceived } from "../types/redux.types";
+import { IThunkApi } from "redux/store/store.types";
 
-export const fetchEventList = createAsyncThunk(
+export const fetchEventList = createAsyncThunk<
+ReturnType<typeof eventAdapter>[], // return type
+null, // args type
+IThunkApi // thunkAPI type
+>(
 	"event/fetchEventList",
 	async (
-		_:null, { rejectWithValue }
+		_, { rejectWithValue }
 	) => {
 		try {
 			const response = await getEventList();

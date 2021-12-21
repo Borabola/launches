@@ -2,9 +2,16 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getLaunchList, getCurrentLaunch } from "services/launch";
 import {launchAdapter, currentLaunchAdapter} from "utils/adapter";
 import {showToast, showServerDetail} from "utils/toastHelper";
+import type { LaunchResult } from "utils/adapter.types";
+import type { ErrorReceived } from "../types/redux.types";
+import { IThunkApi } from "redux/store/store.types";
 
 
-export const fetchLaunchList = createAsyncThunk(
+export const fetchLaunchList = createAsyncThunk<
+ReturnType<typeof launchAdapter>[], // return type
+null, // args type
+IThunkApi // thunkAPI type
+>(
 	"launch/fetchLaunchesList",
 	async (
 		_, { rejectWithValue }
@@ -15,17 +22,22 @@ export const fetchLaunchList = createAsyncThunk(
 				throw new Error("Server Error!");
 			}
 			
-			return response.data.results.map((item) => launchAdapter(item));
+			return response?.data?.results.map((item: LaunchResult) => launchAdapter(item));
 
 		} catch (error) {
+			const _error = error as ErrorReceived;
 			showToast();
-			showServerDetail(error.response.data.detail);
-			return rejectWithValue(error.response.data.error);
+			showServerDetail(_error?.response?.data.detail);
+			return rejectWithValue(_error?.response?.data.error);
 		}
 	}
 );
 
-export const fetchCurrentLaunch = createAsyncThunk(
+export const fetchCurrentLaunch = createAsyncThunk<
+ReturnType<typeof currentLaunchAdapter>, // return type
+string, // args type
+IThunkApi // thunkAPI type
+>(
 	"launch/fetchCurrentLaunch",
 	async (
 		id, { rejectWithValue }
@@ -41,9 +53,10 @@ export const fetchCurrentLaunch = createAsyncThunk(
 
 			return result;
 		} catch (error) {
+			const _error = error as ErrorReceived;
 			showToast();
-			showServerDetail(error.response.data.detail);
-			return rejectWithValue(error.response.data.error);
+			showServerDetail(_error?.response?.data.detail);
+			return rejectWithValue(_error?.response?.data.error);
 		}
 	}
 );
