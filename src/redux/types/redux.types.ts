@@ -7,5 +7,3 @@ export interface ErrorResponse {
 export interface ErrorReceived {
 	response: ErrorResponse,
 }
-
-//_error?.response?.data.detail

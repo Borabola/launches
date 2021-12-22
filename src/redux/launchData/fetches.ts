@@ -9,7 +9,7 @@ import { IThunkApi } from "redux/store/store.types";
 
 export const fetchLaunchList = createAsyncThunk<
 ReturnType<typeof launchAdapter>[], // return type
-null, // args type
+never, // args type
 IThunkApi // thunkAPI type
 >(
 	"launch/fetchLaunchesList",

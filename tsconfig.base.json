@@ -1,0 +1,44 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./src",
+      "paths": {
+        "components/*": ["components/*"],
+        "pages/*": ["components/pages/*"],
+        "assets/*": ["assets/*"],
+        "context/*": ["context/*"],
+        "firebase/*": ["firebase/*"],
+        "hocs/*": ["hocs/*"],
+        "hooks/*": ["hooks/*"],
+        "layouts/*": ["layouts/*"],
+        "redux/*": ["redux/*"],
+        "utils/*": ["utils/*"],
+        "services/*": ["services/*"]
+      },
+      "target": "es5",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "strictNullChecks": true,
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "noFallthroughCasesInSwitch": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx"
+    },
+    "include": [
+      "./src/**/*"
+    ]
+  }
+  

@@ -1,5 +1,7 @@
 
-import { useEffect, useState } from "react";
+import {
+	FC, useEffect, useState 
+} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import {
@@ -18,6 +20,7 @@ import { AuthorizationStatus, launchQnt } from "utils/const";
 import { useAuth } from "contexts/AuthContext";
 import { useIntl } from "react-intl";
 import type { AppDispatch, RootState } from "redux/store/store.types";
+import { useAppDispatch, useAppSelector } from "hooks/utils";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -55,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-function Main() {
+export const Main: FC = () => {
 	const classes = useStyles();
 	const authContext = useAuth();
 	if( authContext === null ) {
@@ -64,6 +67,7 @@ function Main() {
 	const { currentUser } = authContext;
 	const intl = useIntl();
 
+	//const dispatch = useAppDispatch();
 	const dispatch: AppDispatch = useDispatch();
 
 	const events = useSelector<RootState>(state => state.event.events);
@@ -118,7 +122,4 @@ function Main() {
 			<Footer />
 		</div>
 	);
-}
-
-
-export default Main;
+};

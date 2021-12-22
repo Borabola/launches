@@ -5,7 +5,8 @@ import {
 	Box, Button, TextField, Typography, Theme
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import { Form, DropZone } from "react-formik-ui";
+import { Form } from "react-formik-ui";
+import { DropZone } from "react-formik-ui/dist/components/DropZone/DropZone";
 import "./style.scss";
 import { SUPPORTED_FORMATS } from "utils/const";
 import type { Props } from "./NewProductForm.types";
@@ -129,8 +130,8 @@ export const NewProductForm: FC<Props> =
 						name='file'
 						label='Photo upload'
 						placeholder='Try dropping files here or click to select files to upload'
-						acceptedFiles={SUPPORTED_FORMATS}
-						//accept="image/*"
+						//acceptedFiles={SUPPORTED_FORMATS}
+						accept="image/*"
 						multiple={false}
 						fileInfo={true}
 						maxSize={1000000}

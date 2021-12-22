@@ -9,7 +9,7 @@ import { IThunkApi } from "redux/store/store.types";
 
 export const fetchEventList = createAsyncThunk<
 ReturnType<typeof eventAdapter>[], // return type
-null, // args type
+never, // args type
 IThunkApi // thunkAPI type
 >(
 	"event/fetchEventList",
