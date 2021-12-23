@@ -13,13 +13,9 @@ import {
 import storage from "redux-persist/lib/storage";
 import rootReducer from "../rootReducer";
 import { isDevelopment } from "../../utils/helper";
-import { GetDefaultMiddlewareOptions } from "./store.types";
-import { Middleware } from "redux";
-import { eventSlice } from "../../services/api";
-/*function getDefaultMiddleware<S = any>(
-	options: GetDefaultMiddlewareOptions = {}
-  ): Middleware<{}, S>[]
-*/
+import {
+	eventSlice, launchSlice, launchCurrentSlice 
+} from "../../services/api";
 
 const persistConfig = {
 	key: "primary",
@@ -31,37 +27,22 @@ const persistedReducer = persistReducer(
 	rootReducer
 );
 
-//type MiddlewareType = Pick<Parameters<typeof configureStore>[0], "middleware">;
-type GetDefaultMiddleware<S = unknown> = (
-	options: GetDefaultMiddlewareOptions
-) => Middleware<Record<string, unknown>, S>[];
-
-/*type GetDefaultMiddleware =
-	(options: GetDefaultMiddlewareOptions) => Middleware<Record<string, unknown>>[];*/
-
-const getPersistMiddleware = (getDefaultMiddleware: GetDefaultMiddleware) =>
-	getDefaultMiddleware({
-		serializableCheck: {
-			ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-		},
-	});
-
-const getStoreMiddleware = (getDefaultMiddleware: GetDefaultMiddleware) =>
-	isDevelopment()
-		? [...getPersistMiddleware(getDefaultMiddleware), logger]
-		: getPersistMiddleware(getDefaultMiddleware);
-
-const getStoreDevTools = () => isDevelopment();
-
-// Store with redux-persist (save stores in browser local storage )
 const store = configureStore({
 	reducer: persistedReducer,
-	//middleware: ( getDefaultMiddleware ) => getStoreMiddleware( getDefaultMiddleware ),
-	middleware: (getDefaultMiddleware) =>
-		isDevelopment()
-			? getDefaultMiddleware().concat(logger).concat(eventSlice.middleware)
-			: getDefaultMiddleware().concat(eventSlice.middleware),
-	devTools: getStoreDevTools(),
+	middleware: (getDefaultMiddleware) => {
+		const extraMiddleweres = [
+			eventSlice.middleware,
+			launchSlice.middleware,
+			launchCurrentSlice.middleware];
+
+		if (isDevelopment()) {extraMiddleweres.push(logger);}
+
+		return getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+			}
+		}).concat(extraMiddleweres);
+	},
 });
 
 const persistor = persistStore(store);

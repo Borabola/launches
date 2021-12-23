@@ -1,12 +1,12 @@
 import {combineReducers} from "redux";
-//import eventSlice from "./eventData/sliceReducer";
-import { eventSlice } from "../services/api";
-import launchSlice from "./launchData/sliceReducer";
+import {
+	eventSlice, launchCurrentSlice, launchSlice 
+} from "../services/api";
 import authSlice from "./auth/sliceReducer";
 
 export default combineReducers({
-	//event: eventSlice.reducer,
 	[eventSlice.reducerPath]: eventSlice.reducer,
-	launch: launchSlice,
+	[launchSlice.reducerPath]: launchSlice.reducer,
+	[launchCurrentSlice.reducerPath]: launchCurrentSlice.reducer,
 	auth: authSlice,
 });
