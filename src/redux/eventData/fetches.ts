@@ -5,7 +5,7 @@ import {eventAdapter} from "utils/adapter";
 import {showToast, showServerDetail} from "utils/toastHelper";
 import type { EventResult } from "utils/adapter.types";
 import type { ErrorReceived } from "../types/redux.types";
-import { IThunkApi } from "redux/store/store.types";
+import { IThunkApi } from "redux/store";
 
 export const fetchEventList = createAsyncThunk<
 ReturnType<typeof eventAdapter>[], // return type

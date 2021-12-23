@@ -126,11 +126,11 @@ export const NewProductForm: FC<Props> =
 						color="secondary"
 						className={classes.textField}
 					/>
-					<DropZone
+					{/*<DropZone
 						name='file'
 						label='Photo upload'
 						placeholder='Try dropping files here or click to select files to upload'
-						//acceptedFiles={SUPPORTED_FORMATS}
+						acceptedFiles={SUPPORTED_FORMATS}
 						accept="image/*"
 						multiple={false}
 						fileInfo={true}
@@ -138,7 +138,7 @@ export const NewProductForm: FC<Props> =
 						className={classes.dropzoneStyle.toString()}
 						isFileDialogActive={true}
 						onDrop={onInputChange}
-					/>
+					/>*/}
 					<TextField
 						error={Boolean(touched.productQnt && errors.productQnt)}
 						fullWidth

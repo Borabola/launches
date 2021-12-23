@@ -1,7 +1,9 @@
 import { eventAdapter } from "utils/adapter";
+import { EventData } from "utils/adapter.types";
 
 type EventProp = ReturnType <typeof eventAdapter>;
 
 export type Props = {
-	events: EventProp[] | []
+	//event: EventProp[] | []
+	data: EventData | never;
 };

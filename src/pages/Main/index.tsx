@@ -19,8 +19,8 @@ import { requireAuthorization } from "redux/auth/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "utils/const";
 import { useAuth } from "contexts/AuthContext";
 import { useIntl } from "react-intl";
-import type { AppDispatch, RootState } from "redux/store/store.types";
-import { useAppDispatch, useAppSelector } from "hooks/utils";
+import type { AppDispatch, RootState } from "redux/store";
+import { useAppDispatch, useAppSelector } from "App/hooks";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -70,10 +70,10 @@ export const Main: FC = () => {
 	//const dispatch = useAppDispatch();
 	const dispatch: AppDispatch = useDispatch();
 
-	const events = useSelector<RootState>(state => state.event.events);
-	const launches = useSelector<RootState>(state => state.launch.launches);
-	const isEventsLoaded = useSelector<RootState>(state => state.event.isEventsLoaded);
-	const isLaunchesLoaded = useSelector<RootState>(state => state.launch.isLaunchesLoaded);
+	const events = useAppSelector(state => state.event.events);
+	const launches = useAppSelector(state => state.launch.launches);
+	const isEventsLoaded = useAppSelector(state => state.event.isEventsLoaded);
+	const isLaunchesLoaded = useAppSelector(state => state.launch.isLaunchesLoaded);
 
 	const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 

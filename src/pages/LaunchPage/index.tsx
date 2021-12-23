@@ -11,7 +11,7 @@ import { Loader } from "components/common/Loader/Loader";
 import { LaunchHero } from "components/launch/LaunchHero/LaunchHero";
 import { LaunchPageContent } from "components/launch/LaunchPageContent/LaunchPageContent";
 import { fetchCurrentLaunch } from "redux/launchData/fetches";
-import type { AppDispatch, RootState } from "redux/store/store.types";
+import type { AppDispatch, RootState } from "redux/store";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {ref, onValue} from "firebase/database";
-import { Database } from "@firebase/database-types";
+//import { Database } from "@firebase/database-types";
+import { Database } from "@firebase/database";
 
 
 

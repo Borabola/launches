@@ -15,6 +15,7 @@ import rootReducer from "../rootReducer";
 import { isDevelopment } from "../../utils/helper";
 import { GetDefaultMiddlewareOptions } from "./store.types";
 import { Middleware } from "redux";
+import { eventSlice } from "../../services/api";
 /*function getDefaultMiddleware<S = any>(
 	options: GetDefaultMiddlewareOptions = {}
   ): Middleware<{}, S>[]
@@ -58,11 +59,20 @@ const store = configureStore({
 	//middleware: ( getDefaultMiddleware ) => getStoreMiddleware( getDefaultMiddleware ),
 	middleware: (getDefaultMiddleware) =>
 		isDevelopment()
-			? getDefaultMiddleware().concat(logger)
-			: getDefaultMiddleware(),
+			? getDefaultMiddleware().concat(logger).concat(eventSlice.middleware)
+			: getDefaultMiddleware().concat(eventSlice.middleware),
 	devTools: getStoreDevTools(),
 });
 
 const persistor = persistStore(store);
 
 export { persistor, store };
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export interface IThunkApi {
+	dispatch: AppDispatch,
+	state: RootState,
+}

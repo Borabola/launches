@@ -11,6 +11,7 @@ import "swiper/swiper.scss";
 import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
 import { ReactComponent as ArrowImage } from "assets/common/swiper_arrow.svg";
 import type { Props } from "./EventSwiper.types";
+import {eventAdapter} from "utils/adapter";
 
 
 
@@ -147,7 +148,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 
-export const EventsSwiper: FC<Props> = ({ events }) => {
+export const EventsSwiper: FC<Props> = ({ data }) => {
 	const classes = useStyles();
 	const intl = useIntl();
 	const params = {
@@ -177,6 +178,8 @@ export const EventsSwiper: FC<Props> = ({ events }) => {
 		},
 	  };
 
+	  console.log(data);
+	const events = data.results.map((item) => eventAdapter(item));
 	return (
 		<div className={classes.swiperWrapper1}>
 			<Typography
