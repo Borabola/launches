@@ -1,6 +1,5 @@
 
 import { FC, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import {
@@ -10,10 +9,9 @@ import { PageLayout } from "../../layouts/PageLayout";
 import { Loader } from "../../components/common/Loader/Loader";
 import { LaunchHero } from "../../components/launch/LaunchHero/LaunchHero";
 import { LaunchPageContent } from "../../components/launch/LaunchPageContent/LaunchPageContent";
-//import { fetchCurrentLaunch } from "../../redux/"
-//import { fetchCurrentLaunch } from "../../redux/launchData/fetches";
-import { useGetCurrentLauncheQuery } from "../../services/api";
-import type { AppDispatch, RootState } from "redux/store";
+
+import { launchCurrentSlice, useGetCurrentLauncheQuery } from "../../services/api";
+import type { AppDispatch } from "redux/store";
 import { useTypedDispatch } from "redux/store";
 
 type LaunchParams = {
@@ -44,28 +42,18 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 
-export const LaunchPage: FC = () => {
+const LaunchPage: FC = () => {
 	const launchParam = useParams<LaunchParams>();
 	const classes = useStyles();
 
-	/*const currentLaunch = useSelector<RootState>(state => state.launch.currentLaunch);
-	const isCurrentLaunch = useSelector<RootState>(state => state.launch.isCurrentLaunch);
-	const lunchCurrentStatus = useSelector<RootState>(state => state.launch.launchCurrentStatus);
-	const lunchCurrentError = useSelector<RootState>(state => state.launch.launchCurrentError);*/
 	const { data: currentLaunch=null, error: lunchCurrentError, isLoading: isCurrentLaunchLoaded }
 	 = useGetCurrentLauncheQuery(launchParam.id);
 
-	 const dispatch: AppDispatch = useTypedDispatch();
-
-	const onLoadLaunch = (id:string) => {
-		//dispatch(fetchCurrentLaunch(id));
-		useGetCurrentLauncheQuery(id);
-	};
-
+	const dispatch: AppDispatch = useTypedDispatch();
 
 	useEffect(
 		() => {
-			onLoadLaunch(launchParam.id);
+			dispatch(launchCurrentSlice.endpoints.getCurrentLaunche.initiate(launchParam.id));
 		},
 		[launchParam.id]
 	);
@@ -100,3 +88,5 @@ export const LaunchPage: FC = () => {
 		</PageLayout>
 	);
 };
+
+export default LaunchPage;

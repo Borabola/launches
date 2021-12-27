@@ -5,23 +5,23 @@ import {
 } from "@material-ui/core";
 import * as Yup from "yup";
 import { useAuth } from "contexts/AuthContext";
-import { LoginForm } from "components/forms/LoginForm";
-import { Values } from "components/forms/LoginForm/LoginForm.types";
+import { RegisterForm } from "components/forms/RegisterForm";
+import { IInitialValues } from "components/forms/RegisterForm/RegisterForm.types";
 import { FormikHelpers } from "formik";
 
-const Login: FC = () => {
+const RegisterPage: FC = () => {
 	const authContext = useAuth();
 	if( authContext === null ) {
 		return null;
 	}
-	const { login } = authContext;
+	const { signup } = authContext;
 
-	const initialValuesLogin = { email: "", password: "", };
+	const initialValuesSignIn = { email: "", password: "", passwordConfirm: "" };
 
 	const onSubmit = (
-		values: Values, form: FormikHelpers<Values>
+		values: IInitialValues, form: FormikHelpers<IInitialValues>
 	) => {
-		login(values);
+		signup(values);
 		form.setSubmitting(false);
 	};
 
@@ -42,8 +42,8 @@ const Login: FC = () => {
 			justifyContent="center"
 		>
 			<Container maxWidth="sm" >
-				<LoginForm
-					initialValues={initialValuesLogin}
+				<RegisterForm
+					initialValues={initialValuesSignIn}
 					onSubmit={onSubmit}
 					validationSchema ={validationSchema}
 				/>
@@ -52,4 +52,4 @@ const Login: FC = () => {
 	);
 };
 
-export default Login;
+export default RegisterPage;

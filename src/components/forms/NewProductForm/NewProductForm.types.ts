@@ -1,4 +1,4 @@
-interface IInitialValues {
+export interface IInitialValues {
 	productName: string,
 	file: File,
 	productQnt: number,

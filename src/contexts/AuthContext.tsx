@@ -27,7 +27,7 @@ import {
 
 /*export interface IValue {
 	currentUser: string | null;
-	currentUserId: string | 0;
+	currentUserId: string | null;
 	login: () => Promise<void> | unknown;
 	signup: () => Promise<void> | unknown;
 	logout: () => Promise<void> | unknown;
@@ -44,7 +44,7 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState<string | null>(null);
 	const [ isLoading, setIsLoading ] = useState(false);
-	const [currentUserId, setCurrentUserId] = useState<string | 0>(0);
+	const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -63,7 +63,7 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 						setIsLoading(false);
 					} else {
 						setCurrentUser(null);
-						setCurrentUserId(0);
+						setCurrentUserId(null);
 						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
 					}
 				}

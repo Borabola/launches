@@ -16,7 +16,7 @@ export type FirebaseError = {
 
 export interface IValue {
 	currentUser: string | null;
-	currentUserId: string | 0;
+	currentUserId: string | null;
 	login: ({ email, password }:SProps) => Promise<void>
 	signup: ({
 		email, password

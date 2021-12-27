@@ -1,9 +1,12 @@
-interface IInitialValues {
+import { FormikHelpers } from "formik";
+
+export interface IInitialValues {
 	email: string,
 	password: string,
 	passwordConfirm: string
 }
-interface IValidationSchema {
+
+export interface IValidationSchema {
 	email: string,
 	password: string,
 	passwordConfirm: string
@@ -11,7 +14,8 @@ interface IValidationSchema {
 
 export type Props = {
 	initialValues: IInitialValues,
-	validationSchema: IValidationSchema,
-	onSubmit: (values:IInitialValues, form:unknown) => void,
-	onInputChange: () => void
+	//validationSchema: IValidationSchema,
+	validationSchema: unknown,
+	onSubmit: (values:IInitialValues, form:FormikHelpers<IInitialValues>) => void,
+	//onInputChange: () => void
 };

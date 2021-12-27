@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { Form } from "react-formik-ui";
-import { DropZone } from "react-formik-ui/dist/components/DropZone/DropZone";
+import { DropZone, DropzoneInputProps } from "react-formik-ui/dist/components/DropZone/DropZone";
 import "./style.scss";
 import { SUPPORTED_FORMATS } from "utils/const";
 import type { Props } from "./NewProductForm.types";
@@ -126,11 +126,11 @@ export const NewProductForm: FC<Props> =
 						color="secondary"
 						className={classes.textField}
 					/>
-					{/*<DropZone
+					<DropZone
 						name='file'
 						label='Photo upload'
 						placeholder='Try dropping files here or click to select files to upload'
-						acceptedFiles={SUPPORTED_FORMATS}
+						//acceptedFiles={SUPPORTED_FORMATS<File[]>} 
 						accept="image/*"
 						multiple={false}
 						fileInfo={true}
@@ -138,7 +138,25 @@ export const NewProductForm: FC<Props> =
 						className={classes.dropzoneStyle.toString()}
 						isFileDialogActive={true}
 						onDrop={onInputChange}
-					/>*/}
+						open={function (): void {
+							throw new Error("Function not implemented.");
+						} } 
+						isFocused={false} 
+						isDragActive={false}
+						isDragAccept={false} 
+						isDragReject={false}
+						draggedFiles={[]} 
+						acceptedFiles={[]}
+						fileRejections={[]} 
+						rootRef={undefined}
+						inputRef={undefined}
+						getRootProps={function <T extends DropzoneRootProps>(props?: T): T {
+							throw new Error("Function not implemented.");
+						} }
+						getInputProps={function <T extends DropzoneInputProps>(props?: T): T {
+							throw new Error("Function not implemented.");
+						} }	
+					/>
 					<TextField
 						error={Boolean(touched.productQnt && errors.productQnt)}
 						fullWidth

@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-export const Main: FC = () => {
+const Main: FC = () => {
 	const classes = useStyles();
 	//const { events=null, errorEvents, isEventsLoaded } = useGetEventsQuery();
 	//const { launches=null, errorLaunches, isLaunchesLoaded } = useGetEventsQuery();
@@ -130,3 +130,5 @@ export const Main: FC = () => {
 		</div>
 	);
 };
+
+export default Main;
