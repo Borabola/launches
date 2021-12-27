@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 
-export const EventsSwiper: FC<Props> = ({ data }) => {
+export const EventsSwiper: FC<Props> = ({ events }) => {
 	const classes = useStyles();
 	const intl = useIntl();
 	const params = {
@@ -178,8 +178,6 @@ export const EventsSwiper: FC<Props> = ({ data }) => {
 		},
 	  };
 
-	  console.log(data);
-	const events = data.results.map((item) => eventAdapter(item));
 	return (
 		<div className={classes.swiperWrapper1}>
 			<Typography

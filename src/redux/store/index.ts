@@ -1,6 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
+	TypedUseSelectorHook, useDispatch, useSelector 
+} from "react-redux";
+import {
 	persistStore,
 	persistReducer,
 	FLUSH,
@@ -52,6 +55,9 @@ export { persistor, store };
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const useTypedDispatch = () => useDispatch<AppDispatch>();
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export interface IThunkApi {
 	dispatch: AppDispatch,

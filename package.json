@@ -49,10 +49,10 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-     "start": "craco start",
-    "build": "craco build",
-    "test": "craco test --watchAll=false",
-    "eject": "craco eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll=false",
+    "eject": "react-scripts eject",
     "lint": "eslint src --ext .jsx,.js",
     "lint:fix": "eslint src --fix",
     "extract-messages": "formatjs extract src/**/*.js* --out-file src/i18n/en.json",

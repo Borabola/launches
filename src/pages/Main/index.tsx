@@ -2,7 +2,7 @@
 import {
 	FC, useEffect, useState 
 } from "react";
-import { useSelector, useDispatch } from "react-redux";
+//import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import {
 	Container, Box, Theme 
@@ -13,14 +13,15 @@ import { Loader } from "components/common/Loader";
 import { MainHero } from "components/main/MainHero";
 import { EventsSwiper } from "components/main/EventsSwiper";
 import { LaunchesBlock } from "components/main/LaunchesBlock";
-import { fetchLaunchList } from "redux/launchData/fetches";
-import { fetchEventList } from "redux/eventData/fetches";
+//import { fetchLaunchList } from "redux/launchData/fetches";
+//import { fetchEventList } from "redux/eventData/fetches";
 import { requireAuthorization } from "redux/auth/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "utils/const";
 import { useAuth } from "contexts/AuthContext";
-import { useIntl } from "react-intl";
-import type { AppDispatch, RootState } from "redux/store";
-import { useAppDispatch, useAppSelector } from "App/hooks";
+//import { useIntl } from "react-intl";
+import type { AppDispatch} from "redux/store";
+import { useTypedDispatch } from "redux/store";
+import { useGetEventsQuery, useGetLaunchesQuery } from "../../services/api";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -60,27 +61,33 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export const Main: FC = () => {
 	const classes = useStyles();
+	//const { events=null, errorEvents, isEventsLoaded } = useGetEventsQuery();
+	//const { launches=null, errorLaunches, isLaunchesLoaded } = useGetEventsQuery();
+	const { data: events=null, isFetching: isEventsLoaded } = useGetEventsQuery();
+	const { data: launches=null, isFetching: isLaunchesLoaded } = useGetLaunchesQuery();
 	const authContext = useAuth();
 	if( authContext === null ) {
 		return null;
 	}
 	const { currentUser } = authContext;
-	const intl = useIntl();
+	//const intl = useIntl();
+
+
 
 	//const dispatch = useAppDispatch();
-	const dispatch: AppDispatch = useDispatch();
+	const dispatch: AppDispatch = useTypedDispatch();
 
-	const events = useAppSelector(state => state.event.events);
+	/*const events = useAppSelector(state => state.event.events);
 	const launches = useAppSelector(state => state.launch.launches);
 	const isEventsLoaded = useAppSelector(state => state.event.isEventsLoaded);
-	const isLaunchesLoaded = useAppSelector(state => state.launch.isLaunchesLoaded);
+	const isLaunchesLoaded = useAppSelector(state => state.launch.isLaunchesLoaded);*/
 
 	const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
 	useEffect(
 		() => {
-			dispatch(fetchEventList());
-			dispatch(fetchLaunchList(intl));
+			//dispatch(fetchEventList());
+			//dispatch(fetchLaunchList(intl));
 			if (currentUser) {
 				dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			}
@@ -89,7 +96,7 @@ export const Main: FC = () => {
 	);
 
 	const onShowAllClick = () => {
-		setShowenLaunchesQnt(isLaunchesLoaded ? launches.lenght : 0);
+		setShowenLaunchesQnt((launches && isLaunchesLoaded) ? launches.length: 0);
 	};
 	const onShowMoreClick = () => {
 		setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
@@ -104,9 +111,9 @@ export const Main: FC = () => {
 				{(isEventsLoaded && isLaunchesLoaded) ?
 					<section className={classes.pageContent}>
 
-						<EventsSwiper events={events} />
+						{events && <EventsSwiper events={events} />}
 
-						{isLaunchesLoaded &&
+						{isLaunchesLoaded && launches &&
 							<LaunchesBlock
 								launches={launches}
 								onShowMore={onShowMoreClick}

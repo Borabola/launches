@@ -1,9 +1,5 @@
-import { eventAdapter } from "utils/adapter";
-import { EventData } from "utils/adapter.types";
-
-type EventProp = ReturnType <typeof eventAdapter>;
+import type { EventAdapterType } from "../../../utils/adapter";
 
 export type Props = {
-	//event: EventProp[] | []
-	data: EventData | never;
+	events: EventAdapterType[] | never;
 };

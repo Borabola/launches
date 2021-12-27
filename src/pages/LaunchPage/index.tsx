@@ -6,12 +6,19 @@ import { makeStyles } from "@mui/styles";
 import {
 	Container, Typography, Theme 
 } from "@mui/material";
-import { PageLayout } from "layouts/PageLayout";
-import { Loader } from "components/common/Loader/Loader";
-import { LaunchHero } from "components/launch/LaunchHero/LaunchHero";
-import { LaunchPageContent } from "components/launch/LaunchPageContent/LaunchPageContent";
-import { fetchCurrentLaunch } from "redux/launchData/fetches";
+import { PageLayout } from "../../layouts/PageLayout";
+import { Loader } from "../../components/common/Loader/Loader";
+import { LaunchHero } from "../../components/launch/LaunchHero/LaunchHero";
+import { LaunchPageContent } from "../../components/launch/LaunchPageContent/LaunchPageContent";
+//import { fetchCurrentLaunch } from "../../redux/"
+//import { fetchCurrentLaunch } from "../../redux/launchData/fetches";
+import { useGetCurrentLauncheQuery } from "../../services/api";
 import type { AppDispatch, RootState } from "redux/store";
+import { useTypedDispatch } from "redux/store";
+
+type LaunchParams = {
+	id: string;
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {
@@ -36,44 +43,36 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
+
 export const LaunchPage: FC = () => {
-	const launchParam = useParams();
+	const launchParam = useParams<LaunchParams>();
 	const classes = useStyles();
 
-	const currentLaunch = useSelector<RootState>(state => state.launch.currentLaunch);
+	/*const currentLaunch = useSelector<RootState>(state => state.launch.currentLaunch);
 	const isCurrentLaunch = useSelector<RootState>(state => state.launch.isCurrentLaunch);
 	const lunchCurrentStatus = useSelector<RootState>(state => state.launch.launchCurrentStatus);
-	const lunchCurrentError = useSelector<RootState>(state => state.launch.launchCurrentError);
+	const lunchCurrentError = useSelector<RootState>(state => state.launch.launchCurrentError);*/
+	const { data: currentLaunch=null, error: lunchCurrentError, isLoading: isCurrentLaunchLoaded }
+	 = useGetCurrentLauncheQuery(launchParam.id);
 
-	const dispatch: AppDispatch = useDispatch();
+	 const dispatch: AppDispatch = useTypedDispatch();
 
 	const onLoadLaunch = (id:string) => {
-		dispatch(fetchCurrentLaunch(id));
+		//dispatch(fetchCurrentLaunch(id));
+		useGetCurrentLauncheQuery(id);
 	};
 
 
 	useEffect(
 		() => {
-			onLoadLaunch(launchParam?.id);
+			onLoadLaunch(launchParam.id);
 		},
-		[launchParam?.id]
+		[launchParam.id]
 	);
 
 	return (
 		<PageLayout>
-			{(!isCurrentLaunch) ?
-				<>
-					<Loader />
-					{(lunchCurrentStatus === "rejected") &&
-						<Typography
-							variant="h3"
-							textAlign="center"
-						>
-							{lunchCurrentError}
-						</Typography>
-					}
-				</>
-				:
+			{(isCurrentLaunchLoaded && currentLaunch) ?
 				<>
 					<LaunchHero launch={currentLaunch} />
 
@@ -84,6 +83,19 @@ export const LaunchPage: FC = () => {
 						</section>
 					</Container>
 				</>
+				:
+				<>
+					<Loader />
+					{lunchCurrentError &&
+						<Typography
+							variant="h3"
+							textAlign="center"
+						>
+							{lunchCurrentError}
+						</Typography>
+					}
+				</>
+				
 			}
 		</PageLayout>
 	);

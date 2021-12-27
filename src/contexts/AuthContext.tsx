@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { auth } from "firebase/firebaseConfig";
+import { auth } from "../firebase/firebaseConfig";
 import "firebase/auth";
 import {
 	createUserWithEmailAndPassword,

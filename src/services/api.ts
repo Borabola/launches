@@ -46,8 +46,8 @@ export const launchCurrentSlice = createApi({
 	reducerPath: "launchCurrentSlice",
 	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
 	endpoints: (builder) => ({
-		getCurrentLaunche: builder.query<CurrentLaunchAdapterType, void>({
-			query: () => APIRoute.LAUNCHES,
+		getCurrentLaunche: builder.query<CurrentLaunchAdapterType, string>({
+			query: (id) => `launch/${id}`,
 			transformResponse: (response: CurrentLaunch) => currentLaunchAdapter(response)
 		}),
 	}),
