@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^6.4.3",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
     "@firebase/database-types": "^0.9.3",
@@ -48,10 +49,10 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --watchAll=false",
-    "eject": "react-scripts eject",
+     "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --watchAll=false",
+    "eject": "craco eject",
     "lint": "eslint src --ext .jsx,.js",
     "lint:fix": "eslint src --fix",
     "extract-messages": "formatjs extract src/**/*.js* --out-file src/i18n/en.json",
