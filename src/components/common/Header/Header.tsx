@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme:Theme) => ({
 		textDecoration: "none",
 		textTransform: "capitalize",
 		transition: "0.3s ease",
+		cursor: "pointer",
 		"&:hover": {
 			opacity: "0.7",
 

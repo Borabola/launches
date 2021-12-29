@@ -18,9 +18,8 @@ import { LaunchesBlock } from "../../components/main/LaunchesBlock";
 import { requireAuthorization } from "../../redux/auth/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "../../utils/const";
 import { useAuth } from "../../contexts/AuthContext";
-//import { useIntl } from "react-intl";
-import type { AppDispatch, useTypedDispatch} from "../../redux/store";
 import { useGetEventsQuery, useGetLaunchesQuery } from "../../services/api";
+import { useAppDispatch } from "../../App/hooks";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -60,8 +59,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Main: FC = () => {
 	const classes = useStyles();
-	//const { events=null, errorEvents, isEventsLoaded } = useGetEventsQuery();
-	//const { launches=null, errorLaunches, isLaunchesLoaded } = useGetEventsQuery();
 	const { data: events=null, isFetching: isEventsLoaded } = useGetEventsQuery();
 	const { data: launches=null, isFetching: isLaunchesLoaded } = useGetLaunchesQuery();
 	const authContext = useAuth();
@@ -69,24 +66,12 @@ const Main: FC = () => {
 		return null;
 	}
 	const { currentUser } = authContext;
-	//const intl = useIntl();
-
-
-
-	//const dispatch = useAppDispatch();
-	const dispatch: AppDispatch = useTypedDispatch();
-
-	/*const events = useAppSelector(state => state.event.events);
-	const launches = useAppSelector(state => state.launch.launches);
-	const isEventsLoaded = useAppSelector(state => state.event.isEventsLoaded);
-	const isLaunchesLoaded = useAppSelector(state => state.launch.isLaunchesLoaded);*/
+	const dispatch = useAppDispatch();
 
 	const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
 	useEffect(
 		() => {
-			//dispatch(fetchEventList());
-			//dispatch(fetchLaunchList(intl));
 			if (currentUser) {
 				dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 			}
@@ -110,7 +95,7 @@ const Main: FC = () => {
 				{(isEventsLoaded && isLaunchesLoaded) ?
 					<section className={classes.pageContent}>
 
-						{events && <EventsSwiper events={events} />}
+						{events && isEventsLoaded && <EventsSwiper events={events} />}
 
 						{isLaunchesLoaded && launches &&
 							<LaunchesBlock

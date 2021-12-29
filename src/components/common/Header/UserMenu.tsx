@@ -17,6 +17,8 @@ const useStyles = makeStyles(() => ({
 		textDecoration: "none",
 		transition: "0.3s ease",
 		marginRight: "30px !important",
+		cursor: "pointer",
+		
 		"&:hover": {
 			opacity: "0.9",
 		},
