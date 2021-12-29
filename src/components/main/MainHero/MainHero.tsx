@@ -6,7 +6,7 @@ import {
 	Button, Container, Typography
 } from "@mui/material";
 import { useIntl } from "react-intl";
-import BgImage from "assets/common/bg_hero.png";
+import BgImage from "../../../assets/common/bg_hero.png";
 import { Props } from "./MainHero.types";
 
 

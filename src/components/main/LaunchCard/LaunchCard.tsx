@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import { Theme } from "@material-ui/core";
 import { format } from "date-fns";
-import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
+import { ReactComponent as RocketSvg } from "../../../assets/common/rocketLogo.svg";
 import { Props } from "./LaunchCard.types";
 
 const useStyles = makeStyles((theme: Theme) => ({

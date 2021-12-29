@@ -8,10 +8,10 @@ import { Typography } from "@mui/material";
 import { format } from "date-fns";
 import { useIntl } from "react-intl";
 import "swiper/swiper.scss";
-import { ReactComponent as RocketSvg } from "assets/common/rocketLogo.svg";
-import { ReactComponent as ArrowImage } from "assets/common/swiper_arrow.svg";
+import { ReactComponent as RocketSvg } from "../../../assets/common/rocketLogo.svg";
+import { ReactComponent as ArrowImage } from "../../../assets/common/swiper_arrow.svg";
 import type { Props } from "./EventSwiper.types";
-import {eventAdapter} from "utils/adapter";
+//import {eventAdapter} from "utils/adapter";
 
 
 

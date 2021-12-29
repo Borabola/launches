@@ -23,6 +23,5 @@ export const privateRoutes = [
 		path: AppRoute.DASHBOARD,
 		exact: true,
 		isAuth: true
-	},
-	
+	},	
 ];

@@ -8,8 +8,8 @@ import {
 import { useAuth } from "../../../contexts/AuthContext";
 import UserMenu from "./UserMenu";
 
-import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
-import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
+import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
+import { ReactComponent as ArrowLeftSvg } from "../../../assets/common/arrow_left.svg";
 import type { Props, IAuth } from "./Header.types";
 
 const useStyles = makeStyles((theme:Theme) => ({

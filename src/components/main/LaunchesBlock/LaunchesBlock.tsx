@@ -4,9 +4,9 @@ import {
 	Box, Grid, Typography
 } from "@mui/material";
 import { useIntl } from "react-intl";
-import { LaunchCard } from "components/main/LaunchCard";
-import { Loader } from "components/common/Loader";
-import { TextButton } from "components/common/button/TextButton";
+import { LaunchCard } from "../../../components/main/LaunchCard";
+import { Loader } from "../../../components/common/Loader";
+import { TextButton } from "../../../components/common/button/TextButton";
 import { Props } from "./LaunchesBlock.types";
 
 const useStyles = makeStyles({

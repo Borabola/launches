@@ -1,3 +1,4 @@
+import { FC, ElementType } from "react";
 import { lazy } from "react";
 import { AppRoute } from "../utils/const";
 
@@ -8,6 +9,18 @@ const RocketPage = lazy(() => import("../pages/RocketPage"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
+
+export type RouteItem = typeof commonRoutes[0];
+
+type Concrete<Type> = {
+	[Property in keyof Type]-?: Type[Property];
+};
+  
+export type OmitedRouteItem = Omit<Concrete<RouteItem>, "component"> ;
+export type ModifiedRouteItem = OmitedRouteItem & {
+	component: React.LazyExoticComponent<FC<unknown>> | ElementType
+};
+
 
 export const commonRoutes = [
 	{

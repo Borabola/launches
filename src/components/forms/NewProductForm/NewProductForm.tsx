@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useRef} from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import {
@@ -6,9 +6,10 @@ import {
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
 import { Form } from "react-formik-ui";
-import { DropZone, DropzoneInputProps } from "react-formik-ui/dist/components/DropZone/DropZone";
+import { DropZone } from "react-formik-ui/dist/components/DropZone/DropZone";
 import "./style.scss";
-import { SUPPORTED_FORMATS } from "utils/const";
+import { DropzoneRootProps, DropzoneInputProps } from "react-dropzone/typings/react-dropzone";
+//import { SUPPORTED_FORMATS } from "utils/const";
 import type { Props } from "./NewProductForm.types";
 
 
@@ -77,6 +78,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		color: "#FFFFFF !important",
 	},
 }));
+
+const dropRef = useRef(null);
 
 export const NewProductForm: FC<Props> = 
 ({ initialValues, validationSchema, onSubmit, onInputChange }) => {
@@ -148,8 +151,8 @@ export const NewProductForm: FC<Props> =
 						draggedFiles={[]} 
 						acceptedFiles={[]}
 						fileRejections={[]} 
-						rootRef={undefined}
-						inputRef={undefined}
+						rootRef={dropRef}
+						inputRef={dropRef}
 						getRootProps={function <T extends DropzoneRootProps>(props?: T): T {
 							throw new Error("Function not implemented.");
 						} }

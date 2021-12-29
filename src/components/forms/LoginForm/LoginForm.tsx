@@ -10,7 +10,7 @@ import {
 	Typography,
 	Theme
 } from "@material-ui/core";
-import { useAuth } from "contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import type { Props } from "./LoginForm.types";
 
 const useStyles = makeStyles((theme: Theme) => ({

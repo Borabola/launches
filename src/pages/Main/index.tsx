@@ -7,20 +7,19 @@ import { makeStyles } from "@mui/styles";
 import {
 	Container, Box, Theme 
 } from "@mui/material";
-import { Header } from "components/common/Header";
-import { Footer } from "components/common/Footer";
-import { Loader } from "components/common/Loader";
-import { MainHero } from "components/main/MainHero";
-import { EventsSwiper } from "components/main/EventsSwiper";
-import { LaunchesBlock } from "components/main/LaunchesBlock";
+import { Header } from "../../components/common/Header";
+import { Footer } from "../../components/common/Footer";
+import { Loader } from "../../components/common/Loader";
+import { MainHero } from "../../components/main/MainHero";
+import { EventsSwiper } from "../../components/main/EventsSwiper";
+import { LaunchesBlock } from "../../components/main/LaunchesBlock";
 //import { fetchLaunchList } from "redux/launchData/fetches";
 //import { fetchEventList } from "redux/eventData/fetches";
-import { requireAuthorization } from "redux/auth/sliceReducer";
-import { AuthorizationStatus, launchQnt } from "utils/const";
-import { useAuth } from "contexts/AuthContext";
+import { requireAuthorization } from "../../redux/auth/sliceReducer";
+import { AuthorizationStatus, launchQnt } from "../../utils/const";
+import { useAuth } from "../../contexts/AuthContext";
 //import { useIntl } from "react-intl";
-import type { AppDispatch} from "redux/store";
-import { useTypedDispatch } from "redux/store";
+import type { AppDispatch, useTypedDispatch} from "../../redux/store";
 import { useGetEventsQuery, useGetLaunchesQuery } from "../../services/api";
 
 

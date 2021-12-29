@@ -4,7 +4,7 @@ import { Loader } from "../components/common/Loader/Loader";
 import { Box } from "@material-ui/core";
 import { commonRoutes } from "./commonRoutes";
 import { privateRoutes } from "./privateRoutes";
-import PrivateRoute from "hocs/PrivateRoute";
+import PrivateRoute from "../hocs/PrivateRoute";
 
 
 const Routes:FC = () => {
@@ -33,7 +33,6 @@ const Routes:FC = () => {
 							{...route}
 							key={`r_${index}_${route.path}`}
 						/>;
-
 					}
 
 					return <Route

@@ -6,7 +6,7 @@ import { makeStyles } from "@mui/styles";
 import {
 	Container, Typography, Theme
 } from "@mui/material";
-import { getTimeFormate } from "utils/helper";
+import { getTimeFormate } from "../../../utils/helper";
 import type { Props } from "./LaunchHero.types";
 
 const useStyles = makeStyles((theme: Theme) => ({

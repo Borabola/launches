@@ -4,14 +4,14 @@ import {
 	Box,
 	Container,
 } from "@material-ui/core";
-import { PageLayout } from "layouts/PageLayout";
+import { PageLayout } from "../../layouts/PageLayout";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { database } from "firebase/firebaseConfig";
+import { database } from "../../firebase/firebaseConfig";
 import { useIntl } from "react-intl";
-import { useAuth } from "contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import useProducts from "../../hooks/useProduct";
-import { MainTable } from "components/common/MainTable";
+import { MainTable } from "../../components/common/MainTable";
 import { IValue } from "../../contexts/AuthContext.types";
 import { Ensure } from "../../utils/helper";
 

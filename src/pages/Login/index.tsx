@@ -4,9 +4,9 @@ import {
 	Container,
 } from "@material-ui/core";
 import * as Yup from "yup";
-import { useAuth } from "contexts/AuthContext";
-import { LoginForm } from "components/forms/LoginForm";
-import { Values } from "components/forms/LoginForm/LoginForm.types";
+import { useAuth } from "../../contexts/AuthContext";
+import { LoginForm } from "../../components/forms/LoginForm";
+import { Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { FormikHelpers } from "formik";
 
 const Login: FC = () => {

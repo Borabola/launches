@@ -4,9 +4,9 @@ import {
 	Container,
 } from "@material-ui/core";
 import * as Yup from "yup";
-import { useAuth } from "contexts/AuthContext";
-import { RegisterForm } from "components/forms/RegisterForm";
-import { IInitialValues } from "components/forms/RegisterForm/RegisterForm.types";
+import { useAuth } from "../../contexts/AuthContext";
+import { RegisterForm } from "../../components/forms/RegisterForm";
+import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 import { FormikHelpers } from "formik";
 
 const RegisterPage: FC = () => {

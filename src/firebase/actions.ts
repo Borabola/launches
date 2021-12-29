@@ -1,5 +1,6 @@
 import { ref, set } from "firebase/database";
-import { FirebaseStorage } from "@firebase/storage-types";
+//import { FirebaseStorage } from "@firebase/storage-types";
+import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { Database } from "@firebase/database";
 import {
 	ref as storeRef, uploadBytesResumable, getDownloadURL
@@ -9,18 +10,22 @@ import { IValue } from "../contexts/AuthContext.types";
 import { Ensure } from "../utils/helper";
 
 export interface IProductValues {
-	id: number;
+	id?: number;
 	productName: string;
 	productQnt: number;	
+	file?: string;
 }
 export type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
 
 export const setInfoToDatabase = (
-	values:IProductValues, currentUserId: IAuthCurrentUserId, database: Database, fileUrl:string
+	currentUserId: string, 
+	values: IProductValues,
+	fileUrl: string | null,
+	database: Database, 
 ) => {
-	if (currentUserId === null) {
+	/*if (currentUserId === null) {
 		return;
-	}
+	}*/
 	set(
 		ref(
 			database,
@@ -42,7 +47,7 @@ export const setInfoToDatabase = (
 };
 
 export const uploadFile = async (
-	file:File, storage:FirebaseStorage
+	file:File, storage: FirebaseStorage
 ):Promise<string> => {
 	const fileRef = storeRef(
 		storage,

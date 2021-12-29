@@ -1,10 +1,10 @@
 import {FC} from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Link } from "@mui/material";
-import { AppRoute } from "utils/const";
+import { AppRoute } from "../../utils/const";
 import { Box, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { PageLayout } from "layouts/PageLayout";
+import { PageLayout } from "../../layouts/PageLayout";
 
 const useStyles = makeStyles( () => ({
 	pageWrapper: {

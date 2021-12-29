@@ -10,10 +10,10 @@ import { NewProductForm } from "../../components/forms/NewProductForm";
 import { database, storage } from "../../firebase/firebaseConfig";
 import {
 	setInfoToDatabase, uploadFile, IProductValues, IAuthCurrentUserId
-} from "firebase/actions";
-import {IInitialValues} from "../../components/forms/NewProductForm/NewProductForm.types";
+} from "../../firebase/actions";
+//import {IInitialValues} from "../../components/forms/NewProductForm/NewProductForm.types";
 
-import { useAuth } from "contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 const AddProductPage: FC = () => {
@@ -41,20 +41,18 @@ const AddProductPage: FC = () => {
 
 	const onSubmit = (
 		values: IProductValues,
-		form: FormikHelpers<IInitialValues>
+		form: FormikHelpers<IProductValues>
 	) => {
 		setInfoToDatabase(
-			values,
 			currentUserId,
-			database,
-			fileUrl
+			values,
+			fileUrl,
+			database
 		);
 
 		form.setSubmitting(false);
 		form.resetForm();
-
 	};
-
 
 
 	const validationSchema =
@@ -65,6 +63,7 @@ const AddProductPage: FC = () => {
 				.notRequired(),
 			productQnt: Yup.number().min(0)
 		});
+
 
 	return (
 		<PageLayout>
@@ -80,9 +79,6 @@ const AddProductPage: FC = () => {
 						onSubmit={onSubmit}
 						validationSchema={validationSchema}
 						onInputChange={onInputChange}
-					//file={file}
-					//validateFile={validateFile}
-
 					/>
 				</Container>
 			</Box>

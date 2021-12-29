@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Container, Typography } from "@mui/material";
-import { PageLayout } from "layouts/PageLayout";
+import { PageLayout } from "../../layouts/PageLayout";
 
 const RockedPage: FC = () => {
 

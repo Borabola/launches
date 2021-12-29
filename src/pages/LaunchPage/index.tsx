@@ -11,8 +11,8 @@ import { LaunchHero } from "../../components/launch/LaunchHero/LaunchHero";
 import { LaunchPageContent } from "../../components/launch/LaunchPageContent/LaunchPageContent";
 
 import { launchCurrentSlice, useGetCurrentLauncheQuery } from "../../services/api";
-import type { AppDispatch } from "redux/store";
-import { useTypedDispatch } from "redux/store";
+import type { AppDispatch } from "../../redux/store";
+import { useTypedDispatch } from "../../redux/store";
 
 type LaunchParams = {
 	id: string;

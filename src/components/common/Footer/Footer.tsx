@@ -6,7 +6,7 @@ import { makeStyles} from "@mui/styles";
 import { Theme } from "@material-ui/core";
 import { Typography, Link } from "@mui/material";
 import { ButtonUnstyled } from "@mui/core";
-import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
+import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { useAuth } from "../../../contexts/AuthContext";
 import { IValue } from "../../../contexts/AuthContext.types";
 

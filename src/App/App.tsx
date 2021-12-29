@@ -10,6 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
 import { Loader } from "../components/common/Loader";
+import Routes from "../routes";
 import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -26,6 +27,7 @@ const App: FC = () => {
 					<AuthProvider>
 						<ThemeProvider theme={theme}>
 							<CssBaseline />
+							<Routes />
 							<ToastContainer
 								position="bottom-right"
 								autoClose={5000}
@@ -37,7 +39,6 @@ const App: FC = () => {
 								draggable
 								pauseOnHover
 							/>
-							hjhjhjhj
 						</ThemeProvider>
 					</AuthProvider>
 				</AppIntlProvider>

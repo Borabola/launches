@@ -1,13 +1,17 @@
-import { FC, ElementType } from "react";
+import { FC } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { RouteComponentProps } from "react-router";
+//import { RouteComponentProps } from "react-router";
 import { useTypedSelector } from "../../redux/store";
 import { AuthorizationStatus } from "../../utils/const";
-import { useAuth } from "contexts/AuthContext";
-import { Loader } from "components/common/Loader/Loader";
+import { useAuth } from "../../contexts/AuthContext";
+import { Loader } from "../../components/common/Loader/Loader";
+import { ModifiedRouteItem } from "../../routes/commonRoutes";
 
-type Props = { component: ElementType; } & RouteComponentProps;
+//type Props = { component: ElementType; } & RouteComponentProps;
 
+
+type Props = ModifiedRouteItem;
+//type Props = ModifiedProp<RouteItem> & RouteComponentProps;
 
 const PrivateRoute: FC<Props> = ({
 	component: Component,
