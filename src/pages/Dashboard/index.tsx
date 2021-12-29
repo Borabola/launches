@@ -1,26 +1,19 @@
-/* eslint-disable no-unused-vars */
 import { FC } from "react";
 import { useMemo } from "react";
 import {
 	Box,
 	Container,
 } from "@material-ui/core";
-import Table from "@mui/material/Table";
-//import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import { PageLayout } from "layouts/PageLayout";
 import { Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { database } from "firebase/firebaseConfig";
 import { useIntl } from "react-intl";
 import { useAuth } from "contexts/AuthContext";
-import { useTable } from "react-table";
-import { useProducts } from "../../hooks/useProduct";
+import useProducts from "../../hooks/useProduct";
 import { MainTable } from "components/common/MainTable";
-
+import { IValue } from "../../contexts/AuthContext.types";
+import { Ensure } from "../../utils/helper";
 
 const useStyles = makeStyles(() => ({
 	tableImg: {
@@ -42,6 +35,8 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
+type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
+
 const Dashboard: FC = () => {
 	const intl = useIntl();
 	const classes = useStyles();
@@ -50,7 +45,7 @@ const Dashboard: FC = () => {
 	if( authContext === null ) {
 		return null;
 	}
-	const { currentUserId } = authContext;
+	const { currentUserId } = authContext as IAuthCurrentUserId;
 
 
 	const products = useProducts(

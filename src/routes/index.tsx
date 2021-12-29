@@ -1,11 +1,10 @@
 import { FC, Suspense} from "react";
-import {
-	Switch, Route, RouteProps 
-} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import { Loader } from "../components/common/Loader/Loader";
 import { Box } from "@material-ui/core";
 import { commonRoutes } from "./commonRoutes";
 import { privateRoutes } from "./privateRoutes";
+import PrivateRoute from "hocs/PrivateRoute";
 
 
 const Routes:FC = () => {
@@ -27,7 +26,7 @@ const Routes:FC = () => {
 					...privateRoutes,
 					...commonRoutes,
 				].map((
-					route: FC, index: string
+					route, index
 				) => {
 					if (route.isAuth) {
 						return <PrivateRoute

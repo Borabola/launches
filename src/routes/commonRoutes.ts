@@ -6,6 +6,7 @@ import { AppRoute } from "../utils/const";
 const Main = lazy(() => import("../pages/Main"));
 const RocketPage = lazy(() => import("../pages/RocketPage"));
 const LoginPage = lazy(() => import("../pages/Login"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 export const commonRoutes = [
@@ -24,6 +25,12 @@ export const commonRoutes = [
 	{
 		component: LoginPage,
 		path: "/login",
+		exact: true,
+		isAuth: false
+	},
+	{
+		component: RegisterPage,
+		path: "/register",
 		exact: true,
 		isAuth: false
 	},
