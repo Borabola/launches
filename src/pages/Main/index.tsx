@@ -49,10 +49,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	errorsBlock: {
-		fontSize: 0,
+		/*fontSize: 0,
 		color: "rgba(0,0,0,0)",
 		opacity: 0,
-		visibility: "hidden"
+		visibility: "hidden"*/
 
 	}
 }));
@@ -61,6 +61,10 @@ const Main: FC = () => {
 	const classes = useStyles();
 	const { data: events=null, isFetching: isEventsLoaded } = useGetEventsQuery();
 	const { data: launches=null, isFetching: isLaunchesLoaded } = useGetLaunchesQuery();
+	console.log(
+		"isEventsLoaded",
+		isEventsLoaded
+	);
 	const authContext = useAuth();
 	if( authContext === null ) {
 		return null;
@@ -92,12 +96,12 @@ const Main: FC = () => {
 			<MainHero onShowAllClick={onShowAllClick} />
 
 			<Container maxWidth="lg">
-				{(isEventsLoaded && isLaunchesLoaded) ?
+				{(!isEventsLoaded) ?
 					<section className={classes.pageContent}>
 
-						{events && isEventsLoaded && <EventsSwiper events={events} />}
+						{events && <EventsSwiper events={events} />}
 
-						{isLaunchesLoaded && launches &&
+						{launches &&
 							<LaunchesBlock
 								launches={launches}
 								onShowMore={onShowMoreClick}

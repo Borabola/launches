@@ -5,7 +5,7 @@ import {
 	Box, Button, TextField, Typography, Theme
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import { Form, DropZone } from "react-formik-ui";
+import { Form, DropZone} from "react-formik-ui";
 //import { DropZone } from "react-formik-ui/dist/components/DropZone/DropZone";
 import "./style.scss";
 import { DropzoneRootProps, DropzoneInputProps } from "react-dropzone/typings/react-dropzone";
