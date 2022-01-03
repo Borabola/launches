@@ -11,9 +11,11 @@ import { database } from "../../firebase/firebaseConfig";
 import { useIntl } from "react-intl";
 import { useAuth } from "../../contexts/AuthContext";
 import useProducts from "../../hooks/useProduct";
+import { Column } from "react-table";
 import { MainTable } from "../../components/common/MainTable";
 import { IValue } from "../../contexts/AuthContext.types";
 import { Ensure } from "../../utils/helper";
+import type { Data } from "../../components/common/MainTable/MainTable.types";
 
 const useStyles = makeStyles(() => ({
 	tableImg: {
@@ -53,14 +55,14 @@ const Dashboard: FC = () => {
 		database
 	);
 
-	const productData = useMemo(
+	const productData = useMemo<Data[]>(
 		//() => [...products],
 		() => 
 			products ? Object.values(products): [],
 		[products]
 	);
 
-	const columns = useMemo(
+	const columns = useMemo<Column<Data>[]>(
 		() => ([
 			{
 				Header: intl.formatMessage({ id: "productId" }),
@@ -85,7 +87,7 @@ const Dashboard: FC = () => {
 				/> : "N/A" ),
 			},
 		]),
-		[]
+		[intl]
 	);
 
 	

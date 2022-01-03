@@ -12,6 +12,7 @@ import {
 } from "react-table";
 import { Button } from "@mui/material";
 import { Props } from "./MainTable.types";
+import type { Data } from "./MainTable.types";
 
 type rowProps = {
 	row: {
@@ -20,6 +21,10 @@ type rowProps = {
 		}
 	}	
 };
+
+/*type CustomTable<T extends Record<string, unknown>> = TableInstance<T> & {
+
+};*/
 
 const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
@@ -72,8 +77,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const MainTable: FC<Props> = ({ columns, data }) => {
 	const classes = useStyles();
 
-	const tableHooks = (hooks: Hooks) => {
-		hooks.visibleColumns.push((columns) => [
+	const tableHooks = (hooks: Hooks<Data>) => {
+		hooks.allColumns.push((columns) => [
 			...columns,
 			{
 				id: "Edit",
