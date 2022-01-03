@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		position: "relative",
 		fontFamily: "Montserrat",
 		width: "100%",
-		//height: "58.94vw",
 		marginTop: "-100px",
 		display: "flex",
 		backgroundRepeat: "no-repeat",
@@ -53,9 +52,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		fontFamily: "Montserrat",
-		//maxWidth: "900px",
 		paddingTop: "28%", //"23.6%",
-		//paddingLeft: "108px",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
 			paddingTop: "260px",

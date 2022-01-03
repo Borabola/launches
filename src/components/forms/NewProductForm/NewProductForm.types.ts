@@ -7,12 +7,6 @@ export interface IInitialValues {
 	file: string,
 	productQnt: number,
 }
-/*interface IValidationSchema {
-	//productName: Yup.StringSchema,
-	productName: RequiredStringSchema<string | undefined, AnyObject>
-	file: Yup.StringSchema,
-	productQnt: Yup.NumberSchema,
-}*/
 
 export type Props = {
 	initialValues: IInitialValues,

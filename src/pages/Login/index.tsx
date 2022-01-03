@@ -32,8 +32,6 @@ const Login: FC = () => {
 			password: Yup.string().max(255).required("Password is required")
 		});
 
-	//type User = Yup.InferType<typeof validationSchema>;	
-
 	return (
 		<Box
 			display={"flex"}

@@ -46,7 +46,7 @@ const LaunchPage: FC = () => {
 	const launchParam = useParams<LaunchParams>();
 	const classes = useStyles();
 
-	const { data: currentLaunch=null, error: lunchCurrentError, isLoading: isCurrentLaunchLoaded }
+	const { data: currentLaunch=null, error: lunchCurrentError, isFetching: isCurrentFetching }
 	 = useGetCurrentLauncheQuery(launchParam.id);
 
 	const dispatch: AppDispatch = useTypedDispatch();
@@ -60,7 +60,7 @@ const LaunchPage: FC = () => {
 
 	return (
 		<PageLayout>
-			{(isCurrentLaunchLoaded && currentLaunch) ?
+			{(!isCurrentFetching && currentLaunch) ?
 				<>
 					<LaunchHero launch={currentLaunch} />
 

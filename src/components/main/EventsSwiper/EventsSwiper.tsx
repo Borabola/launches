@@ -11,9 +11,6 @@ import "swiper/swiper.scss";
 import { ReactComponent as RocketSvg } from "../../../assets/common/rocketLogo.svg";
 import { ReactComponent as ArrowImage } from "../../../assets/common/swiper_arrow.svg";
 import type { Props } from "./EventSwiper.types";
-//import {eventAdapter} from "utils/adapter";
-
-
 
 const useStyles = makeStyles((theme: Theme) => ({
 	swiperEmptyimg: {
@@ -77,10 +74,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			display: "flex",
 			alignItems: "center",
 			justifyContent: "center",
-			//backgroundImage: `url("${arrowImage}")`,
-			//backgroundRepeat: "no-repeat",
-			//backgroundSize: "56px 28px",
-			//backgroundPosition: "center",
 			cursor: "pointer",
 			transition: "0.3s ease",
 
@@ -108,11 +101,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			alignItems: "center",
 			justifyContent: "center",
 			cursor: "pointer",
-			//backgroundImage: `url("${arrowImage}")`,
-			//backgroundRepeat: "no-repeat",
-			//backgroundSize: "56px 28px",
-			//backgroundPosition: "center",
-			//transform: "rotate(180deg)",
 			transform: "rotate(180deg)",
 			transition: "0.3s ease",
 			"&:hover": {

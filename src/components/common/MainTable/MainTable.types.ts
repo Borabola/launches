@@ -9,6 +9,5 @@ export type Data = {
 
 export type Props = {
 	columns: Column<Data>[];
-	//data: Array<object>;
 	data: Data[]
 };

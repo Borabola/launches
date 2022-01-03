@@ -1,5 +1,4 @@
 import { ref, set } from "firebase/database";
-//import { FirebaseStorage } from "@firebase/storage-types";
 import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { Database } from "@firebase/database";
 import {
@@ -23,9 +22,7 @@ export const setInfoToDatabase = (
 	fileUrl: string | null,
 	database: Database, 
 ) => {
-	/*if (currentUserId === null) {
-		return;
-	}*/
+	
 	set(
 		ref(
 			database,

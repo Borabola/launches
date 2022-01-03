@@ -22,10 +22,6 @@ type rowProps = {
 	}	
 };
 
-/*type CustomTable<T extends Record<string, unknown>> = TableInstance<T> & {
-
-};*/
-
 const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
 		width: "100%",
@@ -110,7 +106,6 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 		<TableContainer>
 			<Table
 				aria-label="product table"
-				// className={classes.productTable}
 				{...getTableProps()}
 			>
 				<TableHead className={classes.tableHead}>

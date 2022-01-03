@@ -2,7 +2,6 @@
 import {
 	FC, useEffect, useState 
 } from "react";
-//import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@mui/styles";
 import {
 	Container, Box, Theme 
@@ -13,8 +12,6 @@ import { Loader } from "../../components/common/Loader";
 import { MainHero } from "../../components/main/MainHero";
 import { EventsSwiper } from "../../components/main/EventsSwiper";
 import { LaunchesBlock } from "../../components/main/LaunchesBlock";
-//import { fetchLaunchList } from "redux/launchData/fetches";
-//import { fetchEventList } from "redux/eventData/fetches";
 import { requireAuthorization } from "../../redux/auth/sliceReducer";
 import { AuthorizationStatus, launchQnt } from "../../utils/const";
 import { useAuth } from "../../contexts/AuthContext";
@@ -34,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		padding: "118px 130px 100px",
 		marginTop: "-170px",
 		maxWidth: "1440px",
-		minHeight: "100px", // delete
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
@@ -49,10 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	errorsBlock: {
-		/*fontSize: 0,
-		color: "rgba(0,0,0,0)",
-		opacity: 0,
-		visibility: "hidden"*/
+		width: "100%"
 
 	}
 }));
@@ -61,10 +54,7 @@ const Main: FC = () => {
 	const classes = useStyles();
 	const { data: events=null, isFetching: isEventsFetching} = useGetEventsQuery();
 	const { data: launches=null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
-	console.log(
-		"isEventsFetching",
-		isEventsFetching
-	);
+
 	const authContext = useAuth();
 	if( authContext === null ) {
 		return null;

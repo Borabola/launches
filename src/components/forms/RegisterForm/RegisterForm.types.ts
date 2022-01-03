@@ -14,8 +14,6 @@ export interface IValidationSchema {
 
 export type Props = {
 	initialValues: IInitialValues,
-	//validationSchema: IValidationSchema,
 	validationSchema: unknown,
 	onSubmit: (values:IInitialValues, form:FormikHelpers<IInitialValues>) => void,
-	//onInputChange: () => void
 };

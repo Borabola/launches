@@ -56,7 +56,6 @@ const Dashboard: FC = () => {
 	);
 
 	const productData = useMemo<Data[]>(
-		//() => [...products],
 		() => 
 			products ? Object.values(products): [],
 		[products]
@@ -99,7 +98,6 @@ const Dashboard: FC = () => {
 			<Box
 				display={"flex"}
 				flexDirection={"column"}
-				//height="100vh"
 				justifyContent="center"
 			>
 				<Container maxWidth="lg" >
