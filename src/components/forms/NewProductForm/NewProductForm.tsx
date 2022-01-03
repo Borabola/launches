@@ -1,16 +1,15 @@
-import {FC, useRef} from "react";
+import {FC, useCallback} from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@mui/styles";
 import {
-	Box, Button, TextField, Typography, Theme
+	Box, Button, TextField, Typography, Theme, Paper, List
 } from "@material-ui/core";
 import { useIntl } from "react-intl";
-import { Form, DropZone} from "react-formik-ui";
-//import { DropZone } from "react-formik-ui/dist/components/DropZone/DropZone";
+import { Form } from "react-formik-ui";
 import "./style.scss";
-import { DropzoneRootProps, DropzoneInputProps } from "react-dropzone/typings/react-dropzone";
-//import { SUPPORTED_FORMATS } from "utils/const";
+import {useDropzone} from "react-dropzone";
 import type { Props } from "./NewProductForm.types";
+import { ListItem } from "@mui/material";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -76,15 +75,53 @@ const useStyles = makeStyles((theme: Theme) => ({
 		borderRadius: "5px !important",
 		backgroundColor: "#181B48 !important",
 		color: "#FFFFFF !important",
-	},
-}));
+		"& .MuiPaper-root": {
+			margin: 0 ,
+			backgroundColor: "transparent",
+			boxShadow: "none",
+			borderRadius: 0,
+			color: "#FFFFFF",
+			padding: "0 16px"
+		}
 
-const dropRef = useRef(null);
+	},
+	previewChip: {
+		minWidth: 160,
+		maxWidth: 210
+	  },
+}));
 
 export const NewProductForm: FC<Props> = 
 ({ initialValues, validationSchema, onSubmit, onInputChange }) => {
 	const intl = useIntl();
 	const classes = useStyles();
+	const onDrop = useCallback(
+		acceptedFiles => {
+			onInputChange(acceptedFiles);
+	  },
+		[]
+	);
+	const {
+		acceptedFiles,
+		fileRejections,
+		getRootProps,
+		getInputProps,
+	  } = useDropzone({onDrop,
+		accept: "image/jpeg, image/png"});
+
+	const {ref, ...rootProps} = getRootProps();  
+
+	const acceptedFileItems = acceptedFiles.map((file) => (
+		<ListItem key={file.name} >
+			{file.name} - {file.size} bytes
+		</ListItem>
+	  ));
+
+	  const fileRejectionItems = fileRejections.map(({ file }) => (
+		<ListItem key={file.name} >
+			{file.name} - {file.size} bytes
+		</ListItem>	
+	  ));
 
 	return (
 		<Formik
@@ -129,37 +166,6 @@ export const NewProductForm: FC<Props> =
 						color="secondary"
 						className={classes.textField}
 					/>
-					<DropZone
-						name='file'
-						label='Photo upload'
-						placeholder='Try dropping files here or click to select files to upload'
-						//acceptedFiles={SUPPORTED_FORMATS<File[]>} 
-						accept="image/*"
-						multiple={false}
-						fileInfo={true}
-						maxSize={1000000}
-						className={classes.dropzoneStyle.toString()}
-						isFileDialogActive={true}
-						onDrop={onInputChange}
-						open={function (): void {
-							throw new Error("Function not implemented.");
-						} } 
-						isFocused={false} 
-						isDragActive={false}
-						isDragAccept={false} 
-						isDragReject={false}
-						draggedFiles={[]} 
-						acceptedFiles={[]}
-						fileRejections={[]} 
-						rootRef={dropRef}
-						inputRef={dropRef}
-						getRootProps={function <T extends DropzoneRootProps>(props?: T): T {
-							throw new Error("Function not implemented.");
-						} }
-						getInputProps={function <T extends DropzoneInputProps>(props?: T): T {
-							throw new Error("Function not implemented.");
-						} }	
-					/>
 					<TextField
 						error={Boolean(touched.productQnt && errors.productQnt)}
 						fullWidth
@@ -174,6 +180,29 @@ export const NewProductForm: FC<Props> =
 						variant="outlined"
 						color="secondary"
 					/>
+
+					{/*<DropzoneArea
+						showPreviews={false}
+						showPreviewsInDropzone={false}
+						previewText="Selected files"
+					/> */}
+
+
+					<Box
+						ref={ref}
+						className={classes.dropzoneStyle}
+					>
+						<Paper {...rootProps}>
+							<input {...getInputProps()} />
+							<p>Drag drop some files here, or click to select files</p>
+						</Paper>
+						
+						
+					</Box>
+					<Typography variant="h5">Accepted files</Typography>
+					<List> {acceptedFileItems}</List>
+					<Typography variant="h5">Rejected files</Typography>
+					<List> {fileRejectionItems}</List>
 					<Box mt={4}>
 						<Button
 							color="secondary"
@@ -185,6 +214,7 @@ export const NewProductForm: FC<Props> =
 							{intl.formatMessage({ id: "addNewProduct" })}
 						</Button>
 					</Box>
+					
 
 
 				</Form>

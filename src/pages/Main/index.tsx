@@ -59,11 +59,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Main: FC = () => {
 	const classes = useStyles();
-	const { data: events=null, isFetching: isEventsLoaded } = useGetEventsQuery();
-	const { data: launches=null, isFetching: isLaunchesLoaded } = useGetLaunchesQuery();
+	const { data: events=null, isFetching: isEventsFetching} = useGetEventsQuery();
+	const { data: launches=null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
 	console.log(
-		"isEventsLoaded",
-		isEventsLoaded
+		"isEventsFetching",
+		isEventsFetching
 	);
 	const authContext = useAuth();
 	if( authContext === null ) {
@@ -84,7 +84,7 @@ const Main: FC = () => {
 	);
 
 	const onShowAllClick = () => {
-		setShowenLaunchesQnt((launches && isLaunchesLoaded) ? launches.length: 0);
+		setShowenLaunchesQnt((launches && isLaunchesFetching) ? launches.length: 0);
 	};
 	const onShowMoreClick = () => {
 		setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
@@ -96,7 +96,7 @@ const Main: FC = () => {
 			<MainHero onShowAllClick={onShowAllClick} />
 
 			<Container maxWidth="lg">
-				{(!isEventsLoaded) ?
+				{(!isEventsFetching) ?
 					<section className={classes.pageContent}>
 
 						{events && <EventsSwiper events={events} />}
