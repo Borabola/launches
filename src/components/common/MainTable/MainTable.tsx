@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -19,7 +19,7 @@ type rowProps = {
 		values: {
 			quantity: number
 		}
-	}	
+	}
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -79,9 +79,9 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 			{
 				id: "Edit",
 				Header: "Edit",
-				Cell: ({ row }:rowProps) => (
+				Cell: ({ row }: rowProps) => (
 					<Button
-						onClick={()=> alert("Products quantity: " +
+						onClick={() => alert("Products quantity: " +
 							row.values?.quantity)}
 					>
 						Edit
@@ -100,7 +100,7 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 		useSortBy
 	);
 
-	const isEven = (idx:number) => idx % 2 === 0;
+	const isEven = (idx: number) => idx % 2 === 0;
 
 	return (
 		<TableContainer>
@@ -110,14 +110,14 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 			>
 				<TableHead className={classes.tableHead}>
 					{headerGroups.map((headerGroup) => {
-                        const {key, ...restHeaderGroupProps} = headerGroup.getHeaderGroupProps();
-                        return (
-                            <TableRow
-	key={key}
-	{...restHeaderGroupProps}
-                            >
-                                {headerGroup.headers.map((column) => {
-									const {key, ...restColumn} = column.getHeaderProps();
+						const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
+						return (
+							<TableRow
+								key={key}
+								{...restHeaderGroupProps}
+							>
+								{headerGroup.headers.map((column) => {
+									const { key, ...restColumn } = column.getHeaderProps();
 									return (
 										<TableCell
 											className={classes.tableCell}
@@ -135,17 +135,18 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 													: ""}
 											</span>
 										</TableCell>
-                                );})}
-                            </TableRow>
-                            );
-                    } )}
+									);
+								})}
+							</TableRow>
+						);
+					})}
 				</TableHead>
 				<TableBody className={classes.tableBody}>
 					{rows.map((
 						row, idx
 					) => {
 						prepareRow(row);
-                        const { key, ...restRowProps } = row.getRowProps();
+						const { key, ...restRowProps } = row.getRowProps();
 						return (
 							<TableRow
 								className={isEven(idx) ? classes.tableRowEven : classes.tableRow}
@@ -153,7 +154,7 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 								{...restRowProps}
 							>
 								{row.cells.map((cell) => {
-                                    const { key, ...restCellProps } = cell.getCellProps();
+									const { key, ...restCellProps } = cell.getCellProps();
 									return (
 										<TableCell
 											className={classes.tableCell}

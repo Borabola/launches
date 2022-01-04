@@ -15,5 +15,5 @@ export interface ValidationValues {
 export type Props = {
 	initialValues: Values,
 	validationSchema: unknown,
-	onSubmit: (values:Values, form: FormikHelpers<Values>) => void
-}; 
+	onSubmit: (values: Values, form: FormikHelpers<Values>) => void
+};

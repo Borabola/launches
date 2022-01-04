@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { makeStyles } from "@mui/styles";
@@ -25,29 +25,29 @@ const useStyles = makeStyles((theme: Theme) => ({
 			"& input": {
 				color: theme.palette.secondary.main,
 				borderColor: theme.palette.secondary.main,
-	
+
 				"&::placeholder": {
 					color: theme.palette.secondary.main,
 				},
 			},
 			"& fieldset": {
-			  borderColor: theme.palette.secondary.main,
+				borderColor: theme.palette.secondary.main,
 			},
 			"&:hover fieldset": {
-			  borderColor: "#8E2DE2",
+				borderColor: "#8E2DE2",
 			},
 			"&.Mui-focused fieldset": {
-			  borderColor: "#4A00E0",
+				borderColor: "#4A00E0",
 			},
 			"& input::placeholder": {
 				color: "#4A00E0",
 			},
-		  },
-		  "& label.Mui-focused": {
+		},
+		"& label.Mui-focused": {
 			color: "#4A00E0",
-		  },
-		  
-		
+		},
+
+
 	},
 	textField: {
 		"&::placeholder": {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 			borderColor: theme.palette.secondary.main,
 		}
 	},
-	
+
 
 }));
 
@@ -66,12 +66,13 @@ export const LoginForm: FC<Props> = ({
 }) => {
 	const classes = useStyles();
 	const authContext = useAuth();
-	if( authContext === null ) {
+
+	if (authContext === null) {
 		return null;
 	}
 
 	const { googlePopupSignIn } = authContext;
-	
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -110,8 +111,8 @@ export const LoginForm: FC<Props> = ({
 						value={values.email}
 						variant="outlined"
 						color="secondary"
-						
-						
+
+
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -126,7 +127,7 @@ export const LoginForm: FC<Props> = ({
 						value={values.password}
 						variant="outlined"
 						color="secondary"
-						
+
 					/>
 					<Box mt={4}>
 						<Button
@@ -156,16 +157,16 @@ export const LoginForm: FC<Props> = ({
 						</Typography>
 					</Box>
 					<Box mt={2}>
-						
+
 						<Button
-							
+
 							onClick={googlePopupSignIn}
 							//classes={{ root: classes.pageLink }}
 							fullWidth={true}
 						>
 							Login with Google account
 						</Button>
-						
+
 					</Box>
 				</Form>
 			)}
