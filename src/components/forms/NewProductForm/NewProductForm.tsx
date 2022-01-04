@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	  },
 }));
 
-export const NewProductForm: FC<Props> = 
+export const NewProductForm: FC<Props> =
 ({ initialValues, validationSchema, onSubmit, onInputChange }) => {
 	const intl = useIntl();
 	const classes = useStyles();
@@ -109,7 +109,7 @@ export const NewProductForm: FC<Props> =
 	  } = useDropzone({onDrop,
 		accept: "image/jpeg, image/png"});
 
-	const {ref, ...rootProps} = getRootProps();  
+	const {ref, ...rootProps} = getRootProps();
 
 	const acceptedFileItems = acceptedFiles.map((file) => (
 		<ListItem key={file.name} >
@@ -120,7 +120,7 @@ export const NewProductForm: FC<Props> =
 	  const fileRejectionItems = fileRejections.map(({ file }) => (
 		<ListItem key={file.name} >
 			{file.name} - {file.size} bytes
-		</ListItem>	
+		</ListItem>
 	  ));
 
 	return (
@@ -196,8 +196,8 @@ export const NewProductForm: FC<Props> =
 							<input {...getInputProps()} />
 							<p>Drag drop some files here, or click to select files</p>
 						</Paper>
-						
-						
+
+
 					</Box>
 					<Typography variant="h5">Accepted files</Typography>
 					<List> {acceptedFileItems}</List>
@@ -214,7 +214,7 @@ export const NewProductForm: FC<Props> =
 							{intl.formatMessage({ id: "addNewProduct" })}
 						</Button>
 					</Box>
-					
+
 
 
 				</Form>

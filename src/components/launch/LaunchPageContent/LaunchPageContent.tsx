@@ -38,7 +38,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 				className="launch__player"
 			>
 			</video>*/}
-			{currentVideoUrl && 
+			{currentVideoUrl &&
 				<iframe
 					className={classes.launchVideoWrap}
 					src={currentVideoUrl}
@@ -74,7 +74,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 							{" " + launch.launchDestination}
 						</Typography>
 					</Box>}
-				{launch.launchMission &&	
+				{launch.launchMission &&
 					<Box className={classes.launchLineWrap}>
 						<Typography
 							variant="h5"

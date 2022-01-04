@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 import {
-	TypedUseSelectorHook, useDispatch, useSelector 
+	TypedUseSelectorHook, useDispatch, useSelector
 } from "react-redux";
 import {
 	persistStore,
@@ -17,7 +17,7 @@ import storage from "redux-persist/lib/storage";
 import rootReducer from "../rootReducer";
 import { isDevelopment } from "../../utils/helper";
 import {
-	eventSlice, launchSlice, launchCurrentSlice 
+	eventSlice, launchSlice, launchCurrentSlice
 } from "../../services/api";
 
 const persistConfig = {

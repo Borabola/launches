@@ -3,7 +3,7 @@ import { FC, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import {
-	Container, Typography, Theme 
+	Container, Typography, Theme
 } from "@mui/material";
 import { PageLayout } from "../../layouts/PageLayout";
 import { Loader } from "../../components/common/Loader/Loader";
@@ -83,7 +83,7 @@ const LaunchPage: FC = () => {
 						</Typography>
 					}
 				</>
-				
+
 			}
 		</PageLayout>
 	);

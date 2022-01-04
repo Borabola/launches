@@ -121,7 +121,7 @@ export const Footer: FC = () => {
 			component="div"
 			className={classes.footerContainer}
 		>
-			
+
 			<Box
 				component="div"
 				className={classes.footer}

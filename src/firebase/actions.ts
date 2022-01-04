@@ -11,18 +11,18 @@ import { Ensure } from "../utils/helper";
 export interface IProductValues {
 	id?: number;
 	productName: string;
-	productQnt: number;	
+	productQnt: number;
 	file?: string;
 }
 export type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
 
 export const setInfoToDatabase = (
-	currentUserId: string, 
+	currentUserId: string,
 	values: IProductValues,
 	fileUrl: string | null,
-	database: Database, 
+	database: Database,
 ) => {
-	
+
 	set(
 		ref(
 			database,

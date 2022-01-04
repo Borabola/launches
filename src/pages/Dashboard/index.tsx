@@ -56,7 +56,7 @@ const Dashboard: FC = () => {
 	);
 
 	const productData = useMemo<Data[]>(
-		() => 
+		() =>
 			products ? Object.values(products): [],
 		[products]
 	);
@@ -77,7 +77,7 @@ const Dashboard: FC = () => {
 			},
 			{
 				Header: intl.formatMessage({ id: "picture" }),
-				accessor: d => ( d.product_picture ? <img 
+				accessor: d => ( d.product_picture ? <img
 					className={classes.tableImg}
 					src={d.product_picture}
 					width={200}
@@ -89,8 +89,8 @@ const Dashboard: FC = () => {
 		[intl]
 	);
 
-	
-	
+
+
 	console.log(columns);
 
 	return (
@@ -106,8 +106,8 @@ const Dashboard: FC = () => {
 						mb="30px"
 					>{intl.formatMessage({ id: "productList" })}
 					</Typography>
-					
-					<MainTable 
+
+					<MainTable
 						columns={columns}
 						data={productData}
 					/>

@@ -1,10 +1,10 @@
 
 import {
-	FC, useEffect, useState 
+	FC, useEffect, useState
 } from "react";
 import { makeStyles } from "@mui/styles";
 import {
-	Container, Box, Theme 
+	Container, Box, Theme
 } from "@mui/material";
 import { Header } from "../../components/common/Header";
 import { Footer } from "../../components/common/Footer";

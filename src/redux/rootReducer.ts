@@ -1,7 +1,7 @@
 import {combineReducers} from "redux";
 
 import {
-	eventSlice, launchCurrentSlice, launchSlice 
+	eventSlice, launchCurrentSlice, launchSlice
 } from "../services/api";
 import authSlice from "./auth/sliceReducer";
 

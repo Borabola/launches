@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 			"&:hover": {
 				opacity: "1",
 			},
-			
+
 		},
 		"& .swiper-button-next.swiper-button-disabled": {
 			color: "#F1EBFF",
@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 			"&:hover": {
 				opacity: "1",
 			},
-			
+
 		},
 	}
 }));

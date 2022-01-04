@@ -20,7 +20,7 @@ const useStyles = makeStyles( () => ({
 
 export const NotFound: FC = () => {
 	const classes = useStyles();
-	
+
 	return (
 		<PageLayout>
 			<Box

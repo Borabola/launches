@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { styled } from "@mui/material/styles";
 import {
-	Grid, Typography, Paper, Link 
+	Grid, Typography, Paper, Link
 } from "@mui/material";
 import { Theme } from "@material-ui/core";
 import { format } from "date-fns";

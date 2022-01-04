@@ -124,8 +124,8 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 			const result = await signInWithPopup(
 				auth,
 				provider
-			); 
-			console.log("googlePopupSignIn 111"); 
+			);
+			console.log("googlePopupSignIn 111");
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));

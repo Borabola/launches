@@ -7,12 +7,12 @@ export type Props = {
 export type SProps = {
 	email: string,
 	password: string,
-}; 
+};
 export type FirebaseError = {
 	code: string,
 	message: string,
 	name: string,
-}; 
+};
 
 export interface IValue {
 	currentUser: string | null;

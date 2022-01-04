@@ -1,5 +1,5 @@
 import {
-	EventResult, LaunchResult, CurrentLaunch 
+	EventResult, LaunchResult, CurrentLaunch
 } from "./adapter.types";
 
 export const launchAdapter = (incomingLaunch: LaunchResult) => {

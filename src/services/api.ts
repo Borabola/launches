@@ -4,10 +4,10 @@ import {
 	eventAdapter, launchAdapter, currentLaunchAdapter
 } from "../utils/adapter";
 import {
-	EventData, LaunchData, CurrentLaunch 
+	EventData, LaunchData, CurrentLaunch
 } from "../utils/adapter.types";
 import type {
-	EventAdapterType, LaunchAdapterType, CurrentLaunchAdapterType 
+	EventAdapterType, LaunchAdapterType, CurrentLaunchAdapterType
 } from "../utils/adapter";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;

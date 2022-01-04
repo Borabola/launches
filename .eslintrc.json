@@ -61,6 +61,11 @@
 		"no-eq-null": "error",
 		"no-template-curly-in-string": "error",
 		"no-unsafe-optional-chaining": "error",
+		"eol-last": [
+			"error",
+			"always"
+		],
+		"no-trailing-spaces": "error",
 		"eqeqeq": [
 			"error",
 			"always"

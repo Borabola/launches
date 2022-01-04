@@ -32,7 +32,7 @@ const RegisterPage: FC = () => {
 			password: Yup.string().max(255).required("Password is required")
 		});
 
-	//type User = Yup.InferType<typeof validationSchema>;	
+	//type User = Yup.InferType<typeof validationSchema>;
 
 	return (
 		<Box

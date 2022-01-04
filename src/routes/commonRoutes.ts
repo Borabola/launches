@@ -15,7 +15,7 @@ export type RouteItem = typeof commonRoutes[0];
 type Concrete<Type> = {
 	[Property in keyof Type]-?: Type[Property];
 };
-  
+
 export type OmitedRouteItem = Omit<Concrete<RouteItem>, "component"> ;
 export type ModifiedRouteItem = OmitedRouteItem & {
 	component: React.LazyExoticComponent<FC<unknown>> | ElementType

@@ -29,7 +29,7 @@ const theme = createTheme({
 			white: "#fff",
 			black: "#111",
 		},
-	}, 
+	},
 	components: {
 		MuiButton: {
 			styleOverrides: {
@@ -41,7 +41,7 @@ const theme = createTheme({
 					textDecoration: "none",
 					textTransform: "capitalize",
 					color: "#F1EBFF",
-          
+
 					[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
 						fontSize: 18,
 						lineHeight: "22px",
@@ -66,10 +66,10 @@ const theme = createTheme({
 				},
 			},
 		},
-		
+
 	}
 });
-	
+
 theme.typography.h1 = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSize: 76,

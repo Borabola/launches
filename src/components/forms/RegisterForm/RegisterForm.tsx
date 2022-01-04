@@ -66,7 +66,7 @@ export const RegisterForm: FC<Props> = ({
 	initialValues, validationSchema, onSubmit
 }) => {
 	const classes = useStyles();
-	
+
 
 	return (
 		<Formik
