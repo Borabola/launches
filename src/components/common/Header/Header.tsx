@@ -1,15 +1,15 @@
+import {
+	Box, Link, Theme, Typography
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "../../../utils/const";
-import { makeStyles } from "@mui/styles";
-import {
-	Box, Typography, Link, Theme
-} from "@mui/material";
-import { useAuth } from "../../../contexts/AuthContext";
-import UserMenu from "./UserMenu";
-import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { ReactComponent as ArrowLeftSvg } from "../../../assets/common/arrow_left.svg";
-import type { Props, IAuth } from "./Header.types";
+import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
+import { useAuth } from "../../../contexts/AuthContext";
+import { AppRoute } from "../../../utils/const";
+import type { IAuth, Props } from "./Header.types";
+import UserMenu from "./UserMenu";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	header: {

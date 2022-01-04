@@ -1,15 +1,15 @@
-import { FC, useCallback } from "react";
-import { Formik } from "formik";
-import { makeStyles } from "@mui/styles";
 import {
-	Box, Button, TextField, Typography, Theme, Paper, List
+	Box, Button, List, Paper, TextField, Theme, Typography
 } from "@material-ui/core";
 import { ListItem } from "@mui/material";
-import { useIntl } from "react-intl";
-import { Form } from "react-formik-ui";
+import { makeStyles } from "@mui/styles";
+import { Formik } from "formik";
+import { FC, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-import "./style.scss";
+import { Form } from "react-formik-ui";
+import { useIntl } from "react-intl";
 import type { Props } from "./NewProductForm.types";
+import "./style.scss";
 
 
 const useStyles = makeStyles((theme: Theme) => ({

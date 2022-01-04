@@ -1,5 +1,6 @@
-import { FC, ElementType } from "react";
-import { lazy } from "react";
+import {
+	ElementType, FC, lazy
+} from "react";
 import { AppRoute } from "../utils/const";
 
 // Common routes with using React code splitting approach
@@ -16,7 +17,7 @@ type Concrete<Type> = {
 	[Property in keyof Type]-?: Type[Property];
 };
 
-export type OmitedRouteItem = Omit<Concrete<RouteItem>, "component"> ;
+export type OmitedRouteItem = Omit<Concrete<RouteItem>, "component">;
 export type ModifiedRouteItem = OmitedRouteItem & {
 	component: React.LazyExoticComponent<FC<unknown>> | ElementType
 };

@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { APIRoute } from "../utils/const";
-import {
-	eventAdapter, launchAdapter, currentLaunchAdapter
-} from "../utils/adapter";
-import {
-	EventData, LaunchData, CurrentLaunch
-} from "../utils/adapter.types";
 import type {
-	EventAdapterType, LaunchAdapterType, CurrentLaunchAdapterType
+	CurrentLaunchAdapterType, EventAdapterType, LaunchAdapterType
 } from "../utils/adapter";
+import {
+	currentLaunchAdapter, eventAdapter, launchAdapter
+} from "../utils/adapter";
+import {
+	CurrentLaunch, EventData, LaunchData
+} from "../utils/adapter.types";
+import { APIRoute } from "../utils/const";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

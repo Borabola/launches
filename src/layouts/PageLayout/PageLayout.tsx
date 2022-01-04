@@ -1,6 +1,6 @@
-import {FC} from "react";
 import { Box } from "@material-ui/system";
 import { makeStyles } from "@mui/styles";
+import { FC } from "react";
 import { Footer } from "../../components/common/Footer";
 import { Header } from "../../components/common/Header";
 import { Props } from "./PageLayout.types";

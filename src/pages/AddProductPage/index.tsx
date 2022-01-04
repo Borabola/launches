@@ -1,19 +1,20 @@
-import { FC, useState } from "react";
 import {
 	Box,
-	Container,
+	Container
 } from "@material-ui/core";
-import * as Yup from "yup";
 import { FormikHelpers } from "formik";
-import { PageLayout } from "../../layouts/PageLayout";
+import { FC, useState } from "react";
+import * as Yup from "yup";
 import { NewProductForm } from "../../components/forms/NewProductForm";
-import { database, storage } from "../../firebase/firebaseConfig";
-import {
-	setInfoToDatabase, uploadFile, IProductValues, IAuthCurrentUserId
-} from "../../firebase/actions";
-
-
 import { useAuth } from "../../contexts/AuthContext";
+import {
+	IAuthCurrentUserId,
+	IProductValues,
+	setInfoToDatabase,
+	uploadFile
+} from "../../firebase/actions";
+import { database, storage } from "../../firebase/firebaseConfig";
+import { PageLayout } from "../../layouts/PageLayout";
 
 
 const AddProductPage: FC = () => {

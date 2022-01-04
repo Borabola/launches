@@ -1,12 +1,12 @@
-import { FC } from "react";
-import Swiper, { Navigation } from "swiper";
-import ReactIdSwiperCustom from "react-id-swiper/lib/ReactIdSwiper.custom";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
 import { Theme } from "@material-ui/core";
 import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
 import { format } from "date-fns";
+import { FC } from "react";
+import ReactIdSwiperCustom from "react-id-swiper/lib/ReactIdSwiper.custom";
 import { useIntl } from "react-intl";
+import Swiper, { Navigation } from "swiper";
 import "swiper/swiper.scss";
 import { ReactComponent as RocketSvg } from "../../../assets/common/rocketLogo.svg";
 import { ReactComponent as ArrowImage } from "../../../assets/common/swiper_arrow.svg";

@@ -1,15 +1,13 @@
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Formik } from "formik";
 import {
 	Box,
 	Button,
 	Link,
-	TextField,
-	Typography,
-	Theme
+	TextField, Theme, Typography
 } from "@material-ui/core";
 import { makeStyles } from "@mui/styles";
+import { Formik } from "formik";
+import { FC } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { Props } from "./RegisterForm.types";
 
 

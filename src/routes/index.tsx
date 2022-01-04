@@ -1,13 +1,13 @@
-import { FC, Suspense} from "react";
-import {Switch, Route} from "react-router-dom";
-import { Loader } from "../components/common/Loader/Loader";
 import { Box } from "@material-ui/core";
+import { FC, Suspense } from "react";
+import { Route, Switch } from "react-router-dom";
+import { Loader } from "../components/common/Loader/Loader";
+import PrivateRoute from "../hocs/PrivateRoute";
 import { commonRoutes } from "./commonRoutes";
 import { privateRoutes } from "./privateRoutes";
-import PrivateRoute from "../hocs/PrivateRoute";
 
 
-const Routes:FC = () => {
+const Routes: FC = () => {
 	return (
 		<Suspense
 			fallback={

@@ -1,14 +1,14 @@
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "../../../utils/const";
+import { Theme } from "@material-ui/core";
+import { ButtonUnstyled } from "@mui/core";
+import { Link, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import { Theme } from "@material-ui/core";
-import { Typography, Link } from "@mui/material";
-import { ButtonUnstyled } from "@mui/core";
+import { FC } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { useAuth } from "../../../contexts/AuthContext";
 import { IValue } from "../../../contexts/AuthContext.types";
-import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
+import { AppRoute } from "../../../utils/const";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	footer: {

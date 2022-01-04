@@ -1,6 +1,6 @@
-import {FC} from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
+import { FC } from "react";
 import { ReactComponent as LoaderSvg } from "../../../assets/common/loader.svg";
 
 const useStyles = makeStyles({

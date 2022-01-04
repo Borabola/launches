@@ -13,7 +13,7 @@ export interface Status {
 export interface Launch {
 	id: string;
 	url: string;
-	launch_library_id?: null | number ;
+	launch_library_id?: null | number;
 	slug: string;
 	name: string;
 	status: Status;

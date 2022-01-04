@@ -1,21 +1,20 @@
-import { FC } from "react";
-import { useMemo } from "react";
 import {
 	Box,
-	Container,
+	Container
 } from "@material-ui/core";
-import { PageLayout } from "../../layouts/PageLayout";
-import { Typography, Theme } from "@mui/material";
+import { Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { database } from "../../firebase/firebaseConfig";
+import { FC, useMemo } from "react";
 import { useIntl } from "react-intl";
-import { useAuth } from "../../contexts/AuthContext";
-import useProducts from "../../hooks/useProduct";
 import { Column } from "react-table";
 import { MainTable } from "../../components/common/MainTable";
-import { IValue } from "../../contexts/AuthContext.types";
-import { Ensure } from "../../utils/helper";
 import type { Data } from "../../components/common/MainTable/MainTable.types";
+import { useAuth } from "../../contexts/AuthContext";
+import { IValue } from "../../contexts/AuthContext.types";
+import { database } from "../../firebase/firebaseConfig";
+import useProducts from "../../hooks/useProduct";
+import { PageLayout } from "../../layouts/PageLayout";
+import { Ensure } from "../../utils/helper";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	tableImg: {

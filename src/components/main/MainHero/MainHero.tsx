@@ -1,10 +1,10 @@
-import { FC } from "react";
-import Box from "@mui/material/Box";
-import { makeStyles } from "@mui/styles";
 import { Theme } from "@material-ui/core";
 import {
 	Button, Container, Typography
 } from "@mui/material";
+import Box from "@mui/material/Box";
+import { makeStyles } from "@mui/styles";
+import { FC } from "react";
 import { useIntl } from "react-intl";
 import BgImage from "../../../assets/common/bg_hero.png";
 import { Props } from "./MainHero.types";

@@ -1,12 +1,13 @@
-import {FC} from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Link } from "@mui/material";
-import { AppRoute } from "../../utils/const";
-import { Box, Container } from "@mui/material";
+import {
+	Box, Container, Link
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { FC } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { PageLayout } from "../../layouts/PageLayout";
+import { AppRoute } from "../../utils/const";
 
-const useStyles = makeStyles( () => ({
+const useStyles = makeStyles(() => ({
 	pageWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",

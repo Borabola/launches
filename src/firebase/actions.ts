@@ -1,12 +1,12 @@
-import { ref, set } from "firebase/database";
-import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { Database } from "@firebase/database";
+import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
+import { ref, set } from "firebase/database";
 import {
-	ref as storeRef, uploadBytesResumable, getDownloadURL
+	getDownloadURL, ref as storeRef, uploadBytesResumable
 } from "firebase/storage";
-import { showAddProductSuccessToast, showAddProductFailToast } from "../utils/toastHelper";
 import { IValue } from "../contexts/AuthContext.types";
 import { Ensure } from "../utils/helper";
+import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
 
 export interface IProductValues {
 	id?: number;
@@ -44,8 +44,8 @@ export const setInfoToDatabase = (
 };
 
 export const uploadFile = async (
-	file:File, storage: FirebaseStorage
-):Promise<string> => {
+	file: File, storage: FirebaseStorage
+): Promise<string> => {
 	const fileRef = storeRef(
 		storage,
 		"images/" + file.name

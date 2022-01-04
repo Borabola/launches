@@ -1,8 +1,8 @@
+import { Box, Link } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { AppRoute } from "../../../utils/const";
-import { makeStyles } from "@mui/styles";
-import { Link, Box } from "@mui/material";
 
 const useStyles = makeStyles(() => ({
 	menuWrap: {
@@ -29,27 +29,27 @@ const UserMenu: FC = () => {
 	const classes = useStyles();
 
 	return (
-    <Box
-	component="div"
-	className={classes.menuWrap}
-    >
-      <Link
-	component={RouterLink}
-	underline="hover"
-	to={AppRoute.DASHBOARD}
-	className={classes.menuLink}
-      >
-        Dashboard
-      </Link>
-      <Link
-	component={RouterLink}
-	underline="hover"
-	to={AppRoute.ADDPRODUCT_PAGE}
-	className={classes.menuLink}
-      >
-        Add New Product
-      </Link>
-    </Box>
+		<Box
+			component="div"
+			className={classes.menuWrap}
+		>
+			<Link
+				component={RouterLink}
+				underline="hover"
+				to={AppRoute.DASHBOARD}
+				className={classes.menuLink}
+			>
+				Dashboard
+			</Link>
+			<Link
+				component={RouterLink}
+				underline="hover"
+				to={AppRoute.ADDPRODUCT_PAGE}
+				className={classes.menuLink}
+			>
+				Add New Product
+			</Link>
+		</Box>
 	);
 };
 

@@ -1,1 +1,1 @@
-export { EventsSwiper} from "./EventsSwiper";
+export { EventsSwiper } from "./EventsSwiper";

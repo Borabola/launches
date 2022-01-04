@@ -1,11 +1,11 @@
 import {
-	FC, useRef, useState, useEffect, useLayoutEffect
-} from "react";
+	Container, Theme, Typography
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import {
-	Container, Typography, Theme
-} from "@mui/material";
+	FC, useEffect, useLayoutEffect, useRef, useState
+} from "react";
 import { getTimeFormate } from "../../../utils/helper";
 import type { Props } from "./LaunchHero.types";
 

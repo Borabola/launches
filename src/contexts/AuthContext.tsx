@@ -1,29 +1,32 @@
 
-import {
-	FC, createContext, useState, useContext
-} from "react";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { auth } from "../firebase/firebaseConfig";
 import "firebase/auth";
 import {
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	signOut,
+	GoogleAuthProvider,
 	onAuthStateChanged,
+	signInWithEmailAndPassword,
 	signInWithPopup,
-	GoogleAuthProvider
+	signOut
 } from "firebase/auth";
+import {
+	createContext,
+	FC,
+	useContext,
+	useEffect,
+	useState
+} from "react";
+import { useIntl } from "react-intl";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { auth } from "../firebase/firebaseConfig";
 import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
-import { useHistory } from "react-router-dom";
-import { useIntl } from "react-intl";
 import {
 	outputtingError,
 	outputtingGoogleError
 } from "../utils/toastHelper";
 import {
-	Props, SProps, FirebaseError, IValue
+	FirebaseError, IValue, Props, SProps
 } from "./AuthContext.types";
 
 const AuthContext = createContext<IValue | null>(null);

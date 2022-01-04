@@ -1,15 +1,13 @@
-import { FC } from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { Formik, Form } from "formik";
-import { makeStyles } from "@mui/styles";
 import {
 	Box,
 	Button,
 	Link,
-	TextField,
-	Typography,
-	Theme
+	TextField, Theme, Typography
 } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { Form, Formik } from "formik";
+import { FC } from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 import type { Props } from "./LoginForm.types";
 

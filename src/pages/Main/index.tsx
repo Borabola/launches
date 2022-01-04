@@ -1,22 +1,22 @@
 
 import {
-	FC, useEffect, useState
-} from "react";
+	Box, Container, Theme
+} from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import {
-	Container, Box, Theme
-} from "@mui/material";
-import { Header } from "../../components/common/Header";
+	FC, useEffect, useState
+} from "react";
+import { useAppDispatch } from "../../App/hooks";
 import { Footer } from "../../components/common/Footer";
+import { Header } from "../../components/common/Header";
 import { Loader } from "../../components/common/Loader";
-import { MainHero } from "../../components/main/MainHero";
 import { EventsSwiper } from "../../components/main/EventsSwiper";
 import { LaunchesBlock } from "../../components/main/LaunchesBlock";
-import { requireAuthorization } from "../../redux/auth/sliceReducer";
-import { AuthorizationStatus, launchQnt } from "../../utils/const";
+import { MainHero } from "../../components/main/MainHero";
 import { useAuth } from "../../contexts/AuthContext";
+import { requireAuthorization } from "../../redux/auth/sliceReducer";
 import { useGetEventsQuery, useGetLaunchesQuery } from "../../services/api";
-import { useAppDispatch } from "../../App/hooks";
+import { AuthorizationStatus, launchQnt } from "../../utils/const";
 
 
 const useStyles = makeStyles((theme: Theme) => ({

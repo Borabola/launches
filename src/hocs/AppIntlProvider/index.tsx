@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IntlProvider } from "react-intl";
 import messages_en from "../../i18n/en.json";
-import { messageObj, LangEnum } from "./AppIntlProvider.types";
+import { LangEnum, messageObj } from "./AppIntlProvider.types";
 
 const AppIntlProvider: FC = ({
 	children

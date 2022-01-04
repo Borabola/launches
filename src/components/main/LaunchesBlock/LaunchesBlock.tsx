@@ -1,12 +1,12 @@
-import { FC } from "react";
-import { makeStyles } from "@mui/styles";
 import {
 	Box, Grid, Typography
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { FC } from "react";
 import { useIntl } from "react-intl";
-import { LaunchCard } from "../../../components/main/LaunchCard";
-import { Loader } from "../../../components/common/Loader";
 import { TextButton } from "../../../components/common/button/TextButton";
+import { Loader } from "../../../components/common/Loader";
+import { LaunchCard } from "../../../components/main/LaunchCard";
 import { Props } from "./LaunchesBlock.types";
 
 const useStyles = makeStyles({
@@ -28,7 +28,7 @@ export const LaunchesBlock: FC<Props> = ({ launches, onShowMore, showenLaunchesQ
 	const classes = useStyles();
 	const intl = useIntl();
 
-	const buttonText = intl.formatMessage({id: "loadMoreBtn"});
+	const buttonText = intl.formatMessage({ id: "loadMoreBtn" });
 
 	return (
 		<div className={classes.launchesWrapper}>
@@ -37,7 +37,7 @@ export const LaunchesBlock: FC<Props> = ({ launches, onShowMore, showenLaunchesQ
 				mb='30px'
 				className={classes.launchesTitle}
 			>
-				{intl.formatMessage({id: "spaceflightLaunches"})}
+				{intl.formatMessage({ id: "spaceflightLaunches" })}
 			</Typography>
 
 			<Grid

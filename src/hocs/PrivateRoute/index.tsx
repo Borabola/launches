@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { useTypedSelector } from "../../redux/store";
-import { AuthorizationStatus } from "../../utils/const";
-import { useAuth } from "../../contexts/AuthContext";
+import { Redirect, Route } from "react-router-dom";
 import { Loader } from "../../components/common/Loader/Loader";
+import { useAuth } from "../../contexts/AuthContext";
+import { useTypedSelector } from "../../redux/store";
 import { ModifiedRouteItem } from "../../routes/commonRoutes";
+import { AuthorizationStatus } from "../../utils/const";
 
 type Props = ModifiedRouteItem;
 

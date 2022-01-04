@@ -1,11 +1,10 @@
-import {
-	HOURS, MAX_FILE_SIZE, MINUTE, SECONDS, SUPPORTED_FORMATS
-} from "./const";
-import AES from "crypto-js/aes";
 import CryptoJS from "crypto-js";
-import { KEY } from "./const";
+import AES from "crypto-js/aes";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
+import {
+	HOURS, KEY, MAX_FILE_SIZE, MINUTE, SECONDS, SUPPORTED_FORMATS
+} from "./const";
 dayjs.extend(isSameOrAfter);
 
 

@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { makeStyles } from "@mui/styles";
 import { Box, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { FC } from "react";
 import type { Props } from "./LaunchPageContent.types";
 
 const useStyles = makeStyles({

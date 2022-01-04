@@ -1,5 +1,5 @@
-import { FormikHelpers } from "formik";
 import { IProductValues } from "firebase/actions";
+import { FormikHelpers } from "formik";
 
 export interface IInitialValues {
 	productName: string,

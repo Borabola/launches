@@ -1,13 +1,13 @@
-import { FC } from "react";
 import {
 	Box,
-	Container,
+	Container
 } from "@material-ui/core";
-import * as Yup from "yup";
-import { useAuth } from "../../contexts/AuthContext";
-import { RegisterForm } from "../../components/forms/RegisterForm";
 import { FormikHelpers } from "formik";
+import { FC } from "react";
+import * as Yup from "yup";
+import { RegisterForm } from "../../components/forms/RegisterForm";
 import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
+import { useAuth } from "../../contexts/AuthContext";
 
 const RegisterPage: FC = () => {
 	const authContext = useAuth();

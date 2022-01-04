@@ -1,1 +1,1 @@
-export { LaunchHero} from "./LaunchHero";
+export { LaunchHero } from "./LaunchHero";

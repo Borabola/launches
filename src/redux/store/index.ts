@@ -1,24 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import logger from "redux-logger";
 import {
 	TypedUseSelectorHook, useDispatch, useSelector
 } from "react-redux";
+import logger from "redux-logger";
 import {
-	persistStore,
-	persistReducer,
-	FLUSH,
-	REHYDRATE,
-	PAUSE,
-	PERSIST,
-	PURGE,
-	REGISTER,
+	FLUSH, PAUSE,
+	PERSIST, persistReducer, persistStore, PURGE,
+	REGISTER, REHYDRATE
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import rootReducer from "../rootReducer";
-import { isDevelopment } from "../../utils/helper";
 import {
-	eventSlice, launchSlice, launchCurrentSlice
+	eventSlice, launchCurrentSlice, launchSlice
 } from "../../services/api";
+import { isDevelopment } from "../../utils/helper";
+import rootReducer from "../rootReducer";
 
 const persistConfig = {
 	key: "primary",
@@ -38,7 +33,7 @@ const store = configureStore({
 			launchSlice.middleware,
 			launchCurrentSlice.middleware];
 
-		if (isDevelopment()) {extraMiddleweres.push(logger);}
+		if (isDevelopment()) { extraMiddleweres.push(logger); }
 
 		return getDefaultMiddleware({
 			serializableCheck: {
