@@ -83,7 +83,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			color: "#FFFFFF",
 			padding: "0 16px"
 		}
-
 	},
 	previewChip: {
 		minWidth: 160,

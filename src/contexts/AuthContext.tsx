@@ -26,7 +26,6 @@ import {
 	Props, SProps, FirebaseError, IValue
 } from "./AuthContext.types";
 
-
 const AuthContext = createContext<IValue | null>(null);
 
 export const useAuth = () => {

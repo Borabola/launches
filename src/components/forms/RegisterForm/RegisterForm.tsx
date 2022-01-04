@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Formik } from "formik";
 import {
@@ -46,8 +46,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		"& label.Mui-focused": {
 			color: "#4A00E0",
 		},
-
-
 	},
 	textField: {
 		"&::placeholder": {
@@ -57,8 +55,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			borderColor: theme.palette.secondary.main,
 		}
 	},
-
-
 }));
 
 

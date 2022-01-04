@@ -46,8 +46,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		"& label.Mui-focused": {
 			color: "#4A00E0",
 		},
-
-
 	},
 	textField: {
 		"&::placeholder": {
@@ -57,8 +55,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			borderColor: theme.palette.secondary.main,
 		}
 	},
-
-
 }));
 
 export const LoginForm: FC<Props> = ({

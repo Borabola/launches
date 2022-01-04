@@ -5,7 +5,6 @@ import AES from "crypto-js/aes";
 import CryptoJS from "crypto-js";
 import { KEY } from "./const";
 import dayjs from "dayjs";
-//import jwtDecode, { JwtPayload } from "jwt-decode";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(isSameOrAfter);
 

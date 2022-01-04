@@ -6,12 +6,13 @@ import {
 import * as Yup from "yup";
 import { useAuth } from "../../contexts/AuthContext";
 import { RegisterForm } from "../../components/forms/RegisterForm";
-import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 import { FormikHelpers } from "formik";
+import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
+
 
 const RegisterPage: FC = () => {
 	const authContext = useAuth();
-	if( authContext === null ) {
+	if (authContext === null) {
 		return null;
 	}
 	const { signup } = authContext;
@@ -32,8 +33,6 @@ const RegisterPage: FC = () => {
 			password: Yup.string().max(255).required("Password is required")
 		});
 
-	//type User = Yup.InferType<typeof validationSchema>;
-
 	return (
 		<Box
 			display={"flex"}
@@ -45,7 +44,7 @@ const RegisterPage: FC = () => {
 				<RegisterForm
 					initialValues={initialValuesSignIn}
 					onSubmit={onSubmit}
-					validationSchema ={validationSchema}
+					validationSchema={validationSchema}
 				/>
 			</Container>
 		</Box>

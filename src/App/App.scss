@@ -42,7 +42,7 @@
           clip-path: inset(100%); 
 }
 
-iframe {
+iframe:not([src]) {
   display: none !important;
 }
 
