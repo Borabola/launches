@@ -1,50 +1,45 @@
 
-import React, { useState, useContext } from "react";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { auth } from "firebase/firebaseConfig";
 import "firebase/auth";
 import {
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-	signOut,
+	GoogleAuthProvider,
 	onAuthStateChanged,
+	signInWithEmailAndPassword,
 	signInWithPopup,
-	GoogleAuthProvider
+	signOut
 } from "firebase/auth";
+import {
+	createContext,
+	FC,
+	useContext,
+	useEffect,
+	useState
+} from "react";
+import { useIntl } from "react-intl";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { auth } from "../firebase/firebaseConfig";
 import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
-import { useHistory } from "react-router-dom";
-import { useIntl } from "react-intl";
 import {
 	outputtingError,
 	outputtingGoogleError
 } from "../utils/toastHelper";
 import {
-	Props, SProps, FirebaseError, IValue
+	FirebaseError, IValue, Props, SProps
 } from "./AuthContext.types";
 
-
-/*export interface IValue {
-	currentUser: string | null;
-	currentUserId: string | 0;
-	login: () => Promise<void> | unknown;
-	signup: () => Promise<void> | unknown;
-	logout: () => Promise<void> | unknown;
-	googlePopupSignIn: () => Promise<void> | unknown;
-}*/
-
-const AuthContext = React.createContext<IValue | null>(null);
+const AuthContext = createContext<IValue | null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-export const AuthProvider: React.FC = ({ children }: Props) => {
+export const AuthProvider: FC = ({ children }: Props) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState<string | null>(null);
-	const [ isLoading, setIsLoading ] = useState(false);
-	const [currentUserId, setCurrentUserId] = useState<string | 0>(0);
+	const [isLoading, setIsLoading] = useState(false);
+	const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -58,14 +53,13 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 					if (user) {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
-						console.log("onAuthStateChanged 111");
 						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-						setIsLoading(false);
 					} else {
 						setCurrentUser(null);
-						setCurrentUserId(0);
+						setCurrentUserId(null);
 						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
 					}
+					setIsLoading(false);
 				}
 			);
 			return unsubsribe;
@@ -92,7 +86,7 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 		}
 	};
 
-	const login = async ({ email, password }:SProps) => {
+	const login = async ({ email, password }: SProps) => {
 		try {
 			const result = await signInWithEmailAndPassword(
 				auth,
@@ -124,8 +118,7 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 			const result = await signInWithPopup(
 				auth,
 				provider
-			); 
-			console.log("googlePopupSignIn 111"); 
+			);
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));

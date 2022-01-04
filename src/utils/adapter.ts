@@ -1,5 +1,5 @@
 import {
-	EventResult, LaunchResult, CurrentLaunch 
+	CurrentLaunch, EventResult, LaunchResult
 } from "./adapter.types";
 
 export const launchAdapter = (incomingLaunch: LaunchResult) => {
@@ -11,7 +11,6 @@ export const launchAdapter = (incomingLaunch: LaunchResult) => {
 		rocketId: incomingLaunch.rocket.configuration.id,
 	};
 	return adaptedLaunch;
-
 };
 
 export type LaunchAdapterType = ReturnType<typeof launchAdapter>;
@@ -50,3 +49,5 @@ export const currentLaunchAdapter = (incomingCurrentLaunch: CurrentLaunch) => {
 	};
 	return adaptedLaunch;
 };
+
+export type CurrentLaunchAdapterType = ReturnType<typeof currentLaunchAdapter>;

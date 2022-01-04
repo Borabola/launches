@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AuthorizationStatus } from "../../utils/const";
 
 const initialState = {
@@ -10,7 +10,7 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		requireAuthorization(
-			state, action
+			state, action: PayloadAction<AuthorizationStatus>
 		) {
 			state.authorizationStatus = action.payload;
 		},

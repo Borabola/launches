@@ -1,4 +1,5 @@
-import {FC} from "react";
+import { Theme } from "@material-ui/core";
+import { Button } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,22 +7,23 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { makeStyles } from "@mui/styles";
-import { Theme } from "@material-ui/core";
+import { FC } from "react";
 import {
 	Hooks, useSortBy, useTable
 } from "react-table";
-import { Button } from "@mui/material";
+import { Data, Props } from "./MainTable.types";
 
-import { Props } from "./MainTable.types";
-
+type rowProps = {
+	row: {
+		values: {
+			quantity: number
+		}
+	}
+};
 
 const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
 		width: "100%",
-		//display: "block",
-		//overflow: "auto",
-		//maxHeight: "70vh",
-		//"&.MuiTableBody-root": {
 		display: "block",
 
 		"& .MuiTableCell-body": {
@@ -35,17 +37,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 		"& .MuiTableCell-head": {
 			width: "25%",
 			color: theme.palette.primary.main,
-			fontSize: "18px",
+			fontSize: "1.125rem",
 		},
-
-
 	},
 	tableRow: {
 		width: "100%",
-		/*"&.MuiTableRow-root": {
-			display: "flex",
-			justifyContent: "space-between"
-		}*/
 	},
 	tableRowEven: {
 		width: "100%",
@@ -57,7 +53,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			color: theme.palette.primary.main,
 			width: "100%",
 		},
-
 	},
 	tableCell: {
 		color: theme.palette.primary.main,
@@ -74,15 +69,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const MainTable: FC<Props> = ({ columns, data }) => {
 	const classes = useStyles();
 
-	const tableHooks = (hooks: Hooks) => {
-		hooks.visibleColumns.push((columns) => [
+	const tableHooks = (hooks: Hooks<Data>) => {
+		hooks.allColumns.push((columns) => [
 			...columns,
 			{
 				id: "Edit",
 				Header: "Edit",
-				Cell: ({ row }) => (
+				Cell: ({ row }: rowProps) => (
 					<Button
-						onClick={()=> alert("Products quantity: " +
+						onClick={() => alert("Products quantity: " +
 							row.values?.quantity)}
 					>
 						Edit
@@ -101,25 +96,24 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 		useSortBy
 	);
 
-	const isEven = (idx:number) => idx % 2 === 0;
+	const isEven = (idx: number) => idx % 2 === 0;
 
 	return (
 		<TableContainer>
 			<Table
 				aria-label="product table"
-				// className={classes.productTable}
 				{...getTableProps()}
 			>
 				<TableHead className={classes.tableHead}>
 					{headerGroups.map((headerGroup) => {
-                        const {key, ...restHeaderGroupProps} = headerGroup.getHeaderGroupProps();
-                        return (
-                            <TableRow
-	key={key}
-	{...restHeaderGroupProps}
-                            >
-                                {headerGroup.headers.map((column) => {
-									const {key, ...restColumn} = column.getHeaderProps();
+						const { key, ...restHeaderGroupProps } = headerGroup.getHeaderGroupProps();
+						return (
+							<TableRow
+								key={key}
+								{...restHeaderGroupProps}
+							>
+								{headerGroup.headers.map((column) => {
+									const { key, ...restColumn } = column.getHeaderProps();
 									return (
 										<TableCell
 											className={classes.tableCell}
@@ -137,17 +131,18 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 													: ""}
 											</span>
 										</TableCell>
-                                );})}
-                            </TableRow>
-                            );
-                    } )}
+									);
+								})}
+							</TableRow>
+						);
+					})}
 				</TableHead>
 				<TableBody className={classes.tableBody}>
 					{rows.map((
 						row, idx
 					) => {
 						prepareRow(row);
-                        const { key, ...restRowProps } = row.getRowProps();
+						const { key, ...restRowProps } = row.getRowProps();
 						return (
 							<TableRow
 								className={isEven(idx) ? classes.tableRowEven : classes.tableRow}
@@ -155,7 +150,7 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 								{...restRowProps}
 							>
 								{row.cells.map((cell) => {
-                                    const { key, ...restCellProps } = cell.getCellProps();
+									const { key, ...restCellProps } = cell.getCellProps();
 									return (
 										<TableCell
 											className={classes.tableCell}

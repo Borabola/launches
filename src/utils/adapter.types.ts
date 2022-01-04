@@ -13,11 +13,11 @@ export interface Status {
 export interface Launch {
 	id: string;
 	url: string;
-	launch_library_id?: null | number ;
+	launch_library_id?: null | number;
 	slug: string;
 	name: string;
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	mission: string;
@@ -290,7 +290,7 @@ export interface LaunchResult {
 	name: string;
 	img_url?: null | string | string[];
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	inhold: boolean;
@@ -347,7 +347,6 @@ export interface LaunchServiceProvider {
 }
 
 
-
 export interface Rocket {
 	configuration: Configuration;
 	launcher_stage: LauncherStage[] | null;
@@ -380,7 +379,7 @@ export interface CurrentLaunch {
 	name: string;
 	img_url?: null | string | string[];
 	status: Status;
-	net: Date;
+	net: string;
 	window_end: Date;
 	window_start: Date;
 	inhold: boolean;
@@ -394,9 +393,7 @@ export interface CurrentLaunch {
 	mission: Mission;
 	pad: Pad;
 	infoURLs: null | string | string[];
-	vidURLs: null | string | string[];
+	vidURLs: null | string | string[] | undefined;
 	image_url?: null | string | string[];
 	infographic_url?: null | string | string[];
 }
-
-

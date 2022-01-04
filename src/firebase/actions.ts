@@ -1,23 +1,28 @@
-import { ref, set } from "firebase/database";
-import { FirebaseStorage } from "@firebase/storage-types";
 import { Database } from "@firebase/database";
+import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
+import { ref, set } from "firebase/database";
 import {
-	ref as storeRef, uploadBytesResumable, getDownloadURL
+	getDownloadURL, ref as storeRef, uploadBytesResumable
 } from "firebase/storage";
-import { showAddProductSuccessToast, showAddProductFailToast } from "../utils/toastHelper";
+import { IValue } from "../contexts/AuthContext.types";
+import { Ensure } from "../utils/helper";
+import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
 
-interface IProductValues {
-	id: number;
+export interface IProductValues {
+	id?: number;
 	productName: string;
-	productQnt: number;	
+	productQnt: number;
+	file?: string;
 }
+export type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
 
 export const setInfoToDatabase = (
-	values:IProductValues, currentUserId:number, database:Database, fileUrl:string
+	currentUserId: string,
+	values: IProductValues,
+	fileUrl: string | null,
+	database: Database,
 ) => {
-	if (currentUserId === 0) {
-		return;
-	}
+
 	set(
 		ref(
 			database,
@@ -39,8 +44,8 @@ export const setInfoToDatabase = (
 };
 
 export const uploadFile = async (
-	file:File, storage:FirebaseStorage
-):Promise<string> => {
+	file: File, storage: FirebaseStorage
+): Promise<string> => {
 	const fileRef = storeRef(
 		storage,
 		"images/" + file.name

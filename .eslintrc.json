@@ -4,10 +4,23 @@
 		"es2021": true,
 		"node": true
 	},
+	"settings": {
+		"react": {
+			"createClass": "createReactClass", // Regex for Component Factory to use,
+			// default to "createReactClass"
+			"pragma": "React", // Pragma to use, default to "React"
+			"fragment": "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
+			"version": "detect", // React version. "detect" automatically picks the version you have installed.
+			// You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+			// default to latest and warns if missing
+			// It will default to "detect" in the future
+			"flowVersion": "0.53" // Flow version
+		}
+	},
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"  
+		"plugin:@typescript-eslint/recommended"
 	],
 	"parserOptions": {
 		"ecmaFeatures": {
@@ -16,14 +29,10 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": [
-		"react",
-        "formatjs",
-        "@typescript-eslint"
-	],
+	"plugins": ["react", "formatjs", "@typescript-eslint"],
 	"rules": {
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off",
+		"react/jsx-uses-react": "off",
+		"react/react-in-jsx-scope": "off",
 		"no-return-assign": "error",
 		"no-return-await": "error",
 		"no-script-url": "error",
@@ -48,14 +57,17 @@
 		"no-eq-null": "error",
 		"no-template-curly-in-string": "error",
 		"no-unsafe-optional-chaining": "error",
-		"eqeqeq": [
+		"eol-last": ["error", "always"],
+		"no-trailing-spaces": "error",
+		"no-multiple-empty-lines": [
 			"error",
-			"always"
+			{
+				"max": 2,
+				"maxEOF": 0
+			}
 		],
-		"quotes": [
-			"error",
-			"single"
-		],
+		"eqeqeq": ["error", "always"],
+		"quotes": ["error", "single"],
 		"max-len": [
 			"error",
 			{
@@ -74,18 +86,11 @@
 	},
 	"overrides": [
 		{
-			"files": [
-				"*.ts",
-				"*.tsx",
-				"*.js",
-				"*.jsx"
-			],
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"rules": {
 				"no-unused-vars": "off",
 				"no-explicit-any": "off",
-				"@typescript-eslint/no-unused-vars": [
-					"warn"
-				],
+				"@typescript-eslint/no-unused-vars": ["warn"],
 				"@typescript-eslint/explicit-module-boundary-types": "off",
 				"semi": "off",
 				"quotes": [
@@ -96,14 +101,9 @@
 						"allowTemplateLiterals": true
 					}
 				],
-				"@typescript-eslint/semi": [
-					"warn"
-				],
+				"@typescript-eslint/semi": ["warn"],
 				"react-hooks/exhaustive-deps": "off",
-				"no-mixed-spaces-and-tabs": [
-					"error",
-					"smart-tabs"
-				],
+				"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 				"function-paren-newline": [
 					"error",
 					{
@@ -117,35 +117,11 @@
 						"maximum": 1
 					}
 				],
-				"react/jsx-indent-props": [
-					"error",
-					"tab"
-				],
-				"react/jsx-first-prop-new-line": [
-					"error",
-					"multiline"
-				],
-				"react/jsx-closing-bracket-location": [
-					1,
-					"line-aligned"
-				],
-				"react/jsx-closing-tag-location": [
-					1,
-					"line-aligned"
-				],
+				"react/jsx-indent-props": ["error", "tab"],
+				"react/jsx-first-prop-new-line": ["error", "multiline"],
+				"react/jsx-closing-bracket-location": [1, "line-aligned"],
+				"react/jsx-closing-tag-location": [1, "line-aligned"],
 				"react/jsx-no-useless-fragment": "off",
-				"@typescript-eslint/indent": [
-					"error",
-					"tab",
-					{
-						"ignoredNodes": [
-							"JSXElement *",
-							"JSXElement",
-							"JSXSpreadAttribute",
-							"JSXAttribute"
-						]
-					}
-				],
 				"indent": [
 					"error",
 					"tab",
@@ -163,6 +139,7 @@
 							"body": 2,
 							"parameters": "first"
 						},
+						"SwitchCase": 1,
 						"ArrayExpression": 1,
 						"ObjectExpression": 1,
 						"ImportDeclaration": 1,
@@ -175,10 +152,7 @@
 						]
 					}
 				],
-				"function-call-argument-newline": [
-					"error",
-					"always"
-				],
+				"function-call-argument-newline": ["error", "always"],
 				"object-curly-newline": [
 					"error",
 					{
@@ -207,9 +181,7 @@
 				"react/style-prop-object": [
 					2,
 					{
-						"allow": [
-							"FormattedNumber"
-						]
+						"allow": ["FormattedNumber"]
 					}
 				],
 				"no-use-before-define": "off",

@@ -1,39 +1,41 @@
-import {FC} from "react";
-import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "../../../utils/const";
-import { makeStyles } from "@mui/styles";
 import {
-	Box, Typography, Link, Theme
+	Box, Link, Theme, Typography
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { FC } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { ReactComponent as ArrowLeftSvg } from "../../../assets/common/arrow_left.svg";
+import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { useAuth } from "../../../contexts/AuthContext";
+import { AppRoute } from "../../../utils/const";
+import type { IAuth, Props } from "./Header.types";
 import UserMenu from "./UserMenu";
 
-import { ReactComponent as LogoSvg } from "assets/common/logo.svg";
-import { ReactComponent as ArrowLeftSvg } from "assets/common/arrow_left.svg";
-import type { Props, IAuth } from "./Header.types";
-
-const useStyles = makeStyles((theme:Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	header: {
 		position: "relative",
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
 		border: 0,
-		minHeight: 100,
-		padding: "0 30px",
+		minHeight: theme.spacing(12.5),
+		padding: theme.spacing(
+			0,
+			3.75
+		),
 		background: "rgba(0, 0, 0, 0.2)",
 		zIndex: 1,
 	},
 	headerContainer: {
 		width: "100%",
-		maxWidth: "1180px",
+		maxWidth: theme.spacing(147.5),
 		display: "flex",
 		flexDirection: "column",
 	},
 
 	headerWrapper: {
 		position: "relative",
-		maxWidth: "1180px",
+		maxWidth: theme.spacing(147.5),
 		display: "flex",
 		justifyContent: "space-between",
 		[theme.breakpoints.down("md")]: {
@@ -48,6 +50,7 @@ const useStyles = makeStyles((theme:Theme) => ({
 		textDecoration: "none",
 		textTransform: "capitalize",
 		transition: "0.3s ease",
+		cursor: "pointer",
 		"&:hover": {
 			opacity: "0.7",
 
@@ -56,9 +59,9 @@ const useStyles = makeStyles((theme:Theme) => ({
 			},
 		},
 		"& svg": {
-			width: "28px",
-			height: "14px",
-			marginRight: "10px",
+			width: theme.spacing(3.5),
+			height: theme.spacing(1.75),
+			marginRight: theme.spacing(1.25),
 			transition: "0.3s ease",
 		},
 	},
