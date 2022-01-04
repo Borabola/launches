@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {ref, onValue} from "firebase/database";
+import { ref, onValue } from "firebase/database";
 //import { Database } from "@firebase/database-types";
 import { Database } from "@firebase/database";
 
@@ -17,14 +17,15 @@ const useProducts = (
 					database,
 					`users/${currentUserId}/products/`
 				);
-				
-				await onValue(
+
+				const unsubscribe = await onValue(
 					productsRef,
 					(snapshot) => {
 						const data = snapshot.val();
 						setProducts(data);
 					}
 				);
+				return unsubscribe;
 			};
 			fetchProducts();
 		},
