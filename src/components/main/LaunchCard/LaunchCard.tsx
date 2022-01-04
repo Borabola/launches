@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 
 		"& svg": {
-			width: "154px",
-			height: "154px",
+			width: theme.spacing(19.25),
+			height: theme.spacing(19.25),
 			opacity: 0.2,
 		},
 	},
@@ -41,13 +41,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 		overflow: "hidden",
 	},
 	launchTimeBlock: {
-		padding: "10px 30px",
-		marginBottom: "30px",
+		padding: theme.spacing(
+			1.25,
+			3.75
+		),
+		marginBottom: theme.spacing(3.75),
 		marginTop: "calc(-50% - 20px)",
 		display: " inline-block",
 		justifyContent: "center",
 		background: "linear-gradient(94.97deg, #8E2DE2 3.92%, #4A00E0 52.92%);",
-		borderRadius: "50px",
+		borderRadius: theme.spacing(6.25),
 	},
 	launchNameClass: {
 		textDecoration: "none",
@@ -69,70 +72,70 @@ export const LaunchCard: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
 
 	return (
-    <Grid
-	item
-	xs={12}
-	md={6}
-    >
-      <Item>
-        <Link
-	component={RouterLink}
-	to={`/rocket/${launch.rocketId}`}
-        >
-          {launch.launchImg ? (
-            Array.isArray(launch.launchImg) ? (
-              <img
-	src={launch.launchImg[0]}
-	alt={launch.launchName}
-	width="580"
-	height="324"
-	className={classes.launchImg}
-              />
-            ) : (
-              <img
-	src={launch.launchImg}
-	alt={launch.launchName}
-	width="580"
-	height="324"
-	className={classes.launchImg}
-              />
-            )
-          ) : (
-            <div className={classes.launchEmptyimg}>
-              <RocketSvg />
-            </div>
-          )}
-        </Link>
+		<Grid
+			item
+			xs={12}
+			md={6}
+		>
+			<Item>
+				<Link
+					component={RouterLink}
+					to={`/rocket/${launch.rocketId}`}
+				>
+					{launch.launchImg ? (
+						Array.isArray(launch.launchImg) ? (
+							<img
+								src={launch.launchImg[0]}
+								alt={launch.launchName}
+								width="580"
+								height="324"
+								className={classes.launchImg}
+							/>
+						) : (
+							<img
+								src={launch.launchImg}
+								alt={launch.launchName}
+								width="580"
+								height="324"
+								className={classes.launchImg}
+							/>
+						)
+					) : (
+						<div className={classes.launchEmptyimg}>
+							<RocketSvg />
+						</div>
+					)}
+				</Link>
 
-        <div className={classes.launchTimeBlock}>
-          <Typography variant="caption">
-            <time
-	dateTime={format(
-new Date(launch.launchDate),
-"yyyy-MM-dd"
-)}
-            >
-              {format(
-new Date(launch.launchDate),
-"MMM. d, yyyy, h:mm aaa"
-)}
-            </time>
-          </Typography>
-        </div>
-        <Link
-	underline="hover"
-	component={RouterLink}
-	to={`/launch/${launch.id}`}
-	className={classes.launchNameClass}
-        >
-          <Typography
-	variant="h3"
-	mb="50px"
-          >
-            {launch.launchName}
-          </Typography>
-        </Link>
-      </Item>
-    </Grid>
+				<div className={classes.launchTimeBlock}>
+					<Typography variant="caption">
+						<time
+							dateTime={format(
+								new Date(launch.launchDate),
+								"yyyy-MM-dd"
+							)}
+						>
+							{format(
+								new Date(launch.launchDate),
+								"MMM. d, yyyy, h:mm aaa"
+							)}
+						</time>
+					</Typography>
+				</div>
+				<Link
+					underline="hover"
+					component={RouterLink}
+					to={`/launch/${launch.id}`}
+					className={classes.launchNameClass}
+				>
+					<Typography
+						variant="h3"
+						mb="50px"
+					>
+						{launch.launchName}
+					</Typography>
+				</Link>
+			</Item>
+		</Grid>
 	);
 };

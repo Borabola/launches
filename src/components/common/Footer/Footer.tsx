@@ -17,11 +17,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 		justifyContent: "space-between",
 		alignItems: "center",
 		border: 0,
-		minHeight: 100,
-		padding: "0 80px",
+		minHeight: theme.spacing(12.5),
+		padding: theme.spacing(
+			0,
+			10
+		),
 		background: "#181B48",
 		[theme.breakpoints.down("sm")]: {
-			padding: "15px",
+			padding: theme.spacing(2),
 		},
 	},
 	footerContainer: {
@@ -29,8 +32,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flexDirection: "column"
 	},
 	footerMenu: {
-		maxWidth: "1180px",
-		padding: "20px 0",
+		maxWidth: theme.spacing(147.5),
+		padding: theme.spacing(
+			2.5,
+			0
+		),
 		margin: "0 auto",
 		display: "flex",
 		alignItems: "center",
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 	footerWrapper: {
 		width: "100%",
-		maxWidth: "1180px",
+		maxWidth: theme.spacing(147.5),
 		margin: "0 auto",
 		display: "flex",
 		justifyContent: "space-between",
@@ -62,41 +68,43 @@ const useStyles = makeStyles((theme: Theme) => ({
 		alignItems: "center",
 	},
 	footerLink: {
-		width: "49px",
-		height: "55px",
+		width: theme.spacing(6.125),
+		height: theme.spacing(6.875),
 		transition: "0.3s ease",
 		"&:hover": {
 			opacity: "0.9",
 		},
 
 		"& svg": {
-			width: "49px",
-			height: "55px",
+			width: theme.spacing(6.125),
+			height: theme.spacing(6.875),
 		},
 		[theme.breakpoints.down("sm")]: {
-			marginBottom: "30px",
+			marginBottom: theme.spacing(3.75),
 		},
 	},
 	footerLoginLink: {
 		color: theme.palette.info.main,
-		fontSize: "18px",
+		fontSize: "1.125rem",
 		textTransform: "none",
 		transition: "0.3s ease",
 		"&:hover": {
 			opacity: "0.7",
 		},
-
 	},
 	footerCopyright: {
 		color: "#C0C0C0",
 
 	},
 	logoutBtn: {
-		padding: "3px 7px",
+		padding: theme.spacing(
+			0.375,
+			1
+		),
 		background: "rgba(0,0,0,0)",
 		border: "none",
 		color: theme.palette.info.main,
-		fontSize: "18px",
+		fontSize: "1.125rem",
 		transition: "0.3s ease",
 		"&:hover": {
 			opacity: "0.7",
@@ -158,13 +166,14 @@ export const Footer: FC = () => {
 								</ButtonUnstyled>
 							</>}
 
-						{(!currentUser) && <Link
-							to={AppRoute.LOGIN}
-							component={RouterLink}
-							className={classes.footerLoginLink}
-						>
-							Login
-                         </Link>}
+						{(!currentUser) &&
+							<Link
+								to={AppRoute.LOGIN}
+								component={RouterLink}
+								className={classes.footerLoginLink}
+							>
+								Login
+							</Link>}
 
 					</Box>
 

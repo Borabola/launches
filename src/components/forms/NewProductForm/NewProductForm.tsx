@@ -85,8 +85,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		}
 	},
 	previewChip: {
-		minWidth: 160,
-		maxWidth: 210
+		minWidth: theme.spacing(20),
+		maxWidth: theme.spacing(26.25),
 	},
 }));
 

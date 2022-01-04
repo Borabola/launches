@@ -11,7 +11,7 @@ import { database, storage } from "../../firebase/firebaseConfig";
 import {
 	setInfoToDatabase, uploadFile, IProductValues, IAuthCurrentUserId
 } from "../../firebase/actions";
-//import {IInitialValues} from "../../components/forms/NewProductForm/NewProductForm.types";
+
 
 import { useAuth } from "../../contexts/AuthContext";
 

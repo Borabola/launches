@@ -2,16 +2,17 @@ import { createTheme } from "@mui/material/styles";
 
 const breakpoints = {
 	values: {
-	  xs: 0,
-	  sm: 600, // Phone
-	  md: 900, // Tablet/Laptop
-	  lg: 1440, // Desktop
-	  xl: 1536
+		xs: 0,
+		sm: 600, // Phone
+		md: 900, // Tablet/Laptop
+		lg: 1440, // Desktop
+		xl: 1536
 	}
 };
 
 const theme = createTheme({
 	breakpoints,
+	//spacing: (factor) => `${0.125 * factor}rem`,
 	palette: {
 		primary: {
 			main: "#F1EBFF",

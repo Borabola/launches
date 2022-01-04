@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		"& .MuiTableCell-head": {
 			width: "25%",
 			color: theme.palette.primary.main,
-			fontSize: "18px",
+			fontSize: "1.125rem",
 		},
 	},
 	tableRow: {

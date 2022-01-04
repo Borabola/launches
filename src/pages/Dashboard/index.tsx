@@ -5,7 +5,7 @@ import {
 	Container,
 } from "@material-ui/core";
 import { PageLayout } from "../../layouts/PageLayout";
-import { Typography } from "@mui/material";
+import { Typography, Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { database } from "../../firebase/firebaseConfig";
 import { useIntl } from "react-intl";
@@ -17,12 +17,12 @@ import { IValue } from "../../contexts/AuthContext.types";
 import { Ensure } from "../../utils/helper";
 import type { Data } from "../../components/common/MainTable/MainTable.types";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	tableImg: {
 		position: "relative",
-		maxWidth: "250px",
+		maxWidth: theme.spacing(31.25),
 		height: "auto",
-		maxHeight: "250px",
+		maxHeight: theme.spacing(31.25),
 		overflow: "hidden",
 		"&::after": {
 			position: "absolute",

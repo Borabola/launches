@@ -9,7 +9,6 @@ import { RegisterForm } from "../../components/forms/RegisterForm";
 import { FormikHelpers } from "formik";
 import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 
-
 const RegisterPage: FC = () => {
 	const authContext = useAuth();
 	if (authContext === null) {

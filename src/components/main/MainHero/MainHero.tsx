@@ -13,45 +13,54 @@ import { Props } from "./MainHero.types";
 const useStyles = makeStyles((theme: Theme) => ({
 	button: {
 		display: "inline-block",
-		padding: "27px 80px",
+		padding: theme.spacing(
+			3.375,
+			10
+		),
 		fontFamily: "Montserrat",
 		fontWeight: "700",
-		fontSize: "20px",
+		fontSize: "1.25rem",
 		color: theme.palette.common.white,
 		textDecoration: "none",
 		textTransform: "capitalize",
 		background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
-		borderRadius: "50px",
+		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
 
 		"&:hover": {
 			opacity: 0.8,
 		},
 		"&button": {
-			borderRadius: "50px",
+			borderRadius: theme.spacing(6.25),
 		},
 		[theme.breakpoints.down("md")]: {
-			fontSize: "20px",
-			padding: "20px 40px",
+			fontSize: "1.25rem",
+			padding: theme.spacing(
+				2.5,
+				5
+			),
 		},
 		[theme.breakpoints.down("sm")]: {
-			fontSize: 18,
-			padding: "10px 30px",
+			fontSize: "1.125rem",
+			padding: theme.spacing(
+				1.25,
+				3.75
+			),
 		},
 	},
 	heroAbout: {
-		maxWidth: "595px",
-		marginBottom: "50px",
+		maxWidth: theme.spacing(74.4),
+		marginBottom: theme.spacing(6.25),
 		color: theme.palette.info.main,
 		fontFamily: "Roboto",
 		fontWeight: "400",
-		fontSize: "17px",
+		fontSize: "1.0625rem",
 		lineHeight: "165%",
 	},
 	heroWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
-		marginTop: "-100px",
+		marginTop: theme.spacing(-12.5),
 		display: "flex",
 		backgroundColor: theme.palette.background.default,
 		backgroundImage: `url("${BgImage}")`,
@@ -64,9 +73,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	heroText: {
 		fontFamily: "Montserrat",
-		marginBottom: "30px",
+		marginBottom: theme.spacing(3.75),
 		fontWeight: "800",
-		fontSize: "76px",
+		fontSize: "4.75rem",
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
 	},
@@ -75,10 +84,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 		paddingTop: "29%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
-			paddingTop: "260px",
+			paddingTop: theme.spacing(32.5),
 		},
 		[theme.breakpoints.down("md")]: {
-			paddingTop: "200px",
+			paddingTop: theme.spacing(25),
 		},
 		[theme.breakpoints.down("sm")]: {
 			paddingLeft: 0,
@@ -86,30 +95,39 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	pageLink: {
 		display: "inline-block",
-		padding: "27px 80px",
+		padding: theme.spacing(
+			3.375,
+			10
+		), //"27px 80px",
 		fontFamily: "Montserrat",
 		fontWeight: "700",
-		fontSize: "20px",
+		fontSize: "1.25rem",
 		color: theme.palette.common.white,
 		textDecoration: "none",
 		textTransform: "capitalize",
 		background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
-		borderRadius: "50px",
+		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
 
 		"&:hover, &:focus": {
 			opacity: "0.8",
 		},
 		"&button": {
-			borderRadius: "50px",
+			borderRadius: theme.spacing(6.25),
 		},
 		[theme.breakpoints.down("md")]: {
-			fontSize: "20px",
-			padding: "20px 40px",
+			fontSize: theme.spacing(2.5),
+			padding: theme.spacing(
+				2.5,
+				5
+			),
 		},
 		[theme.breakpoints.down("sm")]: {
-			fontSize: "18px",
-			padding: "10px 30px",
+			fontSize: "1.125rem",
+			padding: theme.spacing(
+				1.25,
+				3.75
+			),
 		},
 	}
 }));

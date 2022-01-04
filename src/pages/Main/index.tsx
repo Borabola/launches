@@ -28,20 +28,24 @@ const useStyles = makeStyles((theme: Theme) => ({
 		minHeight: "100vh",
 	},
 	pageContent: {
-		padding: "118px 130px 100px",
-		marginTop: "-170px",
-		maxWidth: "1440px",
+		padding: theme.spacing(
+			29.5,
+			16.25,
+			12.5
+		), //"118px 130px 100px",
+		marginTop: theme.spacing(21.25),
+		maxWidth: theme.spacing(180),
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
 		backgroundColor: "#1C2056",
 		[theme.breakpoints.down("lg")]: {
-			marginTop: "-50px",
-			padding: "50px",
+			marginTop: theme.spacing(-25),
+			padding: theme.spacing(25),
 		},
 		[theme.breakpoints.down("md")]: {
-			marginTop: "-20px",
-			padding: "20px",
+			marginTop: theme.spacing(-5),
+			padding: theme.spacing(5),
 		},
 	},
 	errorsBlock: {
@@ -52,11 +56,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Main: FC = () => {
 	const classes = useStyles();
-	const { data: events=null, isFetching: isEventsFetching} = useGetEventsQuery();
-	const { data: launches=null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
+	const { data: events = null, isFetching: isEventsFetching } = useGetEventsQuery();
+	const { data: launches = null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
 
 	const authContext = useAuth();
-	if( authContext === null ) {
+	if (authContext === null) {
 		return null;
 	}
 	const { currentUser } = authContext;
@@ -74,7 +78,7 @@ const Main: FC = () => {
 	);
 
 	const onShowAllClick = () => {
-		setShowenLaunchesQnt((launches && isLaunchesFetching) ? launches.length: 0);
+		setShowenLaunchesQnt((launches && isLaunchesFetching) ? launches.length : 0);
 	};
 	const onShowMoreClick = () => {
 		setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);

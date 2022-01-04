@@ -1,5 +1,4 @@
 import { FormikHelpers } from "formik";
-//import * as Yup from "yup";
 import { IProductValues } from "firebase/actions";
 
 export interface IInitialValues {
@@ -11,6 +10,6 @@ export interface IInitialValues {
 export type Props = {
 	initialValues: IInitialValues,
 	validationSchema: unknown,
-	onSubmit: (values: IProductValues, form:FormikHelpers<IProductValues>) => void,
+	onSubmit: (values: IProductValues, form: FormikHelpers<IProductValues>) => void,
 	onInputChange: (files: File[]) => void
 };

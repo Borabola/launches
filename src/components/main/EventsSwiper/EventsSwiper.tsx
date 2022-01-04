@@ -14,9 +14,9 @@ import type { Props } from "./EventSwiper.types";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	swiperEmptyimg: {
-		width: "380px",
+		width: theme.spacing(47.5),
 		height: "13.75vw",
-		marginBottom: "20px",
+		marginBottom: theme.spacing(2.5),
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 
 		"& svg": {
-			width: "154px",
-			height: "154px",
+			width: theme.spacing(19.25),
+			height: theme.spacing(19.25),
 			opacity: 0.2,
 		},
 	},
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		maxWidth: "100%",
 		objectFit: "cover",
 		height: "13.75vw",
-		marginBottom: "20px",
+		marginBottom: theme.spacing(2.5),
 		overflow: "hidden",
 		[theme.breakpoints.down("lg")]: {
 			height: "40vw",
@@ -49,27 +49,30 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	swiperTimeBlock: {
-		padding: "10px 30px",
-		marginBottom: "15px",
+		padding: theme.spacing(
+			1.25,
+			3.75
+		),
+		marginBottom: theme.spacing(1.875),
 		display: "inline-flex",
 		justifyContent: "center",
 		backgroundColor: "#4A00E0",
-		borderRadius: "50px",
+		borderRadius: theme.spacing(6.25),
 	},
 	swiperWrapper1: {
 		width: "100%",
 
 		"& .swiper-container": {
-			paddingTop: "100px",
-			marginTop: "-100px",
+			paddingTop: theme.spacing(12.5),
+			marginTop: theme.spacing(-12.5),
 			color: "#4A00E0",
 		},
 
 		"& .swiper-button-next": {
 			position: "absolute",
-			width: "56px",
-			height: "56px",
-			top: "10px",
+			width: theme.spacing(7),
+			height: theme.spacing(7),
+			top: theme.spacing(1.25),
 			right: "0",
 			display: "flex",
 			alignItems: "center",
@@ -92,10 +95,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 		"& .swiper-button-prev": {
 			position: "absolute",
-			width: "56px",
-			height: "56px",
-			top: "10px",
-			right: "102px",
+			width: theme.spacing(7),
+			height: theme.spacing(7),
+			top: theme.spacing(1.25),
+			right: theme.spacing(12.75),
 			left: "auto",
 			display: "flex",
 			alignItems: "center",
@@ -140,31 +143,31 @@ export const EventsSwiper: FC<Props> = ({ events }) => {
 	const classes = useStyles();
 	const intl = useIntl();
 	const params = {
-		  Swiper,
-		  modules: [Navigation],
-		  navigation: {
-			  nextEl: ".swiper-button-next",
-			  prevEl: ".swiper-button-prev"
-		  },
-		  //slidesPerView: 3,
+		Swiper,
+		modules: [Navigation],
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev"
+		},
+		//slidesPerView: 3,
 		renderPrevButton: () => <div className="swiper-button-prev"><ArrowImage /></div>,
 		renderNextButton: () => <div className="swiper-button-next"><ArrowImage /></div>,
-		  spaceBetween: 20,
-		  breakpoints: {
+		spaceBetween: 20,
+		breakpoints: {
 			600: {
-			  slidesPerView: 1,
-			  spaceBetween: 0,
+				slidesPerView: 1,
+				spaceBetween: 0,
 			},
 			900: {
-			  slidesPerView: 2,
-			  spaceBetween: 20,
+				slidesPerView: 2,
+				spaceBetween: 20,
 			},
 			1024: {
-			  slidesPerView: 3,
-			  spaceBetween: 20,
+				slidesPerView: 3,
+				spaceBetween: 20,
 			},
 		},
-	  };
+	};
 
 	return (
 		<div className={classes.swiperWrapper1}>
@@ -172,7 +175,7 @@ export const EventsSwiper: FC<Props> = ({ events }) => {
 				variant="h2"
 				mb="30px"
 			>
-				{intl.formatMessage({id: "recentEvents"})}
+				{intl.formatMessage({ id: "recentEvents" })}
 			</Typography>
 
 			<Box

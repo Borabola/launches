@@ -11,19 +11,19 @@ import type { Props } from "./LaunchHero.types";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	heroAbout: {
-		maxWidth: "595px",
-		marginBottom: "50px",
+		maxWidth: theme.spacing(74.4),
+		marginBottom: theme.spacing(6.25),
 		color: theme.palette.info.main,
 		fontFamily: "Roboto",
 		fontWeight: "400",
-		fontSize: "17px",
+		fontSize: "1.0625rem",
 		lineHeight: "165%",
 	},
 	heroWrapper: {
 		position: "relative",
 		fontFamily: "Montserrat",
 		width: "100%",
-		marginTop: "-100px",
+		marginTop: theme.spacing(-12.5),
 		display: "flex",
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "100%",
@@ -41,9 +41,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 	heroText: {
 		fontFamily: "Montserrat",
-		marginBottom: "30px",
+		marginBottom: theme.spacing(3.75),
 		fontWeight: "800",
-		fontSize: "76px",
+		fontSize: "4.75rem",
 		lineHeight: "121%",
 		color: theme.palette.primary.main,
 	},
@@ -55,27 +55,28 @@ const useStyles = makeStyles((theme: Theme) => ({
 		paddingTop: "28%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
-			paddingTop: "260px",
+			paddingTop: theme.spacing(32.5),
 		},
 		[theme.breakpoints.down("md")]: {
-			paddingTop: "200px",
+			paddingTop: theme.spacing(25),
 		},
 		[theme.breakpoints.down("sm")]: {
 			paddingLeft: 0,
 		},
-
 	},
 	timerWrapper: {
 		backgroundColor: "#4A00E0",
-		padding: "50px 70px",
-		minHeight: "190px",
-		minWidth: "780px",
+		padding: theme.spacing(
+			6.25,
+			8.75
+		),
+		minHeight: theme.spacing(23.75),
+		minWidth: theme.spacing(97.5),
 
 		"& h1": {
 			textAlign: "start",
-			paddingLeft: "40px"
+			paddingLeft: theme.spacing(5)
 		}
-
 	},
 	timer: {
 		color: theme.palette.primary.main,
