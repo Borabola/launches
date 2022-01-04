@@ -27,17 +27,12 @@ const useStyles = makeStyles({
 export const LaunchPageContent: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
 
-	const currentVideoUrl = ( Array.isArray(launch.videoURLs)
+	const currentVideoUrl = (Array.isArray(launch.videoURLs)
 		? launch.videoURLs[0]
 		: launch.videoURLs);
 
 	return (
 		<Box>
-			{/*launch.videoURLs && <video
-				src={launch.videoURLs}
-				className="launch__player"
-			>
-			</video>*/}
 			{currentVideoUrl &&
 				<iframe
 					className={classes.launchVideoWrap}

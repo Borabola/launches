@@ -28,7 +28,6 @@ const AddProductPage: FC = () => {
 
 	const onInputChange = async (files: File[]) => {
 		if (files.length === 0) {
-			console.log("no files");
 			setFileUrl(null);
 			return;
 		}

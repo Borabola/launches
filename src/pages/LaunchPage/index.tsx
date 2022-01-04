@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		padding: "100px 130px 100px",
 		marginTop: "-170px",
 		maxWidth: "1440px",
-		minHeight: "100px", // delete
+		minHeight: "100px",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -46,8 +46,8 @@ const LaunchPage: FC = () => {
 	const launchParam = useParams<LaunchParams>();
 	const classes = useStyles();
 
-	const { data: currentLaunch=null, error: lunchCurrentError, isFetching: isCurrentFetching }
-	 = useGetCurrentLauncheQuery(launchParam.id);
+	const { data: currentLaunch = null, error: lunchCurrentError, isFetching: isCurrentFetching }
+		= useGetCurrentLauncheQuery(launchParam.id);
 
 	const dispatch: AppDispatch = useTypedDispatch();
 

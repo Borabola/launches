@@ -27,15 +27,6 @@ import {
 } from "./AuthContext.types";
 
 
-/*export interface IValue {
-	currentUser: string | null;
-	currentUserId: string | null;
-	login: () => Promise<void> | unknown;
-	signup: () => Promise<void> | unknown;
-	logout: () => Promise<void> | unknown;
-	googlePopupSignIn: () => Promise<void> | unknown;
-}*/
-
 const AuthContext = createContext<IValue | null>(null);
 
 export const useAuth = () => {
@@ -60,7 +51,6 @@ export const AuthProvider: FC = ({ children }: Props) => {
 					if (user) {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
-						console.log("onAuthStateChanged 111");
 						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
 						setIsLoading(false);
 					} else {
@@ -127,7 +117,6 @@ export const AuthProvider: FC = ({ children }: Props) => {
 				auth,
 				provider
 			);
-			console.log("googlePopupSignIn 111");
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));

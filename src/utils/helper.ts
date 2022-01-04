@@ -10,9 +10,9 @@ import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 dayjs.extend(isSameOrAfter);
 
 
-export const isDevelopment = ():boolean => process.env.NODE_ENV === "development";
+export const isDevelopment = (): boolean => process.env.NODE_ENV === "development";
 
-export const getTimeFormate = (endtime:string):string | 0 => {
+export const getTimeFormate = (endtime: string): string | 0 => {
 	if ((Date.parse(endtime)) !== Date.now()) {
 		const t = Date.parse(endtime) - Date.now();
 		const seconds = Math.floor((t / 1000) % SECONDS);
@@ -34,7 +34,7 @@ export const getTimeFormate = (endtime:string):string | 0 => {
 };
 
 // encrypt user info
-export const encryptUserInfo = (authData:JSON):void => {
+export const encryptUserInfo = (authData: JSON): void => {
 	const authDataForLocalStorage = AES.encrypt(
 		JSON.stringify(authData),
 		KEY
@@ -46,7 +46,7 @@ export const encryptUserInfo = (authData:JSON):void => {
 };
 
 // decrypt user info
-export const deryptUserInfo = ():string | null => {
+export const deryptUserInfo = (): string | null => {
 	const authData = localStorage.getItem("auth")?.toString();
 	if (authData) {
 		const decryptedAuthData = AES.decrypt(
@@ -59,18 +59,7 @@ export const deryptUserInfo = ():string | null => {
 	}
 };
 
-// check if user session is expired
-// eslint-disable-next-line consistent-return
-/*export const isAuthExpired = ():boolean => {
-	const authInfo = deryptUserInfo();
-	const refreshToken = localStorage.getItem("refreshToken");
-	const expiresAt = authInfo?.access_token ? jwtDecode<JwtPayload>(authInfo?.access_token) : null;
-
-	if (!refreshToken && expiresAt?.exp)
-		return dayjs().isSameOrAfter(dayjs.unix(expiresAt?.exp));
-};*/
-
-export const checkIfFileIsCorrectType = (file:File):boolean => {
+export const checkIfFileIsCorrectType = (file: File): boolean => {
 	let valid = true;
 	if (!SUPPORTED_FORMATS.includes(file.type)) {
 		valid = false;
@@ -78,7 +67,7 @@ export const checkIfFileIsCorrectType = (file:File):boolean => {
 	return valid;
 };
 
-export const checkIfFileIsTooBig = (file:File):boolean => {
+export const checkIfFileIsTooBig = (file: File): boolean => {
 	let valid = true;
 	const size = file.size;
 	if (size > MAX_FILE_SIZE) {

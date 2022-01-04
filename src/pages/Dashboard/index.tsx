@@ -44,7 +44,7 @@ const Dashboard: FC = () => {
 	const classes = useStyles();
 
 	const authContext = useAuth();
-	if( authContext === null ) {
+	if (authContext === null) {
 		return null;
 	}
 	const { currentUserId } = authContext as IAuthCurrentUserId;
@@ -57,7 +57,7 @@ const Dashboard: FC = () => {
 
 	const productData = useMemo<Data[]>(
 		() =>
-			products ? Object.values(products): [],
+			products ? Object.values(products) : [],
 		[products]
 	);
 
@@ -77,20 +77,17 @@ const Dashboard: FC = () => {
 			},
 			{
 				Header: intl.formatMessage({ id: "picture" }),
-				accessor: d => ( d.product_picture ? <img
+				accessor: d => (d.product_picture ? <img
 					className={classes.tableImg}
 					src={d.product_picture}
 					width={200}
 					height={200}
 					alt={d.title}
-				/> : "N/A" ),
+				/> : "N/A"),
 			},
 		]),
 		[intl]
 	);
-
-
-	console.log(columns);
 
 	return (
 		<PageLayout>

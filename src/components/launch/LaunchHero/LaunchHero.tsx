@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 		flexDirection: "column",
 		alignItems: "center",
 		fontFamily: "Montserrat",
-		paddingTop: "28%", //"23.6%",
+		paddingTop: "28%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
 			paddingTop: "260px",
@@ -107,7 +107,7 @@ export const LaunchHero: FC<Props> = ({ launch }) => {
 		[launch.launchDate]
 	);
 
-	useLayoutEffect (
+	useLayoutEffect(
 		() => {
 			if (timerStr === 0) {
 				clear();

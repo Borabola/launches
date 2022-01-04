@@ -1,4 +1,4 @@
-import {FC} from "react";
+import { FC } from "react";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { Theme } from "@material-ui/core";
@@ -10,7 +10,7 @@ import BgImage from "../../../assets/common/bg_hero.png";
 import { Props } from "./MainHero.types";
 
 
-const useStyles = makeStyles((theme:Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
 	button: {
 		display: "inline-block",
 		padding: "27px 80px",
@@ -51,7 +51,6 @@ const useStyles = makeStyles((theme:Theme) => ({
 	heroWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
-		//height: "58.94vw",
 		marginTop: "-100px",
 		display: "flex",
 		backgroundColor: theme.palette.background.default,
@@ -73,9 +72,7 @@ const useStyles = makeStyles((theme:Theme) => ({
 	},
 	heroTextWrapper: {
 		fontFamily: "Montserrat",
-		//maxWidth: "900px",
-		paddingTop: "29%", //"23.6%",
-		//paddingLeft: "108px",
+		paddingTop: "29%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
 			paddingTop: "260px",
