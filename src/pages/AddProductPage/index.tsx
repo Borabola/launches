@@ -21,7 +21,7 @@ const AddProductPage: FC = () => {
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
 
 	const authContext = useAuth();
-	if( authContext === null ) {
+	if (authContext === null) {
 		return null;
 	}
 	const { currentUserId } = authContext as IAuthCurrentUserId;
@@ -63,7 +63,6 @@ const AddProductPage: FC = () => {
 				.notRequired(),
 			productQnt: Yup.number().min(0)
 		});
-
 
 	return (
 		<PageLayout>

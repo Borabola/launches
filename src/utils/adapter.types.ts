@@ -347,7 +347,6 @@ export interface LaunchServiceProvider {
 }
 
 
-
 export interface Rocket {
 	configuration: Configuration;
 	launcher_stage: LauncherStage[] | null;
@@ -398,5 +397,3 @@ export interface CurrentLaunch {
 	image_url?: null | string | string[];
 	infographic_url?: null | string | string[];
 }
-
-

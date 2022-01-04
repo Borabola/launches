@@ -216,10 +216,8 @@ export const NewProductForm: FC<Props> =
 					</Box>
 
 
-
 				</Form>
 			)}
 		</Formik>
 	);
 };
-

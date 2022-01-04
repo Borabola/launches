@@ -5,4 +5,3 @@ export type IAuth = Pick<IValue, "currentUser">;
 export type Props = {
 	isMain?: boolean;
 };
-

@@ -1,5 +1,7 @@
 
-import React, { useState, useContext } from "react";
+import {
+	FC, createContext, useState, useContext
+} from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { auth } from "../firebase/firebaseConfig";
@@ -34,16 +36,16 @@ import {
 	googlePopupSignIn: () => Promise<void> | unknown;
 }*/
 
-const AuthContext = React.createContext<IValue | null>(null);
+const AuthContext = createContext<IValue | null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);
 };
 
-export const AuthProvider: React.FC = ({ children }: Props) => {
+export const AuthProvider: FC = ({ children }: Props) => {
 	const intl = useIntl();
 	const [currentUser, setCurrentUser] = useState<string | null>(null);
-	const [ isLoading, setIsLoading ] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
 	const dispatch = useDispatch();
@@ -92,7 +94,7 @@ export const AuthProvider: React.FC = ({ children }: Props) => {
 		}
 	};
 
-	const login = async ({ email, password }:SProps) => {
+	const login = async ({ email, password }: SProps) => {
 		try {
 			const result = await signInWithEmailAndPassword(
 				auth,

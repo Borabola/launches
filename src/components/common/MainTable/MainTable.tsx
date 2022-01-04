@@ -11,8 +11,7 @@ import {
 	Hooks, useSortBy, useTable
 } from "react-table";
 import { Button } from "@mui/material";
-import { Props } from "./MainTable.types";
-import type { Data } from "./MainTable.types";
+import { Data, Props } from "./MainTable.types";
 
 type rowProps = {
 	row: {
@@ -40,8 +39,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			color: theme.palette.primary.main,
 			fontSize: "18px",
 		},
-
-
 	},
 	tableRow: {
 		width: "100%",
@@ -56,7 +53,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			color: theme.palette.primary.main,
 			width: "100%",
 		},
-
 	},
 	tableCell: {
 		color: theme.palette.primary.main,
