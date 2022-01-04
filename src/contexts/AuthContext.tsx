@@ -54,12 +54,12 @@ export const AuthProvider: FC = ({ children }: Props) => {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
 						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-						setIsLoading(false);
 					} else {
 						setCurrentUser(null);
 						setCurrentUserId(null);
 						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
 					}
+					setIsLoading(false);
 				}
 			);
 			return unsubsribe;
