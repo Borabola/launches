@@ -43,8 +43,8 @@ export const currentLaunchAdapter = (incomingCurrentLaunch: CurrentLaunch) => {
 		launchImg: incomingCurrentLaunch.image_url,
 		videoURLs: incomingCurrentLaunch.vidURLs,
 		rocketDescription: incomingCurrentLaunch.rocket.configuration.description,
-		launchDestination: incomingCurrentLaunch.mission.orbit,
-		launchMission: incomingCurrentLaunch.mission.type,
+		launchDestination: incomingCurrentLaunch.mission?.orbit,
+		launchMission: incomingCurrentLaunch.mission?.type,
 		launchDate: incomingCurrentLaunch.net,
 	};
 	return adaptedLaunch;

@@ -390,7 +390,7 @@ export interface CurrentLaunch {
 	failreason?: null | string | string[];
 	hashtag?: null | string | string[];
 	rocket: Rocket;
-	mission: Mission;
+	mission: Mission | null;
 	pad: Pad;
 	infoURLs: null | string | string[];
 	vidURLs: null | string | string[] | undefined;
