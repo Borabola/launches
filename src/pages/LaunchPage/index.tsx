@@ -64,7 +64,7 @@ const LaunchPage: FC = () => {
 
 	return (
 		<PageLayout>
-			{(!isCurrentFetching && currentLaunch) ?
+			{(currentLaunch) ?
 				<>
 					<LaunchHero launch={currentLaunch} />
 
