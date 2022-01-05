@@ -42,9 +42,9 @@ jobs:
           name: build
           path: build
       - name: Depoy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@master 
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting --project launches-1939c
         env:
           FIREBASE_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
         
