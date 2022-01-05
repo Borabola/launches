@@ -34,6 +34,9 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
+    environment: 
+      name: FIREBASE_ENV
+      url: https://github.com
     steps:
       - uses: actions/checkout@v2
       - name: Download Build
