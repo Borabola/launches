@@ -7,6 +7,29 @@ on:
     branches: [ master ]
 
 jobs:
+
+  create-envfile:
+ 
+    runs-on: ubuntu-18.04
+ 
+    steps:
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_REACT_APP_BACKEND_URL: ${{secrets.REACT_APP_BACKEND_URL }}
+        envkey_REACT_APP_REQUEST_TIMEOUT: 5000
+        envkey_REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+        envkey_REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
+        envkey_REACT_APP_FIREBASE_DATABASE_URL: ${{ secrets.REACT_APP_FIREBASE_DATABASE_URL }}
+        envkey_REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+        envkey_REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+        envkey_REACT_APP_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_MESSAGING_SENDER_ID }}
+        envkey_REACT_APP_FIREBASE_APP_ID: ${{ secrets.REACT_APP_FIREBASE_APP_ID }}
+        envkey_REACT_APP_FIREBASE_MEASUREMENT_ID: ${{ secrets.REACT_APP_FIREBASE_MEASUREMENT_ID }}
+        envkey_NODE_PATH: "./"
+        directory: .firebase
+        file_name: .env
+
   build:
 
     runs-on: ubuntu-latest
@@ -34,9 +57,6 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    environment: 
-      name: FIREBASE_ENV
-      url: https://github.com
     steps:
       - uses: actions/checkout@v2
       - name: Download Build
@@ -51,4 +71,3 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
           PROJECT_ID: ${{ secrets.CLIENT_FIREBASE_ID }}
-        
