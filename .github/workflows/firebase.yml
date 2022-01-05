@@ -51,3 +51,4 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.GCLOUD_TOKEN }}
+          PROJECT_ID: ${{ secrets.CLIENT_FIREBASE_ID }}

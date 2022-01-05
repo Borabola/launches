@@ -1,8 +1,0 @@
-language: node_js
-node_js: lts/*
-install: true
-script: echo "script"
-deploy:
-  provider: firebase
-  token:
-    secure: "YOUR ENCRYPTED token"
