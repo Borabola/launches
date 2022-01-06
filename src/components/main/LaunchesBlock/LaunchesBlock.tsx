@@ -54,7 +54,6 @@ export const LaunchesBlock: FC<Props> = ({ launches, onShowMore, showenLaunchesQ
 					/>)}
 				{(showenLaunchesQnt < launches.length) &&
 					<Box className={classes.loaderWrapper}>
-						<Loader />
 						<TextButton
 							btnText={buttonText}
 							onBtnClick={onShowMore}

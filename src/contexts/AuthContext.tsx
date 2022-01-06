@@ -57,7 +57,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 					} else {
 						setCurrentUser(null);
 						setCurrentUserId(null);
-						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
+						dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
 					}
 					setIsLoading(false);
 				}
