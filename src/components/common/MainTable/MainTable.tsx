@@ -24,7 +24,6 @@ type rowProps = {
 const useStyles = makeStyles((theme: Theme) => ({
 	tableBody: {
 		width: "100%",
-		display: "block",
 
 		"& .MuiTableCell-body": {
 			width: "25%",
