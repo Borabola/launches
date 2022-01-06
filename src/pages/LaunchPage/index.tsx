@@ -53,21 +53,11 @@ const LaunchPage: FC = () => {
 	const { data: currentLaunch = null, error: lunchCurrentError, isFetching: isCurrentFetching }
 		= useGetCurrentLauncheQuery(launchParam.id);
 
-	console.log(
-		"currentLaunch 1",
-		currentLaunch
-	);
-
 	const dispatch: AppDispatch = useTypedDispatch();
 
 	useEffect(
 		() => {
 			dispatch(spacelaunchesSlice.endpoints.getCurrentLaunche.initiate(launchParam.id));
-
-			console.log(
-				"currentLaunch 2",
-				currentLaunch
-			);
 		},
 		[launchParam.id]
 	);
