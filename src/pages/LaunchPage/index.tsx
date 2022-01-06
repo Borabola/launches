@@ -11,7 +11,7 @@ import { LaunchPageContent } from "../../components/launch/LaunchPageContent/Lau
 import { PageLayout } from "../../layouts/PageLayout";
 import type { AppDispatch } from "../../redux/store";
 import { useTypedDispatch } from "../../redux/store";
-import { launchCurrentSlice, useGetCurrentLauncheQuery } from "../../services/api";
+import { spacelaunchesSlice, useGetCurrentLauncheQuery } from "../../services/api";
 
 
 type LaunchParams = {
@@ -57,7 +57,7 @@ const LaunchPage: FC = () => {
 
 	useEffect(
 		() => {
-			dispatch(launchCurrentSlice.endpoints.getCurrentLaunche.initiate(launchParam.id));
+			dispatch(spacelaunchesSlice.endpoints.getCurrentLaunche.initiate(launchParam.id));
 		},
 		[launchParam.id]
 	);

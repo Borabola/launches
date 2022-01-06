@@ -12,10 +12,8 @@ import { APIRoute } from "../utils/const";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-
-// Define a service using a base URL and expected endpoints
-export const eventSlice = createApi({
-	reducerPath: "eventSlice",
+export const spacelaunchesSlice = createApi({
+	reducerPath: "spacelaunchesSlice",
 	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
 	endpoints: (builder) => ({
 		getEvents: builder.query<EventAdapterType[], void>({
@@ -25,13 +23,6 @@ export const eventSlice = createApi({
 
 			}
 		}),
-	}),
-});
-
-export const launchSlice = createApi({
-	reducerPath: "launchSlice",
-	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
-	endpoints: (builder) => ({
 		getLaunches: builder.query<LaunchAdapterType[], void>({
 			query: () => APIRoute.LAUNCHES,
 			transformResponse: (response: LaunchData) => {
@@ -39,13 +30,6 @@ export const launchSlice = createApi({
 
 			}
 		}),
-	}),
-});
-
-export const launchCurrentSlice = createApi({
-	reducerPath: "launchCurrentSlice",
-	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
-	endpoints: (builder) => ({
 		getCurrentLaunche: builder.query<CurrentLaunchAdapterType, string>({
 			query: (id) => `launch/${id}`,
 			transformResponse: (response: CurrentLaunch) => currentLaunchAdapter(response)
@@ -53,6 +37,6 @@ export const launchCurrentSlice = createApi({
 	}),
 });
 
-export const { useGetEventsQuery } = eventSlice;
-export const { useGetLaunchesQuery } = launchSlice;
-export const { useGetCurrentLauncheQuery } = launchCurrentSlice;
+export const { useGetLaunchesQuery,
+	useGetEventsQuery,
+	useGetCurrentLauncheQuery } = spacelaunchesSlice;

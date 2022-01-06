@@ -9,9 +9,7 @@ import {
 	REGISTER, REHYDRATE
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import {
-	eventSlice, launchCurrentSlice, launchSlice
-} from "../../services/api";
+import { spacelaunchesSlice } from "../../services/api";
 import { isDevelopment } from "../../utils/helper";
 import rootReducer from "../rootReducer";
 
@@ -28,10 +26,7 @@ const persistedReducer = persistReducer(
 const store = configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => {
-		const extraMiddleweres = [
-			eventSlice.middleware,
-			launchSlice.middleware,
-			launchCurrentSlice.middleware];
+		const extraMiddleweres = [spacelaunchesSlice.middleware];
 
 		if (isDevelopment()) { extraMiddleweres.push(logger); }
 

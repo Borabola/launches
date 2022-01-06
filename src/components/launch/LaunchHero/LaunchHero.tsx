@@ -114,6 +114,7 @@ export const LaunchHero: FC<Props> = ({ launch }) => {
 				clear();
 				setDone(true);
 			}
+			return clear;
 		},
 		[timerStr]
 	);
