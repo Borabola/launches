@@ -5,7 +5,6 @@ import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { useIntl } from "react-intl";
 import { TextButton } from "../../../components/common/button/TextButton";
-import { Loader } from "../../../components/common/Loader";
 import { LaunchCard } from "../../../components/main/LaunchCard";
 import { Props } from "./LaunchesBlock.types";
 
