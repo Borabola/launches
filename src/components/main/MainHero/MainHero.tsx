@@ -109,10 +109,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
 
+		"&.MuiButtonBase-root-MuiButton-root": {
+			fontFamily: "Montserrat",
+		},
+
 		"&:hover, &:focus": {
 			opacity: "0.8",
 		},
-		"&button": {
+		"& button": {
 			borderRadius: theme.spacing(6.25),
 		},
 		[theme.breakpoints.down("md")]: {
@@ -166,7 +170,7 @@ export const MainHero: FC<Props> = ({ onShowAllClick }) => {
 					<Button
 						variant="contained"
 						onClick={onShowAllClick}
-						classes={{ root: classes.pageLink }}
+						className={classes.pageLink}
 					>
 						{intl.formatMessage({ id: "mainHeroButton" })}
 					</Button>
