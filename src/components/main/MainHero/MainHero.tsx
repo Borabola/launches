@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	heroWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
-		marginTop: theme.spacing(-12.5),
+		marginTop: theme.spacing(-16),
 		display: "flex",
 		backgroundColor: theme.palette.background.default,
 		backgroundImage: `url("${BgImage}")`,
