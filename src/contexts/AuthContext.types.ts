@@ -1,4 +1,5 @@
 import React from "react";
+import { stateType } from "../pages/Login";
 
 export type Props = {
 	children?: React.ReactNode;
@@ -17,7 +18,7 @@ export type FirebaseError = {
 export interface IValue {
 	currentUser: string | null;
 	currentUserId: string | null;
-	login: ({ email, password }: SProps) => Promise<void>
+	login: ({ email, password }: SProps, { from }: stateType) => Promise<void>
 	signup: ({
 		email, password
 	}: SProps) => Promise<void>;

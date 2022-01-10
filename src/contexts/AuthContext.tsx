@@ -8,6 +8,7 @@ import {
 	signInWithPopup,
 	signOut
 } from "firebase/auth";
+import { stateType } from "pages/Login";
 import {
 	createContext,
 	FC,
@@ -28,6 +29,7 @@ import {
 import {
 	FirebaseError, IValue, Props, SProps
 } from "./AuthContext.types";
+
 
 const AuthContext = createContext<IValue | null>(null);
 
@@ -86,7 +88,9 @@ export const AuthProvider: FC = ({ children }: Props) => {
 		}
 	};
 
-	const login = async ({ email, password }: SProps) => {
+	const login = async (
+		{ email, password }: SProps, { from }: stateType
+	) => {
 		try {
 			const result = await signInWithEmailAndPassword(
 				auth,
@@ -96,7 +100,12 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			history.push(AppRoute.DASHBOARD);
+			console.log("1111");
+			//console.log(history);
+			//history.goBack();
+			//history.push(AppRoute.DASHBOARD);
+			console.log(from);
+			history.replace(from);
 
 		} catch (error) {
 			outputtingError(

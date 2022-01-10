@@ -20,7 +20,6 @@ const PrivateRoute: FC<Props> = ({
 	const authorizationStatus = useTypedSelector(state => state.auth.authorizationStatus);
 
 	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatus.NO_AUTH);
-	console.log("isUserLoggedOut" + isUserLoggedOut);
 
 	if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
 		return <Loader />;
@@ -30,10 +29,11 @@ const PrivateRoute: FC<Props> = ({
 		return (
 			<Route
 				{...rest}
-				render={() => (
+				render={({ location }) => (
 					<Redirect
 						to={{
 							pathname: "/login",
+							state: { from: location }
 						}}
 					/>
 				)}
