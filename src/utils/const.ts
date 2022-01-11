@@ -11,8 +11,8 @@ export const enum AppRoute {
 }
 
 
-export const enum APIRoute {
-	LAUNCHES = "launch/upcoming?mode=detailed",
+export const enum APIRoutesEnum {
+	LAUNCHES = "launch/upcoming/",
 	EVENTS = "event/upcoming/",
 }
 
@@ -21,6 +21,9 @@ export const enum AuthorizationStatus {
 	NO_AUTH = "NO_AUTH",
 	UNKNOWN = "UNKNOWN",
 }
+
+//the number of items in the request
+const REQUEST_QNT = 30;
 
 // Sol key for encrypt user info token
 const KEY = "skeletonEcnryptKey";
@@ -34,4 +37,4 @@ const MAX_FILE_SIZE = 1000000; //1mb
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 
-export { MAX_FILE_SIZE, HOURS, KEY, launchQnt, MINUTE, SECONDS, SUPPORTED_FORMATS };
+export { MAX_FILE_SIZE, HOURS, KEY, launchQnt, MINUTE, REQUEST_QNT, SECONDS, SUPPORTED_FORMATS };

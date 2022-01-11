@@ -8,7 +8,7 @@ import {
 import {
 	CurrentLaunch, EventData, LaunchData
 } from "../utils/adapter.types";
-import { APIRoute } from "../utils/const";
+import { APIRoutesEnum, REQUEST_QNT } from "../utils/const";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -17,14 +17,15 @@ export const spacelaunchesSlice = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
 	endpoints: (builder) => ({
 		getEvents: builder.query<EventAdapterType[], void>({
-			query: () => APIRoute.EVENTS,
+			query: () => APIRoutesEnum.EVENTS,
 			transformResponse: (response: EventData) => {
 				return response.results.map((item) => eventAdapter(item));
 
 			}
 		}),
-		getLaunches: builder.query<LaunchAdapterType[], void>({
-			query: () => APIRoute.LAUNCHES,
+		getLaunches: builder.query<LaunchAdapterType[], number>({
+			query: (offsetNumber = 0) =>
+				`APIRoutesEnum.LAUNCHES?limit=${REQUEST_QNT}&mode=detailed&offset=${offsetNumber}`,
 			transformResponse: (response: LaunchData) => {
 				return response.results.map((item) => launchAdapter(item));
 
