@@ -4,24 +4,35 @@ import {
 } from "@material-ui/core";
 import { FormikHelpers } from "formik";
 import { FC } from "react";
+import { useLocation } from "react-router";
 import * as Yup from "yup";
 import { LoginForm } from "../../components/forms/LoginForm";
 import { Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { useAuth } from "../../contexts/AuthContext";
+import { AppRoute } from "../../utils/const";
+
+export type stateType = {
+	from: { pathname: string }
+};
 
 const Login: FC = () => {
+	const { state } = useLocation<stateType>();
 	const authContext = useAuth();
-	if( authContext === null ) {
+	if (authContext === null) {
 		return null;
 	}
 	const { login } = authContext;
+	const currentState = state || { from: { pathname: AppRoute.DASHBOARD } };
 
 	const initialValuesLogin = { email: "", password: "", };
 
 	const onSubmit = (
 		values: Values, form: FormikHelpers<Values>
 	) => {
-		login(values);
+		login(
+			values,
+			currentState
+		);
 		form.setSubmitting(false);
 	};
 
@@ -43,7 +54,7 @@ const Login: FC = () => {
 				<LoginForm
 					initialValues={initialValuesLogin}
 					onSubmit={onSubmit}
-					validationSchema ={validationSchema}
+					validationSchema={validationSchema}
 				/>
 			</Container>
 		</Box>

@@ -1,3 +1,4 @@
+import { ButtonUnstyled } from "@mui/core";
 import {
 	Box, Link, Theme, Typography
 } from "@mui/material";
@@ -68,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	headerLink: {
 		position: "absolute",
 		right: 0,
-		top: 0,
+		top: theme.spacing(5.75),
 		width: "95px",
 		height: "107px",
 		transition: "0.3s ease",
@@ -84,32 +85,105 @@ const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "end",
-		bottom: "-55.6%",
+		bottom: "-55%",
 		left: "50%",
 		width: "95px",
 		height: "107px",
 		transform: "translateX(-50%)",
 	},
+	loginWrap: {
+		position: "absolute",
+		top: 0,
+		left: "50%",
+		transform: "translate(-50%, 0)",
+		padding: theme.spacing(
+			1,
+			0,
+			0
+		),
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+		zIndex: 2,
+	},
+	headerStyled: {
+		color: "#C0C0C0",
+	},
+	logoutBtn: {
+		padding: theme.spacing(
+			0.375,
+			1
+		),
+		background: "rgba(0,0,0,0)",
+		border: "none",
+		color: theme.palette.info.main,
+		fontSize: "1.125rem",
+		transition: "0.3s ease",
+		"&:hover": {
+			opacity: "0.7",
+		},
+		cursor: "pointer"
+	},
+	headerLoginLink: {
+		color: theme.palette.info.main,
+		fontSize: "1.125rem",
+		textTransform: "none",
+		transition: "0.3s ease",
+		"&:hover": {
+			opacity: "0.7",
+		},
+	},
 }));
 
 export const Header: FC<Props> = ({ isMain = false }) => {
 	const classes = useStyles();
-	const { currentUser } = useAuth() as IAuth;
+	const { currentUser, logout } = useAuth() as IAuth;
+	const onLogoutClick = () => logout();
 
 	return (
 		<Box
 			component="div"
 			className={classes.header}
 		>
-			{isMain ? (
-				<Box className={classes.headerContainer}>
+			<Box className={classes.headerContainer}>
+				<Box className={classes.loginWrap}>
+					{currentUser &&
+						<>
+							<Typography
+								variant="body1"
+								component="div"
+								className={classes.headerStyled}
+							>
+								Login as {"  " + currentUser}
+							</Typography>
+							<ButtonUnstyled
+								color="primary"
+								size="small"
+								className={classes.logoutBtn}
+								onClick={onLogoutClick}
+							>Logout
+							</ButtonUnstyled>
+						</>}
+
+					{(!currentUser) &&
+						<Link
+							to={AppRoute.LOGIN}
+							component={RouterLink}
+							className={classes.headerLoginLink}
+						>
+							Login
+						</Link>}
+
+				</Box>
+				{isMain ? (
+
 					<Box className={classes.headerWrapperMain}>
 						<LogoSvg />
 					</Box>
-					{currentUser && <UserMenu />}
-				</Box>
-			) : (
-				<Box className={classes.headerContainer}>
+
+
+				) : (
+
 					<Box className={classes.headerWrapper}>
 						<Link
 							component={RouterLink}
@@ -127,9 +201,11 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 							<LogoSvg />
 						</Link>
 					</Box>
-					{currentUser && <UserMenu />}
-				</Box>
-			)}
+
+
+				)}
+				{currentUser && <UserMenu />}
+			</Box>
 		</Box>
 	);
 };

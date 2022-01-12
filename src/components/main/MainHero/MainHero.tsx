@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { useIntl } from "react-intl";
+import { Link } from "react-router-dom";
 import BgImage from "../../../assets/common/bg_hero.png";
-import { Props } from "./MainHero.types";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	heroWrapper: {
 		fontFamily: "Montserrat",
 		width: "100%",
-		marginTop: theme.spacing(-12.5),
+		marginTop: theme.spacing(-16),
 		display: "flex",
 		backgroundColor: theme.palette.background.default,
 		backgroundImage: `url("${BgImage}")`,
@@ -109,10 +109,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
 
+		"&.MuiButtonBase-root-MuiButton-root": {
+			fontFamily: "Montserrat",
+		},
+
 		"&:hover, &:focus": {
 			opacity: "0.8",
 		},
-		"&button": {
+		"& button": {
 			borderRadius: theme.spacing(6.25),
 		},
 		[theme.breakpoints.down("md")]: {
@@ -132,7 +136,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-export const MainHero: FC<Props> = ({ onShowAllClick }) => {
+export const MainHero: FC = () => {
 	const intl = useIntl();
 	const classes = useStyles();
 
@@ -165,8 +169,9 @@ export const MainHero: FC<Props> = ({ onShowAllClick }) => {
 
 					<Button
 						variant="contained"
-						onClick={onShowAllClick}
-						classes={{ root: classes.pageLink }}
+						component={Link}
+						to="/"
+						className={classes.pageLink}
 					>
 						{intl.formatMessage({ id: "mainHeroButton" })}
 					</Button>

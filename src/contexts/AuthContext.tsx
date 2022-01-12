@@ -8,6 +8,7 @@ import {
 	signInWithPopup,
 	signOut
 } from "firebase/auth";
+import { stateType } from "pages/Login";
 import {
 	createContext,
 	FC,
@@ -28,6 +29,7 @@ import {
 import {
 	FirebaseError, IValue, Props, SProps
 } from "./AuthContext.types";
+
 
 const AuthContext = createContext<IValue | null>(null);
 
@@ -57,7 +59,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 					} else {
 						setCurrentUser(null);
 						setCurrentUserId(null);
-						dispatch(requireAuthorization(AuthorizationStatus.UNKNOWN));
+						dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
 					}
 					setIsLoading(false);
 				}
@@ -86,7 +88,9 @@ export const AuthProvider: FC = ({ children }: Props) => {
 		}
 	};
 
-	const login = async ({ email, password }: SProps) => {
+	const login = async (
+		{ email, password }: SProps, { from }: stateType
+	) => {
 		try {
 			const result = await signInWithEmailAndPassword(
 				auth,
@@ -96,7 +100,8 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			history.push(AppRoute.DASHBOARD);
+			//history.push(AppRoute.DASHBOARD);
+			history.replace(from);
 
 		} catch (error) {
 			outputtingError(

@@ -1,6 +1,6 @@
 import { Theme } from "@material-ui/core";
 import {
-	Grid, Link, Paper, Typography
+	Link, Paper, Typography
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
@@ -72,70 +72,66 @@ export const LaunchCard: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
 
 	return (
-		<Grid
-			item
-			xs={12}
-			md={6}
-		>
-			<Item>
-				<Link
-					component={RouterLink}
-					to={`/rocket/${launch.rocketId}`}
-				>
-					{launch.launchImg ? (
-						Array.isArray(launch.launchImg) ? (
-							<img
-								src={launch.launchImg[0]}
-								alt={launch.launchName}
-								width="580"
-								height="324"
-								className={classes.launchImg}
-							/>
-						) : (
-							<img
-								src={launch.launchImg}
-								alt={launch.launchName}
-								width="580"
-								height="324"
-								className={classes.launchImg}
-							/>
-						)
-					) : (
-						<div className={classes.launchEmptyimg}>
-							<RocketSvg />
-						</div>
-					)}
-				</Link>
 
-				<div className={classes.launchTimeBlock}>
-					<Typography variant="caption">
-						<time
-							dateTime={format(
-								new Date(launch.launchDate),
-								"yyyy-MM-dd"
-							)}
-						>
-							{format(
-								new Date(launch.launchDate),
-								"MMM. d, yyyy, h:mm aaa"
-							)}
-						</time>
-					</Typography>
-				</div>
-				<Link
-					underline="hover"
-					component={RouterLink}
-					to={`/launch/${launch.id}`}
-					className={classes.launchNameClass}
-				>
-					<Typography
-						variant="h3"
-						mb="50px"
+		<Item>
+			<Link
+				component={RouterLink}
+				to={`/rocket/${launch.rocketId}`}
+			>
+				{launch.launchImg ? (
+					Array.isArray(launch.launchImg) ? (
+						<img
+							src={launch.launchImg[0]}
+							alt={launch.launchName}
+							width="580"
+							height="324"
+							className={classes.launchImg}
+						/>
+					) : (
+						<img
+							src={launch.launchImg}
+							alt={launch.launchName}
+							width="580"
+							height="324"
+							className={classes.launchImg}
+						/>
+					)
+				) : (
+					<div className={classes.launchEmptyimg}>
+						<RocketSvg />
+					</div>
+				)}
+			</Link>
+
+			<div className={classes.launchTimeBlock}>
+				<Typography variant="caption">
+					<time
+						dateTime={format(
+							new Date(launch.launchDate),
+							"yyyy-MM-dd"
+						)}
 					>
-						{launch.launchName}
-					</Typography>
-				</Link>
-			</Item>
-		</Grid>
+						{format(
+							new Date(launch.launchDate),
+							"MMM. d, yyyy, h:mm aaa"
+						)}
+					</time>
+				</Typography>
+			</div>
+			<Link
+				underline="hover"
+				component={RouterLink}
+				to={`/launch/${launch.id}`}
+				className={classes.launchNameClass}
+			>
+				<Typography
+					variant="h3"
+					mb="50px"
+				>
+					{launch.launchName}
+				</Typography>
+			</Link>
+		</Item>
+
 	);
 };

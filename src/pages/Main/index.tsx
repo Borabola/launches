@@ -3,9 +3,7 @@ import {
 	Box, Container, Theme
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import {
-	FC, useEffect, useState
-} from "react";
+import { FC, useEffect } from "react";
 import { useAppDispatch } from "../../App/hooks";
 import { Footer } from "../../components/common/Footer";
 import { Header } from "../../components/common/Header";
@@ -15,8 +13,8 @@ import { LaunchesBlock } from "../../components/main/LaunchesBlock";
 import { MainHero } from "../../components/main/MainHero";
 import { useAuth } from "../../contexts/AuthContext";
 import { requireAuthorization } from "../../redux/auth/sliceReducer";
-import { useGetEventsQuery, useGetLaunchesQuery } from "../../services/api";
-import { AuthorizationStatus, launchQnt } from "../../utils/const";
+import { useGetEventsQuery } from "../../services/api";
+import { AuthorizationStatus } from "../../utils/const";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -54,10 +52,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
+
 const Main: FC = () => {
 	const classes = useStyles();
 	const { data: events = null, isFetching: isEventsFetching } = useGetEventsQuery();
-	const { data: launches = null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
+	//const { data: launches = null, isFetching: isLaunchesFetching } = useGetLaunchesQuery();
 
 	const authContext = useAuth();
 	if (authContext === null) {
@@ -66,7 +65,7 @@ const Main: FC = () => {
 	const { currentUser } = authContext;
 	const dispatch = useAppDispatch();
 
-	const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
+	//const [showenLaunchesQnt, setShowenLaunchesQnt] = useState(launchQnt);
 
 	useEffect(
 		() => {
@@ -77,17 +76,18 @@ const Main: FC = () => {
 		[currentUser]
 	);
 
-	const onShowAllClick = () => {
+	/*const onShowAllClick = () => {
 		setShowenLaunchesQnt((launches && isLaunchesFetching) ? launches.length : 0);
 	};
 	const onShowMoreClick = () => {
-		setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
-	};
+		//setShowenLaunchesQnt(showenLaunchesQnt + launchQnt);
+		setShowenLaunchesQnt((launches && isLaunchesFetching) ? launches.length : 0);
+	};*/
 
 	return (
 		<div className={classes.pageWrapper}>
 			<Header isMain />
-			<MainHero onShowAllClick={onShowAllClick} />
+			<MainHero />
 
 			<Container maxWidth="lg">
 				{(!isEventsFetching) ?
@@ -95,12 +95,8 @@ const Main: FC = () => {
 
 						{events && <EventsSwiper events={events} />}
 
-						{launches &&
-							<LaunchesBlock
-								launches={launches}
-								onShowMore={onShowMoreClick}
-								showenLaunchesQnt={showenLaunchesQnt}
-							/>}
+
+						<LaunchesBlock />
 					</section>
 					:
 					<Box className={classes.errorsBlock}>

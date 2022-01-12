@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Redirect, Route } from "react-router-dom";
-import { Loader } from "../../components/common/Loader/Loader";
+import { Loader } from "../../components/common/Loader";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTypedSelector } from "../../redux/store";
 import { ModifiedRouteItem } from "../../routes/commonRoutes";
@@ -16,11 +16,10 @@ const PrivateRoute: FC<Props> = ({
 	if (authContext === null) {
 		return null;
 	}
-	const { currentUser } = authContext;
 
 	const authorizationStatus = useTypedSelector(state => state.auth.authorizationStatus);
 
-	const isUserLoggedOut = authorizationStatus === AuthorizationStatus.NO_AUTH && currentUser;
+	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatus.NO_AUTH);
 
 	if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
 		return <Loader />;
@@ -30,10 +29,11 @@ const PrivateRoute: FC<Props> = ({
 		return (
 			<Route
 				{...rest}
-				render={() => (
+				render={({ location }) => (
 					<Redirect
 						to={{
 							pathname: "/login",
+							state: { from: location }
 						}}
 					/>
 				)}

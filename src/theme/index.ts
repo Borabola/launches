@@ -36,6 +36,7 @@ const theme = createTheme({
 			styleOverrides: {
 				root: {
 					padding: "29px 85px",
+					fontFamily: "Montserrat",
 					fontWeight: "700",
 					fontSize: "20px",
 					lineHeight: "20px",

@@ -1,13 +1,10 @@
 import { Theme } from "@material-ui/core";
-import { ButtonUnstyled } from "@mui/core";
 import { Link, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
-import { useAuth } from "../../../contexts/AuthContext";
-import { IValue } from "../../../contexts/AuthContext.types";
 import { AppRoute } from "../../../utils/const";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -63,10 +60,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 			flexDirection: "column"
 		},
 	},
-	loginWrap: {
-		display: "flex",
-		alignItems: "center",
-	},
 	footerLink: {
 		width: theme.spacing(6.125),
 		height: theme.spacing(6.875),
@@ -83,46 +76,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 			marginBottom: theme.spacing(3.75),
 		},
 	},
-	footerLoginLink: {
-		color: theme.palette.info.main,
-		fontSize: "1.125rem",
-		textTransform: "none",
-		transition: "0.3s ease",
-		"&:hover": {
-			opacity: "0.7",
-		},
-	},
 	footerCopyright: {
 		color: "#C0C0C0",
 
-	},
-	logoutBtn: {
-		padding: theme.spacing(
-			0.375,
-			1
-		),
-		background: "rgba(0,0,0,0)",
-		border: "none",
-		color: theme.palette.info.main,
-		fontSize: "1.125rem",
-		transition: "0.3s ease",
-		"&:hover": {
-			opacity: "0.7",
-		},
 	}
 }));
 
-type IAuth = Pick<IValue, "currentUser" | "logout">;
 
 export const Footer: FC = () => {
 	const classes = useStyles();
 	const date = new Date();
-
-
-	const { currentUser,
-		logout } = useAuth() as IAuth;
-
-	const onLogoutClick = () => logout();
 
 	return (
 		<Box
@@ -147,35 +110,6 @@ export const Footer: FC = () => {
 
 						<LogoSvg />
 					</Link>
-					<Box className={classes.loginWrap}>
-						{currentUser &&
-							<>
-								<Typography
-									variant="body1"
-									component="div"
-									className={classes.footerCopyright}
-								>
-									Login as {"  " + currentUser}
-								</Typography>
-								<ButtonUnstyled
-									color="primary"
-									size="small"
-									className={classes.logoutBtn}
-									onClick={onLogoutClick}
-								>Logout
-								</ButtonUnstyled>
-							</>}
-
-						{(!currentUser) &&
-							<Link
-								to={AppRoute.LOGIN}
-								component={RouterLink}
-								className={classes.footerLoginLink}
-							>
-								Login
-							</Link>}
-
-					</Box>
 
 					<Typography
 						variant="body1"
