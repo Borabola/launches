@@ -12,6 +12,7 @@ import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
 
+
 const useStyles = makeStyles({
 	launchesWrapper: {
 		width: "100%",
@@ -48,10 +49,22 @@ export const LaunchesBlock: FC = () => {
 
 	useEffect(
 		() => {
+			if (currentData && currentData.launches.length > 0) {
+				setTotalCount(currentData.totalQnt);
+
+				const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
+				setCurrentLaunches(Array.from(allLaunches));
+			}
+		},
+		[currentData]
+	);
+
+	useEffect(
+		() => {
 			const observer = new IntersectionObserver(
 				(entries: IntersectionObserverEntry[]) => {
 					const [entry] = entries;
-					if (entry.intersectionRatio >= 1) {
+					if (entry.intersectionRatio >= 1 && !isLaunchesError && !isLaunchesFetching) {
 						setlaunchesQnt((prev) => prev + REQUEST_QNT);
 					}
 				},
@@ -71,12 +84,7 @@ export const LaunchesBlock: FC = () => {
 	useEffect(
 		() => {
 			if (currentLaunches.length < totalCount) {
-				if (currentData && currentData.launches.length > 0) {
-					const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
-					//setCurrentLaunches([...allLaunches]);
-					setCurrentLaunches(Array.from(allLaunches));
-				}
-				if (currentData && currentData.totalQnt && !isLaunchesError) {
+				if (currentData && currentData.totalQnt) {
 					setTotalCount(currentData?.totalQnt);
 				}
 			}
@@ -100,7 +108,7 @@ export const LaunchesBlock: FC = () => {
 					spacing={2}
 
 				>
-					{currentLaunches.length > 0 &&
+					{(currentLaunches.length > 0) &&
 						currentLaunches.map(launch => {
 
 							return (
@@ -124,8 +132,14 @@ export const LaunchesBlock: FC = () => {
 						>
 							<Loader />
 							{isLaunchesFetching && <p>Loading ...</p>}
-							{isLaunchesError && <p>Server error ...</p>}
+
 						</Box >}
+					{isLaunchesError &&
+						<Box
+							className={classes.loaderWrapper}
+						>
+							<p>Server error ...</p>
+						</Box>}
 
 				</Grid>
 			</div>
