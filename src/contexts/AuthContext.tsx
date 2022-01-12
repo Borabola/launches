@@ -100,11 +100,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			console.log("1111");
-			//console.log(history);
-			//history.goBack();
 			//history.push(AppRoute.DASHBOARD);
-			console.log(from);
 			history.replace(from);
 
 		} catch (error) {

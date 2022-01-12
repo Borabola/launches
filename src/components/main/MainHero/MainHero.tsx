@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { useIntl } from "react-intl";
+import { Link } from "react-router-dom";
 import BgImage from "../../../assets/common/bg_hero.png";
-import { Props } from "./MainHero.types";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-export const MainHero: FC<Props> = ({ onShowAllClick }) => {
+export const MainHero: FC = () => {
 	const intl = useIntl();
 	const classes = useStyles();
 
@@ -169,7 +169,8 @@ export const MainHero: FC<Props> = ({ onShowAllClick }) => {
 
 					<Button
 						variant="contained"
-						onClick={onShowAllClick}
+						component={Link}
+						to="/"
 						className={classes.pageLink}
 					>
 						{intl.formatMessage({ id: "mainHeroButton" })}

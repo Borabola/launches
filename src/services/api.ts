@@ -12,6 +12,11 @@ import { APIRoutesEnum, REQUEST_QNT } from "../utils/const";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
+export interface LaunchesTransformResponse {
+	launches: LaunchAdapterType[],
+	totalQnt: number
+}
+
 export const spacelaunchesSlice = createApi({
 	reducerPath: "spacelaunchesSlice",
 	baseQuery: fetchBaseQuery({ baseUrl: BACKEND_URL }),
@@ -20,15 +25,16 @@ export const spacelaunchesSlice = createApi({
 			query: () => APIRoutesEnum.EVENTS,
 			transformResponse: (response: EventData) => {
 				return response.results.map((item) => eventAdapter(item));
-
 			}
 		}),
-		getLaunches: builder.query<LaunchAdapterType[], number>({
+		getLaunches: builder.query<LaunchesTransformResponse, number>({
 			query: (offsetNumber = 0) =>
-				`APIRoutesEnum.LAUNCHES?limit=${REQUEST_QNT}&mode=detailed&offset=${offsetNumber}`,
+				`${APIRoutesEnum.LAUNCHES}?limit=${REQUEST_QNT}&mode=detailed&offset=${offsetNumber}`, // eslint-disable-line
 			transformResponse: (response: LaunchData) => {
-				return response.results.map((item) => launchAdapter(item));
-
+				return {
+					launches: response.results.map((item) => launchAdapter(item)),
+					totalQnt: response.count
+				};
 			}
 		}),
 		getCurrentLaunche: builder.query<CurrentLaunchAdapterType, string>({

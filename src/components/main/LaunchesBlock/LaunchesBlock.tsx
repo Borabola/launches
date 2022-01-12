@@ -2,11 +2,16 @@ import {
 	Box, Grid, Typography
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { FC } from "react";
+import {
+	FC, useEffect, useRef, useState
+} from "react";
 import { useIntl } from "react-intl";
-import { TextButton } from "../../../components/common/button/TextButton";
-import { LaunchCard } from "../../../components/main/LaunchCard";
-import { Props } from "./LaunchesBlock.types";
+import { useGetLaunchesQuery } from "../../../services/api";
+import type { LaunchAdapterType } from "../../../utils/adapter";
+import { REQUEST_QNT } from "../../../utils/const";
+import { Loader } from "../../common/Loader";
+import { LaunchCard } from "../LaunchCard";
+
 
 const useStyles = makeStyles({
 	launchesWrapper: {
@@ -23,11 +28,71 @@ const useStyles = makeStyles({
 	}
 });
 
-export const LaunchesBlock: FC<Props> = ({ launches, onShowMore, showenLaunchesQnt }) => {
+const options = {
+	root: null,
+	rootMargin: "0px",
+	threshold: 1.0
+};
+
+export const LaunchesBlock: FC = () => {
+	const [currentLaunches, setCurrentLaunches] = useState<LaunchAdapterType[]>([]);
+	const [launchesQnt, setlaunchesQnt] = useState<number>(0);
 	const classes = useStyles();
 	const intl = useIntl();
+	const [totalCount, setTotalCount] = useState<number>(1);
 
-	const buttonText = intl.formatMessage({ id: "loadMoreBtn" });
+
+	const observerLoaderRef = useRef<HTMLDivElement>();
+
+
+	const observer = useRef(new IntersectionObserver((entries) => {
+		const first = entries[0];
+		if (first.isIntersecting) {
+			setlaunchesQnt((no) => no + REQUEST_QNT);
+		}
+	}));
+
+	const { data: currentData = null, isError: isLaunchesError,
+		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
+
+	useEffect(
+		() => {
+			const observer = new IntersectionObserver(
+				(entries: IntersectionObserverEntry[]) => {
+					const [entry] = entries;
+					if (entry.intersectionRatio >= 1) {
+						setlaunchesQnt((prev) => prev + REQUEST_QNT);
+					}
+				},
+				options
+			);
+
+			if (observerLoaderRef.current) observer.observe(observerLoaderRef.current);
+
+			return () => {
+				if (observerLoaderRef.current) observer.unobserve(observerLoaderRef.current);
+			};
+		},
+		[observerLoaderRef]
+	);
+
+
+	useEffect(
+		() => {
+			if (currentLaunches.length < totalCount) {
+				if (currentData && currentData.launches.length > 0) {
+					const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
+					//setCurrentLaunches([...allLaunches]);
+					setCurrentLaunches(Array.from(allLaunches));
+				}
+				if (currentData && currentData.totalQnt && !isLaunchesError) {
+					setTotalCount(currentData?.totalQnt);
+				}
+			}
+		},
+		[launchesQnt]
+	);
+
 
 	return (
 		<div className={classes.launchesWrapper}>
@@ -38,27 +103,42 @@ export const LaunchesBlock: FC<Props> = ({ launches, onShowMore, showenLaunchesQ
 			>
 				{intl.formatMessage({ id: "spaceflightLaunches" })}
 			</Typography>
+			<div >
+				<Grid
+					container
+					spacing={2}
 
-			<Grid
-				container
-				spacing={2}
-			>
-				{launches.slice(
-					0,
-					showenLaunchesQnt
-				).map(launch =>
-					<LaunchCard
-						launch={launch}
-						key={launch.id}
-					/>)}
-				{(showenLaunchesQnt < launches.length) &&
-					<Box className={classes.loaderWrapper}>
-						<TextButton
-							btnText={buttonText}
-							onBtnClick={onShowMore}
-						/>
-					</Box >}
-			</Grid>
+				>
+					{currentLaunches.length > 0 &&
+						currentLaunches.map(launch => {
+
+							return (
+								<Grid
+									item
+									xs={12}
+									md={6}
+									key={launch.id}
+								>
+									<LaunchCard
+										launch={launch}
+									/>
+								</Grid>
+							);
+						})
+					}
+					{(currentLaunches.length < totalCount) &&
+						<Box
+							className={classes.loaderWrapper}
+							ref={observerLoaderRef}
+						>
+							<Loader />
+							{isLaunchesFetching && <p>Loading ...</p>}
+							{isLaunchesError && <p>Server error ...</p>}
+						</Box >}
+
+				</Grid>
+			</div>
+
 		</div>
 	);
 };
