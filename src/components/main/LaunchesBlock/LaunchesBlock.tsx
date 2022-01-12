@@ -12,7 +12,6 @@ import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
 
-
 const useStyles = makeStyles({
 	launchesWrapper: {
 		width: "100%",
@@ -45,7 +44,7 @@ export const LaunchesBlock: FC = () => {
 	const observerLoaderRef = useRef<HTMLDivElement>();
 
 
-	const observer = useRef(new IntersectionObserver((entries) => {
+	const observer = useRef(new IntersectionObserver((entries) => {   // eslint-disable-line
 		const first = entries[0];
 		if (first.isIntersecting) {
 			setlaunchesQnt((no) => no + REQUEST_QNT);
