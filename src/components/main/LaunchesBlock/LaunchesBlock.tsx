@@ -43,14 +43,6 @@ export const LaunchesBlock: FC = () => {
 
 	const observerLoaderRef = useRef<HTMLDivElement>();
 
-
-	const observer = useRef(new IntersectionObserver((entries) => {   // eslint-disable-line
-		const first = entries[0];
-		if (first.isIntersecting) {
-			setlaunchesQnt((no) => no + REQUEST_QNT);
-		}
-	}));
-
 	const { data: currentData = null, isError: isLaunchesError,
 		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
 
