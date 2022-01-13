@@ -3,7 +3,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import {
-	FC, useEffect, useRef, useState
+	FC, useCallback, useEffect, useRef, useState
 } from "react";
 import { useIntl } from "react-intl";
 import { useGetLaunchesQuery } from "../../../services/api";
@@ -36,15 +36,16 @@ const options = {
 
 export const LaunchesBlock: FC = () => {
 	const [currentLaunches, setCurrentLaunches] = useState<LaunchAdapterType[]>([]);
-	const [launchesQnt, setlaunchesQnt] = useState<number>(0);
+	const [launchesQnt, setLaunchesQnt] = useState<number>(0);
 	const classes = useStyles();
 	const intl = useIntl();
 	const [totalCount, setTotalCount] = useState<number>(1);
 
 
-	const observerLoaderRef = useRef<HTMLDivElement>();
+	const observerRef = useRef<IntersectionObserver>();
 
-	const { data: currentData = null, isError: isLaunchesError,
+	const { data: currentData = null,
+		isError: isLaunchesError,
 		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
 
 	useEffect(
@@ -59,25 +60,34 @@ export const LaunchesBlock: FC = () => {
 		[currentData]
 	);
 
-	useEffect(
-		() => {
-			const observer = new IntersectionObserver(
-				(entries: IntersectionObserverEntry[]) => {
+	const infinityScrollCalback = useCallback(
+		(htmlNode: Element) => {
+			if (isLaunchesFetching) {
+				return;
+			}
+
+			if (observerRef?.current) {
+				observerRef.current.disconnect();
+			}
+
+			observerRef.current = new IntersectionObserver(
+				entries => {
+					const isAbleToLoadMore =
+						!isLaunchesFetching && currentLaunches.length < totalCount;
 					const [entry] = entries;
-					if (entry.intersectionRatio >= 1 && !isLaunchesError && !isLaunchesFetching) {
-						setlaunchesQnt((prev) => prev + REQUEST_QNT);
+
+					if (entry.isIntersecting && isAbleToLoadMore) {
+						setLaunchesQnt((prev) => prev + REQUEST_QNT);
 					}
 				},
 				options
 			);
 
-			if (observerLoaderRef.current) observer.observe(observerLoaderRef.current);
-
-			return () => {
-				if (observerLoaderRef.current) observer.unobserve(observerLoaderRef.current);
-			};
+			if (htmlNode) {
+				observerRef.current?.observe(htmlNode);
+			}
 		},
-		[observerLoaderRef]
+		[isLaunchesFetching, totalCount, currentLaunches.length]
 	);
 
 
@@ -128,7 +138,7 @@ export const LaunchesBlock: FC = () => {
 					{(currentLaunches.length < totalCount) &&
 						<Box
 							className={classes.loaderWrapper}
-							ref={observerLoaderRef}
+							ref={infinityScrollCalback}
 						>
 							<Loader />
 							{isLaunchesFetching && <p>Loading ...</p>}
