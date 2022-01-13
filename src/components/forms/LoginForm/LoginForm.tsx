@@ -154,9 +154,7 @@ export const LoginForm: FC<Props> = ({
 					<Box mt={2}>
 
 						<Button
-
 							onClick={() => googlePopupSignIn(pathFrom)}
-							//classes={{ root: classes.pageLink }}
 							fullWidth={true}
 						>
 							Login with Google account

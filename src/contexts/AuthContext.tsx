@@ -119,10 +119,6 @@ export const AuthProvider: FC = ({ children }: Props) => {
 
 	const googlePopupSignIn = async ({ from }: stateType) => {
 		const provider = new GoogleAuthProvider();
-		console.log(
-			"google from",
-			from
-		);
 		try {
 			const result = await signInWithPopup(
 				auth,

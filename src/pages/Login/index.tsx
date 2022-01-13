@@ -23,10 +23,6 @@ const Login: FC = () => {
 	}
 	const { login } = authContext;
 	const currentState = state || { from: { pathname: AppRoute.DASHBOARD } };
-	console.log(
-		"currentState",
-		currentState
-	);
 
 	const initialValuesLogin = { email: "", password: "", };
 
