@@ -3,7 +3,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import {
-	FC, useEffect, useRef, useState
+	FC, useCallback, useEffect, useRef, useState
 } from "react";
 import { useIntl } from "react-intl";
 import { useGetLaunchesQuery } from "../../../services/api";
@@ -11,6 +11,7 @@ import type { LaunchAdapterType } from "../../../utils/adapter";
 import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
+
 
 const useStyles = makeStyles({
 	launchesWrapper: {
@@ -35,48 +36,65 @@ const options = {
 
 export const LaunchesBlock: FC = () => {
 	const [currentLaunches, setCurrentLaunches] = useState<LaunchAdapterType[]>([]);
-	const [launchesQnt, setlaunchesQnt] = useState<number>(0);
+	const [launchesQnt, setLaunchesQnt] = useState<number>(0);
 	const classes = useStyles();
 	const intl = useIntl();
 	const [totalCount, setTotalCount] = useState<number>(1);
 
 
-	const observerLoaderRef = useRef<HTMLDivElement>();
+	const observerRef = useRef<IntersectionObserver>();
 
-	const { data: currentData = null, isError: isLaunchesError,
+	const { data: currentData = null,
+		isError: isLaunchesError,
 		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
 
 	useEffect(
 		() => {
-			const observer = new IntersectionObserver(
-				(entries: IntersectionObserverEntry[]) => {
+			if (currentData && currentData.launches.length > 0) {
+				setTotalCount(currentData.totalQnt);
+
+				const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
+				setCurrentLaunches(Array.from(allLaunches));
+			}
+		},
+		[currentData]
+	);
+
+	const infinityScrollCalback = useCallback(
+		(htmlNode: Element) => {
+			if (isLaunchesFetching) {
+				return;
+			}
+
+			if (observerRef?.current) {
+				observerRef.current.disconnect();
+			}
+
+			observerRef.current = new IntersectionObserver(
+				entries => {
+					const isAbleToLoadMore =
+						!isLaunchesFetching && currentLaunches.length < totalCount;
 					const [entry] = entries;
-					if (entry.intersectionRatio >= 1) {
-						setlaunchesQnt((prev) => prev + REQUEST_QNT);
+
+					if (entry.isIntersecting && isAbleToLoadMore) {
+						setLaunchesQnt((prev) => prev + REQUEST_QNT);
 					}
 				},
 				options
 			);
 
-			if (observerLoaderRef.current) observer.observe(observerLoaderRef.current);
-
-			return () => {
-				if (observerLoaderRef.current) observer.unobserve(observerLoaderRef.current);
-			};
+			if (htmlNode) {
+				observerRef.current?.observe(htmlNode);
+			}
 		},
-		[observerLoaderRef]
+		[isLaunchesFetching, totalCount, currentLaunches.length]
 	);
 
 
 	useEffect(
 		() => {
 			if (currentLaunches.length < totalCount) {
-				if (currentData && currentData.launches.length > 0) {
-					const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
-					//setCurrentLaunches([...allLaunches]);
-					setCurrentLaunches(Array.from(allLaunches));
-				}
-				if (currentData && currentData.totalQnt && !isLaunchesError) {
+				if (currentData && currentData.totalQnt) {
 					setTotalCount(currentData?.totalQnt);
 				}
 			}
@@ -100,7 +118,7 @@ export const LaunchesBlock: FC = () => {
 					spacing={2}
 
 				>
-					{currentLaunches.length > 0 &&
+					{(currentLaunches.length > 0) &&
 						currentLaunches.map(launch => {
 
 							return (
@@ -120,12 +138,18 @@ export const LaunchesBlock: FC = () => {
 					{(currentLaunches.length < totalCount) &&
 						<Box
 							className={classes.loaderWrapper}
-							ref={observerLoaderRef}
+							ref={infinityScrollCalback}
 						>
 							<Loader />
 							{isLaunchesFetching && <p>Loading ...</p>}
-							{isLaunchesError && <p>Server error ...</p>}
+
 						</Box >}
+					{isLaunchesError &&
+						<Box
+							className={classes.loaderWrapper}
+						>
+							<p>Server error ...</p>
+						</Box>}
 
 				</Grid>
 			</div>
