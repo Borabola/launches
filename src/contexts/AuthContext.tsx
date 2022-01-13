@@ -8,7 +8,6 @@ import {
 	signInWithPopup,
 	signOut
 } from "firebase/auth";
-import { stateType } from "pages/Login";
 import {
 	createContext,
 	FC,
@@ -19,6 +18,7 @@ import {
 import { useIntl } from "react-intl";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { stateType } from "../components/forms/LoginForm/LoginForm.types";
 import { auth } from "../firebase/firebaseConfig";
 import { requireAuthorization } from "../redux/auth/sliceReducer";
 import { AppRoute, AuthorizationStatus } from "../utils/const";
@@ -117,8 +117,12 @@ export const AuthProvider: FC = ({ children }: Props) => {
 		});
 	};
 
-	const googlePopupSignIn = async () => {
+	const googlePopupSignIn = async ({ from }: stateType) => {
 		const provider = new GoogleAuthProvider();
+		console.log(
+			"google from",
+			from
+		);
 		try {
 			const result = await signInWithPopup(
 				auth,
@@ -127,7 +131,8 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
 			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			history.push(AppRoute.DASHBOARD);
+			//history.push(AppRoute.DASHBOARD);
+			history.replace(from);
 		} catch (error) {
 			outputtingGoogleError(
 				(error as FirebaseError).code,
