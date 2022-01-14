@@ -91,12 +91,10 @@ export const Footer: FC = () => {
 			component="div"
 			className={classes.footerContainer}
 		>
-
 			<Box
 				component="div"
 				className={classes.footer}
 			>
-
 				<Box
 					component="div"
 					className={classes.footerWrapper}
@@ -106,10 +104,8 @@ export const Footer: FC = () => {
 						to={AppRoute.ROOT}
 						className={classes.footerLink}
 					>
-
 						<LogoSvg />
 					</Link>
-
 					<Typography
 						variant="body1"
 						component="div"
@@ -120,6 +116,5 @@ export const Footer: FC = () => {
 				</Box>
 			</Box>
 		</Box>
-
 	);
 };
