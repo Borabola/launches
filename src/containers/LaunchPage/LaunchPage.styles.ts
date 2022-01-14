@@ -1,4 +1,7 @@
-const useStyles = makeStyles((theme: Theme) => ({
+import { Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+export const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {
 		position: "relative",
 		padding: theme.spacing(
