@@ -7,13 +7,13 @@ import { FC } from "react";
 import { useLocation } from "react-router";
 import * as Yup from "yup";
 import { LoginForm } from "../../components/forms/LoginForm";
-import { Values } from "../../components/forms/LoginForm/LoginForm.types";
+import { stateType, Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { useAuth } from "../../contexts/AuthContext";
 import { AppRoute } from "../../utils/const";
 
-export type stateType = {
+/*export type stateType = {
 	from: { pathname: string }
-};
+};*/
 
 const Login: FC = () => {
 	const { state } = useLocation<stateType>();
@@ -55,6 +55,7 @@ const Login: FC = () => {
 					initialValues={initialValuesLogin}
 					onSubmit={onSubmit}
 					validationSchema={validationSchema}
+					pathFrom={currentState}
 				/>
 			</Container>
 		</Box>

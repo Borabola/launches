@@ -1,5 +1,5 @@
 import React from "react";
-import { stateType } from "../pages/Login";
+import { stateType } from "../components/forms/LoginForm/LoginForm.types";
 
 export type Props = {
 	children?: React.ReactNode;
@@ -23,5 +23,5 @@ export interface IValue {
 		email, password
 	}: SProps) => Promise<void>;
 	logout: () => Promise<void>;
-	googlePopupSignIn: () => Promise<void>;
+	googlePopupSignIn: ({ from }: stateType) => Promise<void>;
 }

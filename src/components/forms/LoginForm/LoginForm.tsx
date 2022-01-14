@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export const LoginForm: FC<Props> = ({
-	initialValues, validationSchema, onSubmit
+	initialValues, validationSchema, onSubmit, pathFrom
 }) => {
 	const classes = useStyles();
 	const authContext = useAuth();
@@ -72,6 +72,7 @@ export const LoginForm: FC<Props> = ({
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			onSubmit={onSubmit}
+
 		>
 			{({
 				errors,
@@ -152,9 +153,7 @@ export const LoginForm: FC<Props> = ({
 					<Box mt={2}>
 
 						<Button
-
-							onClick={googlePopupSignIn}
-							//classes={{ root: classes.pageLink }}
+							onClick={() => googlePopupSignIn(pathFrom)}
 							fullWidth={true}
 						>
 							Login with Google account
