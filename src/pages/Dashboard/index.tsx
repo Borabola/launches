@@ -48,7 +48,6 @@ const Dashboard: FC = () => {
 	}
 	const { currentUserId } = authContext as IAuthCurrentUserId;
 
-
 	const products = useProducts(
 		currentUserId,
 		database

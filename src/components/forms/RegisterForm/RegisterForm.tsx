@@ -10,7 +10,6 @@ import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Props } from "./RegisterForm.types";
 
-
 const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {
 		"& fieldset": {
@@ -55,12 +54,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 	},
 }));
 
-
 export const RegisterForm: FC<Props> = ({
 	initialValues, validationSchema, onSubmit
 }) => {
 	const classes = useStyles();
-
 
 	return (
 		<Formik
@@ -137,7 +134,6 @@ export const RegisterForm: FC<Props> = ({
 						value={values.passwordConfirm}
 						variant="outlined"
 					/>
-
 
 					<Box mt={2}>
 						<Button

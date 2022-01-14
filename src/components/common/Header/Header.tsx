@@ -181,7 +181,6 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 						<LogoSvg />
 					</Box>
 
-
 				) : (
 
 					<Box className={classes.headerWrapper}>
@@ -201,7 +200,6 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 							<LogoSvg />
 						</Link>
 					</Box>
-
 
 				)}
 				{currentUser && <UserMenu />}

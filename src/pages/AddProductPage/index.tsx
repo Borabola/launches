@@ -16,7 +16,6 @@ import {
 import { database, storage } from "../../firebase/firebaseConfig";
 import { PageLayout } from "../../layouts/PageLayout";
 
-
 const AddProductPage: FC = () => {
 	const [fileUrl, setFileUrl] = useState<string | null>(null);
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
@@ -53,7 +52,6 @@ const AddProductPage: FC = () => {
 		form.setSubmitting(false);
 		form.resetForm();
 	};
-
 
 	const validationSchema =
 		Yup.object().shape({

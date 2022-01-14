@@ -1,7 +1,6 @@
 import { FormattedMessage, IntlShape } from "react-intl";
 import { toast } from "react-toastify";
 
-
 export const showToast = (): void => {
 	const currentId = "errorServer";
 	toast.error(

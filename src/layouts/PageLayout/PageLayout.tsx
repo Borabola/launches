@@ -5,7 +5,6 @@ import { Footer } from "../../components/common/Footer";
 import { Header } from "../../components/common/Header";
 import { Props } from "./PageLayout.types";
 
-
 const useStyles = makeStyles({
 	pageWrapper: {
 		position: "relative",

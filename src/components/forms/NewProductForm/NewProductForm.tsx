@@ -11,7 +11,6 @@ import { useIntl } from "react-intl";
 import type { Props } from "./NewProductForm.types";
 import "./style.scss";
 
-
 const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {
 		"& fieldset": {
@@ -191,7 +190,6 @@ export const NewProductForm: FC<Props> =
 								<p>Drag drop some files here, or click to select files</p>
 							</Paper>
 
-
 						</Box>
 						<Typography variant="h5">Accepted files</Typography>
 						<List> {acceptedFileItems}</List>
@@ -208,7 +206,6 @@ export const NewProductForm: FC<Props> =
 								{intl.formatMessage({ id: "addNewProduct" })}
 							</Button>
 						</Box>
-
 
 					</Form>
 				)}

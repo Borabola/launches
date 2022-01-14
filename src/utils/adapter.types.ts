@@ -1,5 +1,4 @@
 
-
 export interface ResultType {
 	id: number;
 	name: string;
@@ -92,7 +91,6 @@ export interface EventData {
 	previous?: null | number | string;
 	results: EventResult[];
 }
-
 
 //Launches
 
@@ -345,7 +343,6 @@ export interface LaunchServiceProvider {
 	image_url?: null | string | string[];
 	nation_url?: null | string | string[];
 }
-
 
 export interface Rocket {
 	configuration: Configuration;
