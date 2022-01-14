@@ -10,7 +10,6 @@ export const enum AppRoute {
 	PAGE_NOT_FOUND = "/404",
 }
 
-
 export const enum APIRoutesEnum {
 	LAUNCHES = "launch/upcoming/",
 	EVENTS = "event/upcoming/",
@@ -35,6 +34,5 @@ const SECONDS = 60;
 
 const MAX_FILE_SIZE = 1000000; //1mb
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
 
 export { MAX_FILE_SIZE, HOURS, KEY, launchQnt, MINUTE, REQUEST_QNT, SECONDS, SUPPORTED_FORMATS };

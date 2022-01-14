@@ -12,7 +12,6 @@ import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
 
-
 const useStyles = makeStyles({
 	launchesWrapper: {
 		width: "100%",
@@ -40,7 +39,6 @@ export const LaunchesBlock: FC = () => {
 	const classes = useStyles();
 	const intl = useIntl();
 	const [totalCount, setTotalCount] = useState<number>(1);
-
 
 	const observerRef = useRef<IntersectionObserver>();
 
@@ -90,7 +88,6 @@ export const LaunchesBlock: FC = () => {
 		[isLaunchesFetching, totalCount, currentLaunches.length]
 	);
 
-
 	useEffect(
 		() => {
 			if (currentLaunches.length < totalCount) {
@@ -101,7 +98,6 @@ export const LaunchesBlock: FC = () => {
 		},
 		[launchesQnt]
 	);
-
 
 	return (
 		<div className={classes.launchesWrapper}>

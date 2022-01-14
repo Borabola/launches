@@ -22,7 +22,6 @@ export type ModifiedRouteItem = OmitedRouteItem & {
 	component: React.LazyExoticComponent<FC<unknown>> | ElementType
 };
 
-
 export const commonRoutes = [
 	{
 		component: Main,

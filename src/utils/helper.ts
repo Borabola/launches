@@ -7,7 +7,6 @@ import {
 } from "./const";
 dayjs.extend(isSameOrAfter);
 
-
 export const isDevelopment = (): boolean => process.env.NODE_ENV === "development";
 
 export const getTimeFormate = (endtime: string): string | 0 => {

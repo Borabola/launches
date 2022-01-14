@@ -82,7 +82,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-
 export const Footer: FC = () => {
 	const classes = useStyles();
 	const date = new Date();

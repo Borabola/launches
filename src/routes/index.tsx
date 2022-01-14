@@ -6,7 +6,6 @@ import PrivateRoute from "../hocs/PrivateRoute";
 import { commonRoutes } from "./commonRoutes";
 import { privateRoutes } from "./privateRoutes";
 
-
 const Routes: FC = () => {
 	return (
 		<Suspense

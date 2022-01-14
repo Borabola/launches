@@ -138,7 +138,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 	}
 }));
 
-
 export const EventsSwiper: FC<Props> = ({ events }) => {
 	const classes = useStyles();
 	const intl = useIntl();
@@ -197,7 +196,6 @@ export const EventsSwiper: FC<Props> = ({ events }) => {
 								<div className={classes.swiperEmptyimg}>
 									<RocketSvg />
 								</div>}
-
 
 							<div className={classes.swiperTimeBlock}>
 								<Typography variant="caption">

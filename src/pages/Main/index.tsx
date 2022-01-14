@@ -16,7 +16,6 @@ import { requireAuthorization } from "../../redux/auth/sliceReducer";
 import { useGetEventsQuery } from "../../services/api";
 import { AuthorizationStatus } from "../../utils/const";
 
-
 const useStyles = makeStyles((theme: Theme) => ({
 	pageWrapper: {
 		position: "relative",
@@ -51,7 +50,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 	}
 }));
-
 
 const Main: FC = () => {
 	const classes = useStyles();
@@ -94,7 +92,6 @@ const Main: FC = () => {
 					<section className={classes.pageContent}>
 
 						{events && <EventsSwiper events={events} />}
-
 
 						<LaunchesBlock />
 					</section>

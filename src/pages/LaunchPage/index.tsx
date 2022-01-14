@@ -13,7 +13,6 @@ import type { AppDispatch } from "../../redux/store";
 import { useTypedDispatch } from "../../redux/store";
 import { spacelaunchesSlice, useGetCurrentLauncheQuery } from "../../services/api";
 
-
 type LaunchParams = {
 	id: string;
 };
@@ -44,7 +43,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 		},
 	}
 }));
-
 
 const LaunchPage: FC = () => {
 	const launchParam = useParams<LaunchParams>();

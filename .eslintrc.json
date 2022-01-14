@@ -29,7 +29,11 @@
 		"ecmaVersion": 12,
 		"sourceType": "module"
 	},
-	"plugins": ["react", "formatjs", "@typescript-eslint"],
+	"plugins": [
+		"react",
+		"formatjs",
+		"@typescript-eslint"
+	],
 	"rules": {
 		"react/jsx-uses-react": "off",
 		"react/react-in-jsx-scope": "off",
@@ -57,17 +61,26 @@
 		"no-eq-null": "error",
 		"no-template-curly-in-string": "error",
 		"no-unsafe-optional-chaining": "error",
-		"eol-last": ["error", "always"],
+		"eol-last": [
+			"error",
+			"always"
+		],
 		"no-trailing-spaces": "error",
 		"no-multiple-empty-lines": [
 			"error",
 			{
-				"max": 2,
+				"max": 1,
 				"maxEOF": 0
 			}
 		],
-		"eqeqeq": ["error", "always"],
-		"quotes": ["error", "single"],
+		"eqeqeq": [
+			"error",
+			"always"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
 		"max-len": [
 			"error",
 			{
@@ -86,11 +99,18 @@
 	},
 	"overrides": [
 		{
-			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"files": [
+				"*.ts",
+				"*.tsx",
+				"*.js",
+				"*.jsx"
+			],
 			"rules": {
 				"no-unused-vars": "off",
 				"no-explicit-any": "off",
-				"@typescript-eslint/no-unused-vars": ["warn"],
+				"@typescript-eslint/no-unused-vars": [
+					"warn"
+				],
 				"@typescript-eslint/explicit-module-boundary-types": "off",
 				"semi": "off",
 				"quotes": [
@@ -101,9 +121,14 @@
 						"allowTemplateLiterals": true
 					}
 				],
-				"@typescript-eslint/semi": ["warn"],
+				"@typescript-eslint/semi": [
+					"warn"
+				],
 				"react-hooks/exhaustive-deps": "off",
-				"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+				"no-mixed-spaces-and-tabs": [
+					"error",
+					"smart-tabs"
+				],
 				"function-paren-newline": [
 					"error",
 					{
@@ -117,10 +142,22 @@
 						"maximum": 1
 					}
 				],
-				"react/jsx-indent-props": ["error", "tab"],
-				"react/jsx-first-prop-new-line": ["error", "multiline"],
-				"react/jsx-closing-bracket-location": [1, "line-aligned"],
-				"react/jsx-closing-tag-location": [1, "line-aligned"],
+				"react/jsx-indent-props": [
+					"error",
+					"tab"
+				],
+				"react/jsx-first-prop-new-line": [
+					"error",
+					"multiline"
+				],
+				"react/jsx-closing-bracket-location": [
+					1,
+					"line-aligned"
+				],
+				"react/jsx-closing-tag-location": [
+					1,
+					"line-aligned"
+				],
 				"react/jsx-no-useless-fragment": "off",
 				"indent": [
 					"error",
@@ -152,7 +189,10 @@
 						]
 					}
 				],
-				"function-call-argument-newline": ["error", "always"],
+				"function-call-argument-newline": [
+					"error",
+					"always"
+				],
 				"object-curly-newline": [
 					"error",
 					{
@@ -181,7 +221,9 @@
 				"react/style-prop-object": [
 					2,
 					{
-						"allow": ["FormattedNumber"]
+						"allow": [
+							"FormattedNumber"
+						]
 					}
 				],
 				"no-use-before-define": "off",

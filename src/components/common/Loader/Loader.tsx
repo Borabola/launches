@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 	},
 });
 
-
 export const Loader: FC = () => {
 	const classes = useStyles();
 

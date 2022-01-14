@@ -9,7 +9,6 @@ import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import BgImage from "../../../assets/common/bg_hero.png";
 
-
 const useStyles = makeStyles((theme: Theme) => ({
 	button: {
 		display: "inline-block",
