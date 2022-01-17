@@ -23,7 +23,7 @@ export const LaunchPage: FC<Props> = ({ currentLaunch, isCurrentFetching, lunchC
 							<LaunchPageContent launch={currentLaunch} />
 						</section>
 					</Container>
-				</>)
+     </>)
 				:
 				(<>
 					<Loader />
@@ -35,7 +35,7 @@ export const LaunchPage: FC<Props> = ({ currentLaunch, isCurrentFetching, lunchC
 							{lunchCurrentError}
 						</Typography>
 					}
-				</>)
+     </>)
 			}
 		</PageLayout>
 	);

@@ -1,7 +1,3 @@
-import {
-	Box,
-	Container
-} from "@material-ui/core";
 import { FormikHelpers } from "formik";
 import { FC } from "react";
 import { useLocation } from "react-router";
@@ -9,13 +5,10 @@ import * as Yup from "yup";
 import { LoginForm } from "../../components/forms/LoginForm";
 import { stateType, Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { useAuth } from "../../contexts/AuthContext";
+import { LoginLayout } from "../../layouts/LoginLayout";
 import { AppRoute } from "../../utils/const";
 
-/*export type stateType = {
-	from: { pathname: string }
-};*/
-
-const Login: FC = () => {
+export const Login: FC = () => {
 	const { state } = useLocation<stateType>();
 	const authContext = useAuth();
 	if (authContext === null) {
@@ -44,22 +37,13 @@ const Login: FC = () => {
 		});
 
 	return (
-		<Box
-			display={"flex"}
-			flexDirection={"column"}
-			height="100vh"
-			justifyContent="center"
-		>
-			<Container maxWidth="sm" >
-				<LoginForm
-					initialValues={initialValuesLogin}
-					onSubmit={onSubmit}
-					validationSchema={validationSchema}
-					pathFrom={currentState}
-				/>
-			</Container>
-		</Box>
+		<LoginLayout>
+			<LoginForm
+				initialValues={initialValuesLogin}
+				onSubmit={onSubmit}
+				validationSchema={validationSchema}
+				pathFrom={currentState}
+			/>
+		</LoginLayout>
 	);
 };
-
-export default Login;
