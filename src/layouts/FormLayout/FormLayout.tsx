@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 	pageWrap: {
 		display: "flex",
 		flexDirection: "column",
-		height: "100vh",
+		minHeight: "100vh",
 		justifyContent: "center",
 		flexGrow: 1
 	},
