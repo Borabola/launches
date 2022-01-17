@@ -13,8 +13,6 @@ export const launchAdapter = (incomingLaunch: LaunchResult) => {
 	return adaptedLaunch;
 };
 
-export type LaunchAdapterType = ReturnType<typeof launchAdapter>;
-
 export const eventAdapter = (incomingEvent: EventResult) => {
 	const adaptedEvent = {
 		id: incomingEvent.id,
@@ -24,8 +22,6 @@ export const eventAdapter = (incomingEvent: EventResult) => {
 	};
 	return adaptedEvent;
 };
-
-export type EventAdapterType = ReturnType<typeof eventAdapter>;
 
 export const rocketAdapter = (incomingRocket: EventResult) => {
 	const adaptedRocket = {
@@ -49,5 +45,3 @@ export const currentLaunchAdapter = (incomingCurrentLaunch: CurrentLaunch) => {
 	};
 	return adaptedLaunch;
 };
-
-export type CurrentLaunchAdapterType = ReturnType<typeof currentLaunchAdapter>;

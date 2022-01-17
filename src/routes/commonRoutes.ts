@@ -3,7 +3,7 @@ import { AppRouteEnum } from "../types/Enums";
 
 // Common routes with using React code splitting approach
 
-const Main = lazy(() => import("../pages/Main"));
+const Main = lazy(() => import("../pages/MainPage"));
 const RocketPage = lazy(() => import("../pages/RocketPage"));
 const LoginPage = lazy(() => import("../pages/Login"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));

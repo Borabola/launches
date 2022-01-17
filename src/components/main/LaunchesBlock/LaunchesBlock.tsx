@@ -6,8 +6,8 @@ import {
 	FC, useCallback, useEffect, useRef, useState
 } from "react";
 import { useIntl } from "react-intl";
-import { useGetLaunchesQuery } from "../../../services/api";
-import type { LaunchAdapterType } from "../../../utils/adapter";
+import type { LaunchAdapterType } from "../../../redux/services/adapter.types";
+import { useGetLaunchesQuery } from "../../../redux/services/api";
 import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
