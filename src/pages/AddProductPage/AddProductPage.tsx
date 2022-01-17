@@ -12,7 +12,7 @@ import {
 import { database, storage } from "../../firebase/firebaseConfig";
 import { FormLayout } from "../../layouts/FormLayout";
 
-const AddProductPage: FC = () => {
+export const AddProductPage: FC = () => {
 	const [fileUrl, setFileUrl] = useState<string | null>(null);
 	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
 
@@ -69,5 +69,3 @@ const AddProductPage: FC = () => {
 		</FormLayout>
 	);
 };
-
-export default AddProductPage;

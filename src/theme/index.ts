@@ -10,9 +10,13 @@ const breakpoints = {
 	}
 };
 
+const fonts = {
+	Roboto: "Roboto, sans-serif",
+	Montserrat: "Montserrat, sans-serif"
+};
+
 const theme = createTheme({
 	breakpoints,
-	//spacing: (factor) => `${0.125 * factor}rem`,
 	palette: {
 		primary: {
 			main: "#F1EBFF",
@@ -31,49 +35,10 @@ const theme = createTheme({
 			black: "#111",
 		},
 	},
-	components: {
-		MuiButton: {
-			styleOverrides: {
-				root: {
-					padding: "29px 85px",
-					fontFamily: "Montserrat",
-					fontWeight: "700",
-					fontSize: "20px",
-					lineHeight: "20px",
-					textDecoration: "none",
-					textTransform: "capitalize",
-					color: "#F1EBFF",
-
-					[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
-						fontSize: 18,
-						lineHeight: "22px",
-						padding: "15px 30px",
-					},
-				},
-				contained: {
-					background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
-					borderRadius: "50px",
-					color: "#F1EBFF",
-				}
-			}
-		},
-		MuiInput: {
-			styleOverrides: {
-				root: {
-					color: "#FFFFFF",
-					"&::placeholder": {
-						color: "#FFFFFF"
-					},
-					transition: "0.3s ease",
-				},
-			},
-		},
-
-	}
 });
 
 theme.typography.h1 = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: fonts.Montserrat,
 	fontSize: 76,
 	fontWeight: 800,
 	lineHeight: "92px",
@@ -89,11 +54,11 @@ theme.typography.h1 = {
 };
 
 theme.typography.h2 = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: fonts.Montserrat,
 	fontSize: 54,
 	fontWeight: 800,
 	lineHeight: "64px",
-	color: "#F1EBFF",
+	color: "theme.palette.primary.main",
 	[theme.breakpoints.down("lg")]: {
 		fontSize: 48,
 		lineHeight: "50px",
@@ -105,11 +70,11 @@ theme.typography.h2 = {
 };
 
 theme.typography.h3 = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: fonts.Montserrat,
 	fontSize: 26,
 	fontWeight: 700,
 	lineHeight: "28px",
-	color: "#F1EBFF",
+	color: "theme.palette.primary.main",
 	[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
 		fontSize: 22,
 		lineHeight: "24px",
@@ -121,7 +86,7 @@ theme.typography.h3 = {
 };
 
 theme.typography.h4 = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: fonts.Montserrat,
 	fontSize: 22,
 	fontWeight: 700,
 	lineHeight: "28px",
@@ -129,28 +94,70 @@ theme.typography.h4 = {
 };
 
 theme.typography.h5 = {
-	fontFamily: "Roboto, sans-serif",
+	fontFamily: fonts.Roboto,
 	fontSize: 17,
 	fontWeight: 700,
 	lineHeight: "28px",
-	color: "#F1EBFF",
+	color: "theme.palette.primary.main",
 };
 
 theme.typography.body1 = {
-	fontFamily: "Roboto, sans-serif",
+	fontFamily: fonts.Roboto,
 	fontSize: 17,
 	fontWeight: 400,
 	lineHeight: "28px",
-	color: "#F1EBFF",
+	color: "theme.palette.primary.main",
 };
 
 theme.typography.caption = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: fonts.Montserrat,
 	fontSize: 18,
 	fontWeight: 500,
 	fontStyle: "italic",
 	lineHeight: "18px",
-	color: "#F1EBFF",
+	color: theme.palette.primary.main,
+};
+
+theme.components = {
+	MuiButton: {
+		styleOverrides: {
+
+			root: {
+				padding: "29px 85px",
+				fontFamily: "Montserrat",
+				fontWeight: "700",
+				fontSize: "20px",
+				lineHeight: "20px",
+				textDecoration: "none",
+				textTransform: "capitalize",
+				color: "theme.palette.primary.main",
+
+				[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+					fontSize: 18,
+					lineHeight: "22px",
+					padding: "15px 30px",
+				},
+			},
+			contained: {
+				background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
+				borderRadius: "50px",
+				color: "theme.palette.primary.main",
+
+			}
+		}
+	},
+	MuiInput: {
+		styleOverrides: {
+			root: {
+				color: theme.palette.secondary.main,
+				"&::placeholder": {
+					color: theme.palette.secondary.main
+				},
+				transition: "0.3s ease",
+			},
+		}
+	}
+
 };
 
 export default theme;

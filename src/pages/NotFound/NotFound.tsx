@@ -42,5 +42,3 @@ export const NotFound: FC = () => {
 		</PageLayout>
 	);
 };
-
-export default NotFound;

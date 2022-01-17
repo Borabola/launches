@@ -1,38 +1,15 @@
-import { Theme } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { FC, useMemo } from "react";
 import { useIntl } from "react-intl";
 import { Column } from "react-table";
 import { MainTable } from "../../components/common/MainTable";
 import type { Data } from "../../components/common/MainTable/MainTable.types";
 import { useAuth } from "../../contexts/AuthContext";
-import { IValue } from "../../contexts/AuthContext.types";
+
 import { database } from "../../firebase/firebaseConfig";
 import useProducts from "../../hooks/useProduct";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
-import { Ensure } from "../../utils/helper";
-
-const useStyles = makeStyles((theme: Theme) => ({
-	tableImg: {
-		position: "relative",
-		maxWidth: theme.spacing(31.25),
-		height: "auto",
-		maxHeight: theme.spacing(31.25),
-		overflow: "hidden",
-		"&::after": {
-			position: "absolute",
-			content: "ghghghg",
-			top: 0,
-			left: 0,
-			right: 0,
-			bottom: 0,
-			bacgroundColor: "rgba(255, 0, 0, 0, 0.3)",
-		}
-
-	},
-}));
-
-type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
+import { IAuthCurrentUserId } from "./Dashboard.types";
+import { useStyles } from "./Dashboard.styles";
 
 export const Dashboard: FC = () => {
 	const intl = useIntl();
