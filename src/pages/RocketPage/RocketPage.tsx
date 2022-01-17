@@ -2,7 +2,7 @@ import { Container, Typography } from "@mui/material";
 import { FC } from "react";
 import { PageLayout } from "../../layouts/PageLayout";
 
-const RockedPage: FC = () => {
+export const RockedPage: FC = () => {
 
 	return (
 		<PageLayout>
@@ -13,5 +13,3 @@ const RockedPage: FC = () => {
 		</PageLayout>
 	);
 };
-
-export default RockedPage;

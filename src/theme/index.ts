@@ -75,11 +75,11 @@ theme.typography.h3 = {
 	fontWeight: 700,
 	lineHeight: "28px",
 	color: theme.palette.primary.main,
-	[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
+	[theme.breakpoints.down("lg")]: {
 		fontSize: 22,
 		lineHeight: "24px",
 	},
-	[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+	[theme.breakpoints.down("sm")]: {
 		fontSize: 18,
 		lineHeight: "22px",
 	},
@@ -132,7 +132,7 @@ theme.components = {
 				textTransform: "capitalize",
 				color: theme.palette.primary.main,
 
-				[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
+				[theme.breakpoints.down("sm")]: {
 					fontSize: 18,
 					lineHeight: "22px",
 					padding: "15px 30px",
@@ -157,7 +157,6 @@ theme.components = {
 			},
 		}
 	}
-
 };
 
 export default theme;
