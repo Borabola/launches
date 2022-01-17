@@ -8,7 +8,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as ArrowLeftSvg } from "../../../assets/common/arrow_left.svg";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { useAuth } from "../../../contexts/AuthContext";
-import { AppRoute } from "../../../utils/const";
+import { AppRouteEnum } from "../../../types/Enums";
 import type { IAuth, Props } from "./Header.types";
 import UserMenu from "./UserMenu";
 
@@ -167,7 +167,7 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 
 					{(!currentUser) &&
 						<Link
-							to={AppRoute.LOGIN}
+							to={AppRouteEnum.LOGIN}
 							component={RouterLink}
 							className={classes.headerLoginLink}
 						>
@@ -186,7 +186,7 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 					<Box className={classes.headerWrapper}>
 						<Link
 							component={RouterLink}
-							to={AppRoute.ROOT}
+							to={AppRouteEnum.ROOT}
 							className={classes.headerBack}
 						>
 							<ArrowLeftSvg />
@@ -194,7 +194,7 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 						</Link>
 						<Link
 							component={RouterLink}
-							to={AppRoute.ROOT}
+							to={AppRouteEnum.ROOT}
 							className={classes.headerLink}
 						>
 							<LogoSvg />

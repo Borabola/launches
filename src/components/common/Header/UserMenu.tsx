@@ -2,7 +2,7 @@ import { Box, Link } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRoute } from "../../../utils/const";
+import { AppRouteEnum } from "../../../types/Enums";
 
 const useStyles = makeStyles(() => ({
 	menuWrap: {
@@ -36,7 +36,7 @@ const UserMenu: FC = () => {
 			<Link
 				component={RouterLink}
 				underline="hover"
-				to={AppRoute.DASHBOARD}
+				to={AppRouteEnum.DASHBOARD}
 				className={classes.menuLink}
 			>
 				Dashboard
@@ -44,7 +44,7 @@ const UserMenu: FC = () => {
 			<Link
 				component={RouterLink}
 				underline="hover"
-				to={AppRoute.ADDPRODUCT_PAGE}
+				to={AppRouteEnum.ADDPRODUCT_PAGE}
 				className={classes.menuLink}
 			>
 				Add New Product

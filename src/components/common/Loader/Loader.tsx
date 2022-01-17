@@ -16,7 +16,6 @@ const useStyles = makeStyles({
 			width: "56px",
 			height: "56px",
 			animation: `$lds-roller 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
-
 		}
 	},
 	"@keyframes lds-roller": {

@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
-import { AppRoute } from "../../../utils/const";
+import { AppRouteEnum } from "../../../types/Enums";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	footer: {
@@ -91,25 +91,21 @@ export const Footer: FC = () => {
 			component="div"
 			className={classes.footerContainer}
 		>
-
 			<Box
 				component="div"
 				className={classes.footer}
 			>
-
 				<Box
 					component="div"
 					className={classes.footerWrapper}
 				>
 					<Link
 						component={RouterLink}
-						to={AppRoute.ROOT}
+						to={AppRouteEnum.ROOT}
 						className={classes.footerLink}
 					>
-
 						<LogoSvg />
 					</Link>
-
 					<Typography
 						variant="body1"
 						component="div"
@@ -120,6 +116,5 @@ export const Footer: FC = () => {
 				</Box>
 			</Box>
 		</Box>
-
 	);
 };
