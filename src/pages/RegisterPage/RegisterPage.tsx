@@ -1,15 +1,12 @@
-import {
-	Box,
-	Container
-} from "@material-ui/core";
 import { FormikHelpers } from "formik";
 import { FC } from "react";
 import * as Yup from "yup";
 import { RegisterForm } from "../../components/forms/RegisterForm";
 import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 import { useAuth } from "../../contexts/AuthContext";
+import { LoginLayout } from "../../layouts/LoginLayout";
 
-const RegisterPage: FC = () => {
+export const RegisterPage: FC = () => {
 	const authContext = useAuth();
 	if (authContext === null) {
 		return null;
@@ -33,21 +30,12 @@ const RegisterPage: FC = () => {
 		});
 
 	return (
-		<Box
-			display={"flex"}
-			flexDirection={"column"}
-			height="100vh"
-			justifyContent="center"
-		>
-			<Container maxWidth="sm" >
-				<RegisterForm
-					initialValues={initialValuesSignIn}
-					onSubmit={onSubmit}
-					validationSchema={validationSchema}
-				/>
-			</Container>
-		</Box>
+		<LoginLayout>
+			<RegisterForm
+				initialValues={initialValuesSignIn}
+				onSubmit={onSubmit}
+				validationSchema={validationSchema}
+			/>
+		</LoginLayout>
 	);
 };
-
-export default RegisterPage;
