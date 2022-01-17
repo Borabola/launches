@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 import { stateType } from "../components/forms/LoginForm/LoginForm.types";
 import { auth } from "../firebase/firebaseConfig";
 import { requireAuthorization } from "../redux/auth/sliceReducer";
-import { AppRoute, AuthorizationStatus } from "../utils/const";
+import { AppRouteEnum, AuthorizationStatusEnum } from "../types/Enums";
 import {
 	outputtingError,
 	outputtingGoogleError
@@ -54,11 +54,11 @@ export const AuthProvider: FC = ({ children }: Props) => {
 					if (user) {
 						setCurrentUser(user.email);
 						setCurrentUserId(user.uid);
-						dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+						dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
 					} else {
 						setCurrentUser(null);
 						setCurrentUserId(null);
-						dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+						dispatch(requireAuthorization(AuthorizationStatusEnum.NO_AUTH));
 					}
 					setIsLoading(false);
 				}
@@ -77,7 +77,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 				email,
 				password
 			);
-			history.push(AppRoute.LOGIN);
+			history.push(AppRouteEnum.LOGIN);
 
 		} catch (error) {
 			outputtingError(
@@ -98,8 +98,8 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			);
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
-			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			//history.push(AppRoute.DASHBOARD);
+			dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
+			//history.push(AppRouteEnum.DASHBOARD);
 			history.replace(from);
 
 		} catch (error) {
@@ -112,7 +112,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 
 	const logout = async () => {
 		return signOut(auth).then(() => {
-			dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+			dispatch(requireAuthorization(AuthorizationStatusEnum.NO_AUTH));
 		});
 	};
 
@@ -125,8 +125,8 @@ export const AuthProvider: FC = ({ children }: Props) => {
 			);
 			setCurrentUser(result.user.email);
 			setCurrentUserId(result.user.uid);
-			dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-			//history.push(AppRoute.DASHBOARD);
+			dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
+			//history.push(AppRouteEnum.DASHBOARD);
 			history.replace(from);
 		} catch (error) {
 			outputtingGoogleError(

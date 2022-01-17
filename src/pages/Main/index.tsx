@@ -14,7 +14,7 @@ import { MainHero } from "../../components/main/MainHero";
 import { useAuth } from "../../contexts/AuthContext";
 import { requireAuthorization } from "../../redux/auth/sliceReducer";
 import { useGetEventsQuery } from "../../services/api";
-import { AuthorizationStatus } from "../../utils/const";
+import { AuthorizationStatusEnum } from "../../types/Enums";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	pageWrapper: {
@@ -68,7 +68,7 @@ const Main: FC = () => {
 	useEffect(
 		() => {
 			if (currentUser) {
-				dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+				dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
 			}
 		},
 		[currentUser]

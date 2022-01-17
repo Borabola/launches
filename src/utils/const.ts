@@ -1,26 +1,3 @@
-export const enum AppRoute {
-	ADDPRODUCT_PAGE = "/add_product",
-	DASHBOARD = "/dashboard",
-	EVENT = "/event/:id",
-	LAUNCH = "/launch/:id",
-	LOGIN = "/login",
-	ROCKET = "/rocket/:id",
-	ROOT = "/",
-	SIGNIN = "/signin",
-	PAGE_NOT_FOUND = "/404",
-}
-
-export const enum APIRoutesEnum {
-	LAUNCHES = "launch/upcoming/",
-	EVENTS = "event/upcoming/",
-}
-
-export const enum AuthorizationStatus {
-	AUTH = "AUTH",
-	NO_AUTH = "NO_AUTH",
-	UNKNOWN = "UNKNOWN",
-}
-
 //the number of items in the request
 const REQUEST_QNT = 30;
 

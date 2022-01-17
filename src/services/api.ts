@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { APIRoutesEnum } from "../types/Enums";
 import type {
 	CurrentLaunchAdapterType, EventAdapterType, LaunchAdapterType
 } from "../utils/adapter";
@@ -8,7 +9,7 @@ import {
 import {
 	CurrentLaunch, EventData, LaunchData
 } from "../utils/adapter.types";
-import { APIRoutesEnum, REQUEST_QNT } from "../utils/const";
+import { REQUEST_QNT } from "../utils/const";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 

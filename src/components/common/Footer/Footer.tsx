@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
-import { AppRoute } from "../../../utils/const";
+import { AppRouteEnum } from "../../../types/Enums";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	footer: {
@@ -101,7 +101,7 @@ export const Footer: FC = () => {
 				>
 					<Link
 						component={RouterLink}
-						to={AppRoute.ROOT}
+						to={AppRouteEnum.ROOT}
 						className={classes.footerLink}
 					>
 						<LogoSvg />

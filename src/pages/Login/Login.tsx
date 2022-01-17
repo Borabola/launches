@@ -6,7 +6,7 @@ import { LoginForm } from "../../components/forms/LoginForm";
 import { stateType, Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { useAuth } from "../../contexts/AuthContext";
 import { LoginLayout } from "../../layouts/LoginLayout";
-import { AppRoute } from "../../utils/const";
+import { AppRouteEnum } from "../../types/Enums";
 
 export const Login: FC = () => {
 	const { state } = useLocation<stateType>();
@@ -15,7 +15,7 @@ export const Login: FC = () => {
 		return null;
 	}
 	const { login } = authContext;
-	const currentState = state || { from: { pathname: AppRoute.DASHBOARD } };
+	const currentState = state || { from: { pathname: AppRouteEnum.DASHBOARD } };
 
 	const initialValuesLogin = { email: "", password: "", };
 

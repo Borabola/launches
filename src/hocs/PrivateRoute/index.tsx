@@ -3,10 +3,8 @@ import { Redirect, Route } from "react-router-dom";
 import { Loader } from "../../components/common/Loader";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTypedSelector } from "../../redux/store";
-import { ModifiedRouteItem } from "../../routes/commonRoutes";
-import { AuthorizationStatus } from "../../utils/const";
-
-type Props = ModifiedRouteItem;
+import { AuthorizationStatusEnum } from "../../types/Enums";
+import type { Props } from "./PrivateRoute.types";
 
 const PrivateRoute: FC<Props> = ({
 	component: Component,
@@ -19,9 +17,9 @@ const PrivateRoute: FC<Props> = ({
 
 	const authorizationStatus = useTypedSelector(state => state.auth.authorizationStatus);
 
-	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatus.NO_AUTH);
+	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatusEnum.NO_AUTH);
 
-	if (authorizationStatus === AuthorizationStatus.UNKNOWN) {
+	if (authorizationStatus === AuthorizationStatusEnum.UNKNOWN) {
 		return <Loader />;
 	}
 

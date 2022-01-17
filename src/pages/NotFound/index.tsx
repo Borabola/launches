@@ -5,7 +5,7 @@ import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { PageLayout } from "../../layouts/PageLayout";
-import { AppRoute } from "../../utils/const";
+import { AppRouteEnum } from "../../types/Enums";
 
 const useStyles = makeStyles(() => ({
 	pageWrapper: {
@@ -32,7 +32,7 @@ export const NotFound: FC = () => {
 					<h1 >Page not found</h1>
 					<Link
 						component={RouterLink}
-						to={AppRoute.ROOT}
+						to={AppRouteEnum.ROOT}
 					>
 						Link to Main Page
 					</Link>

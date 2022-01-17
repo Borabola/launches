@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AuthorizationStatus } from "../../utils/const";
+import { AuthorizationStatusEnum } from "../../types/Enums";
 
 const initialState = {
-	authorizationStatus: AuthorizationStatus.UNKNOWN,
+	authorizationStatus: AuthorizationStatusEnum.UNKNOWN,
 };
 
 const userSlice = createSlice({
@@ -10,12 +10,12 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		requireAuthorization(
-			state, action: PayloadAction<AuthorizationStatus>
+			state, action: PayloadAction<AuthorizationStatusEnum>
 		) {
 			state.authorizationStatus = action.payload;
 		},
 		logout(state) {
-			state.authorizationStatus = AuthorizationStatus.NO_AUTH;
+			state.authorizationStatus = AuthorizationStatusEnum.NO_AUTH;
 		},
 	},
 });
