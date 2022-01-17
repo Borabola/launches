@@ -58,7 +58,7 @@ theme.typography.h2 = {
 	fontSize: 54,
 	fontWeight: 800,
 	lineHeight: "64px",
-	color: "theme.palette.primary.main",
+	color: theme.palette.primary.main,
 	[theme.breakpoints.down("lg")]: {
 		fontSize: 48,
 		lineHeight: "50px",
@@ -74,7 +74,7 @@ theme.typography.h3 = {
 	fontSize: 26,
 	fontWeight: 700,
 	lineHeight: "28px",
-	color: "theme.palette.primary.main",
+	color: theme.palette.primary.main,
 	[`@media screen and (max-width: ${breakpoints.values.lg}px)`]: {
 		fontSize: 22,
 		lineHeight: "24px",
@@ -98,7 +98,7 @@ theme.typography.h5 = {
 	fontSize: 17,
 	fontWeight: 700,
 	lineHeight: "28px",
-	color: "theme.palette.primary.main",
+	color: theme.palette.primary.main,
 };
 
 theme.typography.body1 = {
@@ -106,7 +106,7 @@ theme.typography.body1 = {
 	fontSize: 17,
 	fontWeight: 400,
 	lineHeight: "28px",
-	color: "theme.palette.primary.main",
+	color: theme.palette.primary.main,
 };
 
 theme.typography.caption = {
@@ -130,7 +130,7 @@ theme.components = {
 				lineHeight: "20px",
 				textDecoration: "none",
 				textTransform: "capitalize",
-				color: "theme.palette.primary.main",
+				color: theme.palette.primary.main,
 
 				[`@media screen and (max-width: ${breakpoints.values.sm}px)`]: {
 					fontSize: 18,
@@ -141,7 +141,7 @@ theme.components = {
 			contained: {
 				background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
 				borderRadius: "50px",
-				color: "theme.palette.primary.main",
+				color: theme.palette.primary.main,
 
 			}
 		}
