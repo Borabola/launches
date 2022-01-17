@@ -1,7 +1,3 @@
-import {
-	Box,
-	Container
-} from "@material-ui/core";
 import { FormikHelpers } from "formik";
 import { FC, useState } from "react";
 import * as Yup from "yup";
@@ -14,7 +10,7 @@ import {
 	uploadFile
 } from "../../firebase/actions";
 import { database, storage } from "../../firebase/firebaseConfig";
-import { PageLayout } from "../../layouts/PageLayout";
+import { FormLayout } from "../../layouts/FormLayout";
 
 const AddProductPage: FC = () => {
 	const [fileUrl, setFileUrl] = useState<string | null>(null);
@@ -63,23 +59,14 @@ const AddProductPage: FC = () => {
 		});
 
 	return (
-		<PageLayout>
-			<Box
-				display={"flex"}
-				flexDirection={"column"}
-				justifyContent="center"
-				flexGrow="1"
-			>
-				<Container maxWidth="sm" >
-					<NewProductForm
-						initialValues={initialValuesAddProduct}
-						onSubmit={onSubmit}
-						validationSchema={validationSchema}
-						onInputChange={onInputChange}
-					/>
-				</Container>
-			</Box>
-		</PageLayout>
+		<FormLayout>
+			<NewProductForm
+				initialValues={initialValuesAddProduct}
+				onSubmit={onSubmit}
+				validationSchema={validationSchema}
+				onInputChange={onInputChange}
+			/>
+		</FormLayout>
 	);
 };
 

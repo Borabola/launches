@@ -1,8 +1,4 @@
-import {
-	Box,
-	Container
-} from "@material-ui/core";
-import { Theme, Typography } from "@mui/material";
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { FC, useMemo } from "react";
 import { useIntl } from "react-intl";
@@ -13,7 +9,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { IValue } from "../../contexts/AuthContext.types";
 import { database } from "../../firebase/firebaseConfig";
 import useProducts from "../../hooks/useProduct";
-import { PageLayout } from "../../layouts/PageLayout";
+import { DashboardLayout } from "../../layouts/DashboardLayout";
 import { Ensure } from "../../utils/helper";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -38,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
 
-const Dashboard: FC = () => {
+export const Dashboard: FC = () => {
 	const intl = useIntl();
 	const classes = useStyles();
 
@@ -88,27 +84,11 @@ const Dashboard: FC = () => {
 	);
 
 	return (
-		<PageLayout>
-			<Box
-				display={"flex"}
-				flexDirection={"column"}
-				justifyContent="center"
-			>
-				<Container maxWidth="lg" >
-					<Typography
-						variant="h2"
-						mb="30px"
-					>{intl.formatMessage({ id: "productList" })}
-					</Typography>
-
-					<MainTable
-						columns={columns}
-						data={productData}
-					/>
-				</Container>
-			</Box>
-		</PageLayout>
+		<DashboardLayout >
+			<MainTable
+				columns={columns}
+				data={productData}
+			/>
+		</DashboardLayout>
 	);
 };
-
-export default Dashboard;

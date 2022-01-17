@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { LoginForm } from "../../components/forms/LoginForm";
 import { stateType, Values } from "../../components/forms/LoginForm/LoginForm.types";
 import { useAuth } from "../../contexts/AuthContext";
-import { LoginLayout } from "../../layouts/LoginLayout";
+import { FormLayout } from "../../layouts/FormLayout";
 import { AppRouteEnum } from "../../types/Enums";
 
 export const Login: FC = () => {
@@ -37,13 +37,13 @@ export const Login: FC = () => {
 		});
 
 	return (
-		<LoginLayout>
+		<FormLayout>
 			<LoginForm
 				initialValues={initialValuesLogin}
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
 				pathFrom={currentState}
 			/>
-		</LoginLayout>
+		</FormLayout>
 	);
 };

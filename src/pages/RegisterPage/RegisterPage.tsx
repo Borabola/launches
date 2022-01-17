@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { RegisterForm } from "../../components/forms/RegisterForm";
 import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 import { useAuth } from "../../contexts/AuthContext";
-import { LoginLayout } from "../../layouts/LoginLayout";
+import { FormLayout } from "../../layouts/FormLayout";
 
 export const RegisterPage: FC = () => {
 	const authContext = useAuth();
@@ -30,12 +30,12 @@ export const RegisterPage: FC = () => {
 		});
 
 	return (
-		<LoginLayout>
+		<FormLayout>
 			<RegisterForm
 				initialValues={initialValuesSignIn}
 				onSubmit={onSubmit}
 				validationSchema={validationSchema}
 			/>
-		</LoginLayout>
+		</FormLayout>
 	);
 };
