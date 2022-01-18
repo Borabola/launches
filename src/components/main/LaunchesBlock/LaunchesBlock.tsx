@@ -1,7 +1,6 @@
 import {
 	Box, Grid, Typography
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import {
 	FC, useCallback, useEffect, useRef, useState
 } from "react";
@@ -11,21 +10,7 @@ import { useGetLaunchesQuery } from "../../../redux/services/api";
 import { REQUEST_QNT } from "../../../utils/const";
 import { Loader } from "../../common/Loader";
 import { LaunchCard } from "../LaunchCard";
-
-const useStyles = makeStyles({
-	launchesWrapper: {
-		width: "100%",
-	},
-	launchesTitle: {
-		textAlign: "center",
-	},
-	loaderWrapper: {
-		width: "100%",
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-	}
-});
+import { useStyles } from "./LaunchBlock.styles";
 
 const options = {
 	root: null,
@@ -50,7 +35,6 @@ export const LaunchesBlock: FC = () => {
 		() => {
 			if (currentData && currentData.launches.length > 0) {
 				setTotalCount(currentData.totalQnt);
-
 				const allLaunches = new Set([...currentLaunches, ...currentData.launches]);
 				setCurrentLaunches(Array.from(allLaunches));
 			}
