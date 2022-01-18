@@ -8,6 +8,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		justifyContent: "center"
 	},
 	formContainer: {
-		maxWidth: theme.breakpoints.values.lg,
+		"&.MuiContainer-root": {
+			maxWidth: theme.breakpoints.values.lg,
+		}
 	}
 }));

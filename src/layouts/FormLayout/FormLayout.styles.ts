@@ -9,7 +9,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		justifyContent: "center",
 		flexGrow: 1
 	},
-	formContainer: {
-		maxWidth: theme.breakpoints.values.sm,
+	loginContainer: {
+		"&.MuiContainer-root": {
+			maxWidth: theme.breakpoints.values.sm,
+		}
 	}
 }));
