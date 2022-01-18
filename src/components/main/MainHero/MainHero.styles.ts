@@ -1,5 +1,6 @@
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import BgImage from "../../../assets/common/bg_hero.png";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	button: {

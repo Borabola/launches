@@ -10,9 +10,10 @@ import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useStyles } from "./LoginForm.styles";
 import type { Props } from "./LoginForm.types";
+import { validationSchema } from "./LoginForm.schema";
 
 export const LoginForm: FC<Props> = ({
-	initialValues, validationSchema, onSubmit, pathFrom
+	initialValues, onSubmit, pathFrom
 }) => {
 	const classes = useStyles();
 	const authContext = useAuth();

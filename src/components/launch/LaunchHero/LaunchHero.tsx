@@ -1,6 +1,4 @@
-import {
-	Container, Typography
-} from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import {
 	FC, useEffect, useLayoutEffect, useRef, useState

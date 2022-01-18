@@ -9,9 +9,10 @@ import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useStyles } from "./RegisterForm.styles";
 import { Props } from "./RegisterForm.types";
+import { validationSchema } from "./RegisterForm.schema";
 
 export const RegisterForm: FC<Props> = ({
-	initialValues, validationSchema, onSubmit
+	initialValues, onSubmit
 }) => {
 	const classes = useStyles();
 

@@ -9,9 +9,10 @@ import { Form } from "react-formik-ui";
 import { useIntl } from "react-intl";
 import { useStyles } from "./NewProductForm.styles";
 import type { Props } from "./NewProductForm.types";
+import { validationSchema } from "./NewProductForm.schema";
 
 export const NewProductForm: FC<Props> =
-	({ initialValues, validationSchema, onSubmit, onInputChange }) => {
+	({ initialValues, onSubmit, onInputChange }) => {
 		const intl = useIntl();
 		const classes = useStyles();
 		const onDrop = useCallback(
