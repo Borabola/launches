@@ -121,7 +121,6 @@ theme.typography.caption = {
 theme.components = {
 	MuiButton: {
 		styleOverrides: {
-
 			root: {
 				padding: "29px 85px",
 				fontFamily: "Montserrat",
@@ -155,6 +154,14 @@ theme.components = {
 				},
 				transition: "0.3s ease",
 			},
+		}
+	},
+	MuiOutlinedInput: {
+		styleOverrides: {
+			root: {
+				color: theme.palette.secondary.main,
+				borderColor: theme.palette.secondary.main,
+			}
 		}
 	}
 };

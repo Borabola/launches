@@ -1,6 +1,5 @@
 import { FormikHelpers } from "formik";
 import { FC, useState } from "react";
-import * as Yup from "yup";
 import { NewProductForm } from "../../components/forms/NewProductForm";
 import { useAuth } from "../../contexts/AuthContext";
 import {
@@ -49,21 +48,11 @@ export const AddProductPage: FC = () => {
 		form.resetForm();
 	};
 
-	const validationSchema =
-		Yup.object().shape({
-			productName: Yup.string().min(2).max(255).required("Product name is required"),
-			file: Yup.mixed()
-				.nullable()
-				.notRequired(),
-			productQnt: Yup.number().min(0)
-		});
-
 	return (
 		<FormLayout>
 			<NewProductForm
 				initialValues={initialValuesAddProduct}
 				onSubmit={onSubmit}
-				validationSchema={validationSchema}
 				onInputChange={onInputChange}
 			/>
 		</FormLayout>

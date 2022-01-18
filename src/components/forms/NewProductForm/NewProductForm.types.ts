@@ -9,7 +9,6 @@ export interface IInitialValues {
 
 export type Props = {
 	initialValues: IInitialValues,
-	validationSchema: unknown,
 	onSubmit: (values: IProductValues, form: FormikHelpers<IProductValues>) => void,
 	onInputChange: (files: File[]) => void
 };

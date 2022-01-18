@@ -2,58 +2,14 @@ import {
 	Box,
 	Button,
 	Link,
-	TextField, Theme, Typography
+	TextField, Typography
 } from "@material-ui/core";
-import { makeStyles } from "@mui/styles";
 import { Form, Formik } from "formik";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useStyles } from "./LoginForm.styles";
 import type { Props } from "./LoginForm.types";
-
-const useStyles = makeStyles((theme: Theme) => ({
-	pageContent: {
-		"& fieldset": {
-			borderColor: theme.palette.secondary.main,
-			"&:hover": {
-				borderColor: theme.palette.secondary.main,
-			}
-		},
-		"& .MuiOutlinedInput-root": {
-			"& input": {
-				color: theme.palette.secondary.main,
-				borderColor: theme.palette.secondary.main,
-
-				"&::placeholder": {
-					color: theme.palette.secondary.main,
-				},
-			},
-			"& fieldset": {
-				borderColor: theme.palette.secondary.main,
-			},
-			"&:hover fieldset": {
-				borderColor: "#8E2DE2",
-			},
-			"&.Mui-focused fieldset": {
-				borderColor: "#4A00E0",
-			},
-			"& input::placeholder": {
-				color: "#4A00E0",
-			},
-		},
-		"& label.Mui-focused": {
-			color: "#4A00E0",
-		},
-	},
-	textField: {
-		"&::placeholder": {
-			borderColor: theme.palette.secondary.main,
-		},
-		"&:hover": {
-			borderColor: theme.palette.secondary.main,
-		}
-	},
-}));
 
 export const LoginForm: FC<Props> = ({
 	initialValues, validationSchema, onSubmit, pathFrom
@@ -72,7 +28,6 @@ export const LoginForm: FC<Props> = ({
 			initialValues={initialValues}
 			validationSchema={validationSchema}
 			onSubmit={onSubmit}
-
 		>
 			{({
 				errors,
@@ -151,14 +106,12 @@ export const LoginForm: FC<Props> = ({
 						</Typography>
 					</Box>
 					<Box mt={2}>
-
 						<Button
 							onClick={() => googlePopupSignIn(pathFrom)}
 							fullWidth={true}
 						>
 							Login with Google account
 						</Button>
-
 					</Box>
 				</Form>
 			)}
