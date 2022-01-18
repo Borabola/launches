@@ -16,10 +16,8 @@ export const LaunchPage: FC<Props> = ({ currentLaunch, isCurrentFetching, lunchC
 			{(!isCurrentFetching && currentLaunch) ?
 				(<>
 					<LaunchHero launch={currentLaunch} />
-
-					<Container maxWidth="lg">
+					<Container className={classes.pageContainer}>
 						<section className={classes.pageContent} >
-
 							<LaunchPageContent launch={currentLaunch} />
 						</section>
 					</Container>

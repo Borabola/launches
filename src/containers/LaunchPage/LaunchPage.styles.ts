@@ -25,5 +25,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			marginTop: theme.spacing(-5),
 			padding: theme.spacing(5),
 		},
+	},
+	pageContainer: {
+		"&.MuiContainer-root": {
+			maxWidth: theme.breakpoints.values.lg,
+		}
 	}
 }));
