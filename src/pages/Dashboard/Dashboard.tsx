@@ -4,12 +4,11 @@ import { Column } from "react-table";
 import { MainTable } from "../../components/common/MainTable";
 import type { Data } from "../../components/common/MainTable/MainTable.types";
 import { useAuth } from "../../contexts/AuthContext";
-
 import { database } from "../../firebase/firebaseConfig";
 import useProducts from "../../hooks/useProduct";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
-import { IAuthCurrentUserId } from "./Dashboard.types";
 import { useStyles } from "./Dashboard.styles";
+import { AuthCurrentUser } from "./Dashboard.types";
 
 export const Dashboard: FC = () => {
 	const intl = useIntl();
@@ -19,10 +18,10 @@ export const Dashboard: FC = () => {
 	if (authContext === null) {
 		return null;
 	}
-	const { currentUserId } = authContext as IAuthCurrentUserId;
+	const { currentUser } = authContext as AuthCurrentUser;
 
 	const products = useProducts(
-		currentUserId,
+		currentUser.userId,
 		database
 	);
 

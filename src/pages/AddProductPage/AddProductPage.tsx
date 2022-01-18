@@ -3,13 +3,15 @@ import { FC, useState } from "react";
 import { NewProductForm } from "../../components/forms/NewProductForm";
 import { useAuth } from "../../contexts/AuthContext";
 import {
-	IAuthCurrentUserId,
-	IProductValues,
-	setInfoToDatabase,
+	setProductToDatabase,
 	uploadFile
 } from "../../firebase/actions";
+import {
+	AuthCurrentUser,
+	ProductValues
+} from "../../firebase/actions.types";
 import { database, storage } from "../../firebase/firebaseConfig";
-import { FormLayout } from "../../layouts/FormLayout";
+import { FormWithHeaderLayout } from "../../layouts/FormWithHeaderLayout";
 
 export const AddProductPage: FC = () => {
 	const [fileUrl, setFileUrl] = useState<string | null>(null);
@@ -19,7 +21,7 @@ export const AddProductPage: FC = () => {
 	if (authContext === null) {
 		return null;
 	}
-	const { currentUserId } = authContext as IAuthCurrentUserId;
+	const { currentUser } = authContext as AuthCurrentUser;
 
 	const onInputChange = async (files: File[]) => {
 		if (files.length === 0) {
@@ -34,11 +36,11 @@ export const AddProductPage: FC = () => {
 	};
 
 	const onSubmit = (
-		values: IProductValues,
-		form: FormikHelpers<IProductValues>
+		values: ProductValues,
+		form: FormikHelpers<ProductValues>
 	) => {
-		setInfoToDatabase(
-			currentUserId,
+		setProductToDatabase(
+			currentUser.userId,
 			values,
 			fileUrl,
 			database
@@ -49,12 +51,12 @@ export const AddProductPage: FC = () => {
 	};
 
 	return (
-		<FormLayout>
+		<FormWithHeaderLayout>
 			<NewProductForm
 				initialValues={initialValuesAddProduct}
 				onSubmit={onSubmit}
 				onInputChange={onInputChange}
 			/>
-		</FormLayout>
+		</FormWithHeaderLayout>
 	);
 };

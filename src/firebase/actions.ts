@@ -4,25 +4,15 @@ import { ref, set } from "firebase/database";
 import {
 	getDownloadURL, ref as storeRef, uploadBytesResumable
 } from "firebase/storage";
-import { IValue } from "../contexts/AuthContext.types";
-import { Ensure } from "../utils/helper";
 import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
+import { ProductValues } from "./actions.types";
 
-export interface IProductValues {
-	id?: number;
-	productName: string;
-	productQnt: number;
-	file?: string;
-}
-export type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
-
-export const setInfoToDatabase = (
+export const setProductToDatabase = (
 	currentUserId: string,
-	values: IProductValues,
+	values: ProductValues,
 	fileUrl: string | null,
 	database: Database,
 ) => {
-
 	set(
 		ref(
 			database,

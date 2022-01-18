@@ -24,14 +24,14 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 		>
 			<Box className={classes.headerContainer}>
 				<Box className={classes.loginWrap}>
-					{currentUser &&
+					{currentUser && currentUser.email &&
 						<>
 							<Typography
 								variant="body1"
 								component="div"
 								className={classes.headerStyled}
 							>
-								Login as {"  " + currentUser}
+								Login as {"  " + currentUser.email}
 							</Typography>
 							<ButtonUnstyled
 								color="primary"

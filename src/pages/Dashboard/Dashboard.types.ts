@@ -1,4 +1,4 @@
-import { IValue } from "../../contexts/AuthContext.types";
-import { Ensure } from "../../utils/helper";
+import { AuthValues } from "../../contexts/AuthContext.types";
+import { Ensure } from "../../types/helper";
 
-export type IAuthCurrentUserId = Ensure<IValue, "currentUserId">;
+export type AuthCurrentUser = Ensure<AuthValues, "currentUser">;

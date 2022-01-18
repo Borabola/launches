@@ -9,15 +9,20 @@ export type SProps = {
 	email: string,
 	password: string,
 };
+
 export type FirebaseError = {
 	code: string,
 	message: string,
 	name: string,
 };
 
-export interface IValue {
-	currentUser: string | null;
-	currentUserId: string | null;
+export type CurrentUser = {
+	email: string | null,
+	userId: string
+};
+
+export interface AuthValues {
+	currentUser: CurrentUser | null;
 	login: ({ email, password }: SProps, { from }: stateType) => Promise<void>
 	signup: ({
 		email, password
