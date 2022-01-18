@@ -1,31 +1,10 @@
 import { Box, Link } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { AppRouteEnum } from "../../../types/Enums";
+import { AppRouteEnum } from "../../../../types/Enums";
+import { useStyles } from "./UserMenu.styles";
 
-const useStyles = makeStyles(() => ({
-	menuWrap: {
-		maxWidth: "1180px",
-		padding: "20px 0",
-		margin: 0,
-		display: "flex",
-		alignItems: "center",
-	},
-	menuLink: {
-		display: "inline-flex",
-		textDecoration: "none",
-		transition: "0.3s ease",
-		marginRight: "30px !important",
-		cursor: "pointer",
-
-		"&:hover": {
-			opacity: "0.9",
-		},
-	},
-}));
-
-const UserMenu: FC = () => {
+export const UserMenu: FC = () => {
 	const classes = useStyles();
 
 	return (
@@ -52,5 +31,3 @@ const UserMenu: FC = () => {
 		</Box>
 	);
 };
-
-export default UserMenu;
