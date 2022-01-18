@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { spacelaunchesSlice } from "../services/api";
+import { spacelaunchesSlice } from "./services/api";
 import authSlice from "./auth/sliceReducer";
 
 export default combineReducers({

@@ -1,23 +1,11 @@
 import {
-	Box, Container, Link
+	Box, Container, Link, Typography
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { PageLayout } from "../../layouts/PageLayout";
 import { AppRouteEnum } from "../../types/Enums";
-
-const useStyles = makeStyles(() => ({
-	pageWrapper: {
-		fontFamily: "Montserrat",
-		width: "100%",
-		display: "flex",
-		flexDirection: "column",
-		justifyContent: "center",
-		flexGrow: 1,
-		margin: "0 auto",
-	},
-}));
+import { useStyles } from "./NotFound.styles";
 
 export const NotFound: FC = () => {
 	const classes = useStyles();
@@ -29,7 +17,9 @@ export const NotFound: FC = () => {
 				className={classes.pageWrapper}
 			>
 				<Container maxWidth="lg">
-					<h1 >Page not found</h1>
+					<Typography variant="h3">
+						Page not found
+					</Typography>
 					<Link
 						component={RouterLink}
 						to={AppRouteEnum.ROOT}
@@ -42,5 +32,3 @@ export const NotFound: FC = () => {
 		</PageLayout>
 	);
 };
-
-export default NotFound;

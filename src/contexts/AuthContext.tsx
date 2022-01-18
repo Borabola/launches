@@ -27,10 +27,10 @@ import {
 	outputtingGoogleError
 } from "../utils/toastHelper";
 import {
-	FirebaseError, IValue, Props, SProps
+	AuthValues, CurrentUser, FirebaseError, Props, SProps
 } from "./AuthContext.types";
 
-const AuthContext = createContext<IValue | null>(null);
+const AuthContext = createContext<AuthValues | null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);
@@ -38,26 +38,28 @@ export const useAuth = () => {
 
 export const AuthProvider: FC = ({ children }: Props) => {
 	const intl = useIntl();
-	const [currentUser, setCurrentUser] = useState<string | null>(null);
+	const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
 
 	useEffect(
 		() => {
+			let newUser;
 			setIsLoading(true);
 			const unsubsribe = onAuthStateChanged(
 				auth,
 				(user) => {
-					if (user) {
-						setCurrentUser(user.email);
-						setCurrentUserId(user.uid);
+					if (user && user.email && user.uid) {
+						newUser = {
+							email: user.email,
+							userId: user.uid
+						};
+						setCurrentUser(newUser);
 						dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
 					} else {
 						setCurrentUser(null);
-						setCurrentUserId(null);
 						dispatch(requireAuthorization(AuthorizationStatusEnum.NO_AUTH));
 					}
 					setIsLoading(false);
@@ -96,10 +98,12 @@ export const AuthProvider: FC = ({ children }: Props) => {
 				email,
 				password
 			);
-			setCurrentUser(result.user.email);
-			setCurrentUserId(result.user.uid);
+			const newUser = {
+				email: result.user.email,
+				userId: result.user.uid
+			};
+			setCurrentUser(newUser);
 			dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
-			//history.push(AppRouteEnum.DASHBOARD);
 			history.replace(from);
 
 		} catch (error) {
@@ -123,10 +127,12 @@ export const AuthProvider: FC = ({ children }: Props) => {
 				auth,
 				provider
 			);
-			setCurrentUser(result.user.email);
-			setCurrentUserId(result.user.uid);
+			const newUser = {
+				email: result.user.email,
+				userId: result.user.uid
+			};
+			setCurrentUser(newUser);
 			dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
-			//history.push(AppRouteEnum.DASHBOARD);
 			history.replace(from);
 		} catch (error) {
 			outputtingGoogleError(
@@ -137,8 +143,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 	};
 
 	const value = {
-		currentUser, // = user.emailVerified
-		currentUserId,
+		currentUser,
 		login,
 		signup,
 		logout,

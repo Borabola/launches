@@ -11,6 +11,7 @@ const PrivateRoute: FC<Props> = ({
 	...rest
 }) => {
 	const authContext = useAuth();
+
 	if (authContext === null) {
 		return null;
 	}

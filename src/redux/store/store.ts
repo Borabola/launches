@@ -9,7 +9,7 @@ import {
 	REGISTER, REHYDRATE
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { spacelaunchesSlice } from "../../services/api";
+import { spacelaunchesSlice } from "../services/api";
 import { isDevelopment } from "../../utils/helper";
 import rootReducer from "../rootReducer";
 import type { AppDispatch, RootState } from "./store.types";

@@ -1,3 +1,10 @@
+import {
+	currentLaunchAdapter, eventAdapter, launchAdapter
+} from "./adapter";
+
+export type LaunchAdapterType = ReturnType<typeof launchAdapter>;
+export type EventAdapterType = ReturnType<typeof eventAdapter>;
+export type CurrentLaunchAdapterType = ReturnType<typeof currentLaunchAdapter>;
 
 export interface ResultType {
 	id: number;
@@ -30,7 +37,7 @@ export interface Launch {
 	image: string;
 }
 
-export interface Status2 {
+export interface Status {
 	id: number;
 	name: string;
 }
@@ -39,9 +46,11 @@ export interface Spacestation {
 	id: number;
 	url: string;
 	name: string;
-	status: Status2;
+	status: Status;
 	orbit: string;
 	image_url?: null | string | string[];
+	founded?: string;
+	description?: string;
 }
 
 export interface Expedition {
@@ -53,20 +62,9 @@ export interface Expedition {
 	spacestation: Spacestation;
 }
 
-export interface Status3 {
+export interface Status {
 	id: number;
 	name: string;
-}
-
-export interface Spacestation2 {
-	id: number;
-	url: string;
-	name: string;
-	status: Status3;
-	founded: string;
-	description: string;
-	orbit: string;
-	image_url?: null | string | string[];
 }
 
 export interface EventResult {
@@ -82,7 +80,7 @@ export interface EventResult {
 	date: Date;
 	launches: Launch[];
 	expeditions: Expedition[];
-	spacestations: Spacestation2[];
+	spacestations: Spacestation[];
 }
 
 export interface EventData {
@@ -184,12 +182,7 @@ export interface LauncherStage {
 	landing: Landing;
 }
 
-export interface Status2 {
-	id: number;
-	name: string;
-}
-
-export interface Type2 {
+export interface Status {
 	id: number;
 	name: string;
 }
@@ -205,7 +198,7 @@ export interface SpacecraftConfig {
 	id: number;
 	url: string;
 	name: string;
-	type: Type2;
+	type: Status;
 	agency: Agency;
 	in_use: boolean;
 	capability: string;
@@ -229,7 +222,7 @@ export interface Spacecraft {
 	url: string;
 	name: string;
 	serial_number: string;
-	status: Status2;
+	status: Status;
 	description: string;
 	spacecraft_config: SpacecraftConfig;
 }
@@ -262,7 +255,7 @@ export interface Mission {
 	orbit_abbrev: string;
 }
 
-export interface Location2 {
+export interface LocationCountry {
 	id: number;
 	name: string;
 	country_code: string;
@@ -277,7 +270,7 @@ export interface Pad {
 	map_url: string;
 	latitude: string;
 	longitude: string;
-	location: Location2;
+	location: LocationCountry;
 }
 
 export interface LaunchResult {

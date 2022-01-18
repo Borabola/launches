@@ -1,6 +1,6 @@
 import { SerializedError } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import type { CurrentLaunchAdapterType } from "../../utils/adapter";
+import type { CurrentLaunchAdapterType } from "../../redux/services/adapter.types";
 
 export type Props = {
     currentLaunch: CurrentLaunchAdapterType | null,

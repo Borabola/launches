@@ -1,4 +1,4 @@
-import { launchAdapter } from "utils/adapter";
+import { launchAdapter } from "redux/services/adapter";
 
 export type Props = {
 	launch: ReturnType<typeof launchAdapter>

@@ -1,15 +1,14 @@
-import { IProductValues } from "firebase/actions";
+import { ProductValues } from "firebase/actions.types";
 import { FormikHelpers } from "formik";
 
-export interface IInitialValues {
+export interface InitialValues {
 	productName: string,
 	file: string,
 	productQnt: number,
 }
 
 export type Props = {
-	initialValues: IInitialValues,
-	validationSchema: unknown,
-	onSubmit: (values: IProductValues, form: FormikHelpers<IProductValues>) => void,
+	initialValues: InitialValues,
+	onSubmit: (values: ProductValues, form: FormikHelpers<ProductValues>) => void,
 	onInputChange: (files: File[]) => void
 };
