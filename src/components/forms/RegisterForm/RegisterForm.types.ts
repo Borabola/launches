@@ -1,12 +1,12 @@
 import { FormikHelpers } from "formik";
 
-export interface IInitialValues {
+export interface InitialValues {
 	email: string,
 	password: string,
 	passwordConfirm: string
 }
 
 export type Props = {
-	initialValues: IInitialValues,
-	onSubmit: (values: IInitialValues, form: FormikHelpers<IInitialValues>) => void,
+	initialValues: InitialValues,
+	onSubmit: (values: InitialValues, form: FormikHelpers<InitialValues>) => void,
 };

@@ -73,7 +73,7 @@ export const LaunchCard: FC<Props> = ({ launch }) => {
 			>
 				<Typography
 					variant="h3"
-					mb="50px"
+					className={classes.text}
 				>
 					{launch.launchName}
 				</Typography>

@@ -44,7 +44,6 @@ export const LaunchHero: FC<Props> = ({ launch }) => {
 	);
 
 	return (
-
 		<Box
 			component="div"
 			className={classes.heroWrapper}

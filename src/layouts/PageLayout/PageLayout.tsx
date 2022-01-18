@@ -7,6 +7,7 @@ import { Props } from "./PageLayout.types";
 
 export const PageLayout: FC<Props> = ({ children }) => {
 	const classes = useStyles();
+
 	return (
 		<Box className={classes.pageWrapper}>
 			<Header />

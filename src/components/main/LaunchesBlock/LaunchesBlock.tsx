@@ -21,9 +21,9 @@ const options = {
 export const LaunchesBlock: FC = () => {
 	const [currentLaunches, setCurrentLaunches] = useState<LaunchAdapterType[]>([]);
 	const [launchesQnt, setLaunchesQnt] = useState<number>(0);
+	const [totalCount, setTotalCount] = useState<number>(1);
 	const classes = useStyles();
 	const intl = useIntl();
-	const [totalCount, setTotalCount] = useState<number>(1);
 
 	const observerRef = useRef<IntersectionObserver>();
 

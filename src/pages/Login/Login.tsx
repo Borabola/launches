@@ -10,6 +10,7 @@ import { AppRouteEnum } from "../../types/Enums";
 export const Login: FC = () => {
 	const { state } = useLocation<stateType>();
 	const authContext = useAuth();
+
 	if (authContext === null) {
 		return null;
 	}

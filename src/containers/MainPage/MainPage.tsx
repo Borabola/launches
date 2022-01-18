@@ -14,25 +14,24 @@ export const MainPage: FC<Props> = ({ events, isEventsFetching }) => {
 	const classes = useStyles();
 
 	return (
-        <Box className={classes.pageWrapper}>
-            <Header isMain />
-            <MainHero />
+		<Box className={classes.pageWrapper}>
+			<Header isMain />
+			<MainHero />
+			<Container className={classes.pageContainer} >
+				{(!isEventsFetching) ?
+					<section className={classes.pageContent}>
 
-            <Container maxWidth="lg">
-                {(!isEventsFetching) ?
-                    <section className={classes.pageContent}>
+						{events && <EventsSwiper events={events} />}
 
-                        {events && <EventsSwiper events={events} />}
-
-                        <LaunchesBlock />
-                    </section>
-                    :
-                    <Box className={classes.errorsBlock}>
-                        <Loader />
-                    </Box>
-                }
-            </Container>
-            <Footer />
-        </Box>
+						<LaunchesBlock />
+					</section>
+					:
+					<Box className={classes.errorsBlock}>
+						<Loader />
+					</Box>
+				}
+			</Container>
+			<Footer />
+		</Box>
 	);
 };

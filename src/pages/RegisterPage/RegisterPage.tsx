@@ -1,12 +1,13 @@
 import { FormikHelpers } from "formik";
 import { FC } from "react";
 import { RegisterForm } from "../../components/forms/RegisterForm";
-import { IInitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
+import { InitialValues } from "../../components/forms/RegisterForm/RegisterForm.types";
 import { useAuth } from "../../contexts/AuthContext";
 import { FormLayout } from "../../layouts/FormLayout";
 
 export const RegisterPage: FC = () => {
 	const authContext = useAuth();
+
 	if (authContext === null) {
 		return null;
 	}
@@ -15,7 +16,7 @@ export const RegisterPage: FC = () => {
 	const initialValuesSignIn = { email: "", password: "", passwordConfirm: "" };
 
 	const onSubmit = (
-		values: IInitialValues, form: FormikHelpers<IInitialValues>
+		values: InitialValues, form: FormikHelpers<InitialValues>
 	) => {
 		signup(values);
 		form.setSubmitting(false);

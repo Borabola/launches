@@ -9,6 +9,7 @@ import { Props } from "./FormWithHeaderLayout.types";
 
 export const FormWithHeaderLayout: FC<Props> = ({ children }) => {
 	const classes = useStyles();
+
 	return (
 		<PageLayout>
 			<Box className={classes.pageWrap}>

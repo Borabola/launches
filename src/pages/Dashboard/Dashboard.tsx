@@ -5,7 +5,7 @@ import { MainTable } from "../../components/common/MainTable";
 import type { Data } from "../../components/common/MainTable/MainTable.types";
 import { useAuth } from "../../contexts/AuthContext";
 import { database } from "../../firebase/firebaseConfig";
-import useProducts from "../../hooks/useProduct";
+import useProducts from "../../hooks/useProducts";
 import { DashboardLayout } from "../../layouts/DashboardLayout";
 import { useStyles } from "./Dashboard.styles";
 import { AuthCurrentUser } from "./Dashboard.types";

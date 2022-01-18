@@ -33,5 +33,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	errorsBlock: {
 		width: "100%"
 
+	},
+	pageContainer: {
+		"&.MuiContainer-root": {
+			maxWidth: theme.breakpoints.values.lg,
+		}
 	}
 }));

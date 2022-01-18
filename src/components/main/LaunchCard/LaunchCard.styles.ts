@@ -50,4 +50,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			opacity: "0.9",
 		},
 	},
+	text: {
+		marginBottom: theme.spacing(0.625)
+	}
 }));

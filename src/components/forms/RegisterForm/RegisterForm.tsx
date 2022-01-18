@@ -7,13 +7,11 @@ import {
 import { Formik } from "formik";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import { validationSchema } from "./RegisterForm.schema";
 import { useStyles } from "./RegisterForm.styles";
 import { Props } from "./RegisterForm.types";
-import { validationSchema } from "./RegisterForm.schema";
 
-export const RegisterForm: FC<Props> = ({
-	initialValues, onSubmit
-}) => {
+export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 	const classes = useStyles();
 
 	return (

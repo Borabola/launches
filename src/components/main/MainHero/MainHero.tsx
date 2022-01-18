@@ -12,7 +12,6 @@ export const MainHero: FC = () => {
 	const classes = useStyles();
 
 	return (
-
 		<Box
 			component="div"
 			className={classes.heroWrapper}

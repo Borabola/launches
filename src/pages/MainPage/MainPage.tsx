@@ -10,6 +10,7 @@ export const MainPage: FC = () => {
 	const { data: events = null, isFetching: isEventsFetching } = useGetEventsQuery();
 
 	const authContext = useAuth();
+
 	if (authContext === null) {
 		return null;
 	}

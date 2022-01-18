@@ -12,6 +12,7 @@ import { Props } from "./DashboardLayout.types";
 export const DashboardLayout: FC<Props> = ({ children }) => {
 	const classes = useStyles();
 	const intl = useIntl();
+
 	return (
 		<PageLayout>
 			<Box className={classes.pageWrap}>

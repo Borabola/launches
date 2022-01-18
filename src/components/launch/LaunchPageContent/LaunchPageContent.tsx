@@ -1,28 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { FC } from "react";
+import { useStyles } from "./LaunchPageContent.styles";
 import type { Props } from "./LaunchPageContent.types";
-
-const useStyles = makeStyles({
-	launchContentWrap: {
-		width: "100%",
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		color: "#fff",
-
-		"& h5": {
-			color: "#F1EBFF",
-		}
-	},
-	launchLineWrap: {
-		display: "block",
-	},
-	launchVideoWrap: {
-		widthh: "100%",
-		height: "inherit",
-	}
-});
 
 export const LaunchPageContent: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
@@ -45,7 +24,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 
 			<Typography
 				variant="h2"
-				mb="20px"
+				className={classes.subTitle}
 			>
 				Overview
 			</Typography>
@@ -56,15 +35,13 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 						<Typography
 							variant="h5"
 							component="span"
-							mb="5px"
-							display="inline"
+							className={classes.text}
 						>
 							Destination:
 						</Typography>
 						<Typography
 							component="span"
-							mb="5px"
-							display="inline"
+							className={classes.text}
 						>
 							{" " + launch.launchDestination}
 						</Typography>
@@ -74,16 +51,14 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 						<Typography
 							variant="h5"
 							component="span"
-							mb="5px"
-							display="inline"
+							className={classes.text}
 						>
 							Mission:
 						</Typography>
 						<Typography
 							variant="h5"
 							component="span"
-							mb="5px"
-							display="inline"
+							className={classes.text}
 						>
 							{" " + launch.launchMission}
 						</Typography>

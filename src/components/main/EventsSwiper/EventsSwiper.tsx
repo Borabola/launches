@@ -14,6 +14,7 @@ import type { Props } from "./EventSwiper.types";
 export const EventsSwiper: FC<Props> = ({ events }) => {
 	const classes = useStyles();
 	const intl = useIntl();
+
 	const params = {
 		Swiper,
 		modules: [Navigation],
