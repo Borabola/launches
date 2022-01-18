@@ -10,7 +10,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { AppRouteEnum } from "../../../types/Enums";
 import { useStyles } from "./Header.styles";
 import type { IAuth, Props } from "./Header.types";
-import UserMenu from "./UserMenu";
+import { UserMenu } from "./UserMenu";
 
 export const Header: FC<Props> = ({ isMain = false }) => {
 	const classes = useStyles();
