@@ -4,11 +4,7 @@ const REQUEST_QNT = 30;
 // Sol key for encrypt user info token
 const KEY = "skeletonEcnryptKey";
 
-const MINUTE = 60;
-const HOURS = 24;
-const SECONDS = 60;
-
 const MAX_FILE_SIZE = 1000000; //1mb
 const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-export { MAX_FILE_SIZE, HOURS, KEY, MINUTE, REQUEST_QNT, SECONDS, SUPPORTED_FORMATS };
+export { MAX_FILE_SIZE, KEY, REQUEST_QNT, SUPPORTED_FORMATS };

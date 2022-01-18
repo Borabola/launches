@@ -4,12 +4,15 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	heroAbout: {
 		maxWidth: theme.spacing(74.4),
-		marginBottom: theme.spacing(6.25),
 		color: theme.palette.info.main,
 		fontFamily: "Roboto",
 		fontWeight: "400",
 		fontSize: "1.0625rem",
 		lineHeight: "165%",
+		"&.MuiTypography-root": {
+			textAlign: "center",
+			marginBottom: theme.spacing(6.25),
+		}
 	},
 	heroWrapper: {
 		position: "relative",
@@ -55,6 +58,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		[theme.breakpoints.down("sm")]: {
 			paddingLeft: 0,
 		},
+		"& span": {
+			fontFamily: "Montserrat",
+			fontSize: "60px"
+		}
 	},
 	timerWrapper: {
 		backgroundColor: "#4A00E0",
@@ -64,7 +71,24 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		),
 		minHeight: theme.spacing(23.75),
 		minWidth: theme.spacing(97.5),
-
+		display: "flex",
+		alignItems: "center",
+		"& span": {
+			textAlign: "start",
+			paddingLeft: theme.spacing(12),
+			fontSize: 76,
+			fontWeight: 800,
+			lineHeight: "92px",
+			letterSpacing: 0,
+			[theme.breakpoints.down("lg")]: {
+				fontSize: 60,
+				lineHeight: "56px",
+			},
+			[theme.breakpoints.down("sm")]: {
+				fontSize: 48,
+				lineHeight: "52px",
+			},
+		},
 		"& h1": {
 			textAlign: "start",
 			paddingLeft: theme.spacing(5)
@@ -73,4 +97,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	timer: {
 		color: theme.palette.primary.main,
 	},
+	pageContainer: {
+		"&.MuiContainer-root": {
+			maxWidth: theme.breakpoints.values.lg,
+		}
+	}
 }));
