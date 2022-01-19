@@ -3,22 +3,7 @@ import Box from "@mui/material/Box";
 import { FC } from "react";
 import Countdown, { zeroPad } from "react-countdown";
 import { useStyles } from "./LaunchHero.styles";
-import type { Props } from "./LaunchHero.types";
-
-export interface CountdownTimeDeltaFormatted {
-	readonly days: string;
-	readonly hours: string;
-	readonly minutes: string;
-	readonly seconds: string;
-}
-
-type RenderPropsType = {
-	days: number,
-	hours: number,
-	minutes: number,
-	seconds: number,
-	completed: boolean,
-};
+import type { Props, RenderPropsType } from "./LaunchHero.types";
 
 export const LaunchHero: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
