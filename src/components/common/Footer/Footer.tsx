@@ -34,6 +34,7 @@ export const Footer: FC = () => {
 						variant="body1"
 						component="div"
 						className={classes.footerCopyright}
+						data-testid="test_id_year"
 					>
 						© {date.getFullYear()} Copyright
 					</Typography>
