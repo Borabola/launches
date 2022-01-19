@@ -2,9 +2,8 @@ import CryptoJS from "crypto-js";
 import AES from "crypto-js/aes";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import {
-	KEY, MAX_FILE_SIZE, SUPPORTED_FORMATS
-} from "./const";
+import { KEY } from "./const";
+
 dayjs.extend(isSameOrAfter);
 
 export const isDevelopment = (): boolean => process.env.NODE_ENV === "development";
@@ -33,22 +32,4 @@ export const deryptUserInfo = (): string | null => {
 	} else {
 		return null;
 	}
-};
-
-export const checkIfFileIsCorrectType = (file: File): boolean => {
-	let valid = true;
-	if (!SUPPORTED_FORMATS.includes(file.type)) {
-		valid = false;
-	}
-	return valid;
-};
-
-export const checkIfFileIsTooBig = (file: File): boolean => {
-	let valid = true;
-	const size = file.size;
-	if (size > MAX_FILE_SIZE) {
-		valid = false;
-	}
-
-	return valid;
 };

@@ -4,7 +4,4 @@ const REQUEST_QNT = 30;
 // Sol key for encrypt user info token
 const KEY = "skeletonEcnryptKey";
 
-const MAX_FILE_SIZE = 1000000; //1mb
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
-export { MAX_FILE_SIZE, KEY, REQUEST_QNT, SUPPORTED_FORMATS };
+export { KEY, REQUEST_QNT };
