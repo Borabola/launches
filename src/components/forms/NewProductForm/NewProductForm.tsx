@@ -43,7 +43,6 @@ export const NewProductForm: FC<Props> =
 		const { ref, ...rootProps } = getRootProps();
 
 		const onDelete = () => {
-			console.log("Delete file");
 			acceptedFiles.shift();
 			setShownFile(null);
 		};
@@ -118,7 +117,6 @@ export const NewProductForm: FC<Props> =
 							variant="outlined"
 							color="secondary"
 						/>
-
 						<Box
 							ref={ref}
 							className={classes.dropzoneStyle}
@@ -131,7 +129,6 @@ export const NewProductForm: FC<Props> =
 									<p>Drop the files here ...</p>
 								}
 							</Paper>
-
 						</Box>
 						<Typography variant="h5">Accepted files</Typography>
 						{shownFile && <List> {getAcceptedFileItems(shownFile)}</List>}
@@ -149,7 +146,6 @@ export const NewProductForm: FC<Props> =
 								{intl.formatMessage({ id: "addNewProduct" })}
 							</Button>
 						</Box>
-
 					</Form>
 				)}
 			</Formik>
