@@ -20,7 +20,7 @@ export const UserMenu: FC = () => {
 				to={AppRouteEnum.DASHBOARD}
 				className={classes.menuLink}
 			>
-				{intl.formatMessage({ id: "dashboard" })}
+				{intl.formatMessage({ id: "dashboardLink" })}
 			</Link>
 			<Link
 				component={RouterLink}

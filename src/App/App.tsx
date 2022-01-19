@@ -5,14 +5,19 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
+//import { persistor, store } from "../redux/store";
+import { setupStore } from "redux/store";
 import { Loader } from "../components/common/Loader";
 import { AuthProvider } from "../contexts/AuthContext";
 import AppIntlProvider from "../hocs/AppIntlProvider";
-import { persistor, store } from "../redux/store";
 import Routes from "../routes";
 import theme from "../theme";
 import "./App.scss";
+
+export const store = setupStore();
+const persistor = persistStore(store);
 
 const App: FC = () => {
 

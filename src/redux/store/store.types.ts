@@ -1,8 +1,12 @@
-import { store } from "./index";
+import { store } from "../../App/App";
+import rootReducer from "../rootReducer";
+import { setupStore } from "./index";
 
 //Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
+//export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
+export type AppStore = ReturnType<typeof setupStore>;
 
 export interface IThunkApi {
 	dispatch: AppDispatch,

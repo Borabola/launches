@@ -3,6 +3,7 @@ import {
 	Box, Link, Typography
 } from "@mui/material";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as ArrowLeftSvg } from "../../../assets/common/arrow_left.svg";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
@@ -14,6 +15,7 @@ import { UserMenu } from "./UserMenu";
 
 export const Header: FC<Props> = ({ isMain = false }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 	const { currentUser, logout } = useAuth() as IAuth;
 	const onLogoutClick = () => logout();
 
@@ -24,21 +26,22 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 		>
 			<Box className={classes.headerContainer}>
 				<Box className={classes.loginWrap}>
-					{currentUser && currentUser.email &&
+					{currentUser && currentUser?.email &&
 						<>
 							<Typography
 								variant="body1"
 								component="div"
 								className={classes.headerStyled}
 							>
-								Login as {"  " + currentUser.email}
+								{intl.formatMessage({ id: "loginAs" })}
+								{"  " + currentUser?.email}
 							</Typography>
 							<ButtonUnstyled
 								color="primary"
 								size="small"
 								className={classes.logoutBtn}
 								onClick={onLogoutClick}
-							>Logout
+							>{intl.formatMessage({ id: "Logout" })}
 							</ButtonUnstyled>
 						</>}
 
@@ -48,7 +51,7 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 							component={RouterLink}
 							className={classes.headerLoginLink}
 						>
-							Login
+							{intl.formatMessage({ id: "login" })}
 						</Link>}
 
 				</Box>

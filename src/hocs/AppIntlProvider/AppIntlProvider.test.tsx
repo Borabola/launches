@@ -41,10 +41,9 @@ describe(
 			() => {
 				render(<FakeIntlProvider>
 					<FakeComponent />
-				</FakeIntlProvider>);
+           </FakeIntlProvider>);
 
 				const testText = messages_en[testMessageId] as string;
-				console.log(testText);
 
 				expect(screen.getByText(testText)).toBeInTheDocument();
 			}

@@ -25,5 +25,8 @@
 	"tooManyRequest": "Too many request",
 	"userNotFound": "User not found",
 	"waitMessage": "Please, wait ...",
-	"dashboard": "Dashboard"
+	"dashboardLink": "Dashboard",
+	"loginAs": "Login as",
+	"login": "Login",
+	"logout": "Logout"
 }
