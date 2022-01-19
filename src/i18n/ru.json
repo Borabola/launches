@@ -2,7 +2,7 @@
 	"greeting": {
 		"defaultMessage": "Greeting!"
 	},
-	"addNewProduct": "Добавить новый  товар",
+	"addNewProduct": "Добавить новый товар",
 	"addProductFail": "Не удалось добавить продукт",
 	"addProductSuccess": "Товар успешно добавлен",
 	"errorInLogin": "Ошибка авторизации",
@@ -28,5 +28,6 @@
 	"title": "Название",
 	"tooManyRequest": "Слишком много запросов",
 	"userNotFound": "Пользователь не найден",
-	"waitMessage": "Подождите пожалуйста ..."
+	"waitMessage": "Подождите пожалуйста ...",
+	"dashboard": "Таблица продуктов"
 }

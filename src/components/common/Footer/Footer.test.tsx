@@ -18,7 +18,7 @@ describe(
 							<Footer />
 						</ThemeProvider>
 					</AppIntlProvider>
-				</BrowserRouter>);
+           </BrowserRouter>);
 
 				const yearText = nowDay.getFullYear().toString();
 
