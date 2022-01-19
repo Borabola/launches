@@ -60,6 +60,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		}
 	},
 	dropzoneStyle: {
+		minHeight: theme.spacing(12),
 		border: "1px solid #FFFFFF !important",
 		borderRadius: "5px !important",
 		backgroundColor: "#181B48 !important",

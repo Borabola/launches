@@ -1,31 +1,40 @@
 import {
 	Box, Button, List, Paper, TextField, Typography
 } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import { ListItem } from "@mui/material";
 import { Formik } from "formik";
-import { FC, useCallback } from "react";
+import {
+	FC, useCallback, useState
+} from "react";
 import { useDropzone } from "react-dropzone";
 import { Form } from "react-formik-ui";
 import { useIntl } from "react-intl";
+import { validationSchema } from "./NewProductForm.schema";
 import { useStyles } from "./NewProductForm.styles";
 import type { Props } from "./NewProductForm.types";
-import { validationSchema } from "./NewProductForm.schema";
 
 export const NewProductForm: FC<Props> =
 	({ initialValues, onSubmit, onInputChange }) => {
 		const intl = useIntl();
 		const classes = useStyles();
+		const [shownFile, setShownFile] = useState<File | null>(null);
+
 		const onDrop = useCallback(
 			acceptedFiles => {
 				onInputChange(acceptedFiles);
+				setShownFile(acceptedFiles[0]);
 			},
 			[]
 		);
+
 		const {
 			acceptedFiles,
 			fileRejections,
 			getRootProps,
 			getInputProps,
+			isDragActive = true
 		} = useDropzone({
 			onDrop,
 			accept: "image/jpeg, image/png"
@@ -33,11 +42,20 @@ export const NewProductForm: FC<Props> =
 
 		const { ref, ...rootProps } = getRootProps();
 
-		const acceptedFileItems = acceptedFiles.map((file) => (
-			<ListItem key={file.name} >
-				{file.name} - {file.size} bytes
+		const onDelete = () => {
+			console.log("Delete file");
+			acceptedFiles.shift();
+			setShownFile(null);
+		};
+
+		const getAcceptedFileItems = (shownFile: File) => (
+			<ListItem key={shownFile.name} >
+				{shownFile.name} - {shownFile.size} bytes
+				<IconButton onClick={onDelete}>
+					<CloseOutlinedIcon color="primary" />
+				</IconButton>
 			</ListItem>
-		));
+		);
 
 		const fileRejectionItems = fileRejections.map(({ file }) => (
 			<ListItem key={file.name} >
@@ -50,9 +68,7 @@ export const NewProductForm: FC<Props> =
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 				onSubmit={onSubmit}
-
 				onInputChange={onInputChange}
-
 			>
 				{({
 					errors,
@@ -109,12 +125,17 @@ export const NewProductForm: FC<Props> =
 						>
 							<Paper {...rootProps}>
 								<input {...getInputProps()} />
-								<p>Drag drop some files here, or click to select files</p>
+								<p>Drag drop image file here, or click to select it</p>
+								{
+									isDragActive &&
+									<p>Drop the files here ...</p>
+								}
 							</Paper>
 
 						</Box>
 						<Typography variant="h5">Accepted files</Typography>
-						<List> {acceptedFileItems}</List>
+						{shownFile && <List> {getAcceptedFileItems(shownFile)}</List>}
+
 						<Typography variant="h5">Rejected files</Typography>
 						<List> {fileRejectionItems}</List>
 						<Box mt={4}>
