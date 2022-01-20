@@ -5,7 +5,7 @@ import { render } from "@testing-library/react";
 import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 import AppIntlProvider from "../hocs/AppIntlProvider";
 import { setupStore } from "../redux/store";
 import type { AppStore, RootState } from "../redux/store/store.types";
@@ -20,6 +20,42 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 	store?: AppStore
 }
 
+const currentUser = {
+	email: "test@test.com",
+	userId: "test"
+};
+
+const login = jest.fn(() => {
+	return Promise.resolve();
+});
+const signup = jest.fn(() => {
+	return Promise.resolve();
+});
+const logout = jest.fn(() => {
+	return Promise.resolve();
+});
+const googlePopupSignIn = jest.fn(() => {
+	return Promise.resolve();
+});
+
+const testValue = {
+	currentUser,
+	login,
+	signup,
+	logout,
+	googlePopupSignIn
+};
+
+/*const AuthContext = createContext<AuthValues | null>(null);
+export const AuthProvider: FC = ({ children }: AuthProps) => {
+	return (
+		<AuthContext.Provider value={testValue}>
+			{children}
+		</AuthContext.Provider>
+	);
+
+};*/
+
 function renderWithProviders(
 	ui: React.ReactElement,
 	{
@@ -32,11 +68,11 @@ function renderWithProviders(
 		return (<Provider store={store}>
 			<BrowserRouter>
 				<AppIntlProvider>
-					<AuthProvider>
+					<AuthContext.Provider value={testValue}>
 						<ThemeProvider theme={theme}>
 							{children}
 						</ThemeProvider>
-					</AuthProvider>
+					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
 		</Provider>);

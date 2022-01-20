@@ -41,7 +41,7 @@ export const Header: FC<Props> = ({ isMain = false }) => {
 								size="small"
 								className={classes.logoutBtn}
 								onClick={onLogoutClick}
-							>{intl.formatMessage({ id: "Logout" })}
+							>{intl.formatMessage({ id: "logout" })}
 							</ButtonUnstyled>
 						</>}
 
