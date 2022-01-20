@@ -1,49 +1,49 @@
 import { screen } from "@testing-library/react";
-//import { JSXElementConstructor, ReactElement } from "react";
 import { Header } from ".";
-import { renderWithProviders } from "../../../utils/testHelper";
-
-/*type Testcomponent = ReactElement<Record<string, unknown>, string |
-	JSXElementConstructor<Record<string, unknown>>> | null;*/
-//type testcomponent = ReactElement<Record<string, unknown>, Record<string, unknown>> | null;
-//const fakeApp: Testcomponent = null;
+import { renderWithProvidersLogin, renderWithProvidersLogout } from "../../../utils/testHelper";
 
 describe(
 	"Component: Header",
 	() => {
-		/*beforeAll(() => {
-			fakeApp = (
-				//const currentUser = null;
-				//const logout = jest.fn();
-
-				<Provider store={store}>
-					<BrowserRouter>
-						<AppIntlProvider>
-							<AuthProvider>
-								<ThemeProvider theme={theme}>
-									<Header isMain={false} />
-								</ThemeProvider>
-							</AuthProvider>
-						</AppIntlProvider>
-					</BrowserRouter>
-				</Provider>
-			);
-		});*/
-
-		/*it(
-			"should render correctly",
-			async () => {
-				renderWithProviders(<Header isMain={false} />);
-
-				await screen.getAllByText(/test/i).toBeInTheDocument();
-			}
-		);*/
 		it(
-			"should render correctly",
+			"should render correctly with registered user",
 			() => {
-				renderWithProviders(<Header isMain={false} />);
+				renderWithProvidersLogin(<Header isMain={false} />);
 
 				expect(screen.getByText(/logout/i)).toBeInTheDocument();
+				expect(screen.getByText(/login/i)).toBeInTheDocument();
+			}
+		);
+		it(
+			"should render UserMenu with registered user",
+			() => {
+				renderWithProvidersLogin(<Header isMain={false} />);
+
+				expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
+				expect(screen.getByText(/Add New Product/i)).toBeInTheDocument();
+			}
+		);
+		it(
+			"should render correctly without user",
+			() => {
+				renderWithProvidersLogout(<Header isMain={false} />);
+
+				const logoutButton = screen.queryByText(/logout/i);
+
+				expect(logoutButton).toBeNull();
+				expect(screen.getByText(/login/i)).toBeInTheDocument();
+			}
+		);
+		it(
+			"should NOT render UserMenu without user",
+			() => {
+				renderWithProvidersLogout(<Header isMain={false} />);
+
+				const dashboardMenu = screen.queryByText(/Dashboard/i);
+				const addNewProductMenu = screen.queryByText(/Add New Product/i);
+
+				expect(dashboardMenu).toBeNull();
+				expect(addNewProductMenu).toBeNull();
 			}
 		);
 	}

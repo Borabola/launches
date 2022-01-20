@@ -25,6 +25,8 @@ const currentUser = {
 	userId: "test"
 };
 
+const currentUserNull = null;
+
 const login = jest.fn(() => {
 	return Promise.resolve();
 });
@@ -46,6 +48,14 @@ const testValue = {
 	googlePopupSignIn
 };
 
+const testValueNull = {
+	currentUser: currentUserNull,
+	login,
+	signup,
+	logout,
+	googlePopupSignIn
+};
+
 /*const AuthContext = createContext<AuthValues | null>(null);
 export const AuthProvider: FC = ({ children }: AuthProps) => {
 	return (
@@ -56,15 +66,15 @@ export const AuthProvider: FC = ({ children }: AuthProps) => {
 
 };*/
 
-function renderWithProviders(
+const renderWithProvidersLogin = (
 	ui: React.ReactElement,
 	{
 		preloadedState = {},
 		store = setupStore(preloadedState),
 		...renderOptions
 	}: ExtendedRenderOptions = {}
-) {
-	function Wrapper({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element {
+) => {
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
 		return (<Provider store={store}>
 			<BrowserRouter>
 				<AppIntlProvider>
@@ -76,13 +86,42 @@ function renderWithProviders(
 				</AppIntlProvider>
 			</BrowserRouter>
 		</Provider>);
-	}
+	};
 	return {
 		store, ...render(
 			ui,
 			{ wrapper: Wrapper, ...renderOptions }
 		)
 	};
-}
+};
 
-export { renderWithProviders };
+const renderWithProvidersLogout = (
+	ui: React.ReactElement,
+	{
+		preloadedState = {},
+		store = setupStore(preloadedState),
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
+		return (<Provider store={store}>
+			<BrowserRouter>
+				<AppIntlProvider>
+					<AuthContext.Provider value={testValueNull}>
+						<ThemeProvider theme={theme}>
+							{children}
+						</ThemeProvider>
+					</AuthContext.Provider>
+				</AppIntlProvider>
+			</BrowserRouter>
+		</Provider>);
+	};
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};
+
+export { renderWithProvidersLogin, renderWithProvidersLogout };
