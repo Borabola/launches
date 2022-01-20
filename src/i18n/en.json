@@ -28,5 +28,6 @@
 	"dashboardLink": "Dashboard",
 	"loginAs": "Login as",
 	"login": "Login",
-	"logout": "Logout"
+	"logout": "Logout",
+	"loading": "Loading..."
 }
