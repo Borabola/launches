@@ -12,7 +12,7 @@ describe(
 	"Component: NewProductForm",
 	() => {
 		it(
-			"should render correctly without user",
+			"should render correctly with initial values",
 			() => {
 				renderWithProvidersLogout(<NewProductForm
 					initialValues={initialValuesProduct}
@@ -27,13 +27,6 @@ describe(
 				)).toBeInTheDocument();
 
 				//inputs
-
-				//for email input
-				expect(screen.getByRole(
-					"textbox",
-					{ name: "" }
-				)).toBeInTheDocument();
-
 				expect(screen.getByDisplayValue(/TestName/i)).toBeInTheDocument();
 				expect(screen.getByDisplayValue(5)).toBeInTheDocument();
 
@@ -49,9 +42,7 @@ describe(
 					"heading",
 					{ name: "New Product" }
 				)).toBeInTheDocument();
-
 			}
 		);
-
 	}
 );
