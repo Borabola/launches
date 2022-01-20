@@ -62,7 +62,6 @@ export const LoginForm: FC<Props> = ({
 						value={values.email}
 						variant="outlined"
 						color="secondary"
-
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}

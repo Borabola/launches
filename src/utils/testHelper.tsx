@@ -56,16 +56,6 @@ const testValueNull = {
 	googlePopupSignIn
 };
 
-/*const AuthContext = createContext<AuthValues | null>(null);
-export const AuthProvider: FC = ({ children }: AuthProps) => {
-	return (
-		<AuthContext.Provider value={testValue}>
-			{children}
-		</AuthContext.Provider>
-	);
-
-};*/
-
 const renderWithProvidersLogin = (
 	ui: React.ReactElement,
 	{
@@ -85,7 +75,7 @@ const renderWithProvidersLogin = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -114,7 +104,7 @@ const renderWithProvidersLogout = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
