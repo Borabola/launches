@@ -2,11 +2,13 @@ import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { FC } from "react";
 import Countdown, { zeroPad } from "react-countdown";
+import { useIntl } from "react-intl";
 import { useStyles } from "./LaunchHero.styles";
 import type { Props, RenderPropsType } from "./LaunchHero.types";
 
 export const LaunchHero: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	const Completionist = () => {
 		return (
@@ -14,7 +16,7 @@ export const LaunchHero: FC<Props> = ({ launch }) => {
 				variant="h1"
 				className={classes.timer}
 			>
-				DONE
+				{intl.formatMessage({ id: "done" })}
 			</Typography>);
 	};
 
@@ -52,7 +54,7 @@ export const LaunchHero: FC<Props> = ({ launch }) => {
 						variant="h3"
 						className={classes.heroAbout}
 					>
-						Go for Launch
+						{intl.formatMessage({ id: "goForLaunch" })}
 					</Typography>
 					<Box className={classes.timerWrapper}>
 						<Countdown

@@ -44,7 +44,6 @@ describe(
 				expect(screen.getByText(/Use your email to create new account/i))
 					.toBeInTheDocument();
 				expect(screen.getByText(/Have an account?/i)).toBeInTheDocument();
-
 			}
 		);
 

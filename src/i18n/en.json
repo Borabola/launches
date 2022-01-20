@@ -29,5 +29,7 @@
 	"loginAs": "Login as",
 	"login": "Login",
 	"logout": "Logout",
-	"loading": "Loading..."
+	"loading": "Loading...",
+	"goForLaunch": "Go for Launch",
+	"done": "DONE"
 }
