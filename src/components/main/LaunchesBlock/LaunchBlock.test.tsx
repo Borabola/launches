@@ -13,6 +13,5 @@ describe(
 				expect(screen.getByText(/Spaceflight Launches/i)).toBeInTheDocument();
 			}
 		);
-
 	}
 );
