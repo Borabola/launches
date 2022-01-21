@@ -1,10 +1,12 @@
 import { Box, Typography } from "@mui/material";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { useStyles } from "./LaunchPageContent.styles";
 import type { Props } from "./LaunchPageContent.types";
 
 export const LaunchPageContent: FC<Props> = ({ launch }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	const currentVideoUrl = (Array.isArray(launch.videoURLs)
 		? launch.videoURLs[0]
@@ -26,7 +28,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 				variant="h2"
 				className={classes.subTitle}
 			>
-				Overview
+				{intl.formatMessage({ id: "overview" })}
 			</Typography>
 
 			<Box className={classes.launchContentWrap}>
@@ -37,7 +39,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 							component="span"
 							className={classes.text}
 						>
-							Destination:
+							{intl.formatMessage({ id: "destination" })}:
 						</Typography>
 						<Typography
 							component="span"
@@ -53,7 +55,7 @@ export const LaunchPageContent: FC<Props> = ({ launch }) => {
 							component="span"
 							className={classes.text}
 						>
-							Mission:
+							{intl.formatMessage({ id: "mission" })}:
 						</Typography>
 						<Typography
 							variant="h5"

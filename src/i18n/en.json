@@ -31,5 +31,8 @@
 	"logout": "Logout",
 	"loading": "Loading...",
 	"goForLaunch": "Go for Launch",
-	"done": "DONE"
+	"done": "DONE",
+	"overview": "Overview",
+	"destination": "Destination",
+	"mission": "Mission"
 }

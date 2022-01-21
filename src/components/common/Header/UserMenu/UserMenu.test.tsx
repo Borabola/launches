@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { UserMenu } from ".";
 import { FakeIntlProvider } from "../../../../hocs/AppIntlProvider/AppIntlProvider.test";
-import messages_en from "../../../../i18n/en.json";
 import theme from "../../../../theme";
 
 describe(
@@ -18,13 +17,10 @@ describe(
 							<UserMenu />
 						</ThemeProvider>
 					</FakeIntlProvider>
-           </BrowserRouter>);
+				</BrowserRouter>);
 
-				const menuText1 = messages_en["addNewProduct"] as string;
-				const menuText2 = messages_en["dashboardLink"] as string;
-
-				expect(screen.getByText(menuText1)).toBeInTheDocument();
-				expect(screen.getByText(menuText2)).toBeInTheDocument();
+				expect(screen.getByText(/dashboard/i)).toBeInTheDocument();
+				expect(screen.getByText(/Add new product/i)).toBeInTheDocument();
 			}
 		);
 	}

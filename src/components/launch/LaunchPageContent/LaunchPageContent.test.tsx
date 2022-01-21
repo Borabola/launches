@@ -1,5 +1,5 @@
 import { screen } from "@testing-library/react";
-import { LaunchHero } from ".";
+import { LaunchPageContent } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
 
 const testDate = (Date.now() + 5000).toString();
@@ -13,26 +13,22 @@ const testCurrentLaunch = {
 	launchMission: "testMissionType",
 	launchDate: testDate,
 };
+
 describe(
-	"Component: LaunchHero",
+	"Component: LaunchPageContetnt",
 	() => {
 		it(
 			"should render correctly with registered user",
 			() => {
-				renderWithProvidersLogin(<LaunchHero launch={testCurrentLaunch} />);
+				renderWithProvidersLogin(<LaunchPageContent launch={testCurrentLaunch} />);
 
-				expect(screen.getByText(/Go for Launch/i)).toBeInTheDocument();
-				expect(screen.getByText(/testName/i)).toBeInTheDocument();
-			}
-		);
+				expect(screen.getByText(/destination/i)).toBeInTheDocument();
+				expect(screen.getByText(/testOrbit/i)).toBeInTheDocument();
+				expect(screen.getByText(/testMissionType/i)).toBeInTheDocument();
+				screen.getAllByText(/mission/i).forEach((item) => {
+					expect(item).toBeInTheDocument();
+				});
 
-		it(
-			"should render correct background image",
-			() => {
-				const { container } =
-					renderWithProvidersLogin(<LaunchHero launch={testCurrentLaunch} />);
-
-				expect(container.firstChild).toHaveStyle(`background-image: url("testImgUrl")`);
 			}
 		);
 	}

@@ -35,5 +35,8 @@
 	"logout": "Выйти",
 	"loading": "Загрузка...",
 	"goForLaunch": "Перейти к запуску",
-	"done": "Заверщен"
+	"done": "Заверщен",
+	"overview": "Обзор",
+	"destination": "Назначения",
+	"mission": "Миссия"
 }
