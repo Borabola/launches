@@ -25,5 +25,15 @@ describe(
 				expect(screen.getByText(/testName/i)).toBeInTheDocument();
 			}
 		);
+
+		it(
+			"should render correct background image",
+			() => {
+				const { container } =
+					renderWithProvidersLogin(<LaunchHero launch={testCurrentLaunch} />);
+
+				expect(container.firstChild).toHaveStyle(`background-image: url("testImgUrl")`);
+			}
+		);
 	}
 );
