@@ -67,7 +67,8 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 								{...restHeaderGroupProps}
 							>
 								{headerGroup.headers.map((column) => {
-									const { key, ...restColumn } = column.getHeaderProps();
+									const { key, ...restColumn } =
+										column.getHeaderProps(column.getSortByToggleProps());
 									return (
 										<TableCell
 											className={classes.tableCell}
@@ -78,6 +79,10 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 											{column.render("Header")}
 											{/* Add a sort direction indicator */}
 											<span>
+												{/*column.isSortedDesc
+													? " 🔽"
+													: " 🔼"
+												*/}
 												{column.isSorted
 													? column.isSortedDesc
 														? " 🔽"

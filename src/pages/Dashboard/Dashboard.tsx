@@ -35,15 +35,18 @@ export const Dashboard: FC = () => {
 		() => ([
 			{
 				Header: intl.formatMessage({ id: "productId" }),
-				accessor: "id"
+				accessor: "id",
+				isSorted: true
 			},
 			{
 				Header: intl.formatMessage({ id: "title" }),
-				accessor: "title"
+				accessor: "title",
+				isSorted: true
 			},
 			{
 				Header: intl.formatMessage({ id: "quantity" }),
-				accessor: "quantity"
+				accessor: "quantity",
+				isSorted: true
 			},
 			{
 				Header: intl.formatMessage({ id: "picture" }),
@@ -54,6 +57,7 @@ export const Dashboard: FC = () => {
 					height={200}
 					alt={d.title}
 				/> : "N/A"),
+				isSorted: true
 			},
 		]),
 		[intl]

@@ -1,18 +1,41 @@
-import { assertFails, initializeTestEnvironment } from "@firebase/rules-unit-testing";
-import { deleteObject, ref as storeRef } from "firebase/storage";
+import * as ftest from "@firebase/rules-unit-testing";
+import {
+	assertFails, assertSucceeds, initializeTestEnvironment
+} from "@firebase/rules-unit-testing";
+import {
+	deleteObject, getDownloadURL, ref as storeRef, uploadBytesResumable
+} from "firebase/storage";
 import * as fs from "fs";
 
 const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
 const userAuth = { email: "user123@test.com", userId: "user123", };
 
-/*const getFireStore = (authUser: CurrentUser) =>
-	getStorage(initializeTestApp({ projectId: MY_PROJECT_ID, auth: authUser }));*/
+let testEnv: ftest.RulesTestEnvironment;
 
-/*const alice = testEnv.authenticatedContext(
-	"alice",
-	userAuth
-);*/
-//let testEnv: RulesTestEnvironment;
+const loadIconImage = () => fs.readFileSync("./icon.png");
+beforeAll(async () => {
+	testEnv = await ftest.initializeTestEnvironment({
+		projectId: "demo-users-storage-rules-test",
+		storage: {
+			rules: fs.readFileSync(
+				"./storage.rules",
+				"utf8"
+			),
+		},
+	});
+});
+
+beforeEach(async () => {
+	await testEnv.clearStorage();
+	return;
+});
+
+afterAll(async () => {
+	console.log(testEnv);
+	await testEnv.cleanup();
+	console.log(testEnv);
+	return;
+});
 
 describe(
 	"Firestore security rules",
@@ -67,17 +90,21 @@ describe(
 					"alice",
 					userAuth
 				);
-				const createTestFile = (size: number) => Buffer.alloc(size);
-				/*const desertRef = storeRef(
+				//const createTestFile = (size: number) => Buffer.alloc(size);
+				const desertRef = storeRef(
 					alice.storage(),
 					"images/desert.jpg"
 				);
-				await assertSucceeds(getDownloadURL(desertRef));*/
+				await uploadBytesResumable(
+					desertRef,
+					loadIconImage
+				);
+				await assertSucceeds(getDownloadURL(desertRef));
 
-				await assertFails(storeRef.put(
+				/*await assertFails(storeRef.put(
 					createTestFile(500 * 1024 * 1024),
 					{ contentType: "image/png" }
-				).then());
+				).then());*/
 			}
 		);
 	}
