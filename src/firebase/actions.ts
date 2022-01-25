@@ -34,11 +34,11 @@ export const setProductToDatabase = (
 };
 
 export const uploadFile = async (
-	file: File, storage: FirebaseStorage
+	file: File, userUid: string, storage: FirebaseStorage
 ): Promise<string> => {
 	const fileRef = storeRef(
 		storage,
-		"images/" + file.name
+		"images/" + userUid + "/"+ file.name
 	);
 	await uploadBytesResumable(
 		fileRef,

@@ -30,6 +30,7 @@ export const AddProductPage: FC = () => {
 		}
 		const currentFileUrl = await uploadFile(
 			files[0],
+			currentUser.userId,
 			storage
 		);
 		setFileUrl(currentFileUrl);
