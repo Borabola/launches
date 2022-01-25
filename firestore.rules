@@ -12,7 +12,7 @@ service cloud.firestore {
 
   match /image/{image} {
     function userIsAuthor(){
-      return (request.auth.uid == resource.data.uid)
+      return (request.auth.uid == userId)
     }
 
     allow read: if userIsAuthor();

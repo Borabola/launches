@@ -3,10 +3,10 @@ WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil (fil
 WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
 WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
 WARNING: All illegal access operations will be denied in a future release
-11:49:50.462 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
-11:49:50.580 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
-11:49:55.931 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
-11:49:55.951 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: launches-1939c-default-rtdb
-11:49:55.962 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for launches-1939c-default-rtdb
-11:49:55.963 [NamespaceSystem-akka.actor.default-dispatcher-9] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for launches-1939c-default-rtdb
-11:49:55.976 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
+16:51:15.615 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+16:51:15.730 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+17:05:02.129 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+17:05:02.170 [NamespaceSystem-akka.actor.default-dispatcher-4] INFO com.firebase.core.namespace.Terminator$Terminator - 1 actors left to terminate: launches-1939c-default-rtdb
+17:05:02.196 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for launches-1939c-default-rtdb
+17:05:02.202 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for launches-1939c-default-rtdb
+17:05:02.222 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
