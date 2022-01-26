@@ -14,9 +14,6 @@ import { database, storage } from "../../firebase/firebaseConfig";
 import { FormWithHeaderLayout } from "../../layouts/FormWithHeaderLayout";
 
 export const AddProductPage: FC = () => {
-	//const [fileUrl, setFileUrl] = useState<string | null>(null);
-	//const [changedFlag, setChangetFlag] = useState<boolean>(false);
-	//const [shownFile, setShownFile] = useState<File | null>(null);
 	const initialValuesAddProduct = { productName: "", file: null, productQnt: 0 };
 
 	const authContext = useAuth();
@@ -24,22 +21,6 @@ export const AddProductPage: FC = () => {
 		return null;
 	}
 	const { currentUser } = authContext as AuthCurrentUser;
-
-	/*const onInputChange = async (files: File[]) => {
-		if (files.length === 0) {
-			//setFileUrl(null);
-			setShownFile(null);
-			return;
-		}
-		/*const currentFileUrl = await uploadFile(
-			files[0],
-			currentUser.userId,
-			storage
-		);
-		setFileUrl(currentFileUrl);*/
-	/*setShownFile(files[0]);
-	setChangetFlag(true);
-};*/
 
 	const onSubmit = async (
 		values: ProductValues,
