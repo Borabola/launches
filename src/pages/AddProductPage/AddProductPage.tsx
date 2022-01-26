@@ -1,5 +1,5 @@
 import { FormikHelpers } from "formik";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { NewProductForm } from "../../components/forms/NewProductForm";
 import { useAuth } from "../../contexts/AuthContext";
 import {
@@ -14,8 +14,10 @@ import { database, storage } from "../../firebase/firebaseConfig";
 import { FormWithHeaderLayout } from "../../layouts/FormWithHeaderLayout";
 
 export const AddProductPage: FC = () => {
-	const [fileUrl, setFileUrl] = useState<string | null>(null);
-	const initialValuesAddProduct = { productName: "", file: "", productQnt: 0 };
+	//const [fileUrl, setFileUrl] = useState<string | null>(null);
+	//const [changedFlag, setChangetFlag] = useState<boolean>(false);
+	//const [shownFile, setShownFile] = useState<File | null>(null);
+	const initialValuesAddProduct = { productName: "", file: null, productQnt: 0 };
 
 	const authContext = useAuth();
 	if (authContext === null) {
@@ -23,32 +25,60 @@ export const AddProductPage: FC = () => {
 	}
 	const { currentUser } = authContext as AuthCurrentUser;
 
-	const onInputChange = async (files: File[]) => {
+	/*const onInputChange = async (files: File[]) => {
 		if (files.length === 0) {
-			setFileUrl(null);
+			//setFileUrl(null);
+			setShownFile(null);
 			return;
 		}
-		const currentFileUrl = await uploadFile(
+		/*const currentFileUrl = await uploadFile(
 			files[0],
 			currentUser.userId,
 			storage
 		);
-		setFileUrl(currentFileUrl);
-	};
+		setFileUrl(currentFileUrl);*/
+	/*setShownFile(files[0]);
+	setChangetFlag(true);
+};*/
 
-	const onSubmit = (
+	const onSubmit = async (
 		values: ProductValues,
 		form: FormikHelpers<ProductValues>
 	) => {
-		setProductToDatabase(
-			currentUser.userId,
-			values,
-			fileUrl,
-			database
-		);
+		console.log(values);
+		if (values.file) {
+			console.log(values.file);
+			const currentFileUrl = await uploadFile(
+				values.file,
+				currentUser.userId,
+				storage
+			);
+			setProductToDatabase(
+				currentUser.userId,
+				values,
+				currentFileUrl,
+				database
+			);
 
-		form.setSubmitting(false);
-		form.resetForm();
+			form.setSubmitting(false);
+			form.resetForm();
+		}
+		if (!values.file) {
+			console.log(
+				"null",
+				values.file
+			);
+			const fileUrl = null;
+			setProductToDatabase(
+				currentUser.userId,
+				values,
+				fileUrl,
+				database
+			);
+
+			form.setSubmitting(false);
+			form.resetForm();
+		}
 	};
 
 	return (
@@ -56,7 +86,7 @@ export const AddProductPage: FC = () => {
 			<NewProductForm
 				initialValues={initialValuesAddProduct}
 				onSubmit={onSubmit}
-				onInputChange={onInputChange}
+			//onInputChange={onInputChange}
 			/>
 		</FormWithHeaderLayout>
 	);

@@ -6,13 +6,15 @@ import {
 	deleteObject, getDownloadURL, ref as storeRef, uploadBytesResumable
 } from "firebase/storage";
 import * as fs from "fs";
+//import Logo from "../../public/logo192.png"
 
 const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
 const userAuth = { email: "user123@test.com", userId: "user123", };
 
 let testEnv: ftest.RulesTestEnvironment;
 
-const loadIconImage = () => fs.readFileSync("./icon.png");
+const loadIconImage = () => fs.readFileSync("../../public/logo192.png");
+
 beforeAll(async () => {
 	testEnv = await ftest.initializeTestEnvironment({
 		projectId: "demo-users-storage-rules-test",
@@ -31,9 +33,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-	console.log(testEnv);
 	await testEnv.cleanup();
-	console.log(testEnv);
 	return;
 });
 
@@ -74,7 +74,7 @@ describe(
 		);
 
 		it(
-			"cannot read from storage",
+			"can read from storage with auth",
 			async () => {
 				const testEnv = await initializeTestEnvironment({
 					projectId: MY_PROJECT_ID,
@@ -91,10 +91,14 @@ describe(
 					userAuth
 				);
 				//const createTestFile = (size: number) => Buffer.alloc(size);
-				const desertRef = storeRef(
+				/*const desertRef = storeRef(
 					alice.storage(),
 					"images/desert.jpg"
-				);
+				);*/
+
+				const path = `images/${userAuth.userId}/logo192.png`
+				const ref = testEnv.authenticatedContext(userAuth.userId).storage().ref(path) 
+				console.log(desertRef);
 				await uploadBytesResumable(
 					desertRef,
 					loadIconImage

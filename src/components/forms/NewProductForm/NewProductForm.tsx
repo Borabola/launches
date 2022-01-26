@@ -1,29 +1,25 @@
 import {
-	Box, Button, List, Paper, TextField, Typography
+	Box, Button, TextField, Typography
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { ListItem } from "@mui/material";
 import { Formik } from "formik";
-import {
-	FC, useCallback, useState
-} from "react";
-import { useDropzone } from "react-dropzone";
+import { FC } from "react";
+//import { useDropzone } from "react-dropzone";
 import { Form } from "react-formik-ui";
 import { useIntl } from "react-intl";
+import { Dropzone } from "./Dropzone";
 import { validationSchema } from "./NewProductForm.schema";
 import { useStyles } from "./NewProductForm.styles";
 import type { Props } from "./NewProductForm.types";
 
 export const NewProductForm: FC<Props> =
-	({ initialValues, onSubmit, onInputChange }) => {
+	({ initialValues, onSubmit }) => {
 		const intl = useIntl();
 		const classes = useStyles();
-		const [shownFile, setShownFile] = useState<File | null>(null);
+		/*const [shownFile, setShownFile] = useState<File | null>(null);
 
 		const onDrop = useCallback(
 			acceptedFiles => {
-				onInputChange(acceptedFiles);
+				//onInputChange(acceptedFiles);
 				setShownFile(acceptedFiles[0]);
 			},
 			[]
@@ -37,7 +33,7 @@ export const NewProductForm: FC<Props> =
 			isDragActive = true
 		} = useDropzone({
 			onDrop,
-			accept: "image/jpeg, image/png"
+			accept: "image/jpeg, image/jpg, image/png"
 		});
 
 		const { ref, ...rootProps } = getRootProps();
@@ -60,14 +56,13 @@ export const NewProductForm: FC<Props> =
 			<ListItem key={file.name} >
 				{file.name} - {file.size} bytes
 			</ListItem>
-		));
+		));*/
 
 		return (
 			<Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 				onSubmit={onSubmit}
-				onInputChange={onInputChange}
 			>
 				{({
 					errors,
@@ -117,7 +112,9 @@ export const NewProductForm: FC<Props> =
 							variant="outlined"
 							color="secondary"
 						/>
-						<Box
+						<Dropzone name="file" />
+
+						{/*<Box
 							ref={ref}
 							className={classes.dropzoneStyle}
 						>
@@ -134,7 +131,8 @@ export const NewProductForm: FC<Props> =
 						{shownFile && <List> {getAcceptedFileItems(shownFile)}</List>}
 
 						<Typography variant="h5">Rejected files</Typography>
-						<List> {fileRejectionItems}</List>
+						<List> {fileRejectionItems}</List>*/}
+
 						<Box mt={4}>
 							<Button
 								color="secondary"
