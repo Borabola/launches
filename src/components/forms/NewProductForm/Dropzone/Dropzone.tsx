@@ -13,9 +13,12 @@ import { useDropzone } from "react-dropzone";
 import { useStyles } from "./Dropzone.styles";
 
 export const Dropzone = ({ name }: { name: string }) => {
+	//const intl = useIntl();
 	const classes = useStyles();
 	const [shownFile, setShownFile] = useState<File | null>(null);
-	const [, , helpers] = useField(name);
+	const [, meta, helpers] = useField(name);
+
+	const { value } = meta;
 	const { setValue } = helpers;
 
 	useEffect(
@@ -28,6 +31,15 @@ export const Dropzone = ({ name }: { name: string }) => {
 			}
 		},
 		[shownFile]
+	);
+
+	useEffect(
+		() => {
+			if (value === null) {
+				setShownFile(null);
+			}
+		},
+		[value]
 	);
 
 	const onDrop = useCallback(
