@@ -31,7 +31,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 				color: theme.palette.info.dark,
 			},
 			dropzoneStyle: {
-				borderRadius: `${theme.spacing(0.25)} !important`,
+				borderRadius: theme.spacing(0.25),
 			},
 		},
 		"& label.Mui-focused": {
@@ -57,27 +57,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		"& label": {
 			display: "none",
 		}
-	},
-	dropzoneStyle: {
-		minHeight: theme.spacing(12),
-		border: `${theme.spacing(0.125)} solid ${theme.palette.secondary.main} !important`,
-		borderRadius: `${theme.spacing(0.625)} !important`,
-		backgroundColor: `${theme.palette.background.default} !important`,
-		color: `${theme.palette.secondary.main} !important`,
-		"& .MuiPaper-root": {
-			margin: 0,
-			backgroundColor: theme.palette.background.paper,
-			boxShadow: "none",
-			borderRadius: 0,
-			color: theme.palette.secondary.main,
-			padding: theme.spacing(
-				0,
-				2
-			)
-		}
-	},
-	previewChip: {
-		minWidth: theme.spacing(20),
-		maxWidth: theme.spacing(26.25),
-	},
+	}
 }));

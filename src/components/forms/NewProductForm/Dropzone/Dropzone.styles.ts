@@ -4,10 +4,10 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	dropzoneStyle: {
 		minHeight: theme.spacing(12),
-		border: `1px solid ${theme.palette.secondary.main} !important`,
-		borderRadius: `${theme.spacing(0.625)} !important`,
-		backgroundColor: `${theme.palette.background.default} !important`,
-		color: `${theme.palette.secondary.main} !important`,
+		border: `${theme.spacing(0.125)} solid ${theme.palette.secondary.main}`,
+		borderRadius: `${theme.spacing(0.625)}`,
+		backgroundColor: `${theme.palette.background.default}`,
+		color: `${theme.palette.secondary.main} `,
 		"& .MuiPaper-root": {
 			margin: 0,
 			backgroundColor: theme.palette.background.paper,

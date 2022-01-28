@@ -13,7 +13,6 @@ const Item = styled(Paper)(() => ({
 	textAlign: "center",
 	padding: 0,
 	boxShadow: "none",
-	backgroundColor: "rgba(255,255,255,0)",
 }));
 
 export const LaunchCard: FC<Props> = ({ launch }) => {

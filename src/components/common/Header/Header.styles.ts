@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			0,
 			3.75
 		),
-		background: "rgba(0, 0, 0, 0.2)",
+		background: theme.palette.success.main,
 		zIndex: 1,
 	},
 	headerContainer: {
@@ -103,7 +103,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			0.375,
 			1
 		),
-		background: "rgba(0,0,0,0)",
+		background: theme.palette.background.paper,
 		border: "none",
 		color: theme.palette.info.main,
 		fontSize: "1.125rem",

@@ -16,11 +16,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "inline-flex",
 		textDecoration: "none",
 		transition: "0.3s ease",
-		marginRight: `${theme.spacing(3.75)} !important`,
+		marginRight: theme.spacing(3.75),
 		cursor: "pointer",
 
 		"&:hover": {
 			opacity: "0.9",
 		},
+		"&.MuiTypography-root": {
+			marginRight: theme.spacing(3.75)
+		}
 	},
 }));
