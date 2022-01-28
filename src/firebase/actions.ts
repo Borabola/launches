@@ -2,7 +2,7 @@ import { Database } from "@firebase/database";
 import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { ref, set } from "firebase/database";
 import {
-	getDownloadURL, ref as storeRef, uploadBytesResumable
+	getDownloadURL, ref as storeRef, uploadBytesResumable, UploadTask
 } from "firebase/storage";
 import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
 import { ProductValues } from "./actions.types";
@@ -35,23 +35,24 @@ export const setProductToDatabase = (
 
 export const uploadFile = async (
 	file: File, userUid: string, storage: FirebaseStorage
-): Promise<string> => {
+): Promise<UploadTask> => {
 	const fileRef = storeRef(
 		storage,
-		"images/" + userUid + "/" + file.name
+		//"images/" + userUid + "/" + file.name
+		`images/${userUid}/${file.name}`
 	);
 
-	/*const uploadTask = */uploadBytesResumable(
+	const uploadTask = uploadBytesResumable(
 		fileRef,
 		file
 	);
-	////
-	/*uploadTask.on(
+	const unsubscribe = uploadTask.on(
 		"state_changed",
 		(snapshot) => {
 			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
 			const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 			console.log("Upload is " + progress + "% done");
+			unsubscribe();
 		},
 		(error) => {
 			// A full list of error codes is available at
@@ -91,9 +92,10 @@ export const uploadFile = async (
 				);
 			});
 		}
-	);*/
+	);
 
 	////
-	const fileUrl = await getDownloadURL(fileRef);
-	return fileUrl;
+	//const fileUrl = await getDownloadURL(fileRef);
+	//return fileUrl;
+	return uploadTask;
 };
