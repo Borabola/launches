@@ -5,12 +5,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	launchEmptyimg: {
 		boxSizing: "border-box",
 		width: "100%",
-		maxWidth: "580px",
+		maxWidth: theme.spacing(72.5),
 		height: "16.88vw",
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#3F3881",
+		backgroundColor: theme.palette.secondary.dark,
 		[theme.breakpoints.down("md")]: {
 			height: "40vw",
 		},
@@ -40,7 +40,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		marginTop: "calc(-50% - 20px)",
 		display: " inline-block",
 		justifyContent: "center",
-		background: "linear-gradient(94.97deg, #8E2DE2 3.92%, #4A00E0 52.92%);",
+		background: `linear-gradient(94.97deg,
+			${theme.palette.info.light} 3.92%,
+			${theme.palette.info.dark} 52.92%);`,
 		borderRadius: theme.spacing(6.25),
 	},
 	launchNameClass: {

@@ -59,8 +59,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		position: "absolute",
 		right: 0,
 		top: theme.spacing(5.75),
-		width: "95px",
-		height: "107px",
+		width: theme.spacing(11.875),
+		height: theme.spacing(13.375),
 		transition: "0.3s ease",
 		"&:hover": {
 			opacity: "0.8",
@@ -76,8 +76,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		alignItems: "end",
 		bottom: "-55%",
 		left: "50%",
-		width: "95px",
-		height: "107px",
+		width: theme.spacing(11.875),
+		height: theme.spacing(13.375),
 		transform: "translateX(-50%)",
 	},
 	loginWrap: {
@@ -96,7 +96,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		zIndex: 2,
 	},
 	headerStyled: {
-		color: "#C0C0C0",
+		color: theme.palette.info.main,
 	},
 	logoutBtn: {
 		padding: theme.spacing(

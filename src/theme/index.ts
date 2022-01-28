@@ -20,15 +20,21 @@ const theme = createTheme({
 	palette: {
 		primary: {
 			main: "#F1EBFF",
+			dark: "#1C2056",
 		},
 		secondary: {
 			main: "#FFFFFF",
+			light: "rgba(24, 27, 72, 0)",
+			dark: "#3F3881",
 		},
 		info: {
 			main: "#C0C0C0",
+			light: "#8E2DE2",
+			dark: "4A00E0",
 		},
 		background: {
 			default: "#181B48",
+			paper: "rgba(0, 0, 0, 0)",
 		},
 		common: {
 			white: "#fff",
@@ -125,7 +131,7 @@ theme.components = {
 				),
 				fontFamily: "Montserrat",
 				fontWeight: "700",
-				fontSize: "20px",
+				fontSize: 20,
 				lineHeight: "100%",
 				textDecoration: "none",
 				textTransform: "capitalize",
@@ -141,7 +147,9 @@ theme.components = {
 				},
 			},
 			contained: {
-				background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
+				background: `linear-gradient(93.72deg,
+					 ${theme.palette.info.light} 9.41%,
+					 ${theme.palette.info.dark} 86.1%)`,
 				borderRadius: theme.spacing(6.25),
 				color: theme.palette.primary.main,
 

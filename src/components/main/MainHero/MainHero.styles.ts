@@ -9,13 +9,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			3.375,
 			10
 		),
-		fontFamily: "Montserrat",
 		fontWeight: "700",
 		fontSize: "1.25rem",
 		color: theme.palette.common.white,
 		textDecoration: "none",
 		textTransform: "capitalize",
-		background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
+		background: `linear-gradient(93.72deg,
+			${theme.palette.info.light} 9.41%,
+			${theme.palette.info.dark} 86.1%)`,
 		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
 
@@ -44,13 +45,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		maxWidth: theme.spacing(74.4),
 		marginBottom: theme.spacing(6.25),
 		color: theme.palette.info.main,
-		fontFamily: "Roboto",
 		fontWeight: "400",
 		fontSize: "1.0625rem",
 		lineHeight: "165%",
 	},
 	heroWrapper: {
-		fontFamily: "Montserrat",
 		width: "100%",
 		marginTop: theme.spacing(-16),
 		display: "flex",
@@ -64,7 +63,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	heroText: {
-		fontFamily: "Montserrat",
 		marginBottom: theme.spacing(3.75),
 		fontWeight: "800",
 		fontSize: "4.75rem",
@@ -72,7 +70,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		color: theme.palette.primary.main,
 	},
 	heroTextWrapper: {
-		fontFamily: "Montserrat",
 		paddingTop: "29%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
@@ -90,20 +87,17 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		padding: theme.spacing(
 			3.375,
 			10
-		), //"27px 80px",
-		fontFamily: "Montserrat",
+		),
 		fontWeight: "700",
 		fontSize: "1.25rem",
 		color: theme.palette.common.white,
 		textDecoration: "none",
 		textTransform: "capitalize",
-		background: "linear-gradient(93.72deg, #8E2DE2 9.41%, #4A00E0 86.1%)",
+		background: `linear-gradient(93.72deg, 
+			${theme.palette.info.light} 9.41%,
+			${theme.palette.info.dark} 86.1%)`,
 		borderRadius: theme.spacing(6.25),
 		transition: "0.3s ease",
-
-		"&.MuiButtonBase-root-MuiButton-root": {
-			fontFamily: "Montserrat",
-		},
 
 		"&:hover, &:focus": {
 			opacity: "0.8",

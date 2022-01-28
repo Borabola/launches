@@ -13,13 +13,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			0,
 			10
 		),
-		background: "#181B48",
+		background: theme.palette.background.default,
 		[theme.breakpoints.down("sm")]: {
 			padding: theme.spacing(2),
 		},
 	},
 	footerContainer: {
-		display: "frlex",
+		display: "flex",
 		flexDirection: "column"
 	},
 	footerMenu: {
@@ -37,7 +37,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "inline-flex",
 		textDecoration: "none",
 		transition: "0.3s ease",
-		marginRight: "30px !important",
+		marginRight: `${theme.spacing(3.75)} !important`,
 		"&:hover": {
 			opacity: "0.9",
 		},
@@ -71,7 +71,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		},
 	},
 	footerCopyright: {
-		color: "#C0C0C0",
+		color: theme.palette.info.main,
 
 	}
 }));

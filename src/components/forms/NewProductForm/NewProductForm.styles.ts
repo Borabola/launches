@@ -22,21 +22,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 				borderColor: theme.palette.secondary.main,
 			},
 			"&:hover fieldset": {
-				borderColor: "#8E2DE2",
+				borderColor: theme.palette.info.light,
 			},
 			"&.Mui-focused fieldset": {
-				borderColor: "#4A00E0",
+				borderColor: theme.palette.info.dark,
 			},
 			"& input::placeholder": {
-				color: "#4A00E0",
+				color: theme.palette.info.dark,
 			},
 			dropzoneStyle: {
-				border: "1px solid red !important",
-				borderRadius: "2px !important",
+				borderRadius: `${theme.spacing(0.25)} !important`,
 			},
 		},
 		"& label.Mui-focused": {
-			color: "#4A00E0",
+			color: theme.palette.info.dark,
 		},
 		"& .react-formik-ui .form-element .dropzone-wrapper .dropzone": {
 			borderColor: theme.palette.secondary.main,
@@ -61,17 +60,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	dropzoneStyle: {
 		minHeight: theme.spacing(12),
-		border: "1px solid #FFFFFF !important",
-		borderRadius: "5px !important",
-		backgroundColor: "#181B48 !important",
-		color: "#FFFFFF !important",
+		border: `${theme.spacing(0.125)} solid ${theme.palette.secondary.main} !important`,
+		borderRadius: `${theme.spacing(0.625)} !important`,
+		backgroundColor: `${theme.palette.background.default} !important`,
+		color: `${theme.palette.secondary.main} !important`,
 		"& .MuiPaper-root": {
 			margin: 0,
-			backgroundColor: "transparent",
+			backgroundColor: theme.palette.background.paper,
 			boxShadow: "none",
 			borderRadius: 0,
-			color: "#FFFFFF",
-			padding: "0 16px"
+			color: theme.palette.secondary.main,
+			padding: theme.spacing(
+				0,
+				2
+			)
 		}
 	},
 	previewChip: {

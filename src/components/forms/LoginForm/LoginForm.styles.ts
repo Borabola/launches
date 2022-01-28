@@ -5,23 +5,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	pageContent: {
 		"& fieldset": {
 			borderColor: theme.palette.secondary.main,
-			"&:hover": {
-				//borderColor: theme.palette.secondary.main,
-			}
 		},
 		"& .MuiOutlinedInput-root": {
 			"&:hover fieldset": {
-				borderColor: "#8E2DE2",
+				borderColor: theme.palette.info.light,
 			},
 			"&.Mui-focused fieldset": {
-				borderColor: "#4A00E0",
+				borderColor: theme.palette.info.dark,
 			},
 			"& input::placeholder": {
-				color: "#4A00E0",
+				color: theme.palette.info.dark,
 			},
 		},
 		"& label.Mui-focused": {
-			color: "#4A00E0",
+			color: theme.palette.info.dark,
 		},
 	},
 	textField: {

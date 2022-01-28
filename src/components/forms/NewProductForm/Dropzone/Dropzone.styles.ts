@@ -4,17 +4,20 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	dropzoneStyle: {
 		minHeight: theme.spacing(12),
-		border: "1px solid #FFFFFF !important",
-		borderRadius: "5px !important",
-		backgroundColor: "#181B48 !important",
-		color: "#FFFFFF !important",
+		border: `1px solid ${theme.palette.secondary.main} !important`,
+		borderRadius: `${theme.spacing(0.625)} !important`,
+		backgroundColor: `${theme.palette.background.default} !important`,
+		color: `${theme.palette.secondary.main} !important`,
 		"& .MuiPaper-root": {
 			margin: 0,
-			backgroundColor: "transparent",
+			backgroundColor: theme.palette.background.paper,
 			boxShadow: "none",
 			borderRadius: 0,
-			color: "#FFFFFF",
-			padding: "0 16px"
+			color: theme.palette.secondary.main,
+			padding: theme.spacing(
+				0,
+				2
+			)
 		}
 	},
 	previewChip: {
