@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import { FC } from "react";
 import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
+import { AppRouteEnum } from "../../../types/Enums";
 import { useStyles } from "./MainHero.styles";
 
 export const MainHero: FC = () => {
@@ -40,7 +41,7 @@ export const MainHero: FC = () => {
 					<Button
 						variant="contained"
 						component={Link}
-						to="/"
+						to={AppRouteEnum.ROOT}
 						className={classes.pageLink}
 					>
 						{intl.formatMessage({ id: "mainHeroButton" })}
