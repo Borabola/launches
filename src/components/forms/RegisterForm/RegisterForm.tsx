@@ -19,7 +19,7 @@ export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validationSchema={validationSchema(intl)}
 			onSubmit={onSubmit}
 		>
 			{({

@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import {
 	Hooks, useSortBy, useTable
 } from "react-table";
@@ -22,6 +23,7 @@ type rowProps = {
 
 export const MainTable: FC<Props> = ({ columns, data }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	const tableHooks = (hooks: Hooks<Data>) => {
 		hooks.allColumns.push((columns) => [
@@ -34,7 +36,7 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 						onClick={() => alert("Products quantity: " +
 							row.values?.quantity)}
 					>
-						Edit
+						{intl.formatMessage({ id: "edit" })}
 					</Button>
 				)
 			}

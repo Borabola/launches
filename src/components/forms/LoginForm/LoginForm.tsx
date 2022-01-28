@@ -29,7 +29,7 @@ export const LoginForm: FC<Props> = ({
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validationSchema={validationSchema(intl)}
 			onSubmit={onSubmit}
 		>
 			{({

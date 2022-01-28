@@ -22,12 +22,12 @@ const App: FC = () => {
 
 	return (
 		<Provider store={store}>
-			<PersistGate
-				loading={<Loader />}
-				persistor={persistor}
-			>
-				<BrowserRouter>
-					<AppIntlProvider>
+			<AppIntlProvider>
+				<PersistGate
+					loading={<Loader />}
+					persistor={persistor}
+				>
+					<BrowserRouter>
 						<AuthProvider>
 							<ThemeProvider theme={theme}>
 								<CssBaseline />
@@ -45,9 +45,9 @@ const App: FC = () => {
 								/>
 							</ThemeProvider>
 						</AuthProvider>
-					</AppIntlProvider>
-				</BrowserRouter>
-			</PersistGate>
+					</BrowserRouter>
+				</PersistGate>
+			</AppIntlProvider>
 		</Provider>
 	);
 };

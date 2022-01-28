@@ -59,10 +59,7 @@ export const AuthProvider: FC = ({ children }: Props) => {
 						setCurrentUser(newUser);
 						dispatch(requireAuthorization(AuthorizationStatusEnum.AUTH));
 					} else {
-						if (currentUser !== null) {
-							setCurrentUser(null);
-						}
-
+						setCurrentUser(null);
 						dispatch(requireAuthorization(AuthorizationStatusEnum.NO_AUTH));
 					}
 					setIsLoading(false);

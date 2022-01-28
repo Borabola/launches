@@ -1,7 +1,9 @@
+import { IntlShape } from "react-intl";
 import * as Yup from "yup";
 
-export const validationSchema = () => Yup.object().shape({
-	productName: Yup.string().min(2).max(255).required("Product name is required"),
+export const validationSchema = (intl: IntlShape) => Yup.object().shape({
+	productName: Yup.string().min(2).max(255)
+		.required(`${intl.formatMessage({ id: "productNameIsRequired" })}`),
 	file: Yup.mixed()
 		.nullable()
 		.notRequired(),
