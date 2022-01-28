@@ -1,5 +1,12 @@
-import { Theme } from "@mui/material";
+import { Paper, Theme } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
+
+export const Item = styled(Paper)(() => ({
+	textAlign: "center",
+	padding: 0,
+	boxShadow: "none",
+}));
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	launchEmptyimg: {

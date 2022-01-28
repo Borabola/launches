@@ -31,6 +31,14 @@ export const LaunchesBlock: FC = () => {
 		isError: isLaunchesError,
 		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
 
+	if (isLaunchesError) {
+		console.log(
+			isLaunchesError,
+			"data",
+			currentData
+		);
+	}
+
 	useEffect(
 		() => {
 			if (currentData && currentData.launches.length > 0) {
@@ -44,7 +52,7 @@ export const LaunchesBlock: FC = () => {
 
 	const infinityScrollCalback = useCallback(
 		(htmlNode: Element) => {
-			if (isLaunchesFetching) {
+			if (isLaunchesFetching || isLaunchesError) {
 				return;
 			}
 
@@ -116,24 +124,25 @@ export const LaunchesBlock: FC = () => {
 						})
 					}
 					{(currentLaunches.length < totalCount) &&
-						<Box
+						< Box
 							className={classes.loaderWrapper}
 							ref={infinityScrollCalback}
 						>
 							<Loader />
-							{isLaunchesFetching && <p>Loading ...</p>}
+							{(isLaunchesFetching && !isLaunchesError) &&
+								< p > {intl.formatMessage({ id: "loading" })}</p>}
 
 						</Box >}
 					{isLaunchesError &&
 						<Box
 							className={classes.loaderWrapper}
 						>
-							<p>Server error ...</p>
+							<p>{intl.formatMessage({ id: "serverError" })}</p>
 						</Box>}
 
 				</Grid>
 			</div>
 
-		</div>
+		</div >
 	);
 };

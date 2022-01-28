@@ -1,19 +1,10 @@
-import {
-	Link, Paper, Typography
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { Link, Typography } from "@mui/material";
 import { format } from "date-fns";
 import { FC } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as RocketSvg } from "../../../assets/common/rocketLogo.svg";
-import { useStyles } from "./LaunchCard.styles";
+import { Item, useStyles } from "./LaunchCard.styles";
 import { Props } from "./LaunchCard.types";
-
-const Item = styled(Paper)(() => ({
-	textAlign: "center",
-	padding: 0,
-	boxShadow: "none",
-}));
 
 export const LaunchCard: FC<Props> = ({ launch }) => {
 	const classes = useStyles();

@@ -6,16 +6,18 @@ import {
 } from "@material-ui/core";
 import { Form, Formik } from "formik";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContext";
+import { validationSchema } from "./LoginForm.schema";
 import { useStyles } from "./LoginForm.styles";
 import type { Props } from "./LoginForm.types";
-import { validationSchema } from "./LoginForm.schema";
 
 export const LoginForm: FC<Props> = ({
 	initialValues, onSubmit, pathFrom
 }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 	const authContext = useAuth();
 
 	if (authContext === null) {
@@ -46,7 +48,7 @@ export const LoginForm: FC<Props> = ({
 							align="center"
 							variant="h2"
 						>
-							Login
+							{intl.formatMessage({ id: "login" })}
 						</Typography>
 					</Box>
 					<TextField
@@ -86,7 +88,7 @@ export const LoginForm: FC<Props> = ({
 							type="submit"
 							variant="contained"
 						>
-							Sign in now
+							{intl.formatMessage({ id: "signInNow" })}
 						</Button>
 					</Box>
 					<Box mt={2}>
@@ -94,14 +96,14 @@ export const LoginForm: FC<Props> = ({
 							color="secondary"
 							variant="body1"
 						>
-							Don&apos;t have an account?
+							{intl.formatMessage({ id: "dontHaveAcc" })}
 							{" "}
 							<Link
 								component={RouterLink}
 								to="/register"
 								variant="body1"
 							>
-								Sign up
+								{intl.formatMessage({ id: "signUp" })}
 							</Link>
 						</Typography>
 					</Box>
@@ -110,7 +112,7 @@ export const LoginForm: FC<Props> = ({
 							onClick={() => googlePopupSignIn(pathFrom)}
 							fullWidth={true}
 						>
-							Login with Google account
+							{intl.formatMessage({ id: "loginWithGoogle" })}
 						</Button>
 					</Box>
 				</Form>
