@@ -56,7 +56,7 @@ describe(
 							key={`r_${index}_${route.path}`}
 						/>;
 					})}
-                   </Switch>);
+				</Switch>);
 
 				expect(screen.queryByText(/Redirected/i)).not.toBeInTheDocument();
 				expect(screen.queryByText("Private!")).toBeInTheDocument();
@@ -85,7 +85,7 @@ describe(
 							key={`r_${index}_${route.path}`}
 						/>;
 					})}
-                      </Switch>);
+				</Switch>);
 
 				expect(screen.queryByText(/Redirected/i)).toBeInTheDocument();
 				expect(screen.queryByText("Private!")).not.toBeInTheDocument();

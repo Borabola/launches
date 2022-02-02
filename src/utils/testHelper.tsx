@@ -7,12 +7,12 @@ import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { AuthValues } from "../contexts/AuthContext.types";
 import AppIntlProvider from "../hocs/AppIntlProvider";
 import { setupStore } from "../redux/store";
 import type { AppStore, RootState } from "../redux/store/store.types";
 import theme from "../theme";
 import { AuthorizationStatusEnum } from "../types/Enums";
-import { AuthValues } from "../contexts/AuthContext.types";
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store. For
@@ -83,7 +83,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-          </Provider>);
+		</Provider>);
 	};
 	return {
 		store, ...render(
@@ -95,64 +95,10 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 const renderWithProvidersLogin = renderWithProvidersUser(testValue);
 const renderWithProvidersLogout = renderWithProvidersUser(testValueNull);
 
-/*const renderWithProvidersLogin = (
-	ui: React.ReactElement,
-	{
-		preloadedState = {},
-		store = setupStore(preloadedState),
-		...renderOptions
-	}: ExtendedRenderOptions = {}
-) => {
-	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
-		return (<Provider store={store}>
-			<BrowserRouter>
-				<AppIntlProvider>
-					<AuthContext.Provider value={testValue}>
-						<ThemeProvider theme={theme}>
-							{children}
-						</ThemeProvider>
-					</AuthContext.Provider>
-				</AppIntlProvider>
-			</BrowserRouter>
-          </Provider>);
-	};
-	return {
-		store, ...render(
-			ui,
-			{ wrapper: Wrapper, ...renderOptions }
-		)
-	};
-};
-
-const renderWithProvidersLogout = (
-	ui: React.ReactElement,
-	{
-		preloadedState = {},
-		store = setupStore(preloadedState),
-		...renderOptions
-	}: ExtendedRenderOptions = {}
-) => {
-	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
-		return (<Provider store={store}>
-			<BrowserRouter>
-				<AppIntlProvider>
-					<AuthContext.Provider value={testValueNull}>
-						<ThemeProvider theme={theme}>
-							{children}
-						</ThemeProvider>
-					</AuthContext.Provider>
-				</AppIntlProvider>
-			</BrowserRouter>
-          </Provider>);
-	};
-	return {
-		store, ...render(
-			ui,
-			{ wrapper: Wrapper, ...renderOptions }
-		)
-	};
-};*/
-
+/**
+ * BrowserRouter ignores the history prop as it handles the history automatically for you.
+ * If you need access to the history outside of a react component, then using Router should be fine
+ */
 const renderWithAuth = (
 	ui: React.ReactElement,
 	{
@@ -176,7 +122,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
@@ -199,7 +145,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
