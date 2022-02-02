@@ -53,7 +53,7 @@ export const Dashboard: FC = () => {
 					width={200}
 					height={200}
 					alt={d.title}
-				/> : "N/A"),
+				/> : "N/A")
 			},
 		]),
 		[intl]

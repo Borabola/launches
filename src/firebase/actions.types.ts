@@ -5,6 +5,6 @@ export interface ProductValues {
     id?: number;
     productName: string;
     productQnt: number;
-    file?: string;
+    file?: File | null;
 }
 export type AuthCurrentUser = Ensure<AuthValues, "currentUser">;

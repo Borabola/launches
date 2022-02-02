@@ -1,73 +1,26 @@
 import {
-	Box, Button, List, Paper, TextField, Typography
+	Box, Button, TextField, Typography
 } from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import { ListItem } from "@mui/material";
 import { Formik } from "formik";
-import {
-	FC, useCallback, useState
-} from "react";
-import { useDropzone } from "react-dropzone";
+import { FC } from "react";
+//import { useDropzone } from "react-dropzone";
 import { Form } from "react-formik-ui";
 import { useIntl } from "react-intl";
+import { Dropzone } from "./Dropzone";
 import { validationSchema } from "./NewProductForm.schema";
 import { useStyles } from "./NewProductForm.styles";
 import type { Props } from "./NewProductForm.types";
 
 export const NewProductForm: FC<Props> =
-	({ initialValues, onSubmit, onInputChange }) => {
+	({ initialValues, onSubmit }) => {
 		const intl = useIntl();
 		const classes = useStyles();
-		const [shownFile, setShownFile] = useState<File | null>(null);
-
-		const onDrop = useCallback(
-			acceptedFiles => {
-				onInputChange(acceptedFiles);
-				setShownFile(acceptedFiles[0]);
-			},
-			[]
-		);
-
-		const {
-			acceptedFiles,
-			fileRejections,
-			getRootProps,
-			getInputProps,
-			isDragActive = true
-		} = useDropzone({
-			onDrop,
-			accept: "image/jpeg, image/png"
-		});
-
-		const { ref, ...rootProps } = getRootProps();
-
-		const onDelete = () => {
-			acceptedFiles.shift();
-			setShownFile(null);
-		};
-
-		const getAcceptedFileItems = (shownFile: File) => (
-			<ListItem key={shownFile.name} >
-				{shownFile.name} - {shownFile.size} bytes
-				<IconButton onClick={onDelete}>
-					<CloseOutlinedIcon color="primary" />
-				</IconButton>
-			</ListItem>
-		);
-
-		const fileRejectionItems = fileRejections.map(({ file }) => (
-			<ListItem key={file.name} >
-				{file.name} - {file.size} bytes
-			</ListItem>
-		));
 
 		return (
 			<Formik
 				initialValues={initialValues}
-				validationSchema={validationSchema}
+				validationSchema={validationSchema(intl)}
 				onSubmit={onSubmit}
-				onInputChange={onInputChange}
 			>
 				{({
 					errors,
@@ -117,24 +70,8 @@ export const NewProductForm: FC<Props> =
 							variant="outlined"
 							color="secondary"
 						/>
-						<Box
-							ref={ref}
-							className={classes.dropzoneStyle}
-						>
-							<Paper {...rootProps}>
-								<input {...getInputProps()} />
-								<p>Drag drop image file here, or click to select it</p>
-								{
-									isDragActive &&
-									<p>Drop the files here ...</p>
-								}
-							</Paper>
-						</Box>
-						<Typography variant="h5">Accepted files</Typography>
-						{shownFile && <List> {getAcceptedFileItems(shownFile)}</List>}
+						<Dropzone name="file" />
 
-						<Typography variant="h5">Rejected files</Typography>
-						<List> {fileRejectionItems}</List>
 						<Box mt={4}>
 							<Button
 								color="secondary"

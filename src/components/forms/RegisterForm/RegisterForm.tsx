@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core";
 import { Formik } from "formik";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 import { validationSchema } from "./RegisterForm.schema";
 import { useStyles } from "./RegisterForm.styles";
@@ -13,11 +14,12 @@ import { Props } from "./RegisterForm.types";
 
 export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	return (
 		<Formik
 			initialValues={initialValues}
-			validationSchema={validationSchema}
+			validationSchema={validationSchema(intl)}
 			onSubmit={onSubmit}
 		>
 			{({
@@ -38,7 +40,7 @@ export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 							variant="h2"
 							align="center"
 						>
-							Create new account
+							{intl.formatMessage({ id: "createNewAccount" })}
 						</Typography>
 						<Typography
 							color="#ffffff"
@@ -46,7 +48,7 @@ export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 							variant="body2"
 							align="center"
 						>
-							Use your email to create new account
+							{intl.formatMessage({ id: "useEmailToNewAccount" })}
 						</Typography>
 					</Box>
 
@@ -98,7 +100,7 @@ export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 							type="submit"
 							variant="contained"
 						>
-							Sign up now
+							{intl.formatMessage({ id: "signUpNow" })}
 						</Button>
 					</Box>
 					<Box mt={2}>
@@ -106,13 +108,13 @@ export const RegisterForm: FC<Props> = ({ initialValues, onSubmit }) => {
 							color="#ffffff"
 							variant="body1"
 						>
-							Have an account? {"   "}
+							{intl.formatMessage({ id: "haveAccount" })} {"   "}
 							<Link
 								component={RouterLink}
 								to="login"
 								variant="body1"
 							>
-								Sign in
+								{intl.formatMessage({ id: "signIn" })}
 							</Link>
 						</Typography>
 					</Box>

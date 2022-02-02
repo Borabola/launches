@@ -16,7 +16,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	heroWrapper: {
 		position: "relative",
-		fontFamily: "Montserrat",
 		width: "100%",
 		marginTop: theme.spacing(-12.5),
 		display: "flex",
@@ -31,11 +30,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			content: "",
 			width: "100%",
 			height: "100%",
-			background: "linear-gradient(1.22deg, #181B48 3.9%, rgba(24, 27, 72, 0) 98.66%)",
+			background: `linear-gradient(1.22deg, 
+				${theme.palette.background.default} 3.9%,
+				${theme.palette.secondary.light} 98.66%)`,
 		},
 	},
 	heroText: {
-		fontFamily: "Montserrat",
 		marginBottom: theme.spacing(3.75),
 		fontWeight: "800",
 		fontSize: "4.75rem",
@@ -46,7 +46,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		fontFamily: "Montserrat",
 		paddingTop: "28%",
 		paddingBottom: "24.4vw",
 		[theme.breakpoints.down("lg")]: {
@@ -59,12 +58,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			paddingLeft: 0,
 		},
 		"& span": {
-			fontFamily: "Montserrat",
-			fontSize: "60px"
+			fontSize: theme.spacing(7.5)
 		}
 	},
 	timerWrapper: {
-		backgroundColor: "#4A00E0",
+		backgroundColor: theme.palette.info.dark,
 		padding: theme.spacing(
 			6.25,
 			8.75
@@ -78,15 +76,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			paddingLeft: theme.spacing(12),
 			fontSize: 76,
 			fontWeight: 800,
-			lineHeight: "92px",
+			lineHeight: "121%",
 			letterSpacing: 0,
 			[theme.breakpoints.down("lg")]: {
-				fontSize: 60,
-				lineHeight: "56px",
+				fontSize: 60
 			},
 			[theme.breakpoints.down("sm")]: {
-				fontSize: 48,
-				lineHeight: "52px",
+				fontSize: 48
 			},
 		},
 		"& h1": {

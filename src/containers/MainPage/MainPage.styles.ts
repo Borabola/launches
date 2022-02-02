@@ -14,13 +14,13 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			29.5,
 			16.25,
 			12.5
-		), //"118px 130px 100px",
+		),
 		marginTop: theme.spacing(21.25),
 		maxWidth: theme.spacing(180),
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "center",
-		backgroundColor: "#1C2056",
+		backgroundColor: theme.palette.primary.dark,
 		[theme.breakpoints.down("lg")]: {
 			marginTop: theme.spacing(-25),
 			padding: theme.spacing(25),
@@ -32,7 +32,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	errorsBlock: {
 		width: "100%"
-
 	},
 	pageContainer: {
 		"&.MuiContainer-root": {

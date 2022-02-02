@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#3F3881",
+		backgroundColor: theme.palette.secondary.dark,
 		[theme.breakpoints.down("lg")]: {
 			height: "40vw",
 		},
@@ -45,7 +45,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		marginBottom: theme.spacing(1.875),
 		display: "inline-flex",
 		justifyContent: "center",
-		backgroundColor: "#4A00E0",
+		backgroundColor: theme.palette.info.dark,
 		borderRadius: theme.spacing(6.25),
 	},
 	swiperWrapper1: {
@@ -54,7 +54,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		"& .swiper-container": {
 			paddingTop: theme.spacing(12.5),
 			marginTop: theme.spacing(-12.5),
-			color: "#4A00E0",
+			color: theme.palette.info.dark,
 		},
 
 		"& .swiper-button-next": {
@@ -109,7 +109,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			},
 		},
 		"& .swiper-button-prev.swiper-button-disabled": {
-			color: "#F1EBFF",
+			color: theme.palette.primary.main,
 			cursor: "inherit",
 			"&:hover": {
 				opacity: "1",
@@ -117,7 +117,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 		},
 		"& .swiper-button-next.swiper-button-disabled": {
-			color: "#F1EBFF",
+			color: theme.palette.primary.main,
 			cursor: "inherit",
 			"&:hover": {
 				opacity: "1",

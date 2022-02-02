@@ -13,7 +13,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			0,
 			3.75
 		),
-		background: "rgba(0, 0, 0, 0.2)",
+		background: theme.palette.success.main,
 		zIndex: 1,
 	},
 	headerContainer: {
@@ -59,8 +59,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		position: "absolute",
 		right: 0,
 		top: theme.spacing(5.75),
-		width: "95px",
-		height: "107px",
+		width: theme.spacing(11.875),
+		height: theme.spacing(13.375),
 		transition: "0.3s ease",
 		"&:hover": {
 			opacity: "0.8",
@@ -76,8 +76,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		alignItems: "end",
 		bottom: "-55%",
 		left: "50%",
-		width: "95px",
-		height: "107px",
+		width: theme.spacing(11.875),
+		height: theme.spacing(13.375),
 		transform: "translateX(-50%)",
 	},
 	loginWrap: {
@@ -96,14 +96,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		zIndex: 2,
 	},
 	headerStyled: {
-		color: "#C0C0C0",
+		color: theme.palette.info.main,
 	},
 	logoutBtn: {
 		padding: theme.spacing(
 			0.375,
 			1
 		),
-		background: "rgba(0,0,0,0)",
+		background: theme.palette.background.paper,
 		border: "none",
 		color: theme.palette.info.main,
 		fontSize: "1.125rem",

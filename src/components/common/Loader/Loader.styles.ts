@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import theme from "theme";
 
 export const useStyles = makeStyles(() => ({
 	loader: {
@@ -6,12 +7,12 @@ export const useStyles = makeStyles(() => ({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		padding: "10px",
+		padding: theme.spacing(1.25),
 		flexGrow: 1,
 
 		"& svg": {
-			width: "56px",
-			height: "56px",
+			width: theme.spacing(7),
+			height: theme.spacing(7),
 			animation: `$lds-roller 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite`,
 		}
 	},

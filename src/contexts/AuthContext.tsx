@@ -30,7 +30,7 @@ import {
 	AuthValues, CurrentUser, FirebaseError, Props, SProps
 } from "./AuthContext.types";
 
-const AuthContext = createContext<AuthValues | null>(null);
+export const AuthContext = createContext<AuthValues | null>(null);
 
 export const useAuth = () => {
 	return useContext(AuthContext);

@@ -22,21 +22,20 @@ export const useStyles = makeStyles((theme: Theme) => ({
 				borderColor: theme.palette.secondary.main,
 			},
 			"&:hover fieldset": {
-				borderColor: "#8E2DE2",
+				borderColor: theme.palette.info.light,
 			},
 			"&.Mui-focused fieldset": {
-				borderColor: "#4A00E0",
+				borderColor: theme.palette.info.dark,
 			},
 			"& input::placeholder": {
-				color: "#4A00E0",
+				color: theme.palette.info.dark,
 			},
 			dropzoneStyle: {
-				border: "1px solid red !important",
-				borderRadius: "2px !important",
+				borderRadius: theme.spacing(0.25),
 			},
 		},
 		"& label.Mui-focused": {
-			color: "#4A00E0",
+			color: theme.palette.info.dark,
 		},
 		"& .react-formik-ui .form-element .dropzone-wrapper .dropzone": {
 			borderColor: theme.palette.secondary.main,
@@ -58,24 +57,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		"& label": {
 			display: "none",
 		}
-	},
-	dropzoneStyle: {
-		minHeight: theme.spacing(12),
-		border: "1px solid #FFFFFF !important",
-		borderRadius: "5px !important",
-		backgroundColor: "#181B48 !important",
-		color: "#FFFFFF !important",
-		"& .MuiPaper-root": {
-			margin: 0,
-			backgroundColor: "transparent",
-			boxShadow: "none",
-			borderRadius: 0,
-			color: "#FFFFFF",
-			padding: "0 16px"
-		}
-	},
-	previewChip: {
-		minWidth: theme.spacing(20),
-		maxWidth: theme.spacing(26.25),
-	},
+	}
 }));

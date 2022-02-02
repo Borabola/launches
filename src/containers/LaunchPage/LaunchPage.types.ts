@@ -5,5 +5,5 @@ import type { CurrentLaunchAdapterType } from "../../redux/services/adapter.type
 export type Props = {
     currentLaunch: CurrentLaunchAdapterType | null,
     isCurrentFetching: boolean,
-    lunchCurrentError: FetchBaseQueryError | SerializedError | undefined
+    lunchCurrentError?: FetchBaseQueryError | SerializedError
 };

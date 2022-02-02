@@ -1,11 +1,13 @@
 import { Box, Link } from "@mui/material";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 import { AppRouteEnum } from "../../../../types/Enums";
 import { useStyles } from "./UserMenu.styles";
 
 export const UserMenu: FC = () => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	return (
 		<Box
@@ -18,7 +20,7 @@ export const UserMenu: FC = () => {
 				to={AppRouteEnum.DASHBOARD}
 				className={classes.menuLink}
 			>
-				Dashboard
+				{intl.formatMessage({ id: "dashboardLink" })}
 			</Link>
 			<Link
 				component={RouterLink}
@@ -26,7 +28,7 @@ export const UserMenu: FC = () => {
 				to={AppRouteEnum.ADDPRODUCT_PAGE}
 				className={classes.menuLink}
 			>
-				Add New Product
+				{intl.formatMessage({ id: "addNewProduct" })}
 			</Link>
 		</Box>
 	);

@@ -1,3 +1,4 @@
+import type { PreloadedState } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
 import {
 	TypedUseSelectorHook, useDispatch, useSelector
@@ -5,13 +6,13 @@ import {
 import logger from "redux-logger";
 import {
 	FLUSH, PAUSE,
-	PERSIST, persistReducer, persistStore, PURGE,
+	PERSIST, persistReducer, PURGE,
 	REGISTER, REHYDRATE
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { spacelaunchesSlice } from "../services/api";
 import { isDevelopment } from "../../utils/helper";
 import rootReducer from "../rootReducer";
+import { spacelaunchesSlice } from "../services/api";
 import type { AppDispatch, RootState } from "./store.types";
 
 const persistConfig = {
@@ -25,7 +26,25 @@ const persistedReducer = persistReducer(
 	rootReducer
 );
 
-const store = configureStore({
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+	return configureStore({
+		reducer: persistedReducer,
+		middleware: (getDefaultMiddleware) => {
+			const extraMiddleweres = [spacelaunchesSlice.middleware];
+
+			if (isDevelopment()) { extraMiddleweres.push(logger); }
+
+			return getDefaultMiddleware({
+				serializableCheck: {
+					ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+				}
+			}).concat(extraMiddleweres);
+		},
+		preloadedState,
+	});
+};
+
+/*const store = configureStore({
 	reducer: persistedReducer,
 	middleware: (getDefaultMiddleware) => {
 		const extraMiddleweres = [spacelaunchesSlice.middleware];
@@ -38,10 +57,11 @@ const store = configureStore({
 			}
 		}).concat(extraMiddleweres);
 	},
-});
+});*/
 
-const persistor = persistStore(store);
+//const persistor = persistStore(store);
 
-export { persistor, store };
+//export { persistor, store };
+//export { persistor };
 export const useTypedDispatch = () => useDispatch<AppDispatch>();
 export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;

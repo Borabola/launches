@@ -1,6 +1,7 @@
 import { Link, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { AppRouteEnum } from "../../../types/Enums";
@@ -8,6 +9,7 @@ import { useStyles } from "./Footer.styles";
 
 export const Footer: FC = () => {
 	const classes = useStyles();
+	const intl = useIntl();
 	const date = new Date();
 
 	return (
@@ -34,8 +36,9 @@ export const Footer: FC = () => {
 						variant="body1"
 						component="div"
 						className={classes.footerCopyright}
+						data-testid="test_id_year"
 					>
-						© {date.getFullYear()} Copyright
+						© {date.getFullYear()} {intl.formatMessage({ id: "copyright" })}
 					</Typography>
 				</Box>
 			</Box>

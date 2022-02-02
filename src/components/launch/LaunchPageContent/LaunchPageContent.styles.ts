@@ -7,10 +7,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		color: "#fff",
+		color: theme.palette.secondary.main,
 
 		"& h5": {
-			color: "#F1EBFF",
+			color: theme.palette.primary.main,
 		}
 	},
 	launchLineWrap: {

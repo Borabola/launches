@@ -7,6 +7,7 @@
 		"@emotion/react": "11.4.1",
 		"@emotion/styled": "11.3.0",
 		"@firebase/database-types": "^0.9.3",
+		"@firebase/rules-unit-testing": "^2.0.1",
 		"@fontsource/roboto": "^4.5.1",
 		"@material-ui/core": "5.0.0-beta.5",
 		"@mui/icons-material": "^5.3.0",
@@ -28,6 +29,7 @@
 		"dayjs": "^1.10.7",
 		"firebase": "^9.1.3",
 		"firebase-admin": "^10.0.0",
+		"firebase-tools": "^10.1.2",
 		"formik": "^2.2.9",
 		"jwt-decode": "^3.1.2",
 		"namor": "^2.0.3",
@@ -54,12 +56,15 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "react-scripts test --watchAll=false",
+		"test": "firebase emulators:exec --ui 'npm run jest'",
+		"test:rules": "react-scripts test --config=firebase.jest.config.js --detectOpenHandles --forceExit",
 		"eject": "react-scripts eject",
 		"lint": "eslint src --ext .jsx,.js,.ts,.tsx",
 		"lint:fix": "eslint src --fix",
 		"extract-messages": "formatjs extract src/**/*.js* --out-file src/i18n/en.json",
-		"deploy": "npm run build && firebase deploy"
+		"deploy": "npm run build && firebase deploy",
+		"jest": "react-scripts test --runInBand",
+		"mock": "firebase emulators: start"
 	},
 	"browserslist": {
 		"production": [
@@ -76,6 +81,7 @@
 	"devDependencies": {
 		"@babel/cli": "^7.15.7",
 		"@babel/core": "^7.15.8",
+		"@firebase/testing": "^0.20.11",
 		"@types/crypto-js": "^4.0.2",
 		"@types/react-router-dom": "^5.3.2",
 		"@types/react-table": "^7.7.9",
@@ -93,6 +99,7 @@
 		"eslint-plugin-react": "^7.26.1",
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"eslint-scope": "^6.0.0",
+		"firestore-jest-mock": "^0.17.0",
 		"node-sass": "^6.0.1",
 		"redux-devtools-extension": "^2.13.9",
 		"typescript": "^4.5.4"

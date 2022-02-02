@@ -2,7 +2,7 @@ import { Database } from "@firebase/database";
 import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { ref, set } from "firebase/database";
 import {
-	getDownloadURL, ref as storeRef, uploadBytesResumable
+	getDownloadURL, ref as storeRef, uploadBytesResumable, UploadTask
 } from "firebase/storage";
 import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
 import { ProductValues } from "./actions.types";
@@ -34,16 +34,68 @@ export const setProductToDatabase = (
 };
 
 export const uploadFile = async (
-	file: File, storage: FirebaseStorage
-): Promise<string> => {
+	file: File, userUid: string, storage: FirebaseStorage
+): Promise<UploadTask> => {
 	const fileRef = storeRef(
 		storage,
-		"images/" + file.name
+		//"images/" + userUid + "/" + file.name
+		`images/${userUid}/${file.name}`
 	);
-	await uploadBytesResumable(
+
+	const uploadTask = uploadBytesResumable(
 		fileRef,
 		file
 	);
-	const fileUrl = await getDownloadURL(fileRef);
-	return fileUrl;
+	const unsubscribe = uploadTask.on(
+		"state_changed",
+		(snapshot) => {
+			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+			const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+			console.log("Upload is " + progress + "% done");
+			unsubscribe();
+		},
+		(error) => {
+			// A full list of error codes is available at
+			// https://firebase.google.com/docs/storage/web/handle-errors
+			switch (error.code) {
+				case "storage/unauthorized":
+					console.error(
+						"storage/unauthorized",
+						error
+					);
+					break;
+				case "storage/canceled":
+					// User canceled the upload
+					console.error(
+						"storage/canceled",
+						error
+					);
+					break;
+
+				// ...
+
+				case "storage/unknown":
+					// Unknown error occurred, inspect error.serverResponse
+					console.error(
+						"storage/unknown",
+						error
+					);
+					break;
+			}
+		},
+		() => {
+			// Upload completed successfully, now we can get the download URL
+			getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+				console.log(
+					"File available at",
+					downloadURL
+				);
+			});
+		}
+	);
+
+	////
+	//const fileUrl = await getDownloadURL(fileRef);
+	//return fileUrl;
+	return uploadTask;
 };
