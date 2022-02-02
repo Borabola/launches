@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { AppRouteEnum } from "../types/Enums";
+import type {Routes} from "./routes.types";
 
 // Common routes with using React code splitting approach
 
@@ -9,7 +10,7 @@ const LoginPage = lazy(() => import("../pages/Login"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage"));
 const NotFound = lazy(() => import("../pages/NotFound"));
 
-export const commonRoutes = [
+export const commonRoutes: Routes = [
 	{
 		component: Main,
 		path: AppRouteEnum.ROOT,

@@ -2,10 +2,13 @@ import { Database } from "@firebase/database";
 import { FirebaseStorage } from "@firebase/storage/dist/storage-public";
 import { ref, set } from "firebase/database";
 import {
-	getDownloadURL, ref as storeRef, uploadBytesResumable, UploadTask
+	getDownloadURL, ref as storeRef, uploadBytes
 } from "firebase/storage";
-import { showAddProductFailToast, showAddProductSuccessToast } from "../utils/toastHelper";
+import {
+	showAddProductFailToast, showAddProductSuccessToast, showServerDetail
+} from "../utils/toastHelper";
 import { ProductValues } from "./actions.types";
+import { isDevelopment } from "utils/helper";
 
 export const setProductToDatabase = (
 	currentUserId: string,
@@ -33,69 +36,37 @@ export const setProductToDatabase = (
 		});
 };
 
-export const uploadFile = async (
-	file: File, userUid: string, storage: FirebaseStorage
-): Promise<UploadTask> => {
+export const uploadFileAndSaveToDB = (
+	values: ProductValues,
+	userUid: string,
+	storage: FirebaseStorage,
+	database: Database,
+): Promise<void> | undefined => {
+	if(!values.file) {
+		return;
+	}
 	const fileRef = storeRef(
 		storage,
-		//"images/" + userUid + "/" + file.name
-		`images/${userUid}/${file.name}`
-	);
 
-	const uploadTask = uploadBytesResumable(
+		`images/${userUid}/${values.file.name}`
+	);
+	uploadBytes(
 		fileRef,
-		file
-	);
-	const unsubscribe = uploadTask.on(
-		"state_changed",
-		(snapshot) => {
-			// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-			const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-			console.log("Upload is " + progress + "% done");
-			unsubscribe();
-		},
-		(error) => {
-			// A full list of error codes is available at
-			// https://firebase.google.com/docs/storage/web/handle-errors
-			switch (error.code) {
-				case "storage/unauthorized":
-					console.error(
-						"storage/unauthorized",
-						error
-					);
-					break;
-				case "storage/canceled":
-					// User canceled the upload
-					console.error(
-						"storage/canceled",
-						error
-					);
-					break;
-
-				// ...
-
-				case "storage/unknown":
-					// Unknown error occurred, inspect error.serverResponse
-					console.error(
-						"storage/unknown",
-						error
-					);
-					break;
-			}
-		},
-		() => {
-			// Upload completed successfully, now we can get the download URL
-			getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-				console.log(
-					"File available at",
-					downloadURL
-				);
-			});
-		}
-	);
-
-	////
-	//const fileUrl = await getDownloadURL(fileRef);
-	//return fileUrl;
-	return uploadTask;
+		values.file
+	)
+		.then(snapshot => {
+			return getDownloadURL(snapshot.ref);
+		})
+		.then(downloadURL => {
+			setProductToDatabase(
+				userUid,
+				values,
+				downloadURL,
+				database
+			);
+		})
+		.catch((error) => {
+			isDevelopment() && console.error(error);
+			showServerDetail(error.code);
+		});
 };

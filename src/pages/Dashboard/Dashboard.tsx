@@ -15,6 +15,7 @@ export const Dashboard: FC = () => {
 	const classes = useStyles();
 
 	const authContext = useAuth();
+
 	if (authContext === null) {
 		return null;
 	}

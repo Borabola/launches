@@ -96,9 +96,8 @@ describe(
 					"images/desert.jpg"
 				);*/
 
-				const path = `images/${userAuth.userId}/logo192.png`
-				const ref = testEnv.authenticatedContext(userAuth.userId).storage().ref(path) 
-				console.log(desertRef);
+				const path = `images/${userAuth.userId}/logo192.png`;
+				const ref = testEnv.authenticatedContext(userAuth.userId).storage().ref(path);
 				await uploadBytesResumable(
 					desertRef,
 					loadIconImage

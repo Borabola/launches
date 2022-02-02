@@ -28,6 +28,15 @@ export const showAddProductFailToast = (): void => {
 		{ toastId: currentId }
 	);
 };
+export const showUploadFailToast = (): void => {
+	const currentId = "uploadFail";
+	toast.error(
+		<FormattedMessage
+			id="uploadFiletFail"
+		/>,
+		{ toastId: currentId }
+	);
+};
 
 export const showWaitMessage = (): void => {
 	const customId = "loading";

@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
+import AppIntlProvider from "../../../hocs/AppIntlProvider";
 import { render, screen } from "@testing-library/react";
 import { Loader } from ".";
 import theme from "../../../theme";
@@ -9,9 +10,11 @@ describe(
 		it(
 			"should render correctly",
 			() => {
-				render(<ThemeProvider theme={theme}>
+				render(<AppIntlProvider>
+				<ThemeProvider theme={theme}>
                     <Loader />
-           </ThemeProvider>);
+    </ThemeProvider>
+           </AppIntlProvider>);
 
 				expect(screen.getByText(/Loading/i)).toBeInTheDocument();
 			}

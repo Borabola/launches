@@ -4,9 +4,9 @@ import { Loader } from "../../components/common/Loader";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTypedSelector } from "../../redux/store";
 import { AuthorizationStatusEnum } from "../../types/Enums";
-import type { Props } from "./PrivateRoute.types";
+import type { PrivatRoutesItem } from "../../routes/routes.types";
 
-const PrivateRoute: FC<Props> = ({
+const PrivateRoute: FC<PrivatRoutesItem> = ({
 	component: Component,
 	...rest
 }) => {
@@ -18,7 +18,8 @@ const PrivateRoute: FC<Props> = ({
 
 	const authorizationStatus = useTypedSelector(state => state.auth.authorizationStatus);
 
-	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatusEnum.NO_AUTH);
+	const isUserLoggedOut = !!(authorizationStatus === AuthorizationStatusEnum.NO_AUTH
+		|| (authContext.currentUser === null));
 
 	if (authorizationStatus === AuthorizationStatusEnum.UNKNOWN) {
 		return <Loader />;
