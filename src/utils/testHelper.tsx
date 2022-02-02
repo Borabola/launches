@@ -72,9 +72,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 		...renderOptions
 	}: ExtendedRenderOptions = {}
 ) => {
-	const Wrapper = (
-		{ children }: PropsWithChildren<Record<string, unknown>>
-	): JSX.Element => {
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
 		return (<Provider store={store}>
 			<BrowserRouter>
 				<AppIntlProvider>

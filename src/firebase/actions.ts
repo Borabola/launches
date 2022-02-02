@@ -4,11 +4,11 @@ import { ref, set } from "firebase/database";
 import {
 	getDownloadURL, ref as storeRef, uploadBytes
 } from "firebase/storage";
-import { isDevelopment } from "utils/helper";
 import {
 	showAddProductFailToast, showAddProductSuccessToast, showServerDetail
 } from "../utils/toastHelper";
 import { ProductValues } from "./actions.types";
+import { isDevelopment } from "utils/helper";
 
 export const setProductToDatabase = (
 	currentUserId: string,
@@ -41,9 +41,9 @@ export const uploadFileAndSaveToDB = (
 	userUid: string,
 	storage: FirebaseStorage,
 	database: Database,
-): Promise<void> | boolean => {
-	if (!values.file) {
-		return true;
+): Promise<void> | undefined => {
+	if(!values.file) {
+		return;
 	}
 	const fileRef = storeRef(
 		storage,
