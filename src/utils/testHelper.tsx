@@ -12,6 +12,7 @@ import { setupStore } from "../redux/store";
 import type { AppStore, RootState } from "../redux/store/store.types";
 import theme from "../theme";
 import { AuthorizationStatusEnum } from "../types/Enums";
+import { AuthValues } from "../contexts/AuthContext.types";
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store. For
@@ -57,10 +58,46 @@ const testValueNull = {
 	logout,
 	googlePopupSignIn
 };
+
 const history = createMemoryHistory({ initialEntries: ["/Private"] });
 const historyCommon = createMemoryHistory({ initialEntries: ["/Common"] });
 
-const renderWithProvidersLogin = (
+const renderWithProvidersUser = (testInfo: AuthValues) => (
+	ui: React.ReactElement,
+
+	{
+		preloadedState = {},
+		store = setupStore(preloadedState),
+
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	const Wrapper = (
+		{ children }: PropsWithChildren<Record<string, unknown>>
+	): JSX.Element => {
+		return (<Provider store={store}>
+			<BrowserRouter>
+				<AppIntlProvider>
+					<AuthContext.Provider value={testInfo}>
+						<ThemeProvider theme={theme}>
+							{children}
+						</ThemeProvider>
+					</AuthContext.Provider>
+				</AppIntlProvider>
+			</BrowserRouter>
+          </Provider>);
+	};
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};
+const renderWithProvidersLogin = renderWithProvidersUser(testValue);
+const renderWithProvidersLogout = renderWithProvidersUser(testValueNull);
+
+/*const renderWithProvidersLogin = (
 	ui: React.ReactElement,
 	{
 		preloadedState = {},
@@ -79,7 +116,7 @@ const renderWithProvidersLogin = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -108,7 +145,7 @@ const renderWithProvidersLogout = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -116,7 +153,7 @@ const renderWithProvidersLogout = (
 			{ wrapper: Wrapper, ...renderOptions }
 		)
 	};
-};
+};*/
 
 const renderWithAuth = (
 	ui: React.ReactElement,
@@ -141,7 +178,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -164,7 +201,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {

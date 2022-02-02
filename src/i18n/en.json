@@ -1,6 +1,6 @@
 {
 	"addNewProduct": "Add New Product",
-	"addProductFail": "Adding the ptoduct is failed",
+	"addProductFail": "Adding the product is failed",
 	"addProductSuccess": "Adding the ptoduct is successful",
 	"copyright": "Copyright",
 	"createNewAccount": "Create new account",
@@ -51,5 +51,6 @@
 	"tooManyRequest": "Too many request",
 	"userNotFound": "User not found",
 	"useEmailToNewAccount": "Use your email to create new account",
+	"uploadFiletFail": "Uploading of image is failed",
 	"waitMessage": "Please, wait ..."
 }

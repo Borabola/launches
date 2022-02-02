@@ -31,14 +31,6 @@ export const LaunchesBlock: FC = () => {
 		isError: isLaunchesError,
 		isFetching: isLaunchesFetching } = useGetLaunchesQuery(launchesQnt);
 
-	if (isLaunchesError) {
-		console.log(
-			isLaunchesError,
-			"data",
-			currentData
-		);
-	}
-
 	useEffect(
 		() => {
 			if (currentData && currentData.launches.length > 0) {

@@ -2,11 +2,11 @@ import { screen } from "@testing-library/react";
 import { NewProductForm } from ".";
 import { renderWithProvidersLogout } from "../../../utils/testHelper";
 
-const initialValuesProduct = { productName: "TestName", file: "", productQnt: 5 };
+const initialValuesProduct = { productName: "TestName", file: null, productQnt: 5 };
 const testSubmit = jest.fn();
-const onInputChange = jest.fn(() => {
+/*const onInputChange = jest.fn(() => {
 	return Promise.resolve();
-});
+});*/
 
 describe(
 	"Component: NewProductForm",
@@ -17,7 +17,7 @@ describe(
 				renderWithProvidersLogout(<NewProductForm
 					initialValues={initialValuesProduct}
 					onSubmit={testSubmit}
-					onInputChange={onInputChange}
+					//onInputChange={onInputChange}
 				/>);
 
 				//button
