@@ -83,7 +83,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -122,7 +122,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -145,7 +145,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -156,4 +156,16 @@ const renderWithUnknown = (
 	};
 };
 
-export { renderWithProvidersLogin, renderWithProvidersLogout, renderWithAuth, renderWithUnknown };
+const toArrayBuffer = (buf: Buffer) => {
+	const ab = new ArrayBuffer(buf.length);
+	const view = new Uint8Array(ab);
+	for (let i = 0; i < buf.length; ++i) {
+		view[i] = buf[i];
+	}
+	return ab;
+};
+export {renderWithProvidersLogin,
+	renderWithProvidersLogout,
+	renderWithAuth,
+	renderWithUnknown,
+	toArrayBuffer};

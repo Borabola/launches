@@ -17,7 +17,7 @@ describe(
 							<UserMenu />
 						</ThemeProvider>
 					</FakeIntlProvider>
-				</BrowserRouter>);
+           </BrowserRouter>);
 
 				expect(screen.getByText(/dashboard/i)).toBeInTheDocument();
 				expect(screen.getByText(/Add new product/i)).toBeInTheDocument();

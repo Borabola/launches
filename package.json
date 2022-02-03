@@ -56,7 +56,8 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "firebase emulators:exec --ui 'npm run jest'",
+		"test": "firebase emulators:exec --ui --import=src/firebase/emulator-data/ 'npm run jest'",
+		"test2": "react-scripts test",
 		"test:rules": "react-scripts test --config=firebase.jest.config.js --detectOpenHandles --forceExit",
 		"eject": "react-scripts eject",
 		"lint": "eslint src --ext .jsx,.js,.ts,.tsx",
@@ -64,7 +65,8 @@
 		"extract-messages": "formatjs extract src/**/*.js* --out-file src/i18n/en.json",
 		"deploy": "npm run build && firebase deploy",
 		"jest": "react-scripts test --runInBand",
-		"mock": "firebase emulators: start"
+		"mock": "firebase emulators: start",
+		"firebase": "firebase emulators:exec --import=src/firebase/emulator-data/"
 	},
 	"browserslist": {
 		"production": [
