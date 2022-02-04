@@ -4,9 +4,6 @@ import { renderWithProvidersLogin } from "../../../utils/testHelper";
 
 const initialValuesProduct = { productName: "TestName", file: null, productQnt: 5 };
 const testSubmit = jest.fn();
-/*const onInputChange = jest.fn(() => {
-	return Promise.resolve();
-});*/
 
 describe(
 	"Component: NewProductForm",
@@ -17,7 +14,6 @@ describe(
 				renderWithProvidersLogin(<NewProductForm
 					initialValues={initialValuesProduct}
 					onSubmit={testSubmit}
-				//onInputChange={onInputChange}
 				/>);
 
 				//button
