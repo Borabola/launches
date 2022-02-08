@@ -3,8 +3,17 @@ import {
 	combineReducers,
 	configureStore, EnhancedStore, Middleware, Reducer
 } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { Provider } from "react-redux";
+import { Store } from "redux";
 import type { ThunkAction } from "redux-thunk";
 import { RootState } from "redux/store";
+
+export function withProvider(store: Store<any>) {
+	return function Wrapper({ children }: any) {
+		return <Provider store={store}>{children}</Provider>;
+	};
+}
 
 export type AppThunk<ReturnType = void> = ThunkAction<
 	ReturnType,
@@ -20,7 +29,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 
 export function setupApiStore<
 	A extends {
-		reducer: Reducer<any, AnyAction>;
+		//reducer: Reducer<RootState, AnyAction>;
+		reducer: Reducer<any, any>;
 		reducerPath: string;
 		middleware: Middleware;
 		util: {
@@ -28,9 +38,10 @@ export function setupApiStore<
 			): any
 		};
 	},
-	R extends Record<string, Reducer<RootState, AnyAction>>
+	R extends Record<string, Reducer<any, any>>
 	= Record<never, never>
->(api: A, extraReducers?: R
+>(
+	api: A, extraReducers?: R, withoutListeners?: boolean
 ): { api: A; store: EnhancedStore } {
 
 	const getStore = (): EnhancedStore =>
@@ -60,9 +71,27 @@ export function setupApiStore<
 	const refObj = {
 		api,
 		store: initialStore,
+		wrapper: withProvider(initialStore),
 	};
 	const store = getStore() as StoreType;
 	refObj.store = store;
+
+	let cleanupListeners: () => void;
+
+	beforeEach(() => {
+		const store = getStore() as StoreType;
+		refObj.store = store;
+		refObj.wrapper = withProvider(store);
+		if (!withoutListeners) {
+			cleanupListeners = setupListeners(store.dispatch);
+		}
+	});
+	afterEach(() => {
+		if (!withoutListeners) {
+			cleanupListeners();
+		}
+		refObj.store.dispatch(api.util.resetApiState());
+	});
 
 	return refObj;
 }

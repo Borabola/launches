@@ -1,15 +1,7 @@
 import { screen } from "@testing-library/react";
 import { LaunchCard } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
-
-const testDate = (new Date(500000000000)).toString(); // Nov 05 1985 06:23:20 GMT+0530 (IST)
-const testLaunch = {
-	id: "testId",
-	launchName: "testName",
-	launchImg: "testImgUrl",
-	launchDate: testDate,
-	rocketId: 88
-};
+import { testLaunch } from "../../../utils/tests/mockData";
 
 describe(
 	"Component: LaunchCard",

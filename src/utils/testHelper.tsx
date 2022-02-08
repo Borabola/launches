@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@mui/material/styles";
 import type { PreloadedState } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import type { RenderOptions } from "@testing-library/react";
 import { render } from "@testing-library/react";
 import { createMemoryHistory } from "history";
@@ -132,6 +133,7 @@ const renderWithAuth = (
 		)
 	};
 };
+
 const renderWithUnknown = (
 	ui: React.ReactElement,
 	{
@@ -156,6 +158,69 @@ const renderWithUnknown = (
 	};
 };
 
+const renderWithUnknownHistory = (
+	ui: React.ReactElement,
+	{
+		preloadedState = {},
+		store = setupStore(preloadedState),
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	setupListeners(store.dispatch);
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
+		const history = createMemoryHistory();
+		return (<Provider store={store}>
+			<Router history={history}>
+				{children}
+			</Router>
+          </Provider>);
+	};
+
+	//store.dispatch(spacelaunchesSlice.util.resetApiState());
+
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};
+
+const renderforRTKtest = (
+	ui: React.ReactElement,
+	{
+		preloadedState = {},
+		store = setupStore(preloadedState),
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	setupListeners(store.dispatch);
+
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
+		const history = createMemoryHistory();
+		return (<Provider store={store}>
+			<Router history={history}>
+				<AppIntlProvider>
+					<AuthContext.Provider value={testValueNull}>
+						<ThemeProvider theme={theme}>
+							{children}
+						</ThemeProvider>
+					</AuthContext.Provider>
+				</AppIntlProvider>
+			</Router>
+          </Provider>);
+	};
+
+	//store.dispatch(spacelaunchesSlice.util.resetApiState());
+
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};
+
 const toArrayBuffer = (buf: Buffer) => {
 	const ab = new ArrayBuffer(buf.length);
 	const view = new Uint8Array(ab);
@@ -164,7 +229,9 @@ const toArrayBuffer = (buf: Buffer) => {
 	}
 	return ab;
 };
-export {renderWithProvidersLogin,
+export {renderforRTKtest,
+	renderWithUnknownHistory,
+	renderWithProvidersLogin,
 	renderWithProvidersLogout,
 	renderWithAuth,
 	renderWithUnknown,
