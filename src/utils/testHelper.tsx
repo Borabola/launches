@@ -7,6 +7,7 @@ import { createMemoryHistory } from "history";
 import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
+import { Store } from "redux";
 import { AuthContext } from "../contexts/AuthContext";
 import { AuthValues } from "../contexts/AuthContext.types";
 import AppIntlProvider from "../hocs/AppIntlProvider";
@@ -84,7 +85,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-          </Provider>);
+		</Provider>);
 	};
 	return {
 		store, ...render(
@@ -123,7 +124,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
@@ -147,7 +148,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
@@ -173,7 +174,7 @@ const renderWithUnknownHistory = (
 			<Router history={history}>
 				{children}
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
@@ -186,11 +187,11 @@ const renderWithUnknownHistory = (
 	};
 };
 
-const renderforRTKtest = (
+const renderforRTKtest = (testStore: Store) => (
 	ui: React.ReactElement,
 	{
 		preloadedState = {},
-		store = setupStore(preloadedState),
+		store = testStore,
 		...renderOptions
 	}: ExtendedRenderOptions = {}
 ) => {
@@ -208,7 +209,7 @@ const renderforRTKtest = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
@@ -229,10 +230,13 @@ const toArrayBuffer = (buf: Buffer) => {
 	}
 	return ab;
 };
-export {renderforRTKtest,
+export {
+	renderforRTKtest,
 	renderWithUnknownHistory,
 	renderWithProvidersLogin,
 	renderWithProvidersLogout,
 	renderWithAuth,
 	renderWithUnknown,
-	toArrayBuffer};
+	toArrayBuffer
+};
+
