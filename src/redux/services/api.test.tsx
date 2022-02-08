@@ -4,15 +4,17 @@ import { FC } from "react";
 //import { renderforRTKtest } from "../../utils/testHelper";
 import { Provider } from "react-redux";
 import { setupApiStore } from "../../utils/RTKTestHelper";
-import { testEvents } from "../../utils/tests/mockData";
+import { testEvents, testLaunch } from "../../utils/tests/mockData";
 import authSlice from "../auth/sliceReducer";
-import { spacelaunchesSlice, useGetEventsQuery } from "./api";
+import {
+	spacelaunchesSlice, useGetEventsQuery, useGetLaunchesQuery
+} from "./api";
 
 const updateTimeout = 5000;
 enableFetchMocks();
 
 beforeEach((): void => {
-	fetchMock.resetMocks();
+	//fetchMock.resetMocks();
 	fetchMock.doMock();
 
 });
@@ -28,9 +30,12 @@ const wrapper: FC = ({ children }) => {
 describe(
 	"useGetEventsQuery",
 	() => {
-		beforeEach(() => { // if you have an existing `beforeEach` just add the following line to it
-			fetchMock.resetMocks();
+		beforeEach(() => {
+			//fetchMock.resetMocks();
 			fetchMock.doMock();
+		});
+		afterEach(() => {
+			jest.clearAllMocks(); // clear all mock.calls and mock.instances (not implementations)
 		});
 		it(
 			"Success",
@@ -48,6 +53,7 @@ describe(
 				await waitForNextUpdate({ timeout: updateTimeout });
 
 				const nextResponse = result.current;
+				console.log(result.current);
 				expect(nextResponse.data).not.toBeUndefined();
 				expect(nextResponse.isLoading).toBe(false);
 				expect(nextResponse.isSuccess).toBe(true);
@@ -56,11 +62,15 @@ describe(
 	}
 );
 
-/*describe(
+describe(
 	"getLaunches",
 	() => {
-		beforeEach(() => { // if you have an existing `beforeEach` just add the following line to it
+		beforeEach(() => {
+			//fetchMock.resetMocks();
 			fetchMock.doMock();
+		});
+		afterEach(() => {
+			jest.clearAllMocks(); // clear all mock.calls and mock.instances (not implementations)
 		});
 		it(
 			"Success",
