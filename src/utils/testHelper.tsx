@@ -7,7 +7,6 @@ import { createMemoryHistory } from "history";
 import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
-import { Store } from "redux";
 import { AuthContext } from "../contexts/AuthContext";
 import { AuthValues } from "../contexts/AuthContext.types";
 import AppIntlProvider from "../hocs/AppIntlProvider";
@@ -187,7 +186,7 @@ const renderWithUnknownHistory = (
 	};
 };
 
-const renderforRTKtest = (testStore: Store) => (
+/*const renderforRTKtest = (testStore: Store) => (
 	ui: React.ReactElement,
 	{
 		preloadedState = {},
@@ -209,6 +208,40 @@ const renderforRTKtest = (testStore: Store) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
+		</Provider>);
+	};
+
+	//store.dispatch(spacelaunchesSlice.util.resetApiState());
+
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};*/
+
+const renderforRTKtest = (
+	ui: React.ReactElement,
+	{
+		preloadedState = {},
+		store = setupStore(preloadedState),
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	setupListeners(store.dispatch);
+
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
+		return (<Provider store={store}>
+			<BrowserRouter>
+				<AppIntlProvider>
+					<AuthContext.Provider value={testValue}>
+						<ThemeProvider theme={theme}>
+							{children}
+						</ThemeProvider>
+					</AuthContext.Provider>
+				</AppIntlProvider>
+			</BrowserRouter>
 		</Provider>);
 	};
 

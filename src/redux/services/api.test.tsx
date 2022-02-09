@@ -1,150 +1,68 @@
-import { renderHook } from "@testing-library/react-hooks";
-import fetchMock, { enableFetchMocks } from "jest-fetch-mock";
-import { FC } from "react";
-//import { renderforRTKtest } from "../../utils/testHelper";
-import { Provider } from "react-redux";
-import { setupApiStore } from "../../utils/RTKTestHelper";
-import { testEvents, testLaunch } from "../../utils/tests/mockData";
-import authSlice from "../auth/sliceReducer";
-import {
-	spacelaunchesSlice, useGetEventsQuery, useGetLaunchesQuery
-} from "./api";
 
-const updateTimeout = 5000;
-enableFetchMocks();
+//import fetchMock from "jest-fetch-mock";
+//import authSlice from "../../redux/auth/sliceReducer";
+//import { setupApiStore } from "../../utils/RTKTestHelper";
+//import { spacelaunchesSlice } from "./api";
+import { screen } from "@testing-library/react";
+import MainPage from "../../pages/MainPage";
+import { renderforRTKtest } from "../../utils/testHelper";
 
-beforeEach((): void => {
-	//fetchMock.resetMocks();
-	fetchMock.doMock();
-
-});
-
-const wrapper: FC = ({ children }) => {
-	const storeRef = setupApiStore(
-		spacelaunchesSlice,
-		{ auth: authSlice }
-	);
-	return <Provider store={storeRef.store}>{children}</Provider>;
-};
+//const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 describe(
-	"useGetEventsQuery",
+	"spacelaunchesSlice, getEvents ",
 	() => {
-		beforeEach(() => {
-			//fetchMock.resetMocks();
-			fetchMock.doMock();
-		});
-		afterEach(() => {
-			jest.clearAllMocks(); // clear all mock.calls and mock.instances (not implementations)
-		});
-		it(
-			"Success",
-			async () => {
-				const mock = fetchMock.mockResponse(JSON.stringify(testEvents));
-				console.log(JSON.stringify(testEvents));
-				console.log(mock.once);
-				const { result, waitForNextUpdate } = renderHook(
-					() => useGetEventsQuery(),
-					{ wrapper }
-				);
-				const initialResponse = result.current;
-				expect(initialResponse.data).toBeUndefined();
-				expect(initialResponse.isLoading).toBe(true);
-				await waitForNextUpdate({ timeout: updateTimeout });
 
-				const nextResponse = result.current;
-				console.log(result.current);
-				expect(nextResponse.data).not.toBeUndefined();
-				expect(nextResponse.isLoading).toBe(false);
-				expect(nextResponse.isSuccess).toBe(true);
+		/*it(
+			"empty events object",
+			() => {
+				server.use(rest.get(
+					`${APIRoutesEnum.EVENTS}`,
+					(
+						req, res, ctx
+					) => res(ctx.json([]))
+				));
+
+				renderWithUnknownHistory(<App />);
+
+				expect(screen.getByText(/recent events/i)).not.toBeInTheDocument();
+
+			}
+		);*/
+		/*test(
+			"fetches items from API on page load",
+			async () => {
+				renderforRTKtest(<MainPage />);
+				//const rows = await screen.findAllByText(/items_/);
+
+				expect(screen.findByText(/recent events/i)).toBeInTheDocument();
+			}
+		);*/
+		it(
+			"should render received data in Main page",
+			async () => {
+				//act(() => renderWithAuth(<App />));
+				/*server.use(rest.get(
+					`${APIRoutesEnum.EVENTS}`,
+					(
+						req, res, ctx
+					) => res(ctx.json(testEvents))
+				));*/
+				renderforRTKtest(<MainPage />);
+				//console.log(container);
+				const EventsText = await screen.findByText(/recent events/i);
+				const EventNameText = await screen.findByText(/testName/i);
+				const EventDataText = await screen.findByText(/Jan. 22, 2022/i);
+
+				expect(EventsText).toBeInTheDocument();
+				expect(EventNameText).toBeInTheDocument();
+				expect(EventDataText).toBeInTheDocument();
+
+				//expect(screen.findByText(/recent events/i)).toBeInTheDocument();
+				//expect(screen.getByText(/testName/i)).toBeInTheDocument();
+				//expect(screen.getByText(/Jan. 22, 2022/i)).toBeInTheDocument();
+				//expect(screen.getByText(/Nov. 05, 1985/i)).toBeInTheDocument();
 			}
 		);
 	}
 );
-
-describe(
-	"getLaunches",
-	() => {
-		beforeEach(() => {
-			//fetchMock.resetMocks();
-			fetchMock.doMock();
-		});
-		afterEach(() => {
-			jest.clearAllMocks(); // clear all mock.calls and mock.instances (not implementations)
-		});
-		it(
-			"Success",
-			async () => {
-				fetchMock.mockResponse(JSON.stringify(testLaunch));
-				const { result, waitForNextUpdate } = renderHook(
-					() => useGetLaunchesQuery(1),
-					{ wrapper }
-				);
-				const initialResponse = result.current;
-				expect(initialResponse.data).toBeUndefined();
-				expect(initialResponse.isLoading).toBe(true);
-				await waitForNextUpdate({ timeout: updateTimeout });
-
-				console.log(
-					"getLaunches",
-					result.current
-				);
-				const nextResponse = result.current;
-				expect(nextResponse.data).not.toBeUndefined();
-				expect(nextResponse.isLoading).toBe(false);
-				expect(nextResponse.isSuccess).toBe(true);
-
-			}
-		);
-
-		it(
-			"Internal Server Error",
-			async () => {
-				fetchMock.mockReject(new Error("Internal Server Error"));
-				const { result, waitForNextUpdate } = renderHook(
-					() => useGetEventsQuery(),
-					{ wrapper }
-				);
-				const initialResponse = result.current;
-				expect(initialResponse.data).toBeUndefined();
-				expect(initialResponse.isLoading).toBe(true);
-
-				await waitForNextUpdate({ timeout: updateTimeout });
-
-				const nextResponse = result.current;
-				expect(nextResponse.data).toBeUndefined();
-				expect(nextResponse.isLoading).toBe(false);
-				expect(nextResponse.isError).toBe(true);
-			}
-		);
-	}
-);
-
-/*describe(
-	"getCurrentLaunche",
-	() => {
-		it(
-			"Success",
-			async () => {
-				fetchMock.mockResponse(JSON.stringify({ testCurrentLaunch }));
-				const { result, waitForNextUpdate } = renderHook(
-					() => useGetCurrentLauncheQuery("testId"),
-					{ wrapper }
-				);
-				console.log(result.current);
-				const initialResponse = result.current;
-				expect(initialResponse.data).toBeUndefined();
-				expect(initialResponse.isLoading).toBe(true);
-				await waitForNextUpdate({ timeout: updateTimeout });
-
-				console.log(result.current);
-				const nextResponse = result.current;
-				expect(nextResponse.data).not.toBeUndefined();
-				expect(nextResponse.isLoading).toBe(false);
-				expect(nextResponse.isSuccess).toBe(true);
-
-			}
-		);
-	}
-
-);*/

@@ -1,4 +1,5 @@
-export const testDate = "2022-01-22T15:40:00Z" as Date; //Jan. 22, 2022, 5:40 pm
+const date = "2022-01-22T15:40:00Z" as unknown; //Jan. 22, 2022, 5:40 pm
+export const testDate = date as Date;
 const testDate2 = (Date.now() + 5000).toString();
 const testDate3 = (new Date(500000000000)).toString(); // Nov 05 1985 06:23:20 GMT+0530 (IST)
 

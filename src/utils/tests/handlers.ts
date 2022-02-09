@@ -4,10 +4,11 @@ import { APIRoutesEnum } from "../../types/Enums";
 import {
 	testCurrentLaunch, testEvents, testLaunch
 } from "./mockData";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export const handlers = [
 	rest.get(
-		`${APIRoutesEnum.EVENTS}`,
+		`${BACKEND_URL}${APIRoutesEnum.EVENTS}`,
 		(
 			req, res, ctx
 		) => {
@@ -15,7 +16,7 @@ export const handlers = [
 		}
 	),
 	rest.get(
-		`${APIRoutesEnum.LAUNCHES}`,
+		`${BACKEND_URL}${APIRoutesEnum.LAUNCHES}`,
 		(
 			req, res, ctx
 		) => {
@@ -24,7 +25,7 @@ export const handlers = [
 	),
 
 	rest.get(
-		"/launch/:id",
+		`${BACKEND_URL}/launch/testId`,
 		(
 			req, res, ctx
 		) => {
