@@ -2,8 +2,9 @@
 import { rest } from "msw";
 import { APIRoutesEnum } from "../types/Enums";
 import {
-	testCurrentLaunch, testEvents, testLaunches
+	mockCurrentLaunch, mockEvents, mockLaunches
 } from "./mockData";
+
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export const handlers = [
@@ -12,7 +13,7 @@ export const handlers = [
 		(
 			req, res, ctx
 		) => {
-			return res(ctx.json(testEvents));
+			return res(ctx.json(mockEvents));
 		}
 	),
 	rest.get(
@@ -20,7 +21,7 @@ export const handlers = [
 		(
 			req, res, ctx
 		) => {
-			return res(ctx.json(testLaunches));
+			return res(ctx.json(mockLaunches));
 		}
 	),
 	rest.get(
@@ -29,7 +30,7 @@ export const handlers = [
 			req, res, ctx
 		) => {
 			//const { id } = req.params as { id: string };
-			return res(ctx.json(testCurrentLaunch));
+			return res(ctx.json(mockCurrentLaunch));
 		}
 	),
 ];

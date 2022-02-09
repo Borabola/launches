@@ -7,7 +7,6 @@ import { isDevelopment } from "./utils/helper";
 
 if (isDevelopment()) {
 	worker.start();
-	console.log("worker.start");
 }
 
 ReactDOM.render(

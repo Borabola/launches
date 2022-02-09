@@ -1,67 +1,64 @@
-
-//import fetchMock from "jest-fetch-mock";
-//import authSlice from "../../redux/auth/sliceReducer";
-//import { setupApiStore } from "../../utils/RTKTestHelper";
-//import { spacelaunchesSlice } from "./api";
 import { screen } from "@testing-library/react";
+import { rest } from "msw";
+import { LaunchesBlock } from "../../components/main/LaunchesBlock";
+import { server } from "../../mock/server";
 import MainPage from "../../pages/MainPage";
+import { APIRoutesEnum } from "../../types/Enums";
 import { renderforRTKtest } from "../../utils/testHelper";
 
-//const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 describe(
-	"spacelaunchesSlice, getEvents ",
+	"spacelaunchesSlice, getEvents and getLaunches",
 	() => {
 
-		/*it(
-			"empty events object",
-			() => {
+		it(
+			"getLaunches: empty launches object ",
+			async () => {
 				server.use(rest.get(
-					`${APIRoutesEnum.EVENTS}`,
+					`${BACKEND_URL}${APIRoutesEnum.LAUNCHES}`,
 					(
 						req, res, ctx
-					) => res(ctx.json([]))
+					) => {
+						return res(ctx.json({}));
+					}
 				));
 
-				renderWithUnknownHistory(<App />);
-
-				expect(screen.getByText(/recent events/i)).not.toBeInTheDocument();
-
-			}
-		);*/
-		/*test(
-			"fetches items from API on page load",
-			async () => {
 				renderforRTKtest(<MainPage />);
-				//const rows = await screen.findAllByText(/items_/);
+				const LoadingText = await screen.findByText(/Loading/i);
 
-				expect(screen.findByText(/recent events/i)).toBeInTheDocument();
+				expect(LoadingText).toBeInTheDocument();
+
 			}
-		);*/
+		);
+
 		it(
-			"should render received data in Main page",
+			"useGetEventsQuery: should render received events data in Main page",
 			async () => {
-				//act(() => renderWithAuth(<App />));
-				/*server.use(rest.get(
-					`${APIRoutesEnum.EVENTS}`,
-					(
-						req, res, ctx
-					) => res(ctx.json(testEvents))
-				));*/
 				renderforRTKtest(<MainPage />);
-				//console.log(container);
 				const EventsText = await screen.findByText(/recent events/i);
-				const EventNameText = await screen.findByText(/testName/i);
-				const EventDataText = await screen.findByText(/Jan. 22, 2022/i);
+				const EventNameText = await screen.findByText(/Test 1/i);
+				const EventDataText = await screen.findByText(/Feb. 8, 2022/i);
 
 				expect(EventsText).toBeInTheDocument();
 				expect(EventNameText).toBeInTheDocument();
 				expect(EventDataText).toBeInTheDocument();
+			}
+		);
 
-				//expect(screen.findByText(/recent events/i)).toBeInTheDocument();
-				//expect(screen.getByText(/testName/i)).toBeInTheDocument();
-				//expect(screen.getByText(/Jan. 22, 2022/i)).toBeInTheDocument();
-				//expect(screen.getByText(/Nov. 05, 1985/i)).toBeInTheDocument();
+		it(
+			"useGetLaunchesQuery: should render received Launches data in Main page",
+			async () => {
+				renderforRTKtest(<LaunchesBlock />);
+				const LaunchesTitleText = await screen.findByText(/Spaceflight Launches/i);
+				const FirstLaunchName = await screen.findByText(/First/i);
+				const SecondLaunchName = await screen.findByText(/Second/i);
+				const LaunchDataText = await screen.findByText(/Feb. 10, 2022/i);
+
+				expect(LaunchesTitleText).toBeInTheDocument();
+				expect(FirstLaunchName).toBeInTheDocument();
+				expect(SecondLaunchName).toBeInTheDocument();
+				expect(LaunchDataText).toBeInTheDocument();
 			}
 		);
 	}
