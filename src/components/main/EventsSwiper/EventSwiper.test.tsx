@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { EventsSwiper } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
-import { testEvents } from "../../../utils/tests/mockData";
+import { testEvents } from "../../../mock/mockData";
 
 describe(
 	"Component: EventsSwiper",

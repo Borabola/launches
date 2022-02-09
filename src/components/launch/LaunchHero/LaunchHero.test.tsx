@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { LaunchHero } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
-import { testCurrentLaunch } from "../../../utils/tests/mockData";
+import { testCurrentLaunch } from "../../../mock/mockData";
 
 describe(
 	"Component: LaunchHero",

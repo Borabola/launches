@@ -30,3 +30,19 @@ export const testLaunch = {
 	launchDate: testDate3,
 	rocketId: 88
 };
+export const testLaunches = [
+	{
+		id: "testId",
+		launchName: "testName",
+		launchImg: "testImgUrl",
+		launchDate: testDate3,
+		rocketId: 88
+	},
+	{
+		id: "testId2",
+		launchName: "testName2",
+		launchImg: "testImgUrl2",
+		launchDate: testDate3,
+		rocketId: 89
+	}
+];

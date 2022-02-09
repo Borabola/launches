@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { LaunchCard } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
-import { testLaunch } from "../../../utils/tests/mockData";
+import { testLaunch } from "../../../mock/mockData";
 
 describe(
 	"Component: LaunchCard",

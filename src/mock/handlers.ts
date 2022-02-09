@@ -1,8 +1,8 @@
 //import { createEntityAdapter } from "@reduxjs/toolkit";
 import { rest } from "msw";
-import { APIRoutesEnum } from "../../types/Enums";
+import { APIRoutesEnum } from "../types/Enums";
 import {
-	testCurrentLaunch, testEvents, testLaunch
+	testCurrentLaunch, testEvents, testLaunches
 } from "./mockData";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
@@ -20,10 +20,9 @@ export const handlers = [
 		(
 			req, res, ctx
 		) => {
-			return res(ctx.json([testLaunch]));
+			return res(ctx.json(testLaunches));
 		}
 	),
-
 	rest.get(
 		`${BACKEND_URL}/launch/testId`,
 		(
