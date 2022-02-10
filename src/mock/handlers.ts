@@ -31,7 +31,6 @@ export const handlers = [
 		(
 			req, res, ctx
 		) => {
-			//const { id } = req.params as { id: string };
 			return res(ctx.json(mockCurrentLaunch));
 		}
 	),

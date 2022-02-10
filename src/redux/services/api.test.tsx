@@ -92,24 +92,41 @@ describe(
 	() => {
 
 		it(
-			"getLaunches: empty launches object ",
+			"should render received current launch data",
 			async () => {
-				server.use(rest.get(
-					`${BACKEND_URL}launch/testId`,
-					(
-						req, res, ctx
-					) => {
-						return res(ctx.json({}));
-					}
-				));
+				renderforRTKtest(<LaunchPage />);
+				const currentLaunchTitle = await screen.findByText(/Test Launch Title/i);
+				const currentLaunchOrbit = await screen.findByText(/Test Orbit/i);
+				const currentLaunchText = await screen.findByText(/Test Communication/i);
 
-				renderforRTKtest(<MainPage />);
-				const LoadingText = await screen.findByText(/Loading/i);
-				expect(LoadingText).toBeInTheDocument();
+				expect(currentLaunchTitle).toBeInTheDocument();
+				expect(currentLaunchOrbit).toBeInTheDocument();
+				expect(currentLaunchText).toBeInTheDocument();
 			}
 		);
 
 		it(
+			"renders error message if API fails on page load",
+			async () => {
+				server.use(rest.get(
+					`${BACKEND_URL}launch/undefined`,
+					(
+						req, res, ctx
+					) =>
+						res(
+							ctx.status(500),
+							ctx.json({ message: "Internal Server Error" })
+						)
+				));
+
+				renderforRTKtest(<LaunchPage />);
+
+				const errorText = await screen.findByText(/Server error.../i);
+
+				expect(errorText).toBeInTheDocument();
+			}
+		);
+		/*it(
 			"should render received current launch data",
 			async () => {
 				/*server.use(rest.get(
@@ -121,16 +138,16 @@ describe(
 						return res(ctx.json(mockCurrentLaunch));
 					}
 				));*/
-				renderforRTKtest(<LaunchPage />);
-				const currentLaunchTitle = await screen.findByText(/Test Launch Title/i);
-				const currentLaunchOrbit = await screen.findByText(/Test Orbit/i);
-				const currentLaunchText = await screen.findByText(/Test Communication/i);
+		/*renderforRTKtest(<LaunchPage />);
+		const currentLaunchTitle = await screen.findByText(/Test Launch Title/i);
+		const currentLaunchOrbit = await screen.findByText(/Test Orbit/i);
+		const currentLaunchText = await screen.findByText(/Test Communication/i);
 
-				expect(currentLaunchTitle).toBeInTheDocument();
-				expect(currentLaunchOrbit).toBeInTheDocument();
-				expect(currentLaunchText).toBeInTheDocument();
-			}
-		);
+		expect(currentLaunchTitle).toBeInTheDocument();
+		expect(currentLaunchOrbit).toBeInTheDocument();
+		expect(currentLaunchText).toBeInTheDocument();
+	}
+);*/
 
 	}
 );
