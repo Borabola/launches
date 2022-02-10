@@ -64,6 +64,7 @@ export const LoginForm: FC<Props> = ({
 						value={values.email}
 						variant="outlined"
 						color="secondary"
+						data-testid="userEmail"
 					/>
 					<TextField
 						error={Boolean(touched.password && errors.password)}
@@ -78,6 +79,7 @@ export const LoginForm: FC<Props> = ({
 						value={values.password}
 						variant="outlined"
 						color="secondary"
+						data-testid="userPassword"
 
 					/>
 					<Box mt={4}>

@@ -1,4 +1,5 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { LoginForm } from ".";
 import { renderWithProvidersLogout } from "../../../utils/testHelper";
 
@@ -55,5 +56,38 @@ describe(
 			}
 		);
 
+		test(
+			"rendering and submitting a basic Formik form",
+			async () => {
+				//const handleSubmit = jest.fn();
+				renderWithProvidersLogout(<LoginForm
+					initialValues={initialValuesLogin}
+					onSubmit={testSubmit}
+					pathFrom={testPath}
+				/>);
+
+				userEvent.type(
+					screen.getByTestId("userEmail"),
+					"john@someemail.com"
+				);
+				userEvent.type(
+					screen.getByTestId("userPassword"),
+					"123456"
+				);
+
+				userEvent.click(screen.getByRole(
+					"button",
+					{ name: /Sign in now/i }
+				));
+
+				await waitFor(() =>
+					expect(testSubmit).toHaveBeenCalledWith({
+						values: {
+							email: "john@someemail.com",
+							password: "123456",
+						}
+					}));
+			}
+		);
 	}
 );

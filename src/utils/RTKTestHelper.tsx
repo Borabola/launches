@@ -35,15 +35,15 @@ export function setupApiStore<
 	api: A, extraReducers?: R
 ): { api: A; store: EnhancedStore } {
 
-	const getStore = (): EnhancedStore =>
-		configureStore({
-			reducer: combineReducers({
-				[api.reducerPath]: api.reducer,
-				...extraReducers,
-			}),
-			middleware: (gdm) =>
-				gdm({ serializableCheck: false, immutableCheck: false }).concat(api.middleware),
-		});
+		const getStore = (): EnhancedStore =>
+			configureStore({
+				reducer: combineReducers({
+					[api.reducerPath]: api.reducer,
+					...extraReducers,
+				}),
+				middleware: (gdm) =>
+					gdm({ serializableCheck: false, immutableCheck: false }).concat(api.middleware),
+			});
 
 	type StoreType = EnhancedStore<
 		{

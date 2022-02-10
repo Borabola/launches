@@ -126,28 +126,5 @@ describe(
 				expect(errorText).toBeInTheDocument();
 			}
 		);
-		/*it(
-			"should render received current launch data",
-			async () => {
-				/*server.use(rest.get(
-					`${BACKEND_URL}launch/testId/`,
-					(
-						req, res, ctx
-					) => {
-						//const { id } = req.params as { id: string };
-						return res(ctx.json(mockCurrentLaunch));
-					}
-				));*/
-		/*renderforRTKtest(<LaunchPage />);
-		const currentLaunchTitle = await screen.findByText(/Test Launch Title/i);
-		const currentLaunchOrbit = await screen.findByText(/Test Orbit/i);
-		const currentLaunchText = await screen.findByText(/Test Communication/i);
-
-		expect(currentLaunchTitle).toBeInTheDocument();
-		expect(currentLaunchOrbit).toBeInTheDocument();
-		expect(currentLaunchText).toBeInTheDocument();
-	}
-);*/
-
 	}
 );

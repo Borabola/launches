@@ -2,7 +2,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import type { PreloadedState } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import type { RenderOptions } from "@testing-library/react";
-import { render } from "@testing-library/react";
+import {
+	act, fireEvent, render, waitFor
+} from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
@@ -23,7 +25,10 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 	preloadedState?: PreloadedState<RootState>
 	store?: AppStore
 }
+type UiType = React.ReactElement<Record<string, unknown>, string |
+	React.JSXElementConstructor<Record<string, unknown>>>;
 
+type RerenderType = ReturnType<(ui: UiType) => RenderResult>;
 const currentUser = {
 	email: "test@test.com",
 	userId: "test"
@@ -226,7 +231,32 @@ const toArrayBuffer = (buf: Buffer) => {
 	}
 	return ab;
 };
-export {renderforRTKtest,
+
+async function flushPromises(
+	rerender: RerenderType, ui: UiType
+) {
+		await act(() => waitFor(() => rerender(ui)));
+}
+
+function dispatchEvt(
+	node: Element | Node | Document | Window, type: string, data: unknown
+) {
+		const event = new Event(
+			type,
+			{ bubbles: true }
+		);
+		Object.assign(
+			event,
+			data
+		);
+		fireEvent(
+			node,
+			event
+		);
+}
+export {dispatchEvt,
+	flushPromises,
+	renderforRTKtest,
 	renderWithUnknownHistory,
 	renderWithProvidersLogin,
 	renderWithProvidersLogout,
