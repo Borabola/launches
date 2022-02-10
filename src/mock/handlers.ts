@@ -24,8 +24,10 @@ export const handlers = [
 			return res(ctx.json(mockLaunches));
 		}
 	),
+
+	//test with undefined id of launch, with is used in test rendering //useGetCurrentLauncheQuery(undefined)
 	rest.get(
-		`${BACKEND_URL}/launch/testId`,
+		`${BACKEND_URL}launch/undefined`,
 		(
 			req, res, ctx
 		) => {

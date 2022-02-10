@@ -41,8 +41,6 @@ export const outputSeverError = (error: FetchBaseQueryError | SerializedError): 
 		return `Server error ${error.status.toString()}`;
 	} else {
 		const errorMessage = ("message" in error) ? error.message : null;
-		console.log(errorMessage);
 		return `Server error ${errorMessage}`;
 	}
-
 };

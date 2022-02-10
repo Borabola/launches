@@ -207,7 +207,7 @@ export const mockLaunches = {
 				"launch_library_id": null,
 				"name": "OneWeb 13",
 				"description": "A batch of 34 satellites for the OneWeb satellite constellation, which is intended to provide global Internet broadband service for individual consumers. The constellation is planned to have around 648 microsatellites (of which 60 are spares), around 150 kg each, operating in Ku-band from low Earth orbit.",
-				"type": "Communications",
+				"type": "Test Communications",
 				"orbit": "Polar Orbit",
 				"orbit_abbrev": "PO"
 			},
@@ -346,7 +346,7 @@ export const mockCurrentLaunch = {
 	"url": "http://spacelaunchnow.me/api/ll/2.2.0/launch/testId/",
 	"launch_library_id": null,
 	"slug": "https://spacelaunchnow.me/launch/soyuz-stbfregat-oneweb-13",
-	"name": "Soyuz STB/Fregat | OneWeb 13",
+	"name": "Test Launch Title",
 	"img_url": null,
 	"status": {
 		"id": 1,
@@ -419,8 +419,8 @@ export const mockCurrentLaunch = {
 		"launch_library_id": null,
 		"name": "OneWeb 13",
 		"description": "A batch of 34 satellites for the OneWeb satellite constellation, which is intended to provide global Internet broadband service for individual consumers. The constellation is planned to have around 648 microsatellites (of which 60 are spares), around 150 kg each, operating in Ku-band from low Earth orbit.",
-		"type": "Communications",
-		"orbit": "Polar Orbit",
+		"type": "Test Communications",
+		"orbit": "Test Orbit",
 		"orbit_abbrev": "PO"
 	},
 	"pad": {

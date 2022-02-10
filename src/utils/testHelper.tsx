@@ -84,7 +84,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -123,7 +123,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -147,7 +147,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -173,11 +173,9 @@ const renderWithUnknownHistory = (
 			<Router history={history}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
-
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
-
 	return {
 		store, ...render(
 			ui,
@@ -185,41 +183,6 @@ const renderWithUnknownHistory = (
 		)
 	};
 };
-
-/*const renderforRTKtest = (testStore: Store) => (
-	ui: React.ReactElement,
-	{
-		preloadedState = {},
-		store = testStore,
-		...renderOptions
-	}: ExtendedRenderOptions = {}
-) => {
-	setupListeners(store.dispatch);
-
-	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
-		const history = createMemoryHistory();
-		return (<Provider store={store}>
-			<Router history={history}>
-				<AppIntlProvider>
-					<AuthContext.Provider value={testValueNull}>
-						<ThemeProvider theme={theme}>
-							{children}
-						</ThemeProvider>
-					</AuthContext.Provider>
-				</AppIntlProvider>
-			</Router>
-		</Provider>);
-	};
-
-	//store.dispatch(spacelaunchesSlice.util.resetApiState());
-
-	return {
-		store, ...render(
-			ui,
-			{ wrapper: Wrapper, ...renderOptions }
-		)
-	};
-};*/
 
 const renderforRTKtest = (
 	ui: React.ReactElement,
@@ -242,7 +205,7 @@ const renderforRTKtest = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
@@ -263,13 +226,10 @@ const toArrayBuffer = (buf: Buffer) => {
 	}
 	return ab;
 };
-export {
-	renderforRTKtest,
+export {renderforRTKtest,
 	renderWithUnknownHistory,
 	renderWithProvidersLogin,
 	renderWithProvidersLogout,
 	renderWithAuth,
 	renderWithUnknown,
-	toArrayBuffer
-};
-
+	toArrayBuffer};
