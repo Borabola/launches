@@ -1,49 +1,66 @@
-import { createEvent, fireEvent } from "@testing-library/react";
-import {
-	Form, Formik, FormikHelpers
-} from "formik";
+import { Form, Formik } from "formik";
 import { Dropzone } from ".";
-import { flushPromises, renderWithProvidersLogin } from "../../../../utils/testHelper";
+import {
+	dispatchEvt, flushPromises, renderWithProvidersLogin
+} from "../../../../utils/testHelper";
 
-const fieldMock = {};
-const metaMock = {};
-const helperMock = () => jest.fn(); //FieldHelperProps<any>;
-/*const mockInitialData = {
-	id: 33,
-	productName: "test product name",
-	productQnt: 10,
-	file: null
-};*/
-const mockSubmit = (
-	values: {}, formikHelpers: FormikHelpers<{}>
-) => jest.fn();
+const mockSubmit = jest.fn();
 
-jest.mock(
-	"formik",
-	() => ({
-		...jest.requireActual("formik"),
-		useField: jest.fn(() => {
-			return [fieldMock, metaMock, helperMock];
-		}),
-	})
-);
+const mockData = (files: File[]) => {
+	return {
+		dataTransfer: {
+			files,
+			items: files.map(file => ({
+				kind: "file",
+				type: file.type,
+				getAsFile: () => file
+			})),
+			types: ["Files"]
+		}
+	};
+};
+let data: ReturnType<typeof mockData>;
 
 describe(
 	"Component: Dropzone ",
 	() => {
+		beforeAll(() => {
+			const fieldMock = {};
+			const metaMock = {};
+			const file = new File(
+				["dummy content"],
+				"exampleFile.jpg",
+				{
+					type: "image/jpg",
+				}
+			);
+			const helperMock = [new File(
+				["dummy content"],
+				"exampleFile.jpg",
+				{
+					type: "image/jpg",
+				}
+			)];
+
+			jest.mock(
+				"formik",
+				() => ({
+					...jest.requireActual("formik"),
+					useField: jest.fn(() => {
+						return [fieldMock, metaMock, helperMock];
+					}),
+				})
+			);
+			data = mockData([file]);
+		});
+
 		it(
 			"should render correctly with received data",
 			async () => {
 
-				const file = new File(
-					["dummy content"],
-					"exampleFile.jpg",
-					{
-						type: "image/jpg",
-					}
-				);
 				//const onDragEnter = jest.fn();
-				//const { container, getByText, rerender }
+				//const onDrop = jest.fn();
+
 				const { getByText, findByText, rerender }
 					= renderWithProvidersLogin(<Formik
 						initialValues={{}}
@@ -53,33 +70,12 @@ describe(
 							<Dropzone name="file" />
 						</Form>
 					</Formik>);
-				//const dropzone = container.querySelector("div");
 				const fileDropzone = getByText("Drag drop image file here, or click to select it");
-				const fileDropEvent = createEvent.drop(fileDropzone);
 
-				/*dispatchEvt(
-					dropzone,
-					"dragenter",
-					file
-				);
-				await flushPromises(
-					rerender,
-					<Dropzone name="file" />
-				);*/
-
-				Object.defineProperty(
-					fileDropEvent,
-					"dataTransfer",
-					{
-						value: {
-							files: [file],
-						},
-					}
-				);
-
-				fireEvent(
+				dispatchEvt(
 					fileDropzone,
-					fileDropEvent
+					"dragenter",
+					data
 				);
 				await flushPromises(
 					rerender,
@@ -87,6 +83,7 @@ describe(
 				);
 
 				expect(findByText(/exampleFile/i)).toBeInTheDocument();
+				//expect(onDrop).toHaveBeenCalled();
 			}
 		);
 	}

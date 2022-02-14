@@ -1,12 +1,16 @@
 import { ThemeProvider } from "@mui/material/styles";
 import type { PreloadedState } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+//import { RenderResult } from "@testing-library/react-hooks/lib/types/react";
+//import { RenderResult } from "@testing-library/jest-dom";
+//import { RenderResult } from "@testing-library/jest-dom";
+//import { RenderResult } from "@testing-library/react";   // !!!!
 import type { RenderOptions } from "@testing-library/react";
 import {
 	act, fireEvent, render, waitFor
 } from "@testing-library/react";
 import { createMemoryHistory } from "history";
-import React, { PropsWithChildren } from "react";
+import React, { JSXElementConstructor, PropsWithChildren, ReactElement } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
@@ -25,10 +29,11 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, "queries"> {
 	preloadedState?: PreloadedState<RootState>
 	store?: AppStore
 }
-type UiType = React.ReactElement<Record<string, unknown>, string |
-	React.JSXElementConstructor<Record<string, unknown>>>;
+type UiType = ReactElement<Record<string, unknown>, string |
+	JSXElementConstructor<Record<string, unknown>>>;
 
-type RerenderType = ReturnType<(ui: UiType) => RenderResult>;
+//type RerenderType = RenderResult;
+type RerenderType = (ui: UiType) => void;
 const currentUser = {
 	email: "test@test.com",
 	userId: "test"
@@ -89,7 +94,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-          </Provider>);
+		</Provider>);
 	};
 	return {
 		store, ...render(
@@ -128,7 +133,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
@@ -152,7 +157,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 
 	return {
@@ -178,7 +183,7 @@ const renderWithUnknownHistory = (
 			<Router history={history}>
 				{children}
 			</Router>
-          </Provider>);
+		</Provider>);
 	};
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
 	return {
@@ -210,7 +215,7 @@ const renderforRTKtest = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-          </Provider>);
+		</Provider>);
 	};
 
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
@@ -235,26 +240,27 @@ const toArrayBuffer = (buf: Buffer) => {
 async function flushPromises(
 	rerender: RerenderType, ui: UiType
 ) {
-		await act(() => waitFor(() => rerender(ui)));
+	await act(() => waitFor(() => rerender(ui)));
 }
 
 function dispatchEvt(
 	node: Element | Node | Document | Window, type: string, data: unknown
 ) {
-		const event = new Event(
-			type,
-			{ bubbles: true }
-		);
-		Object.assign(
-			event,
-			data
-		);
-		fireEvent(
-			node,
-			event
-		);
+	const event = new Event(
+		type,
+		{ bubbles: true }
+	);
+	Object.assign(
+		event,
+		data
+	);
+	fireEvent(
+		node,
+		event
+	);
 }
-export {dispatchEvt,
+export {
+	dispatchEvt,
 	flushPromises,
 	renderforRTKtest,
 	renderWithUnknownHistory,
@@ -262,4 +268,6 @@ export {dispatchEvt,
 	renderWithProvidersLogout,
 	renderWithAuth,
 	renderWithUnknown,
-	toArrayBuffer};
+	toArrayBuffer
+};
+
