@@ -89,6 +89,7 @@ export const LoginForm: FC<Props> = ({
 							fullWidth
 							type="submit"
 							variant="contained"
+							data-testid="submitBtn"
 						>
 							{intl.formatMessage({ id: "signInNow" })}
 						</Button>

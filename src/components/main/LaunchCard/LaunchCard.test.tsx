@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { LaunchCard } from ".";
-import { renderWithProvidersLogin } from "../../../utils/testHelper";
 import { testLaunch } from "../../../mock/mockData";
+import { renderWithProvidersLogin } from "../../../utils/testHelper";
 
 describe(
 	"Component: LaunchCard",
@@ -17,12 +17,11 @@ describe(
 		it(
 			"should have correct links",
 			() => {
-				const { container } =
-					renderWithProvidersLogin(<LaunchCard launch={testLaunch} />);
+				renderWithProvidersLogin(<LaunchCard launch={testLaunch} />);
 
-				expect(container.firstElementChild.firstElementChild
+				expect(screen.getByTestId("rocketLink")
 					.getAttribute("href")).toEqual("/rocket/88");
-				expect(container.firstElementChild.lastElementChild
+				expect(screen.getByTestId("launchLink")
 					.getAttribute("href")).toEqual("/launch/testId");
 			}
 		);

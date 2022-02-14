@@ -36,7 +36,7 @@ export const setProductToDatabase = (
 		});
 };
 
-export const uploadFileAndSaveToDB = (
+export const uploadFileAndSaveToDB = async (
 	values: ProductValues,
 	userUid: string,
 	storage: FirebaseStorage,

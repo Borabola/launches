@@ -14,6 +14,7 @@ export const LaunchCard: FC<Props> = ({ launch }) => {
 			<Link
 				component={RouterLink}
 				to={`/rocket/${launch.rocketId}`}
+				data-testid="rocketLink"
 			>
 				{launch.launchImg ? (
 					Array.isArray(launch.launchImg) ? (
@@ -60,6 +61,7 @@ export const LaunchCard: FC<Props> = ({ launch }) => {
 				component={RouterLink}
 				to={`/launch/${launch.id}`}
 				className={classes.launchNameClass}
+				data-testid="launchLink"
 			>
 				<Typography
 					variant="h3"
