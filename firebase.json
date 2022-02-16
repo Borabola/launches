@@ -10,17 +10,10 @@
   "database": {
     "rules": "database.rules.json"
   },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": " "
-  },
   "storage": {
     "rules": "storage.rules"
   },
   "emulators": {
-    "firestore": {
-      "port": 8080
-    },
     "database": {
       "port": 9000
     },
@@ -34,7 +27,7 @@
       "enabled": true
     },
     "auth": {
-      "port": "9099"
+      "port": 9099
     }
   }
 }

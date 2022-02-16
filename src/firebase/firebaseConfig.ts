@@ -21,4 +21,30 @@ const database = getDatabase(app);
 const storage = getStorage(app);
 
 const auth = getAuth(app);
+
+//DB emulator for tests
+/*if (location.hostname === "localhost") {
+	// Point to the RTDB emulator running on localhost.
+	connectDatabaseEmulator(
+		database,
+		"localhost",
+		9000
+	);
+	/*connectAuthEmulator(
+		auth,
+		"http://localhost:9099"
+	);
+
+	connectStorageEmulator(
+		storage,
+		"localhost",
+		9199
+	);
+	console.log(
+		"test database",
+		JSON.stringify(database)
+	);
+
+}*/
+
 export { app, auth, database, storage };

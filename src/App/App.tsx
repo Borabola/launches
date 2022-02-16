@@ -1,5 +1,6 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+//import { setupListeners } from "@reduxjs/toolkit/query/react";
 import { FC } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
@@ -17,6 +18,10 @@ import "./App.scss";
 
 export const store = setupStore();
 const persistor = persistStore(store);
+
+// optional, but required for refetchOnFocus/refetchOnReconnect behaviors
+// see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
+//setupListeners(store.dispatch);
 
 const App: FC = () => {
 

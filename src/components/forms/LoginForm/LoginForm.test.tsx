@@ -2,7 +2,8 @@ import { screen } from "@testing-library/react";
 import { LoginForm } from ".";
 import { renderWithProvidersLogout } from "../../../utils/testHelper";
 
-const initialValuesLogin = { email: "testEmail", password: "testPassword", };
+const initialValuesLogin = { email: "john@someemail.com", password: "testPassword", };
+const initialValuesLoginNull = { email: "", password: "", };
 const testSubmit = jest.fn();
 const testPath = { from: { pathname: "testPath" } };
 
@@ -36,7 +37,7 @@ describe(
 					{ name: "" }
 				)).toBeInTheDocument();
 
-				expect(screen.getByDisplayValue(/testEmail/i)).toBeInTheDocument();
+				expect(screen.getByDisplayValue(/john@someemail.com/i)).toBeInTheDocument();
 				expect(screen.getByDisplayValue(/testPassword/i)).toBeInTheDocument();
 
 				//link
@@ -55,5 +56,40 @@ describe(
 			}
 		);
 
+		/*test(
+			"rendering and submitting a basic Formik form",
+			async () => {
+				//const handleSubmit = jest.fn();
+				const { container } = renderWithProvidersLogout(<LoginForm
+					initialValues={initialValuesLoginNull}
+					onSubmit={testSubmit}
+					pathFrom={testPath}
+				/>);
+
+				const userEmailNode = container.querySelector(`[data-testid="userEmail"] input`);
+				const userPasswordNode = container.querySelector(`[data-testid="userEmail"] input`);
+				if (userEmailNode) {
+					//userEvent.clear(userEmailNode);
+					userEvent.type(
+						userEmailNode,
+						"john@someemail.com"
+					);
+				}
+				if (userPasswordNode) {
+					//userEvent.clear(userPasswordNode);
+					userEvent.type(
+						userPasswordNode,
+						"123456"
+					);
+				}
+				fireEvent.click(screen.getByTestId("submitBtn"));
+
+				await waitFor(() =>
+					expect(testSubmit).toHaveBeenCalledWith({
+						"email": "john@someemail.com",
+						"password": "testPassword",
+					}));
+			}
+		);*/
 	}
 );

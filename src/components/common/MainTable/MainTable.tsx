@@ -81,10 +81,6 @@ export const MainTable: FC<Props> = ({ columns, data }) => {
 											{column.render("Header")}
 											{/* Add a sort direction indicator */}
 											<span>
-												{/*column.isSortedDesc
-													? " 🔽"
-													: " 🔼"
-												*/}
 												{column.isSorted
 													? column.isSortedDesc
 														? " 🔽"

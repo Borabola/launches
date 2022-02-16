@@ -1,15 +1,18 @@
 
 import { Container, Typography } from "@mui/material";
 import { FC } from "react";
+import { useIntl } from "react-intl";
 import { Loader } from "../../components/common/Loader/Loader";
 import { LaunchHero } from "../../components/launch/LaunchHero/LaunchHero";
 import { LaunchPageContent } from "../../components/launch/LaunchPageContent/LaunchPageContent";
 import { PageLayout } from "../../layouts/PageLayout";
+import { outputSeverError } from "../../utils/helper";
 import { useStyles } from "./LaunchPage.styles";
 import type { Props } from "./LaunchPage.types";
 
 export const LaunchPage: FC<Props> = ({ currentLaunch, isCurrentFetching, lunchCurrentError }) => {
 	const classes = useStyles();
+	const intl = useIntl();
 
 	return (
 		<PageLayout>
@@ -30,7 +33,8 @@ export const LaunchPage: FC<Props> = ({ currentLaunch, isCurrentFetching, lunchC
 							variant="h3"
 							textAlign="center"
 						>
-							{lunchCurrentError}
+							{`${intl.formatMessage({ id: "serverError" })}
+							 ${outputSeverError(lunchCurrentError)}`}
 						</Typography>
 					}
      </>)

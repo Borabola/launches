@@ -1,12 +1,9 @@
 import { screen } from "@testing-library/react";
 import { NewProductForm } from ".";
-import { renderWithProvidersLogout } from "../../../utils/testHelper";
+import { renderWithProvidersLogin } from "../../../utils/testHelper";
 
 const initialValuesProduct = { productName: "TestName", file: null, productQnt: 5 };
 const testSubmit = jest.fn();
-/*const onInputChange = jest.fn(() => {
-	return Promise.resolve();
-});*/
 
 describe(
 	"Component: NewProductForm",
@@ -14,10 +11,9 @@ describe(
 		it(
 			"should render correctly with initial values",
 			() => {
-				renderWithProvidersLogout(<NewProductForm
+				renderWithProvidersLogin(<NewProductForm
 					initialValues={initialValuesProduct}
 					onSubmit={testSubmit}
-					//onInputChange={onInputChange}
 				/>);
 
 				//button
