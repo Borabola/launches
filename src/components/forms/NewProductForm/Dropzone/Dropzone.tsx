@@ -61,7 +61,7 @@ export const Dropzone = ({ name }: { name: string }) => {
 		accept: "image/jpeg, image/jpg, image/png"
 	});
 
-	const { ref, ...rootProps } = getRootProps();
+	const { ...rootProps } = getRootProps();
 
 	const onDelete = () => {
 		acceptedFiles.shift();
@@ -86,7 +86,6 @@ export const Dropzone = ({ name }: { name: string }) => {
 	return (
 		<>
 			<Box
-				ref={ref}
 				className={classes.dropzoneStyle}
 			>
 				<Paper {...rootProps}>

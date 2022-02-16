@@ -1,12 +1,12 @@
 import * as ftest from "@firebase/rules-unit-testing";
 import { assertFails, assertSucceeds } from "@firebase/rules-unit-testing";
 import {
-	deleteObject, ref as storeRef, uploadBytes
+	deleteObject, ref as storeRef, uploadBytes, getDownloadURL
 } from "firebase/storage";
 import * as fs from "fs";
 import { toArrayBuffer } from "../utils/testHelper";
 
-//const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
+const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
 
 const userAuth = { email: "user123@test.com", userId: "user123", };
 
@@ -16,8 +16,8 @@ const loadIconImage = fs.readFileSync("src/firebase/_mock/test-image.jpeg");
 
 beforeAll(async () => {
 	testEnv = await ftest.initializeTestEnvironment({
-		projectId: "demo-users-storage-rules-test",
-		//projectId: MY_PROJECT_ID,
+		//projectId: "demo-users-storage-rules-test",
+		projectId: MY_PROJECT_ID,
 		storage: {
 			rules: fs.readFileSync(
 				"./storage.rules",
@@ -72,11 +72,13 @@ describe(
 					toArrayBuffer(loadIconImage)
 				)
 					.then((snapshot) => {
+						return getDownloadURL(snapshot.ref);
 						console.log(snapshot);
 						console.log("Uploaded a blob or file!");
 					})
 					.catch((error) => {
 						console.error(error);
+						throw new Error("")
 					}));
 			}
 		);
