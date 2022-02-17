@@ -4,7 +4,7 @@ import { renderWithProvidersLogin } from "../../utils/testHelper";
 
 const nowDay = new Date();
 describe(
-	"Component: container for LaunchPage ",
+	"Component: PageLayout",
 	() => {
 		it(
 			"should render Footer content correctly",

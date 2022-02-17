@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { FormWithHeaderLayout } from ".";
 import { renderWithProvidersLogin } from "../../utils/testHelper";
 describe(
-	"Component: container for LaunchPage ",
+	"Component: FormWithHeaderLayout",
 	() => {
 		it(
 			"should render layout correctly",

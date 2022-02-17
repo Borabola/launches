@@ -4,7 +4,7 @@ import { renderWithProvidersLogin } from "../../utils/testHelper";
 
 const nowDay = new Date();
 describe(
-	"Component: AddProductPage ",
+	"Component: Dashboard ",
 	() => {
 		it(
 			"should render Footer content correctly",
