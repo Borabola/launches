@@ -12,7 +12,10 @@ export const FormWithHeaderLayout: FC<Props> = ({ children }) => {
 
 	return (
 		<PageLayout>
-			<Box className={classes.pageWrap}>
+			<Box
+				className={classes.pageWrap}
+				data-testid="wrapId"
+			>
 				<Container className={classes.loginContainer}>
 					{children}
 				</Container>
