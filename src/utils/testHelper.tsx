@@ -10,7 +10,9 @@ import {
 	act, fireEvent, render, waitFor
 } from "@testing-library/react";
 import { createMemoryHistory } from "history";
-import React, { JSXElementConstructor, PropsWithChildren, ReactElement } from "react";
+import {
+	JSXElementConstructor, PropsWithChildren, ReactElement
+} from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Router } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
@@ -20,6 +22,7 @@ import { setupStore } from "../redux/store";
 import type { AppStore, RootState } from "../redux/store/store.types";
 import theme from "../theme";
 import { AuthorizationStatusEnum } from "../types/Enums";
+import type { MemoryHistory } from "history";
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store. For
@@ -34,6 +37,7 @@ type UiType = ReactElement<Record<string, unknown>, string |
 
 //type RerenderType = RenderResult;
 type RerenderType = (ui: UiType) => void;
+
 const currentUser = {
 	email: "test@test.com",
 	userId: "test"
@@ -72,9 +76,10 @@ const testValueNull = {
 
 const history = createMemoryHistory({ initialEntries: ["/Private"] });
 const historyCommon = createMemoryHistory({ initialEntries: ["/Common"] });
+const historyLaunchTest = createMemoryHistory({ initialEntries: ["/launch/undefined"] });
 
 const renderWithProvidersUser = (testInfo: AuthValues) => (
-	ui: React.ReactElement,
+	ui: ReactElement,
 
 	{
 		preloadedState = {},
@@ -94,7 +99,7 @@ const renderWithProvidersUser = (testInfo: AuthValues) => (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 	return {
 		store, ...render(
@@ -110,7 +115,45 @@ const renderWithProvidersLogout = renderWithProvidersUser(testValueNull);
  * BrowserRouter ignores the history prop as it handles the history automatically for you.
  * If you need access to the history outside of a react component, then using Router should be fine
  */
-const renderWithAuth = (
+
+const renderWithHistoryAuth = ( currentHistory: MemoryHistory<unknown>) => (
+	ui: ReactElement,
+	{
+		preloadedState = {
+			auth: {
+				authorizationStatus: AuthorizationStatusEnum.AUTH,
+			}
+		},
+		store = setupStore(preloadedState),
+		...renderOptions
+	}: ExtendedRenderOptions = {}
+) => {
+	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
+		return (<Provider store={store}>
+			<Router history={currentHistory}>
+				<AppIntlProvider>
+					<AuthContext.Provider value={testValue}>
+						<ThemeProvider theme={theme}>
+							{children}
+						</ThemeProvider>
+					</AuthContext.Provider>
+				</AppIntlProvider>
+			</Router>
+          </Provider>);
+	};
+
+	return {
+		store, ...render(
+			ui,
+			{ wrapper: Wrapper, ...renderOptions }
+		)
+	};
+};
+
+const renderWithAuth = renderWithHistoryAuth(history);
+const renderWithAuthTestLaunchPage = renderWithHistoryAuth(historyLaunchTest);
+
+/*const renderWithAuth = (
 	ui: React.ReactElement,
 	{
 		preloadedState = {
@@ -133,7 +176,7 @@ const renderWithAuth = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -142,7 +185,7 @@ const renderWithAuth = (
 			{ wrapper: Wrapper, ...renderOptions }
 		)
 	};
-};
+};*/
 
 const renderWithUnknown = (
 	ui: React.ReactElement,
@@ -157,7 +200,7 @@ const renderWithUnknown = (
 			<Router history={historyCommon}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 
 	return {
@@ -183,7 +226,7 @@ const renderWithUnknownHistory = (
 			<Router history={history}>
 				{children}
 			</Router>
-		</Provider>);
+          </Provider>);
 	};
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
 	return {
@@ -215,7 +258,7 @@ const renderforRTKtest = (
 					</AuthContext.Provider>
 				</AppIntlProvider>
 			</BrowserRouter>
-		</Provider>);
+          </Provider>);
 	};
 
 	//store.dispatch(spacelaunchesSlice.util.resetApiState());
@@ -240,34 +283,32 @@ const toArrayBuffer = (buf: Buffer) => {
 async function flushPromises(
 	rerender: RerenderType, ui: UiType
 ) {
-	await act(() => waitFor(() => rerender(ui)));
+		await act(() => waitFor(() => rerender(ui)));
 }
 
 function dispatchEvt(
 	node: Element | Node | Document | Window, type: string, data: unknown
 ) {
-	const event = new Event(
-		type,
-		{ bubbles: true }
-	);
-	Object.assign(
-		event,
-		data
-	);
-	fireEvent(
-		node,
-		event
-	);
+		const event = new Event(
+			type,
+			{ bubbles: true }
+		);
+		Object.assign(
+			event,
+			data
+		);
+		fireEvent(
+			node,
+			event
+		);
 }
-export {
-	dispatchEvt,
+export {dispatchEvt,
 	flushPromises,
 	renderforRTKtest,
 	renderWithUnknownHistory,
 	renderWithProvidersLogin,
 	renderWithProvidersLogout,
+	renderWithAuthTestLaunchPage,
 	renderWithAuth,
 	renderWithUnknown,
-	toArrayBuffer
-};
-
+	toArrayBuffer};
