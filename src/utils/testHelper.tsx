@@ -1,9 +1,6 @@
 import { ThemeProvider } from "@mui/material/styles";
 import type { PreloadedState } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-//import { RenderResult } from "@testing-library/react-hooks/lib/types/react";
-//import { RenderResult } from "@testing-library/jest-dom";
-//import { RenderResult } from "@testing-library/jest-dom";
 //import { RenderResult } from "@testing-library/react";   // !!!!
 import type { RenderOptions } from "@testing-library/react";
 import {
@@ -152,40 +149,6 @@ const renderWithHistoryAuth = ( currentHistory: MemoryHistory<unknown>) => (
 
 const renderWithAuth = renderWithHistoryAuth(history);
 const renderWithAuthTestLaunchPage = renderWithHistoryAuth(historyLaunchTest);
-
-/*const renderWithAuth = (
-	ui: React.ReactElement,
-	{
-		preloadedState = {
-			auth: {
-				authorizationStatus: AuthorizationStatusEnum.AUTH,
-			}
-		},
-		store = setupStore(preloadedState),
-		...renderOptions
-	}: ExtendedRenderOptions = {}
-) => {
-	const Wrapper = ({ children }: PropsWithChildren<Record<string, unknown>>): JSX.Element => {
-		return (<Provider store={store}>
-			<Router history={history}>
-				<AppIntlProvider>
-					<AuthContext.Provider value={testValue}>
-						<ThemeProvider theme={theme}>
-							{children}
-						</ThemeProvider>
-					</AuthContext.Provider>
-				</AppIntlProvider>
-			</Router>
-          </Provider>);
-	};
-
-	return {
-		store, ...render(
-			ui,
-			{ wrapper: Wrapper, ...renderOptions }
-		)
-	};
-};*/
 
 const renderWithUnknown = (
 	ui: React.ReactElement,
