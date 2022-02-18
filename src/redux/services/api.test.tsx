@@ -26,10 +26,9 @@ describe(
 				));
 
 				renderforRTKtest(<MainPage />);
+
 				const LoadingText = await screen.findByText(/Loading/i);
-
 				expect(LoadingText).toBeInTheDocument();
-
 			}
 		);
 
@@ -37,6 +36,7 @@ describe(
 			"useGetEventsQuery: should render received events data in Main page",
 			async () => {
 				renderforRTKtest(<MainPage />);
+
 				const EventsText = await screen.findByText(/recent events/i);
 				const EventNameText = await screen.findByText(/Test 1/i);
 				const EventDataText = await screen.findByText(/Feb. 8, 2022/i);
@@ -51,6 +51,7 @@ describe(
 			"useGetLaunchesQuery: should render received Launches data in Main page",
 			async () => {
 				renderforRTKtest(<LaunchesBlock />);
+
 				const LaunchesTitleText = await screen.findByText(/Spaceflight Launches/i);
 				const FirstLaunchName = await screen.findByText(/First/i);
 				const SecondLaunchName = await screen.findByText(/Second/i);
@@ -95,6 +96,7 @@ describe(
 			"should render received current launch data",
 			async () => {
 				renderforRTKtest(<LaunchPage />);
+
 				const currentLaunchTitle = await screen.findByText(/Test Launch Title/i);
 				const currentLaunchOrbit = await screen.findByText(/Test Orbit/i);
 				const currentLaunchText = await screen.findByText(/Test Communication/i);
