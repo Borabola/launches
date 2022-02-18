@@ -243,28 +243,28 @@ const toArrayBuffer = (buf: Buffer) => {
 	return ab;
 };
 
-async function flushPromises(
+const flushPromises = async(
 	rerender: RerenderType, ui: UiType
-) {
-		await act(() => waitFor(() => rerender(ui)));
-}
+) => {
+	await act(() => waitFor(() => rerender(ui)));
+};
 
-function dispatchEvt(
+const dispatchEvt = (
 	node: Element | Node | Document | Window, type: string, data: unknown
-) {
-		const event = new Event(
-			type,
-			{ bubbles: true }
-		);
-		Object.assign(
-			event,
-			data
-		);
-		fireEvent(
-			node,
-			event
-		);
-}
+) => {
+	const event = new Event(
+		type,
+		{ bubbles: true }
+	);
+	Object.assign(
+		event,
+		data
+	);
+	fireEvent(
+		node,
+		event
+	);
+};
 export {dispatchEvt,
 	flushPromises,
 	renderforRTKtest,

@@ -14,12 +14,11 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 /*
-	* Modified version of RTK Query's helper function:
+	* Modified version of RTK Query's helper :
 	* https://github.com/reduxjs/redux-toolkit/blob/master/packages/toolkit/src/query/tests/helpers.tsx
 	*/
 
-export function setupApiStore<
-	A extends {
+export const setupApiStore = <A extends {
 		//reducer: Reducer<RootState, AnyAction>;
 		reducer: Reducer<any, AnyAction>;
 		reducerPath: string;
@@ -30,20 +29,19 @@ export function setupApiStore<
 		};*/
 	},
 	R extends Record<string, Reducer<any, AnyAction>>
-	= Record<never, never>
->(
-	api: A, extraReducers?: R
-): { api: A; store: EnhancedStore } {
+	= Record<never, never>>(
+		api: A, extraReducers?: R
+	): { api: A; store: EnhancedStore } => {
 
-		const getStore = (): EnhancedStore =>
-			configureStore({
-				reducer: combineReducers({
-					[api.reducerPath]: api.reducer,
-					...extraReducers,
-				}),
-				middleware: (gdm) =>
-					gdm({ serializableCheck: false, immutableCheck: false }).concat(api.middleware),
-			});
+	const getStore = (): EnhancedStore =>
+		configureStore({
+			reducer: combineReducers({
+				[api.reducerPath]: api.reducer,
+				...extraReducers,
+			}),
+			middleware: (gdm) =>
+				gdm({ serializableCheck: false, immutableCheck: false }).concat(api.middleware),
+		});
 
 	type StoreType = EnhancedStore<
 		{
@@ -67,4 +65,4 @@ export function setupApiStore<
 	refObj.store = store;
 
 	return refObj;
-}
+};

@@ -32,7 +32,6 @@ describe(
 			async () => {
 				renderWithProvidersLogout(<RocketPage/>);
 
-
 				expect(screen.getByText(/Rocket/i)).toBeInTheDocument();
 			}
 		);
