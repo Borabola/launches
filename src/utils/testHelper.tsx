@@ -110,7 +110,7 @@ const renderWithProvidersLogout = renderWithProvidersUser(testValueNull);
 
 /**
  * BrowserRouter ignores the history prop as it handles the history automatically for you.
- * If you need access to the history outside of a react component, then using Router should be fine
+ * If you need access to the history outside of a react component,  using Router should be fine
  */
 
 const renderWithHistoryAuth = ( currentHistory: MemoryHistory<unknown>) => (
