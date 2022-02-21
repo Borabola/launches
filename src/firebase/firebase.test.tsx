@@ -5,15 +5,21 @@ import {
 	deleteObject, ref as storeRef, uploadBytes, getDownloadURL
 } from "firebase/storage";
 import * as fs from "fs";
-import { toArrayBuffer } from "../utils/testHelper";
+import { auth } from "../firebase/firebaseConfig";
+import {
+	connectAuthEmulator,
+	createUserWithEmailAndPassword
+} from "firebase/auth";
+import {FirebaseError} from "../contexts/AuthContext.types";
+//import { toArrayBuffer } from "../utils/testHelper";
 
 const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
 
-const userAuth = { email: "user123@test.com", userId: "L1iznAixGpNeb16AmPTSdCSx6Ss1", };
+const testUser = { email: "user123@test.com", password: "123456",};
 
 let testEnv: ftest.RulesTestEnvironment;
 
-const loadIconImage = fs.readFileSync("src/firebase/_mock/test-image.jpeg");
+//const loadIconImage = fs.readFileSync("src/firebase/_mock/test-image.jpeg");
 
 /*beforeAll(async () => {
 	testEnv = await ftest.initializeTestEnvironment({
@@ -41,18 +47,9 @@ afterAll(async () => {
 
 describe(
 	"Firestore security rules",
-	async () => {
-		testEnv = await ftest.initializeTestEnvironment({
-			//projectId: "demo-users-storage-rules-test",
-			projectId: MY_PROJECT_ID,
-			storage: {
-				rules: fs.readFileSync(
-					"./storage.rules",
-					"utf8"
-				),
-			}
-		});
-		/*it(
+	() => {
+
+		it(
 			"cannot read from storage .unauthenticatedContext",
 			async () => {
 				testEnv = await ftest.initializeTestEnvironment({
@@ -65,6 +62,7 @@ describe(
 						),
 					}
 				});
+
 				const alice = testEnv.unauthenticatedContext();
 				const desertRef = storeRef(
 					alice.storage(),
@@ -72,39 +70,58 @@ describe(
 				);
 				await assertFails(deleteObject(desertRef));
 			}
-		);*/
+		);
 
 		it(
 			"can read from storage with auth",
 			async () => {
-				const alice = testEnv.authenticatedContext(
-					"alice",
-					userAuth
+				testEnv = await ftest.initializeTestEnvironment({
+					//projectId: "demo-users-storage-rules-test",
+					projectId: MY_PROJECT_ID,
+					storage: {
+						rules: fs.readFileSync(
+							"./storage.rules",
+							"utf8"
+						),
+					}
+				});
+
+				connectAuthEmulator(
+					auth,
+					"http://localhost:9099"
 				);
+				try {
+					await createUserWithEmailAndPassword(
+						auth,
+						testUser.email,
+						testUser.password
+					);
+					const oobCodes = await fetch(`http://localhost:9099/emulator/v1/projects/
+					${MY_PROJECT_ID}/oobCodes`);
+					console.log(oobCodes);
+
+				} catch (error) {
+					throw new Error((error as FirebaseError).code);
+				}
 
 				const path = `images/${userAuth.userId}/test-image.jpeg`;
-				const storageRef = storeRef(
+
+				/*await testEnv.withSecurityRulesDisabled(async (context) => {
+					const pictureReference = storeRef(
+						context.storage(),
+						path
+					);
+					await uploadBytes(
+						pictureReference,
+						loadIconImage
+					);
+				});
+
+				await assertSucceeds(getDownloadURL(storeRef(
 					alice.storage(),
 					path
-				);
-
-				await assertSucceeds(uploadBytes(
-					storageRef,
-					toArrayBuffer(loadIconImage)
-				)
-					.then((snapshot) => {
-						return getDownloadURL(snapshot.ref);
-						console.log(snapshot);
-						console.log("Uploaded a blob or file!");
-					})
-					.catch((error) => {
-						console.error(error);
-						throw new Error("");
-					}));
-
-				expect(storageRef.fullPath)
-					.toBe(`http://localhost:4000/
-					storage/default-bucket/images/${userAuth.userId}/test-image.jpeg`);
+				)));*/
+				await testEnv.cleanup();
 			}
 		);
 	}
