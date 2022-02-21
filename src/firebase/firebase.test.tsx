@@ -1,11 +1,11 @@
 import * as ftest from "@firebase/rules-unit-testing";
 import { assertFails, assertSucceeds } from "@firebase/rules-unit-testing";
-import { storage } from "firebase-admin";
+//import { storage } from "firebase-admin";
 import {
-	deleteObject, ref as storeRef, uploadBytes, getDownloadURL
+	deleteObject, ref as storeRef, uploadBytes, getDownloadURL, connectStorageEmulator
 } from "firebase/storage";
 import * as fs from "fs";
-import { auth } from "../firebase/firebaseConfig";
+import { auth, storage } from "../firebase/firebaseConfig";
 import {
 	connectAuthEmulator,
 	createUserWithEmailAndPassword
@@ -13,13 +13,14 @@ import {
 import {FirebaseError} from "../contexts/AuthContext.types";
 //import { toArrayBuffer } from "../utils/testHelper";
 
-const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
+//const MY_PROJECT_ID = process.env.REACT_APP_FIREBASE_API_KEY;
+const MY_PROJECT_ID = "demo-users-storage-rules-test";
 
 const testUser = { email: "user123@test.com", password: "123456",};
 
 let testEnv: ftest.RulesTestEnvironment;
 
-//const loadIconImage = fs.readFileSync("src/firebase/_mock/test-image.jpeg");
+const loadIconImage = fs.readFileSync("src/firebase/_mock/test-image.jpeg");
 
 /*beforeAll(async () => {
 	testEnv = await ftest.initializeTestEnvironment({
@@ -90,37 +91,38 @@ describe(
 					auth,
 					"http://localhost:9099"
 				);
+				connectStorageEmulator(
+					storage,
+					"localhost",
+					9199
+				);
 				try {
-					await createUserWithEmailAndPassword(
+					const userAuth = await createUserWithEmailAndPassword(
 						auth,
 						testUser.email,
 						testUser.password
 					);
-					const oobCodes = await fetch(`http://localhost:9099/emulator/v1/projects/
-					${MY_PROJECT_ID}/oobCodes`);
-					console.log(oobCodes);
+					const userUid = userAuth.user.uid;
+
+					const path = `images/${userUid}/test-image.jpeg`;
+					const alice = testEnv.authenticatedContext(userUid);
+
+					const fileRef = storeRef(
+						alice.storage(),
+						path
+					);
+					//console.log(typeof loadIconImage)
+
+					const snapshot = await uploadBytes(
+						fileRef,
+						loadIconImage
+					);
+
+					await assertSucceeds(getDownloadURL(snapshot.ref));
 
 				} catch (error) {
 					throw new Error((error as FirebaseError).code);
 				}
-
-				const path = `images/${userAuth.userId}/test-image.jpeg`;
-
-				/*await testEnv.withSecurityRulesDisabled(async (context) => {
-					const pictureReference = storeRef(
-						context.storage(),
-						path
-					);
-					await uploadBytes(
-						pictureReference,
-						loadIconImage
-					);
-				});
-
-				await assertSucceeds(getDownloadURL(storeRef(
-					alice.storage(),
-					path
-				)));*/
 				await testEnv.cleanup();
 			}
 		);
