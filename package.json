@@ -59,10 +59,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "firebase emulators:exec --ui --import=src/firebase/emulator-data/ 'npm run jest'",
-    "test2": "react-scripts test",
+	"test:dev": "jest",
+    "test2": "firebase emulators:exec --ui --import=src/firebase/emulator-data/ 'npm run jest'",
+    "test": "react-scripts test",
     "test:rules": "react-scripts test --config=firebase.jest.config.js --detectOpenHandles --forceExit",
-    "test:coverage": "npm run test2 -- --coverage",
+    "test:coverage": "npm run test:dev -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .jsx,.js,.ts,.tsx",
     "lint:fix": "eslint src --fix",
@@ -70,7 +71,14 @@
     "deploy": "npm run build && firebase deploy",
     "jest": "react-scripts test --runInBand",
     "mock": "firebase emulators: start",
-    "firebase": "firebase emulators:exec --import=src/firebase/emulator-data/"
+    "firebase": "firebase emulators:exec --import=src/firebase/emulator-data/",
+	"pre-push": "npm run test:dev"
+  },
+  "husky": {
+	"hooks": {
+		"pre-commit": "tsc --noEmit && lint-staged",
+		"pre-push": "npm run pre-push"
+	  }
   },
   "browserslist": {
     "production": [
