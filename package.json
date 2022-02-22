@@ -76,10 +76,13 @@
   },
   "husky": {
 	"hooks": {
-		"pre-commit": "lint:fix && tsc --noEmit && lint-staged",
-		"pre-push": "lint"
+		"pre-commit": "./commands/pre-commit && lint-staged",
+		"pre-push": "./commands/pre-push $HUSKY_GIT_STDIN"
 	  }
   },
+  "lint-staged": {
+		"*": "eslint src .jsx,.js,.ts,.tsx --fix"
+	  },
   "browserslist": {
     "production": [
       ">0.5%",
