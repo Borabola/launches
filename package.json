@@ -31,6 +31,7 @@
 		"firebase-admin": "^10.0.0",
 		"firebase-tools": "^10.1.2",
 		"formik": "^2.2.9",
+		"git-branch-is": "^4.0.0",
 		"jwt-decode": "^3.1.2",
 		"namor": "^2.0.3",
 		"prop-types": "15.7.2",
@@ -56,7 +57,9 @@
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
-		"test": "firebase emulators:exec --ui 'npm run jest'",
+		"firebase": "firebase emulators:exec --import=src/firebase/emulator-data/",
+		"test": "react-scripts test",
+		"test2": "firebase emulators:exec --ui 'npm run jest'",
 		"test:rules": "react-scripts test --config=firebase.jest.config.js --detectOpenHandles --forceExit",
 		"eject": "react-scripts eject",
 		"lint": "eslint src --ext .jsx,.js,.ts,.tsx",
@@ -64,7 +67,8 @@
 		"extract-messages": "formatjs extract src/**/*.js* --out-file src/i18n/en.json",
 		"deploy": "npm run build && firebase deploy",
 		"jest": "react-scripts test --runInBand",
-		"mock": "firebase emulators: start"
+		"mock": "firebase emulators: start",
+		"prepare": "husky install"
 	},
 	"browserslist": {
 		"production": [
@@ -100,6 +104,7 @@
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"eslint-scope": "^6.0.0",
 		"firestore-jest-mock": "^0.17.0",
+		"husky": "^7.0.0",
 		"node-sass": "^6.0.1",
 		"redux-devtools-extension": "^2.13.9",
 		"typescript": "^4.5.4"
