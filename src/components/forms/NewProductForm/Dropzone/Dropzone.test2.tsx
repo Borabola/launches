@@ -69,7 +69,7 @@ describe(
 						<Form>
 							<Dropzone name="file" />
 						</Form>
-					</Formik>);
+                                </Formik>);
 				const fileDropzone = getByText("Drag drop image file here, or click to select it");
 
 				dispatchEvt(
