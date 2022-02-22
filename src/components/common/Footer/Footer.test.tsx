@@ -10,7 +10,7 @@ describe(
 	"Component: Footer",
 	() => {
 		it(
-			"should render current year and text correctly",
+			"should render current year and text correctly ",
 			() => {
 				render(<BrowserRouter>
 					<AppIntlProvider>

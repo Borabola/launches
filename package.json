@@ -68,7 +68,7 @@
 		"deploy": "npm run build && firebase deploy",
 		"jest": "react-scripts test --runInBand",
 		"mock": "firebase emulators: start",
-		"prepare": "husky install"
+		"prepare": "  "
 	},
 	"browserslist": {
 		"production": [
