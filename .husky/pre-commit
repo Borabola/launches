@@ -6,7 +6,7 @@ if [ "$branch" = "master" ]; then
   exit 1
 fi
 
-changed_files=$(git diff --cached --name-only)
+changed_files=$(git diff --cached --diff-filter=d --name-only)
 if [ $? -eq 1 ]; then
   echo $changed_files
   npm run lint:fix $changed_files
