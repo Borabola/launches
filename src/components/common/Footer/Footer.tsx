@@ -7,8 +7,6 @@ import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { AppRouteEnum } from "../../../types/Enums";
 import { useStyles } from "./Footer.styles";
 
-
-
 export const Footer: FC = () => {
 	const classes = useStyles();
 	const intl = useIntl();
@@ -16,8 +14,7 @@ export const Footer: FC = () => {
 
 	return (
 		<Box
-			component="div"
-			className={classes.footerContainer}
+			component="div" className={classes.footerContainer}
 		>
 			<Box
 				component="div"
