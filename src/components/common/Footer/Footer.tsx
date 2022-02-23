@@ -39,6 +39,7 @@ export const Footer: FC = () => {
 						data-testid="test_id_year"
 					>
 						© {date.getFullYear()} {intl.formatMessage({ id: "copyright" })}
+					 Test
 					</Typography>
 				</Box>
 			</Box>
