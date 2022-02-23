@@ -6,4 +6,10 @@ if [ "$branch" = "master" ]; then
   exit 1
 fi
 
-npm run lint:fix
+changed_files=$(git diff --cached --name-only)
+if [ $? -eq 1 ]; then
+  echo $changed_files
+  npm run lint:fix $changed_files
+  git add $changed_files
+fi
+
