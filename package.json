@@ -82,7 +82,7 @@
     }
   },
   "prepush-if-changed": {
-    "src/**/*.tsx,.ts?(x)": "npm run test"
+    "src/**/*.+(js|jsx|ts|tsx)?(x)": "npm run test"
   },
   "lint-staged": {
     "*": "eslint src .jsx,.js,.ts,.tsx --fix"
