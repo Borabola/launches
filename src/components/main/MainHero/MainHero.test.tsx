@@ -22,12 +22,10 @@ describe(
 		it(
 			"should have correct links",
 			() => {
-				const { container } =
-					renderWithProvidersLogin(<MainHero />);
 
-				expect(container.firstElementChild
-					.firstElementChild.firstElementChild?.lastElementChild
-					.getAttribute("href")).toEqual(pageLink);
+				renderWithProvidersLogin(<MainHero />);
+
+				expect(screen.getByTestId("test_link").getAttribute("href")).toEqual(pageLink);
 			}
 		);
 

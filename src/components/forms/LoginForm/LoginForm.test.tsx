@@ -3,7 +3,7 @@ import { LoginForm } from ".";
 import { renderWithProvidersLogout } from "../../../utils/testHelper";
 
 const initialValuesLogin = { email: "john@someemail.com", password: "testPassword", };
-const initialValuesLoginNull = { email: "", password: "", };
+//const initialValuesLoginNull = { email: "", password: "", };
 const testSubmit = jest.fn();
 const testPath = { from: { pathname: "testPath" } };
 

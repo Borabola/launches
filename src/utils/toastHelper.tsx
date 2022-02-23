@@ -38,16 +38,6 @@ export const showUploadFailToast = (): void => {
 	);
 };
 
-export const showWaitMessage = (): void => {
-	const customId = "loading";
-	toast.info(
-		<FormattedMessage
-			id="waitMessage"
-		/>,
-		{ toastId: customId }
-	);
-};
-
 export const showServerDetail = (error: string): void => {
 	const currentDetailId = "currentDetailId";
 	toast.error(
