@@ -8,10 +8,7 @@ fi
 
 changed_files=$(git diff --cached --diff-filter=d --name-only)
 if [ "$changed_files" ]; then
-	for f in $changed_files
-  do
-    npm run lint:fix --files "$f"
-    git add "$f"
-  done
+  npm run lint:fix --files $changed_files
+  git add $changed_files
 fi
 
