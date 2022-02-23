@@ -7,6 +7,8 @@ import { ReactComponent as LogoSvg } from "../../../assets/common/logo.svg";
 import { AppRouteEnum } from "../../../types/Enums";
 import { useStyles } from "./Footer.styles";
 
+
+
 export const Footer: FC = () => {
 	const classes = useStyles();
 	const intl = useIntl();

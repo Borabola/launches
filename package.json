@@ -75,18 +75,6 @@
     "pre-push": "npm run test:dev",
     "prepare": "husky install"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pre-commit && lint-staged",
-      "pre-push": "prepush-if-changed"
-    }
-  },
-  "prepush-if-changed": {
-    "src/**/*.+(js|jsx|ts|tsx)?(x)": "npm run test"
-  },
-  "lint-staged": {
-    "*": "eslint src .jsx,.js,.ts,.tsx --fix"
-  },
   "browserslist": {
     "production": [
       ">0.5%",
