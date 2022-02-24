@@ -25,3 +25,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 **/[Ll]ogs
+firebase-debug.log
+ui-debug.log
+database-debug.log

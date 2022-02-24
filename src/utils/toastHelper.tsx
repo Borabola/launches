@@ -38,17 +38,7 @@ export const showUploadFailToast = (): void => {
 	);
 };
 
-export const showWaitMessage = (): void => {
-	const customId = "loading";
-	toast.info(
-		<FormattedMessage
-			id="waitMessage"
-		/>,
-		{ toastId: customId }
-	);
-};
-
-export const showServerDetail = (error: string): void => {
+export const showServerDetail = (error?: string): void => {
 	const currentDetailId = "currentDetailId";
 	toast.error(
 		error,
@@ -57,9 +47,11 @@ export const showServerDetail = (error: string): void => {
 };
 
 export const outputtingError = (
-	error: string, intl: IntlShape
+	error?: string, intl?: IntlShape,
 ): void => {
-
+	if(!intl) {
+		return;
+	}
 	switch (error) {
 		case "auth/user-not-found": toast.error(intl.formatMessage({ id: "userNotFound" }));
 			break;
@@ -84,9 +76,11 @@ export const outputtingError = (
 };
 
 export const outputtingGoogleError = (
-	error: string, intl: IntlShape
+	error?: string, intl?: IntlShape
 ): void => {
-
+	if(!intl) {
+		return;
+	}
 	switch (error) {
 		case "auth/user-not-found":
 			toast.error(intl.formatMessage({ id: "userNotFound" }));

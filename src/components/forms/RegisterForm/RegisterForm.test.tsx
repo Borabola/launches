@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { RegisterForm } from ".";
 import { renderWithProvidersLogout } from "../../../utils/testHelper";
 
@@ -14,38 +14,39 @@ describe(
 	() => {
 		it(
 			"should render correctly without user",
-			() => {
+			async () => {
 				renderWithProvidersLogout(<RegisterForm
 					initialValues={initialValuesLogin}
 					onSubmit={testSubmit}
 				/>);
 
-				//buttons
-				expect(screen.getByText(
-					/sign up now/i,
-					{ selector: "button" }
-				)).toBeInTheDocument();
+				await waitFor(() => {
+					//buttons
+					expect(screen.getByText(
+						/sign up now/i,
+						{ selector: "button" }
+					)).toBeInTheDocument();
 
-				//inputs
-				expect(screen.getByDisplayValue(/testEmail/i)).toBeInTheDocument();
-				//expect(screen.getByDisplayValue(/testPassword/i)).toBeInTheDocument();
+					//inputs
+					expect(screen.getByDisplayValue(/testEmail/i)).toBeInTheDocument();
 
-				screen.getAllByDisplayValue(/testPassword/i).forEach((item) => {
-					expect(item).toBeInTheDocument();
+					screen.getAllByDisplayValue(/testPassword/i).forEach((item) => {
+						expect(item).toBeInTheDocument();
+					});
+
+					//link
+					expect(screen.getByRole(
+						"link",
+						{ name: "Sign in" }
+					)).toBeInTheDocument();
+
+					//texts
+					expect(screen.getByText(/Use your email to create new account/i))
+						.toBeInTheDocument();
+
+					expect(screen.getByText(/Have an account?/i)).toBeInTheDocument();
 				});
-
-				//link
-				expect(screen.getByRole(
-					"link",
-					{ name: "Sign in" }
-				)).toBeInTheDocument();
-
-				//texts
-				expect(screen.getByText(/Use your email to create new account/i))
-					.toBeInTheDocument();
-				expect(screen.getByText(/Have an account?/i)).toBeInTheDocument();
 			}
 		);
-
 	}
 );
