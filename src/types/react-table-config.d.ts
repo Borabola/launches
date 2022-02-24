@@ -86,5 +86,5 @@ declare module "react-table" {
 		placeholderOf?: ColumnInstance | undefined;
 	}
 
-	export type Row<D extends object = Record<string, unknown>> = UseTableRowProps<D>;
+	//export type Row<D extends object = Record<string, unknown>> = UseTableRowProps<D>;
 }

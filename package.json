@@ -59,11 +59,10 @@
   "scripts": {
 	"start": "react-scripts start",
 	"build": "react-scripts build",
-	"test:dev": "jest",
 	"test2": "firebase emulators:exec --ui --import=src/firebase/emulator-data/ 'npm run jest'",
 	"test": "react-scripts test",
 	"test:rules": "react-scripts test --config=firebase.jest.config.js --detectOpenHandles --forceExit",
-	"test:coverage": "npm run test:dev -- --coverage",
+	"test:coverage": "npm run test -- --coverage",
 	"eject": "react-scripts eject",
 	"lint": "eslint src --ext .jsx,.js,.ts,.tsx",
 	"lint:fix": "eslint src --ext .jsx,.js,.ts,.tsx --fix",
