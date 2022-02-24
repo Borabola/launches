@@ -15,7 +15,10 @@ export const DashboardLayout: FC<Props> = ({ children }) => {
 
 	return (
 		<PageLayout>
-			<Box className={classes.pageWrap}>
+			<Box
+				className={classes.pageWrap}
+				data-testid="wrapId"
+			>
 				<Container className={classes.formContainer} >
 					<Typography
 						variant="h2"

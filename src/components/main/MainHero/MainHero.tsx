@@ -43,6 +43,7 @@ export const MainHero: FC = () => {
 						component={Link}
 						to={AppRouteEnum.ROOT}
 						className={classes.pageLink}
+						data-testid="test_link"
 					>
 						{intl.formatMessage({ id: "mainHeroButton" })}
 					</Button>

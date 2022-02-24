@@ -36,7 +36,7 @@ describe(
 				renderWithProvidersLogin(<LaunchPage
 					currentLaunch={null}
 					isCurrentFetching={false}
-					lunchCurrentError={"test error message"}
+					lunchCurrentError={{ message: "test error message" }}
 				/>);
 
 				expect(screen.getByText(/test error message/i)).toBeInTheDocument();

@@ -1,18 +1,8 @@
 import { screen } from "@testing-library/react";
 import { LaunchHero } from ".";
 import { renderWithProvidersLogin } from "../../../utils/testHelper";
+import { testCurrentLaunch } from "../../../mock/mockData";
 
-const testDate = (Date.now() + 5000).toString();
-const testCurrentLaunch = {
-	id: "testId",
-	launchName: "testName",
-	launchImg: "testImgUrl",
-	videoURLs: "testVideoUrl",
-	rocketDescription: "testDescription",
-	launchDestination: "testOrbit",
-	launchMission: "testMissionType",
-	launchDate: testDate,
-};
 describe(
 	"Component: LaunchHero",
 	() => {

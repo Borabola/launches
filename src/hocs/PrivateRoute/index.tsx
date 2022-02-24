@@ -3,8 +3,8 @@ import { Redirect, Route } from "react-router-dom";
 import { Loader } from "../../components/common/Loader";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTypedSelector } from "../../redux/store";
-import { AuthorizationStatusEnum } from "../../types/Enums";
 import type { PrivatRoutesItem } from "../../routes/routes.types";
+import { AuthorizationStatusEnum } from "../../types/Enums";
 
 const PrivateRoute: FC<PrivatRoutesItem> = ({
 	component: Component,
